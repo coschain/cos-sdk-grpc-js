@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: "./src/main.js",
+    entry: "./src/main.ts",
     mode: "development",
     output: {
         path: path.resolve(__dirname, 'build'),

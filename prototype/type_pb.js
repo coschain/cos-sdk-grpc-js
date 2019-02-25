@@ -726,10 +726,10 @@ proto.prototype.public_key_type.serializeBinaryToWriter = function(message, writ
 
 /**
  * optional bytes data = 1;
- * @return {!(string|Uint8Array)}
+ * @return {string}
  */
 proto.prototype.public_key_type.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -892,10 +892,10 @@ proto.prototype.private_key_type.serializeBinaryToWriter = function(message, wri
 
 /**
  * optional bytes data = 1;
- * @return {!(string|Uint8Array)}
+ * @return {string}
  */
 proto.prototype.private_key_type.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -1813,10 +1813,10 @@ proto.prototype.signature_type.serializeBinaryToWriter = function(message, write
 
 /**
  * optional bytes sig = 1;
- * @return {!(string|Uint8Array)}
+ * @return {string}
  */
 proto.prototype.signature_type.prototype.getSig = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -1979,10 +1979,10 @@ proto.prototype.sha256.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional bytes hash = 1;
- * @return {!(string|Uint8Array)}
+ * @return {string}
  */
 proto.prototype.sha256.prototype.getHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -2419,7 +2419,8 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     totalTrxCnt: jspb.Message.getFieldWithDefault(msg, 16, 0),
     totalPostCnt: jspb.Message.getFieldWithDefault(msg, 17, 0),
     totalUserCnt: jspb.Message.getFieldWithDefault(msg, 18, 0),
-    maxTps: jspb.Message.getFieldWithDefault(msg, 19, 0)
+    maxTps: jspb.Message.getFieldWithDefault(msg, 19, 0),
+    headBlockPrefix: jspb.Message.getFieldWithDefault(msg, 20, 0)
   };
 
   if (includeInstance) {
@@ -2539,6 +2540,10 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
     case 19:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setMaxTps(value);
+      break;
+    case 20:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setHeadBlockPrefix(value);
       break;
     default:
       reader.skipField();
@@ -2707,6 +2712,13 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   if (f !== 0) {
     writer.writeUint32(
       19,
+      f
+    );
+  }
+  f = message.getHeadBlockPrefix();
+  if (f !== 0) {
+    writer.writeUint32(
+      20,
       f
     );
   }
@@ -3115,6 +3127,21 @@ proto.prototype.dynamic_properties.prototype.getMaxTps = function() {
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setMaxTps = function(value) {
   jspb.Message.setProto3IntField(this, 19, value);
+};
+
+
+/**
+ * optional uint32 head_block_prefix = 20;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getHeadBlockPrefix = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 20, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setHeadBlockPrefix = function(value) {
+  jspb.Message.setProto3IntField(this, 20, value);
 };
 
 

@@ -1,5 +1,5 @@
 import {account_name as accountName} from "../prototype/type_pb"
-import {generatePrivKey} from './crypto'
+import {generatePrivKey} from './crypto/crypto'
 
 export class account_name extends accountName {
     validate = () => {
@@ -9,9 +9,4 @@ export class account_name extends accountName {
         }
         return name.match(/^[A-Za-z0-9]+$/i) !== null;
     };
-
-    generateNewKeys = () => {
-        let p = generatePrivKey();
-        console.log(p.toWIF());
-    }
 }
