@@ -2,7 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: "./src/main.ts",
+    // entry: "./src/main.js",
+    entry: "./src/cos_request.js",
     mode: "development",
     output: {
         path: path.resolve(__dirname, 'build'),
