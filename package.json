@@ -1,5 +1,5 @@
 {
-  "name": "cos-apis-js",
+  "name": "cos-sdk-grpc-js",
   "version": "1.0.0",
   "dependencies": {
     "@improbable-eng/grpc-web": "^0.8.0",
