@@ -1,5 +1,5 @@
-import {account_name as accountName} from "../prototype/type_pb"
-import {generatePrivKey} from './crypto/crypto'
+import {account_name as accountName} from "../../../prototype/type_pb"
+import {generatePrivKey} from '../crypto/crypto'
 
 export class account_name extends accountName {
     validate = () => {

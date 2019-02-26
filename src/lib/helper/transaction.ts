@@ -1,6 +1,6 @@
-import {operation as Operation, transaction as Transaction} from "../prototype/transaction_pb";
-import {PrivKey} from "./crypto/crypto";
-import {trxHash} from "./crypto/trx_hash";
+import {operation as Operation, transaction as Transaction} from "../../../prototype/transaction_pb";
+import {PrivKey} from "../crypto/crypto";
+import {trxHash} from "../crypto/trx_hash";
 import {
     account_create_operation,
     bp_register_operation,
@@ -14,7 +14,7 @@ import {
     transfer_to_vesting_operation,
     claim_operation,
     claim_all_operation, contract_deploy_operation, contract_apply_operation
-} from "../prototype/operation_pb";
+} from "../../../prototype/operation_pb";
 
 export class transaction extends Transaction {
     addOperation = (op: any) => {

@@ -1,6 +1,6 @@
-import {signed_transaction as signedTransaction, transaction} from "../prototype/transaction_pb"
-import {trxHash} from "./crypto/trx_hash";
-import {PrivKey} from "./crypto/crypto";
+import {signed_transaction as signedTransaction, transaction} from "../../../prototype/transaction_pb"
+import {trxHash} from "../crypto/trx_hash";
+import {PrivKey} from "../crypto/crypto";
 
 
 export class signed_transaction extends signedTransaction {

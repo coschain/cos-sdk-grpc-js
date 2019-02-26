@@ -1,25 +1,25 @@
 import {grpc} from "@improbable-eng/grpc-web";
 // Import code-generated data structures.
-import {ApiService} from "../rpc/pb/grpc_pb_service";
-import {BroadcastTrxRequest, GetAccountByNameRequest, NonParamsRequest} from "../rpc/pb/grpc_pb";
+import {ApiService} from "../../rpc/pb/grpc_pb_service";
+import {BroadcastTrxRequest, GetAccountByNameRequest, NonParamsRequest} from "../../rpc/pb/grpc_pb";
 // import {account_name} from "../prototype/type_pb"
-import {account_name} from "./account";
-import {authority, coin, kv_key_auth, public_key_type, signature_type, time_point_sec} from "../prototype/type_pb"
-import {account_create_operation} from "../prototype/operation_pb";
+import {account_name} from "./helper/account";
+import {authority, coin, kv_key_auth, public_key_type, signature_type, time_point_sec} from "../../prototype/type_pb"
+import {account_create_operation} from "../../prototype/operation_pb";
 import {PrivKey, privKeyFromWIF} from "./crypto/crypto";
 import {host} from "./constants";
-import {transaction} from "./transaction";
-import {signed_transaction} from "./signed_transaction";
+import {transaction} from "./helper/transaction";
+import {signed_transaction} from "./helper/signed_transaction";
 import {generatePrivKey} from "./crypto/crypto";
 
 
-const getAccountByName = async (name:string) => {
+export const getAccountByName = async (name:string) => {
     const getAccountByNameRequest= new GetAccountByNameRequest();
     const accountName = new account_name();
     accountName.setValue(name);
     getAccountByNameRequest.setAccountName(accountName);
     return new Promise(
-        (resolve, reject) => grpc.unary(ApiService.GetAccountByName, {
+        resolve  => grpc.unary(ApiService.GetAccountByName, {
             request: getAccountByNameRequest,
             host: host,
             onEnd: res => {
@@ -27,14 +27,14 @@ const getAccountByName = async (name:string) => {
                 if (status === grpc.Code.OK && message) {
                     resolve(message.toObject())
                 } else {
-                    reject(null)
+                    resolve({})
                 }
             }
         })
     );
 };
 
-const createAccount = async (name:string) => {
+export const createAccount = async (name:string) => {
     const creatorPriv =  privKeyFromWIF('4DjYx2KAGh1NP3dai7MZTLUBMMhMBPmwouKE8jhVSESywccpVZ');
     if(creatorPriv === null){
         console.log("creator priv from wif failed");
@@ -69,12 +69,12 @@ const createAccount = async (name:string) => {
     an.setValue(name);
     acop.setNewAccountName(an);
     acop.setOwner(auth);
-    const signTx = await sign(creatorPriv, [acop]);
+    const signTx = await signOps(creatorPriv, [acop]);
     if (signTx) {
         const broadcastTrxRequest = new BroadcastTrxRequest();
         // @ts-ignore
         broadcastTrxRequest.setTransaction(signTx);
-        return new Promise((resolve, reject) => grpc.unary(ApiService.BroadcastTrx, {
+        return new Promise(resolve => grpc.unary(ApiService.BroadcastTrx, {
                 request: broadcastTrxRequest,
                 host: host,
                 onEnd: res => {
@@ -83,7 +83,7 @@ const createAccount = async (name:string) => {
                     if (status === grpc.Code.OK && message) {
                         resolve(message.toObject())
                     } else {
-                        reject(null)
+                        resolve({})
                     }
                 }
             }
@@ -92,10 +92,10 @@ const createAccount = async (name:string) => {
     return 'success'
 };
 
-const sign = async (privKey: PrivKey, ops: any[]) => {
+const signOps = async (privKey: PrivKey, ops: any[]) => {
     const tx = new transaction();
     const nonParamsRequest = new NonParamsRequest();
-    return new Promise((resolve, reject) => grpc.unary(ApiService.GetChainState, {
+    return new Promise(resolve  => grpc.unary(ApiService.GetChainState, {
         request: nonParamsRequest,
         host: host,
         onEnd: res => {
@@ -124,7 +124,7 @@ const sign = async (privKey: PrivKey, ops: any[]) => {
                 // skip validate
                 resolve(signTx)
             } else {
-                reject(null)
+                resolve({})
             }
         }
     }))
@@ -134,7 +134,10 @@ const sign = async (privKey: PrivKey, ops: any[]) => {
 
 // }
 
-createAccount('kochiye').then(
-    value => console.log(value)
-);
+// createAccount('kochiye').then(
+//     value => console.log(value)
+// );
 
+// getAccountByName('kochiye').then(
+//     value => console.log(value)
+// );
