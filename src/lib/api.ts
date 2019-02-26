@@ -1,11 +1,11 @@
 import {grpc} from "@improbable-eng/grpc-web";
 // Import code-generated data structures.
-import {ApiService} from "../../rpc/pb/grpc_pb_service";
-import {BroadcastTrxRequest, GetAccountByNameRequest, NonParamsRequest} from "../../rpc/pb/grpc_pb";
+import {ApiService} from "../rpc/pb/grpc_pb_service";
+import {BroadcastTrxRequest, GetAccountByNameRequest, NonParamsRequest} from "../rpc/pb/grpc_pb";
 // import {account_name} from "../prototype/type_pb"
 import {account_name} from "./helper/account";
-import {authority, coin, kv_key_auth, public_key_type, signature_type, time_point_sec} from "../../prototype/type_pb"
-import {account_create_operation} from "../../prototype/operation_pb";
+import {authority, coin, kv_key_auth, public_key_type, signature_type, time_point_sec} from "../prototype/type_pb"
+import {account_create_operation} from "../prototype/operation_pb";
 import {PrivKey, privKeyFromWIF} from "./crypto/crypto";
 import {host} from "./constants";
 import {transaction} from "./helper/transaction";

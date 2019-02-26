@@ -402,6 +402,9 @@ export class dynamic_properties extends jspb.Message {
   getMaxTps(): number;
   setMaxTps(value: number): void;
 
+  getHeadBlockPrefix(): number;
+  setHeadBlockPrefix(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): dynamic_properties.AsObject;
   static toObject(includeInstance: boolean, msg: dynamic_properties): dynamic_properties.AsObject;
@@ -433,6 +436,7 @@ export namespace dynamic_properties {
     totalPostCnt: number,
     totalUserCnt: number,
     maxTps: number,
+    headBlockPrefix: number,
   }
 }
 

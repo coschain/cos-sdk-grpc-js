@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <title>gRPC-Web Example</title>
     <h2>HAHA</h2>
-    <script src="./build/bundle.js"></script>
+    <script src="./dist/sdk.min.js"></script>
+    <script>
+        window.sdk.getAccountByName('kochiye').then(
+            value => console.log(value)
+        );
+    </script>
 </head>
 <body>
 </body>

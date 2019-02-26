@@ -2204,10 +2204,10 @@ proto.prototype.contract_deploy_operation.prototype.setAbi = function(value) {
 
 /**
  * optional bytes code = 4;
- * @return {string}
+ * @return {!(string|Uint8Array)}
  */
 proto.prototype.contract_deploy_operation.prototype.getCode = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -3010,10 +3010,10 @@ proto.prototype.internal_contract_apply_operation.prototype.setToMethod = functi
 
 /**
  * optional bytes params = 8;
- * @return {string}
+ * @return {!(string|Uint8Array)}
  */
 proto.prototype.internal_contract_apply_operation.prototype.getParams = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 

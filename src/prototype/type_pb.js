@@ -726,10 +726,10 @@ proto.prototype.public_key_type.serializeBinaryToWriter = function(message, writ
 
 /**
  * optional bytes data = 1;
- * @return {string}
+ * @return {!(string|Uint8Array)}
  */
 proto.prototype.public_key_type.prototype.getData = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -892,10 +892,10 @@ proto.prototype.private_key_type.serializeBinaryToWriter = function(message, wri
 
 /**
  * optional bytes data = 1;
- * @return {string}
+ * @return {!(string|Uint8Array)}
  */
 proto.prototype.private_key_type.prototype.getData = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -1813,10 +1813,10 @@ proto.prototype.signature_type.serializeBinaryToWriter = function(message, write
 
 /**
  * optional bytes sig = 1;
- * @return {string}
+ * @return {!(string|Uint8Array)}
  */
 proto.prototype.signature_type.prototype.getSig = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -1979,10 +1979,10 @@ proto.prototype.sha256.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional bytes hash = 1;
- * @return {string}
+ * @return {!(string|Uint8Array)}
  */
 proto.prototype.sha256.prototype.getHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
