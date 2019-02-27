@@ -6,9 +6,9 @@
     <h2>HAHA</h2>
     <script src="./dist/sdk.min.js"></script>
     <script>
-        window.sdk.getAccountByName('kochiye').then(
-            value => console.log(value)
-        );
+        let a = new window.sdk.type.raw_type.account_name();
+        a.setValue("alice");
+        console.log(a);
     </script>
 </head>
 <body>
