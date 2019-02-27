@@ -11,7 +11,8 @@ module.exports = [{
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         library: 'sdk',
-        libraryTarget: "umd"
+        libraryTarget: "umd",
+        globalObject: "this"
     },
     devtool: 'inline-source-map',
     module: {
@@ -41,7 +42,8 @@ module.exports = [{
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         library: 'sdk',
-        libraryTarget: "umd"
+        libraryTarget: "umd",
+        globalObject: "this"
     },
     devtool: 'inline-source-map',
     module: {
@@ -59,6 +61,39 @@ module.exports = [{
     },
     optimization: {
         minimizer: [new TerserPlugin()],
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'USE_TLS': process.env.USE_TLS !== undefined
+        })
+    ],
+
+}, {
+    target: "node",
+    entry: {
+        'sdk': "./src/index.ts"
+    },
+    mode: "development",
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].node.js',
+        library: 'sdk',
+        libraryTarget: "umd",
+        globalObject: "this"
+    },
+    devtool: 'inline-source-map',
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                include: /src|_proto/,
+                exclude: /node_modules/,
+                loader: "ts-loader"
+            }
+        ]
+    },
+    resolve: {
+        extensions: [".ts", ".js"]
     },
     plugins: [
         new webpack.DefinePlugin({

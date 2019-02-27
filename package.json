@@ -21,7 +21,8 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.0"
   },
-  "main": "dist/sdk.js",
+  "browser": "./dist/sdk.js",
+  "main": "./dist/sdk.node.js",
   "author": "Sanae Aprocy",
   "scripts": {
     "test": "jest"
