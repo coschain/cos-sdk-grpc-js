@@ -1,7 +1,7 @@
 import * as multi_id from './prototype/multi_id_pb';
 import * as operation from './prototype/operation_pb'
-import * as transaction from './prototype/transaction_pb'
-import * as raw_type from './lib/type'
+import * as transaction from './extransaction'
+import * as raw_type from './extype'
 
 export {multi_id, operation, transaction, raw_type}
 
