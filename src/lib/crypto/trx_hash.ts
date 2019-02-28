@@ -1,6 +1,6 @@
-const { createHash } = require('crypto');
+import { createHash } from 'crypto';
 
-function int2bytes(int) {
+function int2bytes(int:any) {
     const byteArray = [0, 0, 0, 0];
 
     for ( let index = 0; index < byteArray.length; index ++ ) {
@@ -11,9 +11,10 @@ function int2bytes(int) {
     return byteArray;
 }
 
-export function trxHash(cid, buf) {
+export function trxHash(cid:any, buf:any) {
     const hash = createHash('sha256');
     const cidBuf = int2bytes(cid);
+    // @ts-ignore
     hash.update(cidBuf);
     hash.update(buf);
     return hash.digest();

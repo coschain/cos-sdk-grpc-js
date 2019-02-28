@@ -2,7 +2,7 @@
     "compilerOptions": {
       "alwaysStrict": true,
       "sourceMap": true,
-       "allowJs": true,
+//       "allowJs": true,
       "removeComments": true,
       "noImplicitReturns": true,
       "noImplicitAny": true,
@@ -11,6 +11,10 @@
       "noFallthroughCasesInSwitch": true,
       "noEmitOnError": true,
       "target": "es6",
-      "module": "commonjs"
-    }
+      "module": "commonjs",
+      "declaration": true
+    },
+  "exclude": [
+    "./src/lib/crypto/**/*"
+  ]
 }

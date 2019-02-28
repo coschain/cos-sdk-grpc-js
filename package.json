@@ -3,7 +3,10 @@
   "version": "1.0.1",
   "dependencies": {
     "@improbable-eng/grpc-web": "^0.8.0",
+    "@types/bs58": "^4.0.0",
     "@types/google-protobuf": "^3.2.7",
+    "@types/node": "^11.9.5",
+    "@types/secp256k1": "^3.5.0",
     "bs58": "^4.0.1",
     "google-protobuf": "^3.2.0",
     "secp256k1": "^3.6.2"
@@ -21,6 +24,7 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.0"
   },
+  "types": "./src/index.d.ts",
   "browser": "./dist/sdk.js",
   "main": "./dist/sdk.node.js",
   "author": "Sanae Aprocy",

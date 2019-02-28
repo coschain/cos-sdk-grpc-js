@@ -1,15 +1,16 @@
-import multi_id = require('./prototype/multi_id_pb');
-import operation = require('./prototype/operation_pb');
-import transaction = require("./lib/transaction");
-import raw_type = require('./lib/type');
-export let type = {multi_id, operation, transaction, raw_type};
+import * as multi_id from './prototype/multi_id_pb';
+import * as operation from './prototype/operation_pb'
+import * as transaction from './prototype/transaction_pb'
+import * as raw_type from './lib/type'
 
-import grpc_type = require('./rpc/pb/grpc_pb');
-import grpc_service = require('./rpc/pb/grpc_pb_service');
+export {multi_id, operation, transaction, raw_type}
 
-export let grpc = {grpc_service, grpc_type};
+import * as grpc from './rpc/pb/grpc_pb'
+import * as grpc_service from './rpc/pb/grpc_pb_service'
 
-import c = require('./lib/crypto/crypto');
+export {grpc, grpc_service}
 
-export let crypto = c;
+const crypto = require('./lib/crypto/crypto');
+
+export {crypto}
 

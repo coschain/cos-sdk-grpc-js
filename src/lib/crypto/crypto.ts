@@ -1,6 +1,7 @@
-const bs58 = require('bs58');
-const { randomBytes, createHash } = require('crypto');
-const secp256k1 = require('secp256k1');
+import bs58 = require('bs58');
+import { randomBytes, createHash } from 'crypto';
+import { Buffer } from 'buffer'
+import secp256k1 = require('secp256k1');
 
 export function generatePrivKey () {
     let privKey;
@@ -10,7 +11,7 @@ export function generatePrivKey () {
     return new PrivKey(privKey);
 }
 
-export function privKeyFromWIF (encoded) {
+export function privKeyFromWIF (encoded:string) {
     if (encoded === '' || encoded === null) {
         return null;
     }
@@ -38,7 +39,7 @@ export function privKeyFromWIF (encoded) {
     }
 }
 
-export function pubKeyFromWIF (encoded) {
+export function pubKeyFromWIF (encoded:string) {
     if (encoded === '' || encoded === null) {
         return null
     }
@@ -74,7 +75,8 @@ export function pubKeyFromWIF (encoded) {
 }
 
 export class PrivKey {
-    constructor (privKey) {
+    data:Buffer;
+    constructor (privKey:Buffer) {
         this.data = privKey
     }
     isValid () {
@@ -101,13 +103,14 @@ export class PrivKey {
         return new PubKey(pubKeyData)
     }
 
-    sign(data) {
+    sign(data:Buffer) {
         return secp256k1.sign(data, this.data);
     }
 }
 
 export class PubKey {
-    constructor (pubKey) {
+    data:Buffer;
+    constructor (pubKey:Buffer) {
         this.data = pubKey
     }
     isValid () {
