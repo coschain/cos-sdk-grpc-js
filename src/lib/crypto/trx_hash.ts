@@ -1,6 +1,8 @@
 import { createHash } from 'crypto';
+import {Buffer} from "buffer";
 
-function int2bytes(int:any) {
+// @ts-ignore
+function int2bytes(int) {
     const byteArray = [0, 0, 0, 0];
 
     for ( let index = 0; index < byteArray.length; index ++ ) {
@@ -8,10 +10,11 @@ function int2bytes(int:any) {
         byteArray [ index ] = byte;
         int = (int - byte) / 256 ;
     }
-    return byteArray;
+    return Buffer.from(byteArray);
 }
 
-export function trxHash(cid:any, buf:any) {
+// @ts-ignore
+export function trxHash(cid, buf) {
     const hash = createHash('sha256');
     const cidBuf = int2bytes(cid);
     // @ts-ignore
