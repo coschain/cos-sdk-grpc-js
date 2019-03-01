@@ -600,3 +600,53 @@ export namespace claim_operation {
   }
 }
 
+export class report_operation extends jspb.Message {
+  hasReporter(): boolean;
+  clearReporter(): void;
+  getReporter(): prototype_type_pb.account_name | undefined;
+  setReporter(value?: prototype_type_pb.account_name): void;
+
+  getReported(): number;
+  setReported(value: number): void;
+
+  clearReportTagList(): void;
+  getReportTagList(): Array<report_operation.tag>;
+  setReportTagList(value: Array<report_operation.tag>): void;
+  addReportTag(value: report_operation.tag, index?: number): report_operation.tag;
+
+  getIsArbitration(): boolean;
+  setIsArbitration(value: boolean): void;
+
+  getIsApproved(): boolean;
+  setIsApproved(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): report_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: report_operation): report_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: report_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): report_operation;
+  static deserializeBinaryFromReader(message: report_operation, reader: jspb.BinaryReader): report_operation;
+}
+
+export namespace report_operation {
+  export type AsObject = {
+    reporter?: prototype_type_pb.account_name.AsObject,
+    reported: number,
+    reportTagList: Array<report_operation.tag>,
+    isArbitration: boolean,
+    isApproved: boolean,
+  }
+
+  export enum tag {
+    CHILD_PORNOGRAPHY = 0,
+    RACISM = 1,
+    REACTIONARY = 2,
+    PLAGIARISM = 3,
+    SLANDER = 4,
+    FALSE_PROPAGANDA = 5,
+    PORNOGRAPHY = 6,
+  }
+}
+

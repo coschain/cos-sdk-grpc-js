@@ -127,71 +127,11 @@ export namespace private_key_type {
   }
 }
 
-export class kv_account_auth extends jspb.Message {
-  hasName(): boolean;
-  clearName(): void;
-  getName(): account_name | undefined;
-  setName(value?: account_name): void;
-
-  getWeight(): number;
-  setWeight(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): kv_account_auth.AsObject;
-  static toObject(includeInstance: boolean, msg: kv_account_auth): kv_account_auth.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: kv_account_auth, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): kv_account_auth;
-  static deserializeBinaryFromReader(message: kv_account_auth, reader: jspb.BinaryReader): kv_account_auth;
-}
-
-export namespace kv_account_auth {
-  export type AsObject = {
-    name?: account_name.AsObject,
-    weight: number,
-  }
-}
-
-export class kv_key_auth extends jspb.Message {
+export class authority extends jspb.Message {
   hasKey(): boolean;
   clearKey(): void;
   getKey(): public_key_type | undefined;
   setKey(value?: public_key_type): void;
-
-  getWeight(): number;
-  setWeight(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): kv_key_auth.AsObject;
-  static toObject(includeInstance: boolean, msg: kv_key_auth): kv_key_auth.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: kv_key_auth, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): kv_key_auth;
-  static deserializeBinaryFromReader(message: kv_key_auth, reader: jspb.BinaryReader): kv_key_auth;
-}
-
-export namespace kv_key_auth {
-  export type AsObject = {
-    key?: public_key_type.AsObject,
-    weight: number,
-  }
-}
-
-export class authority extends jspb.Message {
-  getWeightThreshold(): number;
-  setWeightThreshold(value: number): void;
-
-  clearAccountAuthsList(): void;
-  getAccountAuthsList(): Array<kv_account_auth>;
-  setAccountAuthsList(value: Array<kv_account_auth>): void;
-  addAccountAuths(value?: kv_account_auth, index?: number): kv_account_auth;
-
-  clearKeyAuthsList(): void;
-  getKeyAuthsList(): Array<kv_key_auth>;
-  setKeyAuthsList(value: Array<kv_key_auth>): void;
-  addKeyAuths(value?: kv_key_auth, index?: number): kv_key_auth;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): authority.AsObject;
@@ -205,9 +145,7 @@ export class authority extends jspb.Message {
 
 export namespace authority {
   export type AsObject = {
-    weightThreshold: number,
-    accountAuthsList: Array<kv_account_auth.AsObject>,
-    keyAuthsList: Array<kv_key_auth.AsObject>,
+    key?: public_key_type.AsObject,
   }
 }
 

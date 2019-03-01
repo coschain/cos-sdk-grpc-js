@@ -136,6 +136,51 @@ ApiService.BroadcastTrx = {
   responseType: rpc_pb_grpc_pb.BroadcastTrxResponse
 };
 
+ApiService.GetBlockList = {
+  methodName: "GetBlockList",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetBlockListRequest,
+  responseType: rpc_pb_grpc_pb.GetBlockListResponse
+};
+
+ApiService.GetAccountListByBalance = {
+  methodName: "GetAccountListByBalance",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.NonParamsRequest,
+  responseType: rpc_pb_grpc_pb.GetAccountListResponse
+};
+
+ApiService.GetDailyTotalTrxInfo = {
+  methodName: "GetDailyTotalTrxInfo",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetDailyTotalTrxRequest,
+  responseType: rpc_pb_grpc_pb.GetDailyTotalTrxResponse
+};
+
+ApiService.GetTrxInfoById = {
+  methodName: "GetTrxInfoById",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetTrxInfoByIdRequest,
+  responseType: rpc_pb_grpc_pb.GetTrxInfoByIdResponse
+};
+
+ApiService.GetTrxListByTime = {
+  methodName: "GetTrxListByTime",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetTrxListByTimeRequest,
+  responseType: rpc_pb_grpc_pb.GetTrxListByTimeResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -551,6 +596,161 @@ ApiServiceClient.prototype.broadcastTrx = function broadcastTrx(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.BroadcastTrx, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getBlockList = function getBlockList(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetBlockList, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getAccountListByBalance = function getAccountListByBalance(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetAccountListByBalance, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getDailyTotalTrxInfo = function getDailyTotalTrxInfo(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetDailyTotalTrxInfo, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getTrxInfoById = function getTrxInfoById(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetTrxInfoById, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getTrxListByTime = function getTrxListByTime(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetTrxListByTime, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

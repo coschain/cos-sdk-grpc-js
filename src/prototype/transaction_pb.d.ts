@@ -81,6 +81,11 @@ export class operation extends jspb.Message {
   getOp15(): prototype_operation_pb.contract_estimate_apply_operation | undefined;
   setOp15(value?: prototype_operation_pb.contract_estimate_apply_operation): void;
 
+  hasOp16(): boolean;
+  clearOp16(): void;
+  getOp16(): prototype_operation_pb.report_operation | undefined;
+  setOp16(value?: prototype_operation_pb.report_operation): void;
+
   getOpCase(): operation.OpCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): operation.AsObject;
@@ -109,6 +114,7 @@ export namespace operation {
     op13?: prototype_operation_pb.contract_deploy_operation.AsObject,
     op14?: prototype_operation_pb.contract_apply_operation.AsObject,
     op15?: prototype_operation_pb.contract_estimate_apply_operation.AsObject,
+    op16?: prototype_operation_pb.report_operation.AsObject,
   }
 
   export enum OpCase {
@@ -128,6 +134,7 @@ export namespace operation {
     OP13 = 13,
     OP14 = 14,
     OP15 = 15,
+    OP16 = 16,
   }
 }
 
@@ -173,10 +180,10 @@ export class signed_transaction extends jspb.Message {
   getTrx(): transaction | undefined;
   setTrx(value?: transaction): void;
 
-  clearSignaturesList(): void;
-  getSignaturesList(): Array<prototype_type_pb.signature_type>;
-  setSignaturesList(value: Array<prototype_type_pb.signature_type>): void;
-  addSignatures(value?: prototype_type_pb.signature_type, index?: number): prototype_type_pb.signature_type;
+  hasSignature(): boolean;
+  clearSignature(): void;
+  getSignature(): prototype_type_pb.signature_type | undefined;
+  setSignature(value?: prototype_type_pb.signature_type): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): signed_transaction.AsObject;
@@ -191,7 +198,7 @@ export class signed_transaction extends jspb.Message {
 export namespace signed_transaction {
   export type AsObject = {
     trx?: transaction.AsObject,
-    signaturesList: Array<prototype_type_pb.signature_type.AsObject>,
+    signature?: prototype_type_pb.signature_type.AsObject,
   }
 }
 

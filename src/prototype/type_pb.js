@@ -19,8 +19,6 @@ goog.exportSymbol('proto.prototype.chain_properties', null, global);
 goog.exportSymbol('proto.prototype.coin', null, global);
 goog.exportSymbol('proto.prototype.dynamic_properties', null, global);
 goog.exportSymbol('proto.prototype.internal_rewards_keeper', null, global);
-goog.exportSymbol('proto.prototype.kv_account_auth', null, global);
-goog.exportSymbol('proto.prototype.kv_key_auth', null, global);
 goog.exportSymbol('proto.prototype.private_key_type', null, global);
 goog.exportSymbol('proto.prototype.public_key_type', null, global);
 goog.exportSymbol('proto.prototype.sha256', null, global);
@@ -940,392 +938,13 @@ proto.prototype.private_key_type.prototype.setData = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.prototype.kv_account_auth = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.prototype.kv_account_auth, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.prototype.kv_account_auth.displayName = 'proto.prototype.kv_account_auth';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.prototype.kv_account_auth.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.kv_account_auth.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.prototype.kv_account_auth} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.kv_account_auth.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    name: (f = msg.getName()) && proto.prototype.account_name.toObject(includeInstance, f),
-    weight: jspb.Message.getFieldWithDefault(msg, 2, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.kv_account_auth}
- */
-proto.prototype.kv_account_auth.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.kv_account_auth;
-  return proto.prototype.kv_account_auth.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.prototype.kv_account_auth} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.kv_account_auth}
- */
-proto.prototype.kv_account_auth.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.prototype.account_name;
-      reader.readMessage(value,proto.prototype.account_name.deserializeBinaryFromReader);
-      msg.setName(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setWeight(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.prototype.kv_account_auth.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.prototype.kv_account_auth.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.kv_account_auth} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.kv_account_auth.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getName();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.prototype.account_name.serializeBinaryToWriter
-    );
-  }
-  f = message.getWeight();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional account_name name = 1;
- * @return {?proto.prototype.account_name}
- */
-proto.prototype.kv_account_auth.prototype.getName = function() {
-  return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.account_name, 1));
-};
-
-
-/** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.kv_account_auth.prototype.setName = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.prototype.kv_account_auth.prototype.clearName = function() {
-  this.setName(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.kv_account_auth.prototype.hasName = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional uint32 weight = 2;
- * @return {number}
- */
-proto.prototype.kv_account_auth.prototype.getWeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.kv_account_auth.prototype.setWeight = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.prototype.kv_key_auth = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.prototype.kv_key_auth, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.prototype.kv_key_auth.displayName = 'proto.prototype.kv_key_auth';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.prototype.kv_key_auth.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.kv_key_auth.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.prototype.kv_key_auth} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.kv_key_auth.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    key: (f = msg.getKey()) && proto.prototype.public_key_type.toObject(includeInstance, f),
-    weight: jspb.Message.getFieldWithDefault(msg, 2, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.kv_key_auth}
- */
-proto.prototype.kv_key_auth.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.kv_key_auth;
-  return proto.prototype.kv_key_auth.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.prototype.kv_key_auth} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.kv_key_auth}
- */
-proto.prototype.kv_key_auth.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.prototype.public_key_type;
-      reader.readMessage(value,proto.prototype.public_key_type.deserializeBinaryFromReader);
-      msg.setKey(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setWeight(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.prototype.kv_key_auth.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.prototype.kv_key_auth.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.kv_key_auth} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.kv_key_auth.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getKey();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.prototype.public_key_type.serializeBinaryToWriter
-    );
-  }
-  f = message.getWeight();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional public_key_type key = 1;
- * @return {?proto.prototype.public_key_type}
- */
-proto.prototype.kv_key_auth.prototype.getKey = function() {
-  return /** @type{?proto.prototype.public_key_type} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.public_key_type, 1));
-};
-
-
-/** @param {?proto.prototype.public_key_type|undefined} value */
-proto.prototype.kv_key_auth.prototype.setKey = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.prototype.kv_key_auth.prototype.clearKey = function() {
-  this.setKey(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.kv_key_auth.prototype.hasKey = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional uint32 weight = 2;
- * @return {number}
- */
-proto.prototype.kv_key_auth.prototype.getWeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.kv_key_auth.prototype.setWeight = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.prototype.authority = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.prototype.authority.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.prototype.authority, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.prototype.authority.displayName = 'proto.prototype.authority';
 }
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.prototype.authority.repeatedFields_ = [3,4];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1355,11 +974,7 @@ proto.prototype.authority.prototype.toObject = function(opt_includeInstance) {
  */
 proto.prototype.authority.toObject = function(includeInstance, msg) {
   var f, obj = {
-    weightThreshold: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    accountAuthsList: jspb.Message.toObjectList(msg.getAccountAuthsList(),
-    proto.prototype.kv_account_auth.toObject, includeInstance),
-    keyAuthsList: jspb.Message.toObjectList(msg.getKeyAuthsList(),
-    proto.prototype.kv_key_auth.toObject, includeInstance)
+    key: (f = msg.getKey()) && proto.prototype.public_key_type.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1396,19 +1011,10 @@ proto.prototype.authority.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setWeightThreshold(value);
-      break;
-    case 3:
-      var value = new proto.prototype.kv_account_auth;
-      reader.readMessage(value,proto.prototype.kv_account_auth.deserializeBinaryFromReader);
-      msg.addAccountAuths(value);
-      break;
-    case 4:
-      var value = new proto.prototype.kv_key_auth;
-      reader.readMessage(value,proto.prototype.kv_key_auth.deserializeBinaryFromReader);
-      msg.addKeyAuths(value);
+    case 1:
+      var value = new proto.prototype.public_key_type;
+      reader.readMessage(value,proto.prototype.public_key_type.deserializeBinaryFromReader);
+      msg.setKey(value);
       break;
     default:
       reader.skipField();
@@ -1439,106 +1045,44 @@ proto.prototype.authority.prototype.serializeBinary = function() {
  */
 proto.prototype.authority.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getWeightThreshold();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
-  f = message.getAccountAuthsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      3,
+  f = message.getKey();
+  if (f != null) {
+    writer.writeMessage(
+      1,
       f,
-      proto.prototype.kv_account_auth.serializeBinaryToWriter
-    );
-  }
-  f = message.getKeyAuthsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      4,
-      f,
-      proto.prototype.kv_key_auth.serializeBinaryToWriter
+      proto.prototype.public_key_type.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional uint32 weight_threshold = 2;
- * @return {number}
+ * optional public_key_type key = 1;
+ * @return {?proto.prototype.public_key_type}
  */
-proto.prototype.authority.prototype.getWeightThreshold = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.prototype.authority.prototype.getKey = function() {
+  return /** @type{?proto.prototype.public_key_type} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.public_key_type, 1));
 };
 
 
-/** @param {number} value */
-proto.prototype.authority.prototype.setWeightThreshold = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+/** @param {?proto.prototype.public_key_type|undefined} value */
+proto.prototype.authority.prototype.setKey = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.prototype.authority.prototype.clearKey = function() {
+  this.setKey(undefined);
 };
 
 
 /**
- * repeated kv_account_auth account_auths = 3;
- * @return {!Array<!proto.prototype.kv_account_auth>}
+ * Returns whether this field is set.
+ * @return {!boolean}
  */
-proto.prototype.authority.prototype.getAccountAuthsList = function() {
-  return /** @type{!Array<!proto.prototype.kv_account_auth>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.prototype.kv_account_auth, 3));
-};
-
-
-/** @param {!Array<!proto.prototype.kv_account_auth>} value */
-proto.prototype.authority.prototype.setAccountAuthsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 3, value);
-};
-
-
-/**
- * @param {!proto.prototype.kv_account_auth=} opt_value
- * @param {number=} opt_index
- * @return {!proto.prototype.kv_account_auth}
- */
-proto.prototype.authority.prototype.addAccountAuths = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.prototype.kv_account_auth, opt_index);
-};
-
-
-proto.prototype.authority.prototype.clearAccountAuthsList = function() {
-  this.setAccountAuthsList([]);
-};
-
-
-/**
- * repeated kv_key_auth key_auths = 4;
- * @return {!Array<!proto.prototype.kv_key_auth>}
- */
-proto.prototype.authority.prototype.getKeyAuthsList = function() {
-  return /** @type{!Array<!proto.prototype.kv_key_auth>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.prototype.kv_key_auth, 4));
-};
-
-
-/** @param {!Array<!proto.prototype.kv_key_auth>} value */
-proto.prototype.authority.prototype.setKeyAuthsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 4, value);
-};
-
-
-/**
- * @param {!proto.prototype.kv_key_auth=} opt_value
- * @param {number=} opt_index
- * @return {!proto.prototype.kv_key_auth}
- */
-proto.prototype.authority.prototype.addKeyAuths = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.prototype.kv_key_auth, opt_index);
-};
-
-
-proto.prototype.authority.prototype.clearKeyAuthsList = function() {
-  this.setKeyAuthsList([]);
+proto.prototype.authority.prototype.hasKey = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 

@@ -154,10 +154,10 @@ export class AccountResponse extends jspb.Message {
   getVest(): prototype_type_pb.vest | undefined;
   setVest(value?: prototype_type_pb.vest): void;
 
-  clearPublicKeysList(): void;
-  getPublicKeysList(): Array<prototype_type_pb.public_key_type>;
-  setPublicKeysList(value: Array<prototype_type_pb.public_key_type>): void;
-  addPublicKeys(value?: prototype_type_pb.public_key_type, index?: number): prototype_type_pb.public_key_type;
+  hasPublicKey(): boolean;
+  clearPublicKey(): void;
+  getPublicKey(): prototype_type_pb.public_key_type | undefined;
+  setPublicKey(value?: prototype_type_pb.public_key_type): void;
 
   hasCreatedTime(): boolean;
   clearCreatedTime(): void;
@@ -169,10 +169,10 @@ export class AccountResponse extends jspb.Message {
   getWitness(): WitnessResponse | undefined;
   setWitness(value?: WitnessResponse): void;
 
-  hasDgpo(): boolean;
-  clearDgpo(): void;
-  getDgpo(): prototype_type_pb.dynamic_properties | undefined;
-  setDgpo(value?: prototype_type_pb.dynamic_properties): void;
+  hasState(): boolean;
+  clearState(): void;
+  getState(): ChainState | undefined;
+  setState(value?: ChainState): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountResponse.AsObject;
@@ -189,10 +189,10 @@ export namespace AccountResponse {
     accountName?: prototype_type_pb.account_name.AsObject,
     coin?: prototype_type_pb.coin.AsObject,
     vest?: prototype_type_pb.vest.AsObject,
-    publicKeysList: Array<prototype_type_pb.public_key_type.AsObject>,
+    publicKey?: prototype_type_pb.public_key_type.AsObject,
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
     witness?: WitnessResponse.AsObject,
-    dgpo?: prototype_type_pb.dynamic_properties.AsObject,
+    state?: ChainState.AsObject,
   }
 }
 
@@ -751,10 +751,10 @@ export namespace GetTrxByIdResponse {
 }
 
 export class GetChainStateResponse extends jspb.Message {
-  hasProps(): boolean;
-  clearProps(): void;
-  getProps(): prototype_type_pb.dynamic_properties | undefined;
-  setProps(value?: prototype_type_pb.dynamic_properties): void;
+  hasState(): boolean;
+  clearState(): void;
+  getState(): ChainState | undefined;
+  setState(value?: ChainState): void;
 
   clearBlocksList(): void;
   getBlocksList(): Array<prototype_transaction_pb.empty_signed_block>;
@@ -773,16 +773,16 @@ export class GetChainStateResponse extends jspb.Message {
 
 export namespace GetChainStateResponse {
   export type AsObject = {
-    props?: prototype_type_pb.dynamic_properties.AsObject,
+    state?: ChainState.AsObject,
     blocksList: Array<prototype_transaction_pb.empty_signed_block.AsObject>,
   }
 }
 
 export class GetStatResponse extends jspb.Message {
-  hasProps(): boolean;
-  clearProps(): void;
-  getProps(): prototype_type_pb.dynamic_properties | undefined;
-  setProps(value?: prototype_type_pb.dynamic_properties): void;
+  hasState(): boolean;
+  clearState(): void;
+  getState(): ChainState | undefined;
+  setState(value?: ChainState): void;
 
   clearDailyTrxCountsList(): void;
   getDailyTrxCountsList(): Array<number>;
@@ -801,7 +801,7 @@ export class GetStatResponse extends jspb.Message {
 
 export namespace GetStatResponse {
   export type AsObject = {
-    props?: prototype_type_pb.dynamic_properties.AsObject,
+    state?: ChainState.AsObject,
     dailyTrxCountsList: Array<number>,
   }
 }
@@ -903,6 +903,308 @@ export namespace CallResponse {
     result: string,
     executeErr: string,
     estimateGas: string,
+  }
+}
+
+export class ChainState extends jspb.Message {
+  getLastIrreversibleBlockNumber(): number;
+  setLastIrreversibleBlockNumber(value: number): void;
+
+  hasDgpo(): boolean;
+  clearDgpo(): void;
+  getDgpo(): prototype_type_pb.dynamic_properties | undefined;
+  setDgpo(value?: prototype_type_pb.dynamic_properties): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChainState.AsObject;
+  static toObject(includeInstance: boolean, msg: ChainState): ChainState.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChainState, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChainState;
+  static deserializeBinaryFromReader(message: ChainState, reader: jspb.BinaryReader): ChainState;
+}
+
+export namespace ChainState {
+  export type AsObject = {
+    lastIrreversibleBlockNumber: number,
+    dgpo?: prototype_type_pb.dynamic_properties.AsObject,
+  }
+}
+
+export class GetBlockListRequest extends jspb.Message {
+  getStart(): number;
+  setStart(value: number): void;
+
+  getEnd(): number;
+  setEnd(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlockListRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockListRequest): GetBlockListRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlockListRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockListRequest;
+  static deserializeBinaryFromReader(message: GetBlockListRequest, reader: jspb.BinaryReader): GetBlockListRequest;
+}
+
+export namespace GetBlockListRequest {
+  export type AsObject = {
+    start: number,
+    end: number,
+  }
+}
+
+export class GetBlockListResponse extends jspb.Message {
+  clearBlocksList(): void;
+  getBlocksList(): Array<prototype_transaction_pb.signed_block>;
+  setBlocksList(value: Array<prototype_transaction_pb.signed_block>): void;
+  addBlocks(value?: prototype_transaction_pb.signed_block, index?: number): prototype_transaction_pb.signed_block;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlockListResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockListResponse): GetBlockListResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlockListResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockListResponse;
+  static deserializeBinaryFromReader(message: GetBlockListResponse, reader: jspb.BinaryReader): GetBlockListResponse;
+}
+
+export namespace GetBlockListResponse {
+  export type AsObject = {
+    blocksList: Array<prototype_transaction_pb.signed_block.AsObject>,
+  }
+}
+
+export class GetAccountListResponse extends jspb.Message {
+  clearListList(): void;
+  getListList(): Array<AccountResponse>;
+  setListList(value: Array<AccountResponse>): void;
+  addList(value?: AccountResponse, index?: number): AccountResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAccountListResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAccountListResponse): GetAccountListResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAccountListResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAccountListResponse;
+  static deserializeBinaryFromReader(message: GetAccountListResponse, reader: jspb.BinaryReader): GetAccountListResponse;
+}
+
+export namespace GetAccountListResponse {
+  export type AsObject = {
+    listList: Array<AccountResponse.AsObject>,
+  }
+}
+
+export class GetDailyTotalTrxRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.time_point_sec | undefined;
+  setStart(value?: prototype_type_pb.time_point_sec): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.time_point_sec | undefined;
+  setEnd(value?: prototype_type_pb.time_point_sec): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDailyTotalTrxRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDailyTotalTrxRequest): GetDailyTotalTrxRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDailyTotalTrxRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDailyTotalTrxRequest;
+  static deserializeBinaryFromReader(message: GetDailyTotalTrxRequest, reader: jspb.BinaryReader): GetDailyTotalTrxRequest;
+}
+
+export namespace GetDailyTotalTrxRequest {
+  export type AsObject = {
+    start?: prototype_type_pb.time_point_sec.AsObject,
+    end?: prototype_type_pb.time_point_sec.AsObject,
+  }
+}
+
+export class DailyTotalTrx extends jspb.Message {
+  hasDate(): boolean;
+  clearDate(): void;
+  getDate(): prototype_type_pb.time_point_sec | undefined;
+  setDate(value?: prototype_type_pb.time_point_sec): void;
+
+  getCount(): number;
+  setCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DailyTotalTrx.AsObject;
+  static toObject(includeInstance: boolean, msg: DailyTotalTrx): DailyTotalTrx.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DailyTotalTrx, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DailyTotalTrx;
+  static deserializeBinaryFromReader(message: DailyTotalTrx, reader: jspb.BinaryReader): DailyTotalTrx;
+}
+
+export namespace DailyTotalTrx {
+  export type AsObject = {
+    date?: prototype_type_pb.time_point_sec.AsObject,
+    count: number,
+  }
+}
+
+export class GetDailyTotalTrxResponse extends jspb.Message {
+  clearListList(): void;
+  getListList(): Array<DailyTotalTrx>;
+  setListList(value: Array<DailyTotalTrx>): void;
+  addList(value?: DailyTotalTrx, index?: number): DailyTotalTrx;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDailyTotalTrxResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDailyTotalTrxResponse): GetDailyTotalTrxResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDailyTotalTrxResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDailyTotalTrxResponse;
+  static deserializeBinaryFromReader(message: GetDailyTotalTrxResponse, reader: jspb.BinaryReader): GetDailyTotalTrxResponse;
+}
+
+export namespace GetDailyTotalTrxResponse {
+  export type AsObject = {
+    listList: Array<DailyTotalTrx.AsObject>,
+  }
+}
+
+export class TrxInfo extends jspb.Message {
+  hasTrxId(): boolean;
+  clearTrxId(): void;
+  getTrxId(): prototype_type_pb.sha256 | undefined;
+  setTrxId(value?: prototype_type_pb.sha256): void;
+
+  getBlockHeight(): number;
+  setBlockHeight(value: number): void;
+
+  hasTrxWrap(): boolean;
+  clearTrxWrap(): void;
+  getTrxWrap(): prototype_transaction_pb.transaction_wrapper | undefined;
+  setTrxWrap(value?: prototype_transaction_pb.transaction_wrapper): void;
+
+  hasBlockTime(): boolean;
+  clearBlockTime(): void;
+  getBlockTime(): prototype_type_pb.time_point_sec | undefined;
+  setBlockTime(value?: prototype_type_pb.time_point_sec): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrxInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: TrxInfo): TrxInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrxInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrxInfo;
+  static deserializeBinaryFromReader(message: TrxInfo, reader: jspb.BinaryReader): TrxInfo;
+}
+
+export namespace TrxInfo {
+  export type AsObject = {
+    trxId?: prototype_type_pb.sha256.AsObject,
+    blockHeight: number,
+    trxWrap?: prototype_transaction_pb.transaction_wrapper.AsObject,
+    blockTime?: prototype_type_pb.time_point_sec.AsObject,
+  }
+}
+
+export class GetTrxInfoByIdRequest extends jspb.Message {
+  hasTrxId(): boolean;
+  clearTrxId(): void;
+  getTrxId(): prototype_type_pb.sha256 | undefined;
+  setTrxId(value?: prototype_type_pb.sha256): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTrxInfoByIdRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTrxInfoByIdRequest): GetTrxInfoByIdRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetTrxInfoByIdRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTrxInfoByIdRequest;
+  static deserializeBinaryFromReader(message: GetTrxInfoByIdRequest, reader: jspb.BinaryReader): GetTrxInfoByIdRequest;
+}
+
+export namespace GetTrxInfoByIdRequest {
+  export type AsObject = {
+    trxId?: prototype_type_pb.sha256.AsObject,
+  }
+}
+
+export class GetTrxInfoByIdResponse extends jspb.Message {
+  hasInfo(): boolean;
+  clearInfo(): void;
+  getInfo(): TrxInfo | undefined;
+  setInfo(value?: TrxInfo): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTrxInfoByIdResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTrxInfoByIdResponse): GetTrxInfoByIdResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetTrxInfoByIdResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTrxInfoByIdResponse;
+  static deserializeBinaryFromReader(message: GetTrxInfoByIdResponse, reader: jspb.BinaryReader): GetTrxInfoByIdResponse;
+}
+
+export namespace GetTrxInfoByIdResponse {
+  export type AsObject = {
+    info?: TrxInfo.AsObject,
+  }
+}
+
+export class GetTrxListByTimeRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.time_point_sec | undefined;
+  setStart(value?: prototype_type_pb.time_point_sec): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.time_point_sec | undefined;
+  setEnd(value?: prototype_type_pb.time_point_sec): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTrxListByTimeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTrxListByTimeRequest): GetTrxListByTimeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetTrxListByTimeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTrxListByTimeRequest;
+  static deserializeBinaryFromReader(message: GetTrxListByTimeRequest, reader: jspb.BinaryReader): GetTrxListByTimeRequest;
+}
+
+export namespace GetTrxListByTimeRequest {
+  export type AsObject = {
+    start?: prototype_type_pb.time_point_sec.AsObject,
+    end?: prototype_type_pb.time_point_sec.AsObject,
+  }
+}
+
+export class GetTrxListByTimeResponse extends jspb.Message {
+  clearListList(): void;
+  getListList(): Array<TrxInfo>;
+  setListList(value: Array<TrxInfo>): void;
+  addList(value?: TrxInfo, index?: number): TrxInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTrxListByTimeResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTrxListByTimeResponse): GetTrxListByTimeResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetTrxListByTimeResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTrxListByTimeResponse;
+  static deserializeBinaryFromReader(message: GetTrxListByTimeResponse, reader: jspb.BinaryReader): GetTrxListByTimeResponse;
+}
+
+export namespace GetTrxListByTimeResponse {
+  export type AsObject = {
+    listList: Array<TrxInfo.AsObject>,
   }
 }
 
