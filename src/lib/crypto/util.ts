@@ -6,14 +6,15 @@ import {arith} from "google-protobuf";
 
 // @ts-ignore
 export function int2bytes(int) {
-    const byteArray = [0, 0, 0, 0];
+    let buffer = new ArrayBuffer(4);
+    let byteArray = new Uint8Array(buffer);
 
     for ( let index = 0; index < byteArray.length; index ++ ) {
         let byte = int & 0xff;
         byteArray [ index ] = byte;
         int = (int - byte) / 256 ;
     }
-    return Buffer.from(byteArray);
+    return byteArray;
 }
 
 // @ts-ignore

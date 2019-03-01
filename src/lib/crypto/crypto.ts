@@ -46,7 +46,6 @@ export function pubKeyFromWIF (encoded:string) {
     if (encoded.length <= 3) {
         return null
     }
-    console.log(encoded.slice(0, 3));
     if (encoded.slice(0, 3) !== 'COS') {
         return null
     }
