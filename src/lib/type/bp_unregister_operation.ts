@@ -7,3 +7,5 @@ bp_unregister_operation.prototype.getSigner = function (auth:{ [key:string]: boo
     auth[bp] = true
 };
 
+export {bp_unregister_operation}
+

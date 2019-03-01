@@ -7,3 +7,4 @@ transfer_operation.prototype.getSigner = function (auth:{ [key:string]: boolean}
     auth[sender] = true
 };
 
+export {transfer_operation}

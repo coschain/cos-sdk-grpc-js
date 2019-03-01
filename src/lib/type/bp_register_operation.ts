@@ -7,3 +7,5 @@ bp_register_operation.prototype.getSigner = function (auth:{ [key:string]: boole
     auth[bp] = true
 };
 
+export {bp_register_operation}
+

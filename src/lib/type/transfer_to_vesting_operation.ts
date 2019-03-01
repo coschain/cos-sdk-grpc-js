@@ -6,3 +6,5 @@ transfer_to_vesting_operation.prototype.getSigner = function (auth:{ [key:string
     let sender = this.getFrom().getValue();
     auth[sender] = true
 };
+
+export {transfer_to_vesting_operation}

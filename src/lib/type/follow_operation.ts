@@ -7,3 +7,5 @@ follow_operation.prototype.getSigner = function (auth:{ [key:string]: boolean}) 
     auth[account] = true
 };
 
+export {follow_operation}
+

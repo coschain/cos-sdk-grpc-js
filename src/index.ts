@@ -1,5 +1,5 @@
 import * as multi_id from './prototype/multi_id_pb';
-import * as operation from './prototype/operation_pb'
+import * as operation from './exoperation'
 import * as transaction from './extransaction'
 import * as raw_type from './extype'
 

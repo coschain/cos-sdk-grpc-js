@@ -7,3 +7,5 @@ vote_operation.prototype.getSigner = function (auth:{ [key:string]: boolean}) {
     auth[voter] = true
 };
 
+export {vote_operation}
+
