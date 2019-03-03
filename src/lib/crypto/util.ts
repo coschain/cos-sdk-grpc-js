@@ -28,3 +28,12 @@ export function uint642bytes(uint64) {
     }
     return uint8Array;
 }
+
+export function bytes2uint64(byteArray:Uint8Array) {
+    let value = 0;
+    for ( let i = byteArray.length - 1; i >= 0; i--) {
+        value = (value << 8 ) + byteArray[i];
+    }
+
+    return value;
+}

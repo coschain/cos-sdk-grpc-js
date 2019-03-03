@@ -16,9 +16,10 @@ signed_block.prototype.id = function () {
     const hash = createHash('sha256');
     hash.update(proto);
     let data = hash.digest();
+    ret.setData(data);
     let block_num = prev.blockNum() + 1;
     let uint64data = uint642bytes(block_num);
-    ret.setData(uint64data);
+    ret.setDataSlice(uint64data, 0);
     return ret;
 };
 

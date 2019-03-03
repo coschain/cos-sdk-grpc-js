@@ -1,3 +1,4 @@
+import {bytes2uint64} from "../crypto/util";
 
 
 export class block_id{
@@ -8,6 +9,11 @@ export class block_id{
     public setData(data:Uint8Array){
         this.data = data
     }
+
+    public setDataSlice(data:Uint8Array, start:number) {
+        this.data.set(data, start);
+    }
+
     public getData() {
         return this.data
     }
@@ -15,10 +21,9 @@ export class block_id{
     // about to write an unit test
     // and overflow case?
     public blockNum() {
-        let buffer = new Uint8Array(this.data.slice(0, 8));
-        let dataview = new DataView(buffer);
-        let lo = dataview.getUint32(0, true);
-        let hi = dataview.getUint32(4, true);
-        return hi << 32 + lo
+        let buffer = new ArrayBuffer(8);
+        let uint8buffer = new Uint8Array(buffer);
+        uint8buffer.set(this.data.slice(0, 8));
+        return bytes2uint64(uint8buffer);
     }
 }
