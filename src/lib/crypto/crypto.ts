@@ -152,7 +152,7 @@ function encryptData(privKeyStr:string, passphrase:string) {
 export function generateEncryptedJson(name:string, passphrase:string, pubKeyStr:string, privKeyStr:string) {
     let [encrypted, iv] = encryptData(privKeyStr, passphrase);
     const cipherText = encrypted.toString('base64');
-    const ivText = encrypted.toString('base64');
+    const ivText = iv.toString('base64');
     const hmac = createHmac('sha256', Buffer.from(passphrase));
     hmac.update(Buffer.from(privKeyStr));
     const macText = hmac.digest().toString('base64');
