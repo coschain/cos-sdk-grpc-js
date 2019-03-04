@@ -20,3 +20,12 @@ export declare class PubKey {
     isValid(): boolean;
     toWIF(): string;
 }
+export declare function generateEncryptedJson(name: string, passphrase: string, pubKeyStr: string, privKeyStr: string): {
+    "Name": string;
+    "PubKey": string;
+    "Cipher": string;
+    "CipherText": string;
+    "Iv": string;
+    "Mac": string;
+    "Version": number;
+};

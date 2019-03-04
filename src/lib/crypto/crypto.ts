@@ -1,7 +1,9 @@
 import bs58 = require('bs58');
-import { randomBytes, createHash } from 'crypto';
+import { randomBytes, createHash, createCipheriv, createHmac } from 'crypto';
 import { Buffer } from 'buffer'
 import secp256k1 = require('secp256k1');
+
+const PasswordLength = 32
 
 export function generatePrivKey () {
     let privKey;
@@ -126,4 +128,34 @@ export class PubKey {
         const data = Buffer.concat([this.data, sum2.slice(0, 4)]);
         return symbol + bs58.encode(data)
     }
+}
+
+function hashToFixLength(input:Buffer, length:number){
+    const hash = createHash('sha256')
+    hash.update(input)
+    const sum = hash.digest()
+    return sum.slice(0, length)
+}
+
+function encryptData(privKeyStr:string, passphrase:string) {
+    const privKeyBytes = Buffer.from(privKeyStr);
+    const passphraseBytes = Buffer.from(passphrase);
+    const block = hashToFixLength(passphraseBytes, PasswordLength);
+    const iv = randomBytes(16);
+    const algorithm = 'aes-256-ctr';
+    const cipher = createCipheriv(algorithm, block, iv);
+    let encrypted = cipher.update(privKeyBytes);
+    encrypted = Buffer.concat([encrypted, cipher.final()]);
+    return [encrypted, iv]
+}
+
+export function generateEncryptedJson(name:string, passphrase:string, pubKeyStr:string, privKeyStr:string) {
+    let [encrypted, iv] = encryptData(privKeyStr, passphrase);
+    const cipherText = encrypted.toString('base64');
+    const ivText = encrypted.toString('base64');
+    const hmac = createHmac('sha256', Buffer.from(passphrase));
+    hmac.update(Buffer.from(privKeyStr));
+    const macText = hmac.digest().toString('base64');
+    return {"Name": name, "PubKey": pubKeyStr, "Cipher": "AES-256", "CipherText": cipherText, "Iv": ivText,
+        "Mac": macText, "Version": 1}
 }
