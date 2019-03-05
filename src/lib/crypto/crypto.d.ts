@@ -29,3 +29,4 @@ export declare function generateEncryptedJson(name: string, passphrase: string, 
     "Mac": string;
     "Version": number;
 };
+export declare function decryptPrivKey(cipher: string, passphrase: string, iv: string, mac: string): string;

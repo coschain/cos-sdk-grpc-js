@@ -1,5 +1,5 @@
 import bs58 = require('bs58');
-import { randomBytes, createHash, createCipheriv, createHmac } from 'crypto';
+import { randomBytes, createHash, createCipheriv, createHmac, createDecipheriv } from 'crypto';
 import { Buffer } from 'buffer'
 import secp256k1 = require('secp256k1');
 
@@ -137,9 +137,7 @@ function hashToFixLength(input:Buffer, length:number){
     return sum.slice(0, length)
 }
 
-function encryptData(privKeyStr:string, passphrase:string) {
-    const privKeyBytes = Buffer.from(privKeyStr);
-    const passphraseBytes = Buffer.from(passphrase);
+function encryptData(privKeyBytes:Buffer, passphraseBytes:Buffer) {
     const block = hashToFixLength(passphraseBytes, PasswordLength);
     const iv = randomBytes(16);
     const algorithm = 'aes-256-ctr';
@@ -150,7 +148,12 @@ function encryptData(privKeyStr:string, passphrase:string) {
 }
 
 export function generateEncryptedJson(name:string, passphrase:string, pubKeyStr:string, privKeyStr:string) {
-    let [encrypted, iv] = encryptData(privKeyStr, passphrase);
+    // const priv = privKeyFromWIF(privKeyStr);
+    // if(!priv) return null;
+    // here, privkey bytes is not the real data of the key but the wif bytes
+    const privKeyBytes = Buffer.from(privKeyStr);
+    const passphraseBytes = Buffer.from(passphrase);
+    let [encrypted, iv] = encryptData(privKeyBytes, passphraseBytes);
     const cipherText = encrypted.toString('base64');
     const ivText = iv.toString('base64');
     const hmac = createHmac('sha256', Buffer.from(passphrase));
@@ -158,4 +161,30 @@ export function generateEncryptedJson(name:string, passphrase:string, pubKeyStr:
     const macText = hmac.digest().toString('base64');
     return {"Name": name, "PubKey": pubKeyStr, "Cipher": "AES-256", "CipherText": cipherText, "Iv": ivText,
         "Mac": macText, "Version": 1}
+}
+
+
+function decryptData(cipherBytes:Buffer , passphraseBytes:Buffer, ivBytes:Buffer) {
+    const block = hashToFixLength(passphraseBytes, PasswordLength);
+    const algorithm = 'aes-256-ctr';
+    const decipher =  createDecipheriv(algorithm, block, ivBytes);
+    let decrypted = decipher.update(cipherBytes);
+    decrypted = Buffer.concat([decrypted, decipher.final()]);
+    return decrypted
+}
+
+export function decryptPrivKey(cipher:string, passphrase:string, iv:string, mac:string) {
+    const cipherBytes = Buffer.from(cipher, 'base64');
+    const ivBytes = Buffer.from(iv, 'base64');
+    const macBytes = Buffer.from(mac, 'base64');
+    const passphraseBytes = Buffer.from(passphrase);
+    const privKeyData = decryptData(cipherBytes, passphraseBytes, ivBytes);
+    const hmac = createHmac('sha256', passphraseBytes);
+    hmac.update(privKeyData)
+    let r = hmac.digest()
+    if (r.equals(macBytes)) {
+        return privKeyData.toString()
+    } else {
+        return ''
+    }
 }
