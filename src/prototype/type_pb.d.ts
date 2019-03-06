@@ -239,33 +239,6 @@ export namespace chain_properties {
   }
 }
 
-export class witness_schedule_type extends jspb.Message {
-  getValue(): witness_schedule_type.witness_schedule_type;
-  setValue(value: witness_schedule_type.witness_schedule_type): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): witness_schedule_type.AsObject;
-  static toObject(includeInstance: boolean, msg: witness_schedule_type): witness_schedule_type.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: witness_schedule_type, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): witness_schedule_type;
-  static deserializeBinaryFromReader(message: witness_schedule_type, reader: jspb.BinaryReader): witness_schedule_type;
-}
-
-export namespace witness_schedule_type {
-  export type AsObject = {
-    value: witness_schedule_type.witness_schedule_type,
-  }
-
-  export enum witness_schedule_type {
-    TOP19 = 0,
-    TIMESHARE = 1,
-    MINER = 2,
-    NONE = 3,
-  }
-}
-
 export class dynamic_properties extends jspb.Message {
   getId(): number;
   setId(value: number): void;

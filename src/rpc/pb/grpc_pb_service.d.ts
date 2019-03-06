@@ -144,7 +144,7 @@ type ApiServiceGetAccountListByBalance = {
   readonly service: typeof ApiService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof rpc_pb_grpc_pb.NonParamsRequest;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetAccountListByBalanceRequest;
   readonly responseType: typeof rpc_pb_grpc_pb.GetAccountListResponse;
 };
 
@@ -175,6 +175,15 @@ type ApiServiceGetTrxListByTime = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetTrxListByTimeResponse;
 };
 
+type ApiServiceGetPostListByCreateTime = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetPostListByCreateTimeRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetPostListByCreateTimeResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -196,6 +205,7 @@ export class ApiService {
   static readonly GetDailyTotalTrxInfo: ApiServiceGetDailyTotalTrxInfo;
   static readonly GetTrxInfoById: ApiServiceGetTrxInfoById;
   static readonly GetTrxListByTime: ApiServiceGetTrxListByTime;
+  static readonly GetPostListByCreateTime: ApiServiceGetPostListByCreateTime;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -366,12 +376,12 @@ export class ApiServiceClient {
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockListResponse|null) => void
   ): UnaryResponse;
   getAccountListByBalance(
-    requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
+    requestMessage: rpc_pb_grpc_pb.GetAccountListByBalanceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAccountListResponse|null) => void
   ): UnaryResponse;
   getAccountListByBalance(
-    requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
+    requestMessage: rpc_pb_grpc_pb.GetAccountListByBalanceRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAccountListResponse|null) => void
   ): UnaryResponse;
   getDailyTotalTrxInfo(
@@ -400,6 +410,15 @@ export class ApiServiceClient {
   getTrxListByTime(
     requestMessage: rpc_pb_grpc_pb.GetTrxListByTimeRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetTrxListByTimeResponse|null) => void
+  ): UnaryResponse;
+  getPostListByCreateTime(
+    requestMessage: rpc_pb_grpc_pb.GetPostListByCreateTimeRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostListByCreateTimeResponse|null) => void
+  ): UnaryResponse;
+  getPostListByCreateTime(
+    requestMessage: rpc_pb_grpc_pb.GetPostListByCreateTimeRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostListByCreateTimeResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -150,7 +150,7 @@ ApiService.GetAccountListByBalance = {
   service: ApiService,
   requestStream: false,
   responseStream: false,
-  requestType: rpc_pb_grpc_pb.NonParamsRequest,
+  requestType: rpc_pb_grpc_pb.GetAccountListByBalanceRequest,
   responseType: rpc_pb_grpc_pb.GetAccountListResponse
 };
 
@@ -179,6 +179,15 @@ ApiService.GetTrxListByTime = {
   responseStream: false,
   requestType: rpc_pb_grpc_pb.GetTrxListByTimeRequest,
   responseType: rpc_pb_grpc_pb.GetTrxListByTimeResponse
+};
+
+ApiService.GetPostListByCreateTime = {
+  methodName: "GetPostListByCreateTime",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetPostListByCreateTimeRequest,
+  responseType: rpc_pb_grpc_pb.GetPostListByCreateTimeResponse
 };
 
 exports.ApiService = ApiService;
@@ -751,6 +760,37 @@ ApiServiceClient.prototype.getTrxListByTime = function getTrxListByTime(requestM
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetTrxListByTime, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getPostListByCreateTime = function getPostListByCreateTime(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetPostListByCreateTime, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
