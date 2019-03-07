@@ -1053,7 +1053,8 @@ proto.grpcpb.AccountResponse.toObject = function(includeInstance, msg) {
     publicKey: (f = msg.getPublicKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
     createdTime: (f = msg.getCreatedTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     witness: (f = msg.getWitness()) && proto.grpcpb.WitnessResponse.toObject(includeInstance, f),
-    state: (f = msg.getState()) && proto.grpcpb.ChainState.toObject(includeInstance, f)
+    state: (f = msg.getState()) && proto.grpcpb.ChainState.toObject(includeInstance, f),
+    postCount: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -1124,6 +1125,10 @@ proto.grpcpb.AccountResponse.deserializeBinaryFromReader = function(msg, reader)
       var value = new proto.grpcpb.ChainState;
       reader.readMessage(value,proto.grpcpb.ChainState.deserializeBinaryFromReader);
       msg.setState(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setPostCount(value);
       break;
     default:
       reader.skipField();
@@ -1208,6 +1213,13 @@ proto.grpcpb.AccountResponse.serializeBinaryToWriter = function(message, writer)
       7,
       f,
       proto.grpcpb.ChainState.serializeBinaryToWriter
+    );
+  }
+  f = message.getPostCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      8,
+      f
     );
   }
 };
@@ -1420,6 +1432,21 @@ proto.grpcpb.AccountResponse.prototype.clearState = function() {
  */
 proto.grpcpb.AccountResponse.prototype.hasState = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional uint32 post_count = 8;
+ * @return {number}
+ */
+proto.grpcpb.AccountResponse.prototype.getPostCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountResponse.prototype.setPostCount = function(value) {
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
@@ -6533,6 +6560,7 @@ proto.grpcpb.ChainState.prototype.toObject = function(opt_includeInstance) {
 proto.grpcpb.ChainState.toObject = function(includeInstance, msg) {
   var f, obj = {
     lastIrreversibleBlockNumber: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    lastIrreversibleBlockTime: jspb.Message.getFieldWithDefault(msg, 2, 0),
     dgpo: (f = msg.getDgpo()) && prototype_type_pb.dynamic_properties.toObject(includeInstance, f)
   };
 
@@ -6575,6 +6603,10 @@ proto.grpcpb.ChainState.deserializeBinaryFromReader = function(msg, reader) {
       msg.setLastIrreversibleBlockNumber(value);
       break;
     case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setLastIrreversibleBlockTime(value);
+      break;
+    case 3:
       var value = new prototype_type_pb.dynamic_properties;
       reader.readMessage(value,prototype_type_pb.dynamic_properties.deserializeBinaryFromReader);
       msg.setDgpo(value);
@@ -6615,10 +6647,17 @@ proto.grpcpb.ChainState.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getLastIrreversibleBlockTime();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
   f = message.getDgpo();
   if (f != null) {
     writer.writeMessage(
-      2,
+      3,
       f,
       prototype_type_pb.dynamic_properties.serializeBinaryToWriter
     );
@@ -6642,18 +6681,33 @@ proto.grpcpb.ChainState.prototype.setLastIrreversibleBlockNumber = function(valu
 
 
 /**
- * optional prototype.dynamic_properties dgpo = 2;
+ * optional uint64 last_irreversible_block_time = 2;
+ * @return {number}
+ */
+proto.grpcpb.ChainState.prototype.getLastIrreversibleBlockTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.ChainState.prototype.setLastIrreversibleBlockTime = function(value) {
+  jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional prototype.dynamic_properties dgpo = 3;
  * @return {?proto.prototype.dynamic_properties}
  */
 proto.grpcpb.ChainState.prototype.getDgpo = function() {
   return /** @type{?proto.prototype.dynamic_properties} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.dynamic_properties, 2));
+    jspb.Message.getWrapperField(this, prototype_type_pb.dynamic_properties, 3));
 };
 
 
 /** @param {?proto.prototype.dynamic_properties|undefined} value */
 proto.grpcpb.ChainState.prototype.setDgpo = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -6667,7 +6721,7 @@ proto.grpcpb.ChainState.prototype.clearDgpo = function() {
  * @return {!boolean}
  */
 proto.grpcpb.ChainState.prototype.hasDgpo = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

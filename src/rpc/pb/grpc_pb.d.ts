@@ -174,6 +174,9 @@ export class AccountResponse extends jspb.Message {
   getState(): ChainState | undefined;
   setState(value?: ChainState): void;
 
+  getPostCount(): number;
+  setPostCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountResponse.AsObject;
   static toObject(includeInstance: boolean, msg: AccountResponse): AccountResponse.AsObject;
@@ -193,6 +196,7 @@ export namespace AccountResponse {
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
     witness?: WitnessResponse.AsObject,
     state?: ChainState.AsObject,
+    postCount: number,
   }
 }
 
@@ -898,6 +902,9 @@ export class ChainState extends jspb.Message {
   getLastIrreversibleBlockNumber(): number;
   setLastIrreversibleBlockNumber(value: number): void;
 
+  getLastIrreversibleBlockTime(): number;
+  setLastIrreversibleBlockTime(value: number): void;
+
   hasDgpo(): boolean;
   clearDgpo(): void;
   getDgpo(): prototype_type_pb.dynamic_properties | undefined;
@@ -916,6 +923,7 @@ export class ChainState extends jspb.Message {
 export namespace ChainState {
   export type AsObject = {
     lastIrreversibleBlockNumber: number,
+    lastIrreversibleBlockTime: number,
     dgpo?: prototype_type_pb.dynamic_properties.AsObject,
   }
 }
