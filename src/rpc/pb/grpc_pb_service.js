@@ -118,8 +118,8 @@ ApiService.GetChainState = {
   responseType: rpc_pb_grpc_pb.GetChainStateResponse
 };
 
-ApiService.GetStatInfo = {
-  methodName: "GetStatInfo",
+ApiService.GetStatisticsInfo = {
+  methodName: "GetStatisticsInfo",
   service: ApiService,
   requestStream: false,
   responseStream: false,
@@ -187,6 +187,15 @@ ApiService.GetPostListByCreateTime = {
   requestStream: false,
   responseStream: false,
   requestType: rpc_pb_grpc_pb.GetPostListByCreateTimeRequest,
+  responseType: rpc_pb_grpc_pb.GetPostListByCreateTimeResponse
+};
+
+ApiService.GetPostListByName = {
+  methodName: "GetPostListByName",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetPostListByNameRequest,
   responseType: rpc_pb_grpc_pb.GetPostListByCreateTimeResponse
 };
 
@@ -569,11 +578,11 @@ ApiServiceClient.prototype.getChainState = function getChainState(requestMessage
   };
 };
 
-ApiServiceClient.prototype.getStatInfo = function getStatInfo(requestMessage, metadata, callback) {
+ApiServiceClient.prototype.getStatisticsInfo = function getStatisticsInfo(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ApiService.GetStatInfo, {
+  var client = grpc.unary(ApiService.GetStatisticsInfo, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -791,6 +800,37 @@ ApiServiceClient.prototype.getPostListByCreateTime = function getPostListByCreat
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetPostListByCreateTime, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getPostListByName = function getPostListByName(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetPostListByName, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

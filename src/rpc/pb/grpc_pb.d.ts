@@ -1292,3 +1292,37 @@ export namespace GetPostListByCreateTimeResponse {
   }
 }
 
+export class GetPostListByNameRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_multi_id_pb.user_post_create_order | undefined;
+  setStart(value?: prototype_multi_id_pb.user_post_create_order): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_multi_id_pb.user_post_create_order | undefined;
+  setEnd(value?: prototype_multi_id_pb.user_post_create_order): void;
+
+  hasLastPost(): boolean;
+  clearLastPost(): void;
+  getLastPost(): PostResponse | undefined;
+  setLastPost(value?: PostResponse): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPostListByNameRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPostListByNameRequest): GetPostListByNameRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPostListByNameRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPostListByNameRequest;
+  static deserializeBinaryFromReader(message: GetPostListByNameRequest, reader: jspb.BinaryReader): GetPostListByNameRequest;
+}
+
+export namespace GetPostListByNameRequest {
+  export type AsObject = {
+    start?: prototype_multi_id_pb.user_post_create_order.AsObject,
+    end?: prototype_multi_id_pb.user_post_create_order.AsObject,
+    lastPost?: PostResponse.AsObject,
+  }
+}
+

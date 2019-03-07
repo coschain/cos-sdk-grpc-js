@@ -318,3 +318,31 @@ export namespace reply_created_order {
   }
 }
 
+export class user_post_create_order extends jspb.Message {
+  hasAuthor(): boolean;
+  clearAuthor(): void;
+  getAuthor(): prototype_type_pb.account_name | undefined;
+  setAuthor(value?: prototype_type_pb.account_name): void;
+
+  hasCreate(): boolean;
+  clearCreate(): void;
+  getCreate(): prototype_type_pb.time_point_sec | undefined;
+  setCreate(value?: prototype_type_pb.time_point_sec): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): user_post_create_order.AsObject;
+  static toObject(includeInstance: boolean, msg: user_post_create_order): user_post_create_order.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: user_post_create_order, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): user_post_create_order;
+  static deserializeBinaryFromReader(message: user_post_create_order, reader: jspb.BinaryReader): user_post_create_order;
+}
+
+export namespace user_post_create_order {
+  export type AsObject = {
+    author?: prototype_type_pb.account_name.AsObject,
+    create?: prototype_type_pb.time_point_sec.AsObject,
+  }
+}
+
