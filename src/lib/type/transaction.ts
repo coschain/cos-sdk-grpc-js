@@ -54,33 +54,33 @@ transaction.prototype.addOperation = function(op: any){
 // @ts-ignore
 const sender = function (op) {
     // @ts-ignore
-    if (op instanceof account_create_operation) return op.getNewAccountName().getValue();
+    if (op.hasOp1()) return op.getNewAccountName().getValue();
     // @ts-ignore
-    if (op instanceof transfer_operation) return op.getFrom().getValue();
+    if (op.hasOp2()) return op.getFrom().getValue();
     // @ts-ignore
-    if (op instanceof bp_register_operation) return op.getOwner().getValue();
+    if (op.hasOp3()) return op.getOwner().getValue();
     // @ts-ignore
-    if (op instanceof bp_unregister_operation) return op.getOwner().getValue();
+    if (op.hasOp4()) return op.getOwner().getValue();
     // @ts-ignore
-    if (op instanceof bp_vote_operation) return op.getVoter().getValue();
+    if (op.hasOp5()) return op.getVoter().getValue();
     // @ts-ignore
-    if (op instanceof post_operation) return op.getOwner().getValue();
+    if (op.hasOp6()) return op.getOwner().getValue();
     // @ts-ignore
-    if (op instanceof reply_operation) return op.getOwner().getValue();
+    if (op.hasOp7()) return op.getOwner().getValue();
     // @ts-ignore
-    if (op instanceof follow_operation) return op.getAccount().getValue();
+    if (op.hasOp8()) return op.getAccount().getValue();
     // @ts-ignore
-    if (op instanceof vote_operation) return op.getVoter().getValue();
+    if (op.hasOp9()) return op.getVoter().getValue();
     // @ts-ignore
-    if (op instanceof transfer_to_vesting_operation) return op.getFrom().getValue();
+    if (op.hasOp10()) return op.getFrom().getValue();
     // @ts-ignore
-    if (op instanceof claim_operation) return op.getAccount().getValue();
+    if (op.hasOp11()) return op.getAccount().getValue();
     // @ts-ignore
-    if (op instanceof claim_all_operation) return op.getAccount().getValue();
+    if (op.hasOp12()) return op.getAccount().getValue();
     // @ts-ignore
-    if (op instanceof contract_deploy_operation) return op.getOwner().getValue();
+    if (op.hasOp13()) return op.getOwner().getValue();
     // @ts-ignore
-    if (op instanceof contract_apply_operation) return op.getCaller().getValue();
+    if (op.hasOp14()) return op.getCaller().getValue();
     return ''
 };
 
