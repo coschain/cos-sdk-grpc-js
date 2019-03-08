@@ -10,7 +10,7 @@
       "stripInternal": true,
       "noFallthroughCasesInSwitch": true,
       "noEmitOnError": true,
-      "target": "es6",
+      "target": "ESNext",
       "module": "commonjs",
       "declaration": true
     },

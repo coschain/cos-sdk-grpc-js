@@ -51,4 +51,49 @@ transaction.prototype.addOperation = function(op: any){
     this.setOperationsList(operations);
 };
 
+// @ts-ignore
+const sender = function (op) {
+    // @ts-ignore
+    if (op instanceof account_create_operation) return op.getNewAccountName().getValue();
+    // @ts-ignore
+    if (op instanceof transfer_operation) return op.getFrom().getValue();
+    // @ts-ignore
+    if (op instanceof bp_register_operation) return op.getOwner().getValue();
+    // @ts-ignore
+    if (op instanceof bp_unregister_operation) return op.getOwner().getValue();
+    // @ts-ignore
+    if (op instanceof bp_vote_operation) return op.getVoter().getValue();
+    // @ts-ignore
+    if (op instanceof post_operation) return op.getOwner().getValue();
+    // @ts-ignore
+    if (op instanceof reply_operation) return op.getOwner().getValue();
+    // @ts-ignore
+    if (op instanceof follow_operation) return op.getAccount().getValue();
+    // @ts-ignore
+    if (op instanceof vote_operation) return op.getVoter().getValue();
+    // @ts-ignore
+    if (op instanceof transfer_to_vesting_operation) return op.getFrom().getValue();
+    // @ts-ignore
+    if (op instanceof claim_operation) return op.getAccount().getValue();
+    // @ts-ignore
+    if (op instanceof claim_all_operation) return op.getAccount().getValue();
+    // @ts-ignore
+    if (op instanceof contract_deploy_operation) return op.getOwner().getValue();
+    // @ts-ignore
+    if (op instanceof contract_apply_operation) return op.getCaller().getValue();
+    return ''
+};
+
+// @ts-ignore
+transaction.prototype.sender = function () {
+    let ops = this.getOperationsList();
+    if (ops.length > 0) {
+        let op = ops[0];
+        return sender(op);
+    } else {
+        return ''
+    }
+};
+
+
 export {transaction};

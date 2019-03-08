@@ -23,4 +23,14 @@ signed_block.prototype.id = function () {
     return ret;
 };
 
+// @ts-ignore
+signed_block.prototype.hash = function () {
+    let data = this.serializeBinary();
+    const hash = createHash('sha256');
+    hash.update(data);
+    return hash.digest().toString('hex');
+};
+
+
+
 export {signed_block}
