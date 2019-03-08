@@ -1030,34 +1030,6 @@ export namespace GetAccountListResponse {
   }
 }
 
-export class GetDailyTotalTrxRequest extends jspb.Message {
-  hasStart(): boolean;
-  clearStart(): void;
-  getStart(): prototype_type_pb.time_point_sec | undefined;
-  setStart(value?: prototype_type_pb.time_point_sec): void;
-
-  hasEnd(): boolean;
-  clearEnd(): void;
-  getEnd(): prototype_type_pb.time_point_sec | undefined;
-  setEnd(value?: prototype_type_pb.time_point_sec): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetDailyTotalTrxRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetDailyTotalTrxRequest): GetDailyTotalTrxRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetDailyTotalTrxRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetDailyTotalTrxRequest;
-  static deserializeBinaryFromReader(message: GetDailyTotalTrxRequest, reader: jspb.BinaryReader): GetDailyTotalTrxRequest;
-}
-
-export namespace GetDailyTotalTrxRequest {
-  export type AsObject = {
-    start?: prototype_type_pb.time_point_sec.AsObject,
-    end?: prototype_type_pb.time_point_sec.AsObject,
-  }
-}
-
 export class DailyTotalTrx extends jspb.Message {
   hasDate(): boolean;
   clearDate(): void;
@@ -1081,6 +1053,40 @@ export namespace DailyTotalTrx {
   export type AsObject = {
     date?: prototype_type_pb.time_point_sec.AsObject,
     count: number,
+  }
+}
+
+export class GetDailyTotalTrxRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.time_point_sec | undefined;
+  setStart(value?: prototype_type_pb.time_point_sec): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.time_point_sec | undefined;
+  setEnd(value?: prototype_type_pb.time_point_sec): void;
+
+  hasLastInfo(): boolean;
+  clearLastInfo(): void;
+  getLastInfo(): DailyTotalTrx | undefined;
+  setLastInfo(value?: DailyTotalTrx): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDailyTotalTrxRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDailyTotalTrxRequest): GetDailyTotalTrxRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDailyTotalTrxRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDailyTotalTrxRequest;
+  static deserializeBinaryFromReader(message: GetDailyTotalTrxRequest, reader: jspb.BinaryReader): GetDailyTotalTrxRequest;
+}
+
+export namespace GetDailyTotalTrxRequest {
+  export type AsObject = {
+    start?: prototype_type_pb.time_point_sec.AsObject,
+    end?: prototype_type_pb.time_point_sec.AsObject,
+    lastInfo?: DailyTotalTrx.AsObject,
   }
 }
 
