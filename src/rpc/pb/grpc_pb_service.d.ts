@@ -112,7 +112,7 @@ type ApiServiceGetChainState = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetChainStateResponse;
 };
 
-type ApiServiceGetStatInfo = {
+type ApiServiceGetStatisticsInfo = {
   readonly methodName: string;
   readonly service: typeof ApiService;
   readonly requestStream: false;
@@ -184,6 +184,15 @@ type ApiServiceGetPostListByCreateTime = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetPostListByCreateTimeResponse;
 };
 
+type ApiServiceGetPostListByName = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetPostListByNameRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetPostListByCreateTimeResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -198,7 +207,7 @@ export class ApiService {
   static readonly GetBlockTransactionsByNum: ApiServiceGetBlockTransactionsByNum;
   static readonly GetTrxById: ApiServiceGetTrxById;
   static readonly GetChainState: ApiServiceGetChainState;
-  static readonly GetStatInfo: ApiServiceGetStatInfo;
+  static readonly GetStatisticsInfo: ApiServiceGetStatisticsInfo;
   static readonly BroadcastTrx: ApiServiceBroadcastTrx;
   static readonly GetBlockList: ApiServiceGetBlockList;
   static readonly GetAccountListByBalance: ApiServiceGetAccountListByBalance;
@@ -206,6 +215,7 @@ export class ApiService {
   static readonly GetTrxInfoById: ApiServiceGetTrxInfoById;
   static readonly GetTrxListByTime: ApiServiceGetTrxListByTime;
   static readonly GetPostListByCreateTime: ApiServiceGetPostListByCreateTime;
+  static readonly GetPostListByName: ApiServiceGetPostListByName;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -348,12 +358,12 @@ export class ApiServiceClient {
     requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetChainStateResponse|null) => void
   ): UnaryResponse;
-  getStatInfo(
+  getStatisticsInfo(
     requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetStatResponse|null) => void
   ): UnaryResponse;
-  getStatInfo(
+  getStatisticsInfo(
     requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetStatResponse|null) => void
   ): UnaryResponse;
@@ -418,6 +428,15 @@ export class ApiServiceClient {
   ): UnaryResponse;
   getPostListByCreateTime(
     requestMessage: rpc_pb_grpc_pb.GetPostListByCreateTimeRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostListByCreateTimeResponse|null) => void
+  ): UnaryResponse;
+  getPostListByName(
+    requestMessage: rpc_pb_grpc_pb.GetPostListByNameRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostListByCreateTimeResponse|null) => void
+  ): UnaryResponse;
+  getPostListByName(
+    requestMessage: rpc_pb_grpc_pb.GetPostListByNameRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostListByCreateTimeResponse|null) => void
   ): UnaryResponse;
 }

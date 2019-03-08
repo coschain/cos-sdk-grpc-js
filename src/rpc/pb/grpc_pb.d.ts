@@ -174,6 +174,9 @@ export class AccountResponse extends jspb.Message {
   getState(): ChainState | undefined;
   setState(value?: ChainState): void;
 
+  getPostCount(): number;
+  setPostCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountResponse.AsObject;
   static toObject(includeInstance: boolean, msg: AccountResponse): AccountResponse.AsObject;
@@ -193,6 +196,7 @@ export namespace AccountResponse {
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
     witness?: WitnessResponse.AsObject,
     state?: ChainState.AsObject,
+    postCount: number,
   }
 }
 
@@ -898,6 +902,9 @@ export class ChainState extends jspb.Message {
   getLastIrreversibleBlockNumber(): number;
   setLastIrreversibleBlockNumber(value: number): void;
 
+  getLastIrreversibleBlockTime(): number;
+  setLastIrreversibleBlockTime(value: number): void;
+
   hasDgpo(): boolean;
   clearDgpo(): void;
   getDgpo(): prototype_type_pb.dynamic_properties | undefined;
@@ -916,6 +923,7 @@ export class ChainState extends jspb.Message {
 export namespace ChainState {
   export type AsObject = {
     lastIrreversibleBlockNumber: number,
+    lastIrreversibleBlockTime: number,
     dgpo?: prototype_type_pb.dynamic_properties.AsObject,
   }
 }
@@ -1289,6 +1297,40 @@ export class GetPostListByCreateTimeResponse extends jspb.Message {
 export namespace GetPostListByCreateTimeResponse {
   export type AsObject = {
     postedListList: Array<PostResponse.AsObject>,
+  }
+}
+
+export class GetPostListByNameRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_multi_id_pb.user_post_create_order | undefined;
+  setStart(value?: prototype_multi_id_pb.user_post_create_order): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_multi_id_pb.user_post_create_order | undefined;
+  setEnd(value?: prototype_multi_id_pb.user_post_create_order): void;
+
+  hasLastPost(): boolean;
+  clearLastPost(): void;
+  getLastPost(): PostResponse | undefined;
+  setLastPost(value?: PostResponse): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPostListByNameRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPostListByNameRequest): GetPostListByNameRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPostListByNameRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPostListByNameRequest;
+  static deserializeBinaryFromReader(message: GetPostListByNameRequest, reader: jspb.BinaryReader): GetPostListByNameRequest;
+}
+
+export namespace GetPostListByNameRequest {
+  export type AsObject = {
+    start?: prototype_multi_id_pb.user_post_create_order.AsObject,
+    end?: prototype_multi_id_pb.user_post_create_order.AsObject,
+    lastPost?: PostResponse.AsObject,
   }
 }
 
