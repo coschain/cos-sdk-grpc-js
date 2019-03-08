@@ -7,4 +7,10 @@ sha256.prototype.fromBlockId = function (blockId) {
     this.setHash(data);
 };
 
+// @ts-ignore
+sha256.prototype.getHexHash= function () {
+    let data = this.getHash();
+    return Buffer.from(data).toString('hex')
+};
+
 export {sha256}
