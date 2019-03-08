@@ -4,4 +4,5 @@ export declare class block_id {
     setDataSlice(data: Uint8Array, start: number): void;
     getData(): Uint8Array;
     blockNum(): number;
+    toString(): string;
 }

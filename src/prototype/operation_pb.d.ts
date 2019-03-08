@@ -467,8 +467,8 @@ export namespace contract_estimate_apply_operation {
 }
 
 export class post_operation extends jspb.Message {
-  getUuid(): number;
-  setUuid(value: number): void;
+  getUuid(): string;
+  setUuid(value: string): void;
 
   hasOwner(): boolean;
   clearOwner(): void;
@@ -503,7 +503,7 @@ export class post_operation extends jspb.Message {
 
 export namespace post_operation {
   export type AsObject = {
-    uuid: number,
+    uuid: string,
     owner?: prototype_type_pb.account_name.AsObject,
     title: string,
     content: string,

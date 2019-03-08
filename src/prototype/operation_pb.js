@@ -3420,7 +3420,7 @@ proto.prototype.post_operation.prototype.toObject = function(opt_includeInstance
  */
 proto.prototype.post_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    uuid: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 1, "0"),
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     title: jspb.Message.getFieldWithDefault(msg, 3, ""),
     content: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -3464,7 +3464,7 @@ proto.prototype.post_operation.deserializeBinaryFromReader = function(msg, reade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setUuid(value);
       break;
     case 2:
@@ -3519,8 +3519,8 @@ proto.prototype.post_operation.prototype.serializeBinary = function() {
 proto.prototype.post_operation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getUuid();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       1,
       f
     );
@@ -3567,16 +3567,16 @@ proto.prototype.post_operation.serializeBinaryToWriter = function(message, write
 
 /**
  * optional uint64 uuid = 1;
- * @return {number}
+ * @return {string}
  */
 proto.prototype.post_operation.prototype.getUuid = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.prototype.post_operation.prototype.setUuid = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  jspb.Message.setProto3StringIntField(this, 1, value);
 };
 
 

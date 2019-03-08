@@ -26,4 +26,8 @@ export class block_id{
         uint8buffer.set(this.data.slice(0, 8));
         return bytes2uint64(uint8buffer);
     }
+
+    public toString() {
+        return Buffer.from(this.data).toString('hex')
+    }
 }

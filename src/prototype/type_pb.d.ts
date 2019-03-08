@@ -44,8 +44,8 @@ export namespace chain_id {
 }
 
 export class coin extends jspb.Message {
-  getValue(): number;
-  setValue(value: number): void;
+  getValue(): string;
+  setValue(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): coin.AsObject;
@@ -59,13 +59,13 @@ export class coin extends jspb.Message {
 
 export namespace coin {
   export type AsObject = {
-    value: number,
+    value: string,
   }
 }
 
 export class vest extends jspb.Message {
-  getValue(): number;
-  setValue(value: number): void;
+  getValue(): string;
+  setValue(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): vest.AsObject;
@@ -79,7 +79,7 @@ export class vest extends jspb.Message {
 
 export namespace vest {
   export type AsObject = {
-    value: number,
+    value: string,
   }
 }
 

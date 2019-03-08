@@ -356,7 +356,7 @@ proto.prototype.coin.prototype.toObject = function(opt_includeInstance) {
  */
 proto.prototype.coin.toObject = function(includeInstance, msg) {
   var f, obj = {
-    value: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    value: jspb.Message.getFieldWithDefault(msg, 1, "0")
   };
 
   if (includeInstance) {
@@ -394,7 +394,7 @@ proto.prototype.coin.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setValue(value);
       break;
     default:
@@ -427,8 +427,8 @@ proto.prototype.coin.prototype.serializeBinary = function() {
 proto.prototype.coin.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getValue();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       1,
       f
     );
@@ -438,16 +438,16 @@ proto.prototype.coin.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional uint64 value = 1;
- * @return {number}
+ * @return {string}
  */
 proto.prototype.coin.prototype.getValue = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.prototype.coin.prototype.setValue = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  jspb.Message.setProto3StringIntField(this, 1, value);
 };
 
 
@@ -498,7 +498,7 @@ proto.prototype.vest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.prototype.vest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    value: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    value: jspb.Message.getFieldWithDefault(msg, 1, "0")
   };
 
   if (includeInstance) {
@@ -536,7 +536,7 @@ proto.prototype.vest.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setValue(value);
       break;
     default:
@@ -569,8 +569,8 @@ proto.prototype.vest.prototype.serializeBinary = function() {
 proto.prototype.vest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getValue();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       1,
       f
     );
@@ -580,16 +580,16 @@ proto.prototype.vest.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional uint64 value = 1;
- * @return {number}
+ * @return {string}
  */
 proto.prototype.vest.prototype.getValue = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.prototype.vest.prototype.setValue = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  jspb.Message.setProto3StringIntField(this, 1, value);
 };
 
 
