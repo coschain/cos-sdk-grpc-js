@@ -7488,209 +7488,6 @@ proto.grpcpb.GetAccountListResponse.prototype.clearListList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.grpcpb.GetDailyTotalTrxRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.grpcpb.GetDailyTotalTrxRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.grpcpb.GetDailyTotalTrxRequest.displayName = 'proto.grpcpb.GetDailyTotalTrxRequest';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.grpcpb.GetDailyTotalTrxRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.grpcpb.GetDailyTotalTrxRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.grpcpb.GetDailyTotalTrxRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    start: (f = msg.getStart()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
-    end: (f = msg.getEnd()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.grpcpb.GetDailyTotalTrxRequest}
- */
-proto.grpcpb.GetDailyTotalTrxRequest.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.grpcpb.GetDailyTotalTrxRequest;
-  return proto.grpcpb.GetDailyTotalTrxRequest.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.grpcpb.GetDailyTotalTrxRequest} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.grpcpb.GetDailyTotalTrxRequest}
- */
-proto.grpcpb.GetDailyTotalTrxRequest.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new prototype_type_pb.time_point_sec;
-      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
-      msg.setStart(value);
-      break;
-    case 2:
-      var value = new prototype_type_pb.time_point_sec;
-      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
-      msg.setEnd(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.grpcpb.GetDailyTotalTrxRequest.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.grpcpb.GetDailyTotalTrxRequest} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.grpcpb.GetDailyTotalTrxRequest.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getStart();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      prototype_type_pb.time_point_sec.serializeBinaryToWriter
-    );
-  }
-  f = message.getEnd();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      prototype_type_pb.time_point_sec.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional prototype.time_point_sec start = 1;
- * @return {?proto.prototype.time_point_sec}
- */
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.getStart = function() {
-  return /** @type{?proto.prototype.time_point_sec} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 1));
-};
-
-
-/** @param {?proto.prototype.time_point_sec|undefined} value */
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.setStart = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.clearStart = function() {
-  this.setStart(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.hasStart = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional prototype.time_point_sec end = 2;
- * @return {?proto.prototype.time_point_sec}
- */
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.getEnd = function() {
-  return /** @type{?proto.prototype.time_point_sec} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 2));
-};
-
-
-/** @param {?proto.prototype.time_point_sec|undefined} value */
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.setEnd = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.clearEnd = function() {
-  this.setEnd(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.grpcpb.GetDailyTotalTrxRequest.prototype.hasEnd = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.grpcpb.DailyTotalTrx = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -7863,6 +7660,253 @@ proto.grpcpb.DailyTotalTrx.prototype.getCount = function() {
 /** @param {number} value */
 proto.grpcpb.DailyTotalTrx.prototype.setCount = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetDailyTotalTrxRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetDailyTotalTrxRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetDailyTotalTrxRequest.displayName = 'proto.grpcpb.GetDailyTotalTrxRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetDailyTotalTrxRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetDailyTotalTrxRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    start: (f = msg.getStart()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    end: (f = msg.getEnd()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    lastInfo: (f = msg.getLastInfo()) && proto.grpcpb.DailyTotalTrx.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetDailyTotalTrxRequest}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetDailyTotalTrxRequest;
+  return proto.grpcpb.GetDailyTotalTrxRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetDailyTotalTrxRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetDailyTotalTrxRequest}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setStart(value);
+      break;
+    case 2:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setEnd(value);
+      break;
+    case 3:
+      var value = new proto.grpcpb.DailyTotalTrx;
+      reader.readMessage(value,proto.grpcpb.DailyTotalTrx.deserializeBinaryFromReader);
+      msg.setLastInfo(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetDailyTotalTrxRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetDailyTotalTrxRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStart();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+  f = message.getEnd();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastInfo();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.grpcpb.DailyTotalTrx.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional prototype.time_point_sec start = 1;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.getStart = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 1));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.setStart = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.clearStart = function() {
+  this.setStart(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.hasStart = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional prototype.time_point_sec end = 2;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.getEnd = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 2));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.setEnd = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.clearEnd = function() {
+  this.setEnd(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.hasEnd = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional DailyTotalTrx last_info = 3;
+ * @return {?proto.grpcpb.DailyTotalTrx}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.getLastInfo = function() {
+  return /** @type{?proto.grpcpb.DailyTotalTrx} */ (
+    jspb.Message.getWrapperField(this, proto.grpcpb.DailyTotalTrx, 3));
+};
+
+
+/** @param {?proto.grpcpb.DailyTotalTrx|undefined} value */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.setLastInfo = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.clearLastInfo = function() {
+  this.setLastInfo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.hasLastInfo = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
