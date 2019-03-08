@@ -8,9 +8,15 @@ sha256.prototype.fromBlockId = function (blockId) {
 };
 
 // @ts-ignore
-sha256.prototype.getHexHash= function () {
+sha256.prototype.getHexHash = function () {
     let data = this.getHash();
     return Buffer.from(data).toString('hex')
+};
+
+// @ts-ignore
+sha256.prototype.setHexHash = function (hex : string) {
+    let data = Buffer.from(hex, 'hex');
+    this.setHash(data);
 };
 
 export {sha256}
