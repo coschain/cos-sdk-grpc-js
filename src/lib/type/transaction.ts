@@ -54,33 +54,33 @@ transaction.prototype.addOperation = function(op: any){
 // @ts-ignore
 const sender = function (op) {
     // @ts-ignore
-    if (op.hasOp1()) return op.getNewAccountName().getValue();
+    if (op.hasOp1()) return op.getOp1().getNewAccountName().getValue();
     // @ts-ignore
-    if (op.hasOp2()) return op.getFrom().getValue();
+    if (op.hasOp2()) return op.getOp2().getFrom().getValue();
     // @ts-ignore
-    if (op.hasOp3()) return op.getOwner().getValue();
+    if (op.hasOp3()) return op.getOp3().getOwner().getValue();
     // @ts-ignore
-    if (op.hasOp4()) return op.getOwner().getValue();
+    if (op.hasOp4()) return op.getOp4().getOwner().getValue();
     // @ts-ignore
-    if (op.hasOp5()) return op.getVoter().getValue();
+    if (op.hasOp5()) return op.getOp5().getVoter().getValue();
     // @ts-ignore
-    if (op.hasOp6()) return op.getOwner().getValue();
+    if (op.hasOp6()) return op.getOp6().getOwner().getValue();
     // @ts-ignore
-    if (op.hasOp7()) return op.getOwner().getValue();
+    if (op.hasOp7()) return op.getOp7().getOwner().getValue();
     // @ts-ignore
-    if (op.hasOp8()) return op.getAccount().getValue();
+    if (op.hasOp8()) return op.getOp8().getAccount().getValue();
     // @ts-ignore
-    if (op.hasOp9()) return op.getVoter().getValue();
+    if (op.hasOp9()) return op.getOp9().getVoter().getValue();
     // @ts-ignore
-    if (op.hasOp10()) return op.getFrom().getValue();
+    if (op.hasOp10()) return op.getOp10().getFrom().getValue();
     // @ts-ignore
-    if (op.hasOp11()) return op.getAccount().getValue();
+    if (op.hasOp11()) return op.getOp11().getAccount().getValue();
     // @ts-ignore
-    if (op.hasOp12()) return op.getAccount().getValue();
+    if (op.hasOp12()) return op.getOp12().getAccount().getValue();
     // @ts-ignore
-    if (op.hasOp13()) return op.getOwner().getValue();
+    if (op.hasOp13()) return op.getOp13().getOwner().getValue();
     // @ts-ignore
-    if (op.hasOp14()) return op.getCaller().getValue();
+    if (op.hasOp14()) return op.getOp14().getCaller().getValue();
     return ''
 };
 
