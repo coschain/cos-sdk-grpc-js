@@ -3754,10 +3754,10 @@ proto.prototype.reply_operation.prototype.toObject = function(opt_includeInstanc
  */
 proto.prototype.reply_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    uuid: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 1, "0"),
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     content: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    parentUuid: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    parentUuid: jspb.Message.getFieldWithDefault(msg, 4, "0"),
     beneficiariesList: jspb.Message.toObjectList(msg.getBeneficiariesList(),
     prototype_type_pb.beneficiary_route_type.toObject, includeInstance)
   };
@@ -3797,7 +3797,7 @@ proto.prototype.reply_operation.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setUuid(value);
       break;
     case 2:
@@ -3810,7 +3810,7 @@ proto.prototype.reply_operation.deserializeBinaryFromReader = function(msg, read
       msg.setContent(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setParentUuid(value);
       break;
     case 6:
@@ -3848,8 +3848,8 @@ proto.prototype.reply_operation.prototype.serializeBinary = function() {
 proto.prototype.reply_operation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getUuid();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       1,
       f
     );
@@ -3870,8 +3870,8 @@ proto.prototype.reply_operation.serializeBinaryToWriter = function(message, writ
     );
   }
   f = message.getParentUuid();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       4,
       f
     );
@@ -3889,16 +3889,16 @@ proto.prototype.reply_operation.serializeBinaryToWriter = function(message, writ
 
 /**
  * optional uint64 uuid = 1;
- * @return {number}
+ * @return {string}
  */
 proto.prototype.reply_operation.prototype.getUuid = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.prototype.reply_operation.prototype.setUuid = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  jspb.Message.setProto3StringIntField(this, 1, value);
 };
 
 
@@ -3949,16 +3949,16 @@ proto.prototype.reply_operation.prototype.setContent = function(value) {
 
 /**
  * optional uint64 parent_uuid = 4;
- * @return {number}
+ * @return {string}
  */
 proto.prototype.reply_operation.prototype.getParentUuid = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.prototype.reply_operation.prototype.setParentUuid = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
+  jspb.Message.setProto3StringIntField(this, 4, value);
 };
 
 

@@ -513,8 +513,8 @@ export namespace post_operation {
 }
 
 export class reply_operation extends jspb.Message {
-  getUuid(): number;
-  setUuid(value: number): void;
+  getUuid(): string;
+  setUuid(value: string): void;
 
   hasOwner(): boolean;
   clearOwner(): void;
@@ -524,8 +524,8 @@ export class reply_operation extends jspb.Message {
   getContent(): string;
   setContent(value: string): void;
 
-  getParentUuid(): number;
-  setParentUuid(value: number): void;
+  getParentUuid(): string;
+  setParentUuid(value: string): void;
 
   clearBeneficiariesList(): void;
   getBeneficiariesList(): Array<prototype_type_pb.beneficiary_route_type>;
@@ -544,10 +544,10 @@ export class reply_operation extends jspb.Message {
 
 export namespace reply_operation {
   export type AsObject = {
-    uuid: number,
+    uuid: string,
     owner?: prototype_type_pb.account_name.AsObject,
     content: string,
-    parentUuid: number,
+    parentUuid: string,
     beneficiariesList: Array<prototype_type_pb.beneficiary_route_type.AsObject>,
   }
 }
