@@ -95,5 +95,53 @@ transaction.prototype.sender = function () {
     }
 };
 
+// @ts-ignore
+const getActionName = function (op) {
+    // @ts-ignore
+    if (op.hasOp1()) return "Create account";
+    // @ts-ignore
+    if (op.hasOp2()) return "Transfer";
+    // @ts-ignore
+    if (op.hasOp3()) return "Bp Register";
+    // @ts-ignore
+    if (op.hasOp4()) return "Bp Unregister";
+    // @ts-ignore
+    if (op.hasOp5()) return "Bp Vote";
+    // @ts-ignore
+    if (op.hasOp6()) return "Transfer";
+    // @ts-ignore
+    if (op.hasOp7()) return "Replay";
+    // @ts-ignore
+    if (op.hasOp8()) return "Follow";
+    // @ts-ignore
+    if (op.hasOp9()) return "Vote";
+    // @ts-ignore
+    if (op.hasOp10()) return "Transfer To Vesting";
+    // @ts-ignore
+    if (op.hasOp11()) return "Claim";
+    // @ts-ignore
+    if (op.hasOp12()) return "ClaimAll";
+    // @ts-ignore
+    if (op.hasOp13()) return "Contract Deploy";
+    // @ts-ignore
+    if (op.hasOp14()) return "Contract Apply";
+    return '';
+};
+
+// @ts-ignore
+transaction.prototype.getAllActions = function () {
+  let ops = this.getOperationsList();
+    // @ts-ignore
+  let actionList = [];
+  for(let op of ops) {
+      let action = getActionName(op);
+      if (action.length > 0 ) {
+          actionList.push(action)
+      }
+  }
+    // @ts-ignore
+  return actionList;
+};
+
 
 export {transaction};
