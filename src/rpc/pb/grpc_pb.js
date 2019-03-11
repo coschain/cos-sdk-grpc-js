@@ -3422,7 +3422,8 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     parentId: jspb.Message.getFieldWithDefault(msg, 17, "0"),
     tagsList: jspb.Message.getRepeatedField(msg, 18),
     beneficiariesList: jspb.Message.toObjectList(msg.getBeneficiariesList(),
-    prototype_type_pb.beneficiary_route_type.toObject, includeInstance)
+    prototype_type_pb.beneficiary_route_type.toObject, includeInstance),
+    voteCnt: jspb.Message.getFieldWithDefault(msg, 20, 0)
   };
 
   if (includeInstance) {
@@ -3519,6 +3520,10 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
       var value = new prototype_type_pb.beneficiary_route_type;
       reader.readMessage(value,prototype_type_pb.beneficiary_route_type.deserializeBinaryFromReader);
       msg.addBeneficiaries(value);
+      break;
+    case 20:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setVoteCnt(value);
       break;
     default:
       reader.skipField();
@@ -3650,6 +3655,13 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
       19,
       f,
       prototype_type_pb.beneficiary_route_type.serializeBinaryToWriter
+    );
+  }
+  f = message.getVoteCnt();
+  if (f !== 0) {
+    writer.writeUint64(
+      20,
+      f
     );
   }
 };
@@ -3952,6 +3964,21 @@ proto.grpcpb.PostResponse.prototype.addBeneficiaries = function(opt_value, opt_i
 
 proto.grpcpb.PostResponse.prototype.clearBeneficiariesList = function() {
   this.setBeneficiariesList([]);
+};
+
+
+/**
+ * optional uint64 vote_cnt = 20;
+ * @return {number}
+ */
+proto.grpcpb.PostResponse.prototype.getVoteCnt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 20, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.PostResponse.prototype.setVoteCnt = function(value) {
+  jspb.Message.setProto3IntField(this, 20, value);
 };
 
 

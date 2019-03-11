@@ -517,6 +517,9 @@ export class PostResponse extends jspb.Message {
   setBeneficiariesList(value: Array<prototype_type_pb.beneficiary_route_type>): void;
   addBeneficiaries(value?: prototype_type_pb.beneficiary_route_type, index?: number): prototype_type_pb.beneficiary_route_type;
 
+  getVoteCnt(): number;
+  setVoteCnt(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
   static toObject(includeInstance: boolean, msg: PostResponse): PostResponse.AsObject;
@@ -543,6 +546,7 @@ export namespace PostResponse {
     parentId: string,
     tagsList: Array<string>,
     beneficiariesList: Array<prototype_type_pb.beneficiary_route_type.AsObject>,
+    voteCnt: number,
   }
 }
 
