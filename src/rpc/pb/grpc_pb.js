@@ -3408,7 +3408,7 @@ proto.grpcpb.PostResponse.prototype.toObject = function(opt_includeInstance) {
  */
 proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    postId: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    postId: jspb.Message.getFieldWithDefault(msg, 1, "0"),
     category: jspb.Message.getFieldWithDefault(msg, 2, ""),
     parentAuthor: (f = msg.getParentAuthor()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     author: (f = msg.getAuthor()) && prototype_type_pb.account_name.toObject(includeInstance, f),
@@ -3418,8 +3418,8 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     lastPayout: (f = msg.getLastPayout()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     depth: jspb.Message.getFieldWithDefault(msg, 14, 0),
     children: jspb.Message.getFieldWithDefault(msg, 15, 0),
-    rootId: jspb.Message.getFieldWithDefault(msg, 16, 0),
-    parentId: jspb.Message.getFieldWithDefault(msg, 17, 0),
+    rootId: jspb.Message.getFieldWithDefault(msg, 16, "0"),
+    parentId: jspb.Message.getFieldWithDefault(msg, 17, "0"),
     tagsList: jspb.Message.getRepeatedField(msg, 18),
     beneficiariesList: jspb.Message.toObjectList(msg.getBeneficiariesList(),
     prototype_type_pb.beneficiary_route_type.toObject, includeInstance)
@@ -3460,7 +3460,7 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setPostId(value);
       break;
     case 2:
@@ -3504,11 +3504,11 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
       msg.setChildren(value);
       break;
     case 16:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setRootId(value);
       break;
     case 17:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setParentId(value);
       break;
     case 18:
@@ -3550,8 +3550,8 @@ proto.grpcpb.PostResponse.prototype.serializeBinary = function() {
 proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getPostId();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       1,
       f
     );
@@ -3624,15 +3624,15 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getRootId();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       16,
       f
     );
   }
   f = message.getParentId();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       17,
       f
     );
@@ -3657,16 +3657,16 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional uint64 post_id = 1;
- * @return {number}
+ * @return {string}
  */
 proto.grpcpb.PostResponse.prototype.getPostId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.grpcpb.PostResponse.prototype.setPostId = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  jspb.Message.setProto3StringIntField(this, 1, value);
 };
 
 
@@ -3867,31 +3867,31 @@ proto.grpcpb.PostResponse.prototype.setChildren = function(value) {
 
 /**
  * optional uint64 root_id = 16;
- * @return {number}
+ * @return {string}
  */
 proto.grpcpb.PostResponse.prototype.getRootId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.grpcpb.PostResponse.prototype.setRootId = function(value) {
-  jspb.Message.setProto3IntField(this, 16, value);
+  jspb.Message.setProto3StringIntField(this, 16, value);
 };
 
 
 /**
  * optional uint64 parent_id = 17;
- * @return {number}
+ * @return {string}
  */
 proto.grpcpb.PostResponse.prototype.getParentId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.grpcpb.PostResponse.prototype.setParentId = function(value) {
-  jspb.Message.setProto3IntField(this, 17, value);
+  jspb.Message.setProto3StringIntField(this, 17, value);
 };
 
 

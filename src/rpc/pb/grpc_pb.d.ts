@@ -463,8 +463,8 @@ export namespace GetWitnessListResponse {
 }
 
 export class PostResponse extends jspb.Message {
-  getPostId(): number;
-  setPostId(value: number): void;
+  getPostId(): string;
+  setPostId(value: string): void;
 
   getCategory(): string;
   setCategory(value: string): void;
@@ -501,11 +501,11 @@ export class PostResponse extends jspb.Message {
   getChildren(): number;
   setChildren(value: number): void;
 
-  getRootId(): number;
-  setRootId(value: number): void;
+  getRootId(): string;
+  setRootId(value: string): void;
 
-  getParentId(): number;
-  setParentId(value: number): void;
+  getParentId(): string;
+  setParentId(value: string): void;
 
   clearTagsList(): void;
   getTagsList(): Array<string>;
@@ -529,7 +529,7 @@ export class PostResponse extends jspb.Message {
 
 export namespace PostResponse {
   export type AsObject = {
-    postId: number,
+    postId: string,
     category: string,
     parentAuthor?: prototype_type_pb.account_name.AsObject,
     author?: prototype_type_pb.account_name.AsObject,
@@ -539,8 +539,8 @@ export namespace PostResponse {
     lastPayout?: prototype_type_pb.time_point_sec.AsObject,
     depth: number,
     children: number,
-    rootId: number,
-    parentId: number,
+    rootId: string,
+    parentId: string,
     tagsList: Array<string>,
     beneficiariesList: Array<prototype_type_pb.beneficiary_route_type.AsObject>,
   }
