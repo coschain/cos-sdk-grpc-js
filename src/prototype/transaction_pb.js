@@ -52,7 +52,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.prototype.operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]];
+proto.prototype.operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]];
 
 /**
  * @enum {number}
@@ -73,8 +73,7 @@ proto.prototype.operation.OpCase = {
   OP12: 12,
   OP13: 13,
   OP14: 14,
-  OP15: 15,
-  OP16: 16
+  OP15: 15
 };
 
 /**
@@ -127,8 +126,7 @@ proto.prototype.operation.toObject = function(includeInstance, msg) {
     op12: (f = msg.getOp12()) && prototype_operation_pb.claim_all_operation.toObject(includeInstance, f),
     op13: (f = msg.getOp13()) && prototype_operation_pb.contract_deploy_operation.toObject(includeInstance, f),
     op14: (f = msg.getOp14()) && prototype_operation_pb.contract_apply_operation.toObject(includeInstance, f),
-    op15: (f = msg.getOp15()) && prototype_operation_pb.contract_estimate_apply_operation.toObject(includeInstance, f),
-    op16: (f = msg.getOp16()) && prototype_operation_pb.report_operation.toObject(includeInstance, f)
+    op15: (f = msg.getOp15()) && prototype_operation_pb.report_operation.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -236,14 +234,9 @@ proto.prototype.operation.deserializeBinaryFromReader = function(msg, reader) {
       msg.setOp14(value);
       break;
     case 15:
-      var value = new prototype_operation_pb.contract_estimate_apply_operation;
-      reader.readMessage(value,prototype_operation_pb.contract_estimate_apply_operation.deserializeBinaryFromReader);
-      msg.setOp15(value);
-      break;
-    case 16:
       var value = new prototype_operation_pb.report_operation;
       reader.readMessage(value,prototype_operation_pb.report_operation.deserializeBinaryFromReader);
-      msg.setOp16(value);
+      msg.setOp15(value);
       break;
     default:
       reader.skipField();
@@ -390,14 +383,6 @@ proto.prototype.operation.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(
       15,
-      f,
-      prototype_operation_pb.contract_estimate_apply_operation.serializeBinaryToWriter
-    );
-  }
-  f = message.getOp16();
-  if (f != null) {
-    writer.writeMessage(
-      16,
       f,
       prototype_operation_pb.report_operation.serializeBinaryToWriter
     );
@@ -826,16 +811,16 @@ proto.prototype.operation.prototype.hasOp14 = function() {
 
 
 /**
- * optional contract_estimate_apply_operation op15 = 15;
- * @return {?proto.prototype.contract_estimate_apply_operation}
+ * optional report_operation op15 = 15;
+ * @return {?proto.prototype.report_operation}
  */
 proto.prototype.operation.prototype.getOp15 = function() {
-  return /** @type{?proto.prototype.contract_estimate_apply_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.contract_estimate_apply_operation, 15));
+  return /** @type{?proto.prototype.report_operation} */ (
+    jspb.Message.getWrapperField(this, prototype_operation_pb.report_operation, 15));
 };
 
 
-/** @param {?proto.prototype.contract_estimate_apply_operation|undefined} value */
+/** @param {?proto.prototype.report_operation|undefined} value */
 proto.prototype.operation.prototype.setOp15 = function(value) {
   jspb.Message.setOneofWrapperField(this, 15, proto.prototype.operation.oneofGroups_[0], value);
 };
@@ -852,36 +837,6 @@ proto.prototype.operation.prototype.clearOp15 = function() {
  */
 proto.prototype.operation.prototype.hasOp15 = function() {
   return jspb.Message.getField(this, 15) != null;
-};
-
-
-/**
- * optional report_operation op16 = 16;
- * @return {?proto.prototype.report_operation}
- */
-proto.prototype.operation.prototype.getOp16 = function() {
-  return /** @type{?proto.prototype.report_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.report_operation, 16));
-};
-
-
-/** @param {?proto.prototype.report_operation|undefined} value */
-proto.prototype.operation.prototype.setOp16 = function(value) {
-  jspb.Message.setOneofWrapperField(this, 16, proto.prototype.operation.oneofGroups_[0], value);
-};
-
-
-proto.prototype.operation.prototype.clearOp16 = function() {
-  this.setOp16(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.operation.prototype.hasOp16 = function() {
-  return jspb.Message.getField(this, 16) != null;
 };
 
 

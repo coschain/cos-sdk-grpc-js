@@ -78,13 +78,8 @@ export class operation extends jspb.Message {
 
   hasOp15(): boolean;
   clearOp15(): void;
-  getOp15(): prototype_operation_pb.contract_estimate_apply_operation | undefined;
-  setOp15(value?: prototype_operation_pb.contract_estimate_apply_operation): void;
-
-  hasOp16(): boolean;
-  clearOp16(): void;
-  getOp16(): prototype_operation_pb.report_operation | undefined;
-  setOp16(value?: prototype_operation_pb.report_operation): void;
+  getOp15(): prototype_operation_pb.report_operation | undefined;
+  setOp15(value?: prototype_operation_pb.report_operation): void;
 
   getOpCase(): operation.OpCase;
   serializeBinary(): Uint8Array;
@@ -113,8 +108,7 @@ export namespace operation {
     op12?: prototype_operation_pb.claim_all_operation.AsObject,
     op13?: prototype_operation_pb.contract_deploy_operation.AsObject,
     op14?: prototype_operation_pb.contract_apply_operation.AsObject,
-    op15?: prototype_operation_pb.contract_estimate_apply_operation.AsObject,
-    op16?: prototype_operation_pb.report_operation.AsObject,
+    op15?: prototype_operation_pb.report_operation.AsObject,
   }
 
   export enum OpCase {
@@ -134,7 +128,6 @@ export namespace operation {
     OP13 = 13,
     OP14 = 14,
     OP15 = 15,
-    OP16 = 16,
   }
 }
 

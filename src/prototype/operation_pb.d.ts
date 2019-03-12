@@ -430,42 +430,6 @@ export namespace internal_contract_apply_operation {
   }
 }
 
-export class contract_estimate_apply_operation extends jspb.Message {
-  hasCaller(): boolean;
-  clearCaller(): void;
-  getCaller(): prototype_type_pb.account_name | undefined;
-  setCaller(value?: prototype_type_pb.account_name): void;
-
-  hasOwner(): boolean;
-  clearOwner(): void;
-  getOwner(): prototype_type_pb.account_name | undefined;
-  setOwner(value?: prototype_type_pb.account_name): void;
-
-  getContract(): string;
-  setContract(value: string): void;
-
-  getParams(): string;
-  setParams(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): contract_estimate_apply_operation.AsObject;
-  static toObject(includeInstance: boolean, msg: contract_estimate_apply_operation): contract_estimate_apply_operation.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: contract_estimate_apply_operation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): contract_estimate_apply_operation;
-  static deserializeBinaryFromReader(message: contract_estimate_apply_operation, reader: jspb.BinaryReader): contract_estimate_apply_operation;
-}
-
-export namespace contract_estimate_apply_operation {
-  export type AsObject = {
-    caller?: prototype_type_pb.account_name.AsObject,
-    owner?: prototype_type_pb.account_name.AsObject,
-    contract: string,
-    params: string,
-  }
-}
-
 export class post_operation extends jspb.Message {
   getUuid(): string;
   setUuid(value: string): void;
