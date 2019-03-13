@@ -31,8 +31,7 @@ signed_transaction.prototype.getTrxHash = function(cid: any) {
 
 // @ts-ignore
 signed_transaction.prototype.id = function () {
-    const trx = this.getTrx();
-    const trxBuf = trx.serializeBinary();
+    const trxBuf = this.serializeBinary();
     const hash = createHash('sha256');
     hash.update(trxBuf);
     const r = hash.digest();
