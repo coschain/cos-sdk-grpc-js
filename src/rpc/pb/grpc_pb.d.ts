@@ -956,11 +956,59 @@ export namespace GetBlockListRequest {
   }
 }
 
+export class BlockInfo extends jspb.Message {
+  hasTimestamp(): boolean;
+  clearTimestamp(): void;
+  getTimestamp(): prototype_type_pb.time_point_sec | undefined;
+  setTimestamp(value?: prototype_type_pb.time_point_sec): void;
+
+  getBlockHeight(): string;
+  setBlockHeight(value: string): void;
+
+  getTrxCount(): number;
+  setTrxCount(value: number): void;
+
+  hasWitness(): boolean;
+  clearWitness(): void;
+  getWitness(): prototype_type_pb.account_name | undefined;
+  setWitness(value?: prototype_type_pb.account_name): void;
+
+  hasBlockId(): boolean;
+  clearBlockId(): void;
+  getBlockId(): prototype_type_pb.sha256 | undefined;
+  setBlockId(value?: prototype_type_pb.sha256): void;
+
+  hasPreId(): boolean;
+  clearPreId(): void;
+  getPreId(): prototype_type_pb.sha256 | undefined;
+  setPreId(value?: prototype_type_pb.sha256): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BlockInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: BlockInfo): BlockInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BlockInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BlockInfo;
+  static deserializeBinaryFromReader(message: BlockInfo, reader: jspb.BinaryReader): BlockInfo;
+}
+
+export namespace BlockInfo {
+  export type AsObject = {
+    timestamp?: prototype_type_pb.time_point_sec.AsObject,
+    blockHeight: string,
+    trxCount: number,
+    witness?: prototype_type_pb.account_name.AsObject,
+    blockId?: prototype_type_pb.sha256.AsObject,
+    preId?: prototype_type_pb.sha256.AsObject,
+  }
+}
+
 export class GetBlockListResponse extends jspb.Message {
   clearBlocksList(): void;
-  getBlocksList(): Array<prototype_transaction_pb.signed_block>;
-  setBlocksList(value: Array<prototype_transaction_pb.signed_block>): void;
-  addBlocks(value?: prototype_transaction_pb.signed_block, index?: number): prototype_transaction_pb.signed_block;
+  getBlocksList(): Array<BlockInfo>;
+  setBlocksList(value: Array<BlockInfo>): void;
+  addBlocks(value?: BlockInfo, index?: number): BlockInfo;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetBlockListResponse.AsObject;
@@ -974,7 +1022,49 @@ export class GetBlockListResponse extends jspb.Message {
 
 export namespace GetBlockListResponse {
   export type AsObject = {
-    blocksList: Array<prototype_transaction_pb.signed_block.AsObject>,
+    blocksList: Array<BlockInfo.AsObject>,
+  }
+}
+
+export class GetSignedBlockRequest extends jspb.Message {
+  getStart(): number;
+  setStart(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSignedBlockRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSignedBlockRequest): GetSignedBlockRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSignedBlockRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSignedBlockRequest;
+  static deserializeBinaryFromReader(message: GetSignedBlockRequest, reader: jspb.BinaryReader): GetSignedBlockRequest;
+}
+
+export namespace GetSignedBlockRequest {
+  export type AsObject = {
+    start: number,
+  }
+}
+
+export class GetSignedBlockResponse extends jspb.Message {
+  hasBlock(): boolean;
+  clearBlock(): void;
+  getBlock(): prototype_transaction_pb.signed_block | undefined;
+  setBlock(value?: prototype_transaction_pb.signed_block): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSignedBlockResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSignedBlockResponse): GetSignedBlockResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSignedBlockResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSignedBlockResponse;
+  static deserializeBinaryFromReader(message: GetSignedBlockResponse, reader: jspb.BinaryReader): GetSignedBlockResponse;
+}
+
+export namespace GetSignedBlockResponse {
+  export type AsObject = {
+    block?: prototype_transaction_pb.signed_block.AsObject,
   }
 }
 

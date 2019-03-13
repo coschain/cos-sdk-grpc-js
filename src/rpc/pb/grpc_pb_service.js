@@ -145,6 +145,15 @@ ApiService.GetBlockList = {
   responseType: rpc_pb_grpc_pb.GetBlockListResponse
 };
 
+ApiService.GetSignedBlock = {
+  methodName: "GetSignedBlock",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetSignedBlockRequest,
+  responseType: rpc_pb_grpc_pb.GetSignedBlockResponse
+};
+
 ApiService.GetAccountListByBalance = {
   methodName: "GetAccountListByBalance",
   service: ApiService,
@@ -645,6 +654,37 @@ ApiServiceClient.prototype.getBlockList = function getBlockList(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetBlockList, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getSignedBlock = function getSignedBlock(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetSignedBlock, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -16,6 +16,7 @@ var prototype_multi_id_pb = require('../../prototype/multi_id_pb.js');
 var prototype_transaction_pb = require('../../prototype/transaction_pb.js');
 goog.exportSymbol('proto.grpcpb.AccountResponse', null, global);
 goog.exportSymbol('proto.grpcpb.AccountRewardResponse', null, global);
+goog.exportSymbol('proto.grpcpb.BlockInfo', null, global);
 goog.exportSymbol('proto.grpcpb.BroadcastTrxRequest', null, global);
 goog.exportSymbol('proto.grpcpb.BroadcastTrxResponse', null, global);
 goog.exportSymbol('proto.grpcpb.CallResponse', null, global);
@@ -45,6 +46,8 @@ goog.exportSymbol('proto.grpcpb.GetPostListByCreatedResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetPostListByNameRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetReplyListByPostIdRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetReplyListByPostIdResponse', null, global);
+goog.exportSymbol('proto.grpcpb.GetSignedBlockRequest', null, global);
+goog.exportSymbol('proto.grpcpb.GetSignedBlockResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetStatResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetTableContentRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetTrxByIdRequest', null, global);
@@ -6932,6 +6935,351 @@ proto.grpcpb.GetBlockListRequest.prototype.setEnd = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.grpcpb.BlockInfo = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.BlockInfo, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.BlockInfo.displayName = 'proto.grpcpb.BlockInfo';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.BlockInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.BlockInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.BlockInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.BlockInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    timestamp: (f = msg.getTimestamp()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    blockHeight: jspb.Message.getFieldWithDefault(msg, 2, "0"),
+    trxCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    witness: (f = msg.getWitness()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    blockId: (f = msg.getBlockId()) && prototype_type_pb.sha256.toObject(includeInstance, f),
+    preId: (f = msg.getPreId()) && prototype_type_pb.sha256.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.BlockInfo}
+ */
+proto.grpcpb.BlockInfo.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.BlockInfo;
+  return proto.grpcpb.BlockInfo.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.BlockInfo} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.BlockInfo}
+ */
+proto.grpcpb.BlockInfo.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setTimestamp(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readUint64String());
+      msg.setBlockHeight(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTrxCount(value);
+      break;
+    case 4:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.setWitness(value);
+      break;
+    case 5:
+      var value = new prototype_type_pb.sha256;
+      reader.readMessage(value,prototype_type_pb.sha256.deserializeBinaryFromReader);
+      msg.setBlockId(value);
+      break;
+    case 6:
+      var value = new prototype_type_pb.sha256;
+      reader.readMessage(value,prototype_type_pb.sha256.deserializeBinaryFromReader);
+      msg.setPreId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.BlockInfo.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.BlockInfo.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.BlockInfo} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.BlockInfo.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTimestamp();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+  f = message.getBlockHeight();
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
+      2,
+      f
+    );
+  }
+  f = message.getTrxCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      3,
+      f
+    );
+  }
+  f = message.getWitness();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      prototype_type_pb.account_name.serializeBinaryToWriter
+    );
+  }
+  f = message.getBlockId();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      prototype_type_pb.sha256.serializeBinaryToWriter
+    );
+  }
+  f = message.getPreId();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      prototype_type_pb.sha256.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional prototype.time_point_sec timestamp = 1;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.BlockInfo.prototype.getTimestamp = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 1));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.BlockInfo.prototype.setTimestamp = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.BlockInfo.prototype.clearTimestamp = function() {
+  this.setTimestamp(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.BlockInfo.prototype.hasTimestamp = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional uint64 block_height = 2;
+ * @return {string}
+ */
+proto.grpcpb.BlockInfo.prototype.getBlockHeight = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.BlockInfo.prototype.setBlockHeight = function(value) {
+  jspb.Message.setProto3StringIntField(this, 2, value);
+};
+
+
+/**
+ * optional uint32 trx_count = 3;
+ * @return {number}
+ */
+proto.grpcpb.BlockInfo.prototype.getTrxCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.BlockInfo.prototype.setTrxCount = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional prototype.account_name witness = 4;
+ * @return {?proto.prototype.account_name}
+ */
+proto.grpcpb.BlockInfo.prototype.getWitness = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 4));
+};
+
+
+/** @param {account_name} value */
+proto.grpcpb.BlockInfo.prototype.setWitness = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.grpcpb.BlockInfo.prototype.clearWitness = function() {
+  this.setWitness(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.BlockInfo.prototype.hasWitness = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional prototype.sha256 block_id = 5;
+ * @return {?proto.prototype.sha256}
+ */
+proto.grpcpb.BlockInfo.prototype.getBlockId = function() {
+  return /** @type{?proto.prototype.sha256} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.sha256, 5));
+};
+
+
+/** @param {?proto.prototype.sha256|undefined} value */
+proto.grpcpb.BlockInfo.prototype.setBlockId = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.grpcpb.BlockInfo.prototype.clearBlockId = function() {
+  this.setBlockId(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.BlockInfo.prototype.hasBlockId = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional prototype.sha256 pre_id = 6;
+ * @return {?proto.prototype.sha256}
+ */
+proto.grpcpb.BlockInfo.prototype.getPreId = function() {
+  return /** @type{?proto.prototype.sha256} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.sha256, 6));
+};
+
+
+/** @param {?proto.prototype.sha256|undefined} value */
+proto.grpcpb.BlockInfo.prototype.setPreId = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+proto.grpcpb.BlockInfo.prototype.clearPreId = function() {
+  this.setPreId(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.BlockInfo.prototype.hasPreId = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.grpcpb.GetBlockListResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.grpcpb.GetBlockListResponse.repeatedFields_, null);
 };
@@ -6976,7 +7324,7 @@ proto.grpcpb.GetBlockListResponse.prototype.toObject = function(opt_includeInsta
 proto.grpcpb.GetBlockListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     blocksList: jspb.Message.toObjectList(msg.getBlocksList(),
-    prototype_transaction_pb.signed_block.toObject, includeInstance)
+    proto.grpcpb.BlockInfo.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -7014,8 +7362,8 @@ proto.grpcpb.GetBlockListResponse.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new prototype_transaction_pb.signed_block;
-      reader.readMessage(value,prototype_transaction_pb.signed_block.deserializeBinaryFromReader);
+      var value = new proto.grpcpb.BlockInfo;
+      reader.readMessage(value,proto.grpcpb.BlockInfo.deserializeBinaryFromReader);
       msg.addBlocks(value);
       break;
     default:
@@ -7052,6 +7400,308 @@ proto.grpcpb.GetBlockListResponse.serializeBinaryToWriter = function(message, wr
     writer.writeRepeatedMessage(
       1,
       f,
+      proto.grpcpb.BlockInfo.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated BlockInfo blocks = 1;
+ * @return {!Array<!proto.grpcpb.BlockInfo>}
+ */
+proto.grpcpb.GetBlockListResponse.prototype.getBlocksList = function() {
+  return /** @type{!Array<!proto.grpcpb.BlockInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.grpcpb.BlockInfo, 1));
+};
+
+
+/** @param {!Array<!proto.grpcpb.BlockInfo>} value */
+proto.grpcpb.GetBlockListResponse.prototype.setBlocksList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.grpcpb.BlockInfo=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.grpcpb.BlockInfo}
+ */
+proto.grpcpb.GetBlockListResponse.prototype.addBlocks = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.grpcpb.BlockInfo, opt_index);
+};
+
+
+proto.grpcpb.GetBlockListResponse.prototype.clearBlocksList = function() {
+  this.setBlocksList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetSignedBlockRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetSignedBlockRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetSignedBlockRequest.displayName = 'proto.grpcpb.GetSignedBlockRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetSignedBlockRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetSignedBlockRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetSignedBlockRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetSignedBlockRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    start: jspb.Message.getFieldWithDefault(msg, 1, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetSignedBlockRequest}
+ */
+proto.grpcpb.GetSignedBlockRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetSignedBlockRequest;
+  return proto.grpcpb.GetSignedBlockRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetSignedBlockRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetSignedBlockRequest}
+ */
+proto.grpcpb.GetSignedBlockRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setStart(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetSignedBlockRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetSignedBlockRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetSignedBlockRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetSignedBlockRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStart();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 start = 1;
+ * @return {number}
+ */
+proto.grpcpb.GetSignedBlockRequest.prototype.getStart = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetSignedBlockRequest.prototype.setStart = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetSignedBlockResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetSignedBlockResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetSignedBlockResponse.displayName = 'proto.grpcpb.GetSignedBlockResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetSignedBlockResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetSignedBlockResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetSignedBlockResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetSignedBlockResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    block: (f = msg.getBlock()) && prototype_transaction_pb.signed_block.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetSignedBlockResponse}
+ */
+proto.grpcpb.GetSignedBlockResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetSignedBlockResponse;
+  return proto.grpcpb.GetSignedBlockResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetSignedBlockResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetSignedBlockResponse}
+ */
+proto.grpcpb.GetSignedBlockResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_transaction_pb.signed_block;
+      reader.readMessage(value,prototype_transaction_pb.signed_block.deserializeBinaryFromReader);
+      msg.setBlock(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetSignedBlockResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetSignedBlockResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetSignedBlockResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetSignedBlockResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getBlock();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
       prototype_transaction_pb.signed_block.serializeBinaryToWriter
     );
   }
@@ -7059,33 +7709,32 @@ proto.grpcpb.GetBlockListResponse.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * repeated prototype.signed_block blocks = 1;
- * @return {!Array<!proto.prototype.signed_block>}
+ * optional prototype.signed_block block = 1;
+ * @return {?proto.prototype.signed_block}
  */
-proto.grpcpb.GetBlockListResponse.prototype.getBlocksList = function() {
-  return /** @type{!Array<!proto.prototype.signed_block>} */ (
-    jspb.Message.getRepeatedWrapperField(this, prototype_transaction_pb.signed_block, 1));
+proto.grpcpb.GetSignedBlockResponse.prototype.getBlock = function() {
+  return /** @type{?proto.prototype.signed_block} */ (
+    jspb.Message.getWrapperField(this, prototype_transaction_pb.signed_block, 1));
 };
 
 
-/** @param {!Array<!proto.prototype.signed_block>} value */
-proto.grpcpb.GetBlockListResponse.prototype.setBlocksList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 1, value);
+/** @param {?proto.prototype.signed_block|undefined} value */
+proto.grpcpb.GetSignedBlockResponse.prototype.setBlock = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.GetSignedBlockResponse.prototype.clearBlock = function() {
+  this.setBlock(undefined);
 };
 
 
 /**
- * @param {!proto.prototype.signed_block=} opt_value
- * @param {number=} opt_index
- * @return {!proto.prototype.signed_block}
+ * Returns whether this field is set.
+ * @return {!boolean}
  */
-proto.grpcpb.GetBlockListResponse.prototype.addBlocks = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.prototype.signed_block, opt_index);
-};
-
-
-proto.grpcpb.GetBlockListResponse.prototype.clearBlocksList = function() {
-  this.setBlocksList([]);
+proto.grpcpb.GetSignedBlockResponse.prototype.hasBlock = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 

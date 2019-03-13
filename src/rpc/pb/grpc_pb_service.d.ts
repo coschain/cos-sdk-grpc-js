@@ -139,6 +139,15 @@ type ApiServiceGetBlockList = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetBlockListResponse;
 };
 
+type ApiServiceGetSignedBlock = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetSignedBlockRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetSignedBlockResponse;
+};
+
 type ApiServiceGetAccountListByBalance = {
   readonly methodName: string;
   readonly service: typeof ApiService;
@@ -210,6 +219,7 @@ export class ApiService {
   static readonly GetStatisticsInfo: ApiServiceGetStatisticsInfo;
   static readonly BroadcastTrx: ApiServiceBroadcastTrx;
   static readonly GetBlockList: ApiServiceGetBlockList;
+  static readonly GetSignedBlock: ApiServiceGetSignedBlock;
   static readonly GetAccountListByBalance: ApiServiceGetAccountListByBalance;
   static readonly GetDailyTotalTrxInfo: ApiServiceGetDailyTotalTrxInfo;
   static readonly GetTrxInfoById: ApiServiceGetTrxInfoById;
@@ -384,6 +394,15 @@ export class ApiServiceClient {
   getBlockList(
     requestMessage: rpc_pb_grpc_pb.GetBlockListRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockListResponse|null) => void
+  ): UnaryResponse;
+  getSignedBlock(
+    requestMessage: rpc_pb_grpc_pb.GetSignedBlockRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetSignedBlockResponse|null) => void
+  ): UnaryResponse;
+  getSignedBlock(
+    requestMessage: rpc_pb_grpc_pb.GetSignedBlockRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetSignedBlockResponse|null) => void
   ): UnaryResponse;
   getAccountListByBalance(
     requestMessage: rpc_pb_grpc_pb.GetAccountListByBalanceRequest,
