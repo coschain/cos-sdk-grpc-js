@@ -6803,7 +6803,8 @@ proto.grpcpb.GetBlockListRequest.prototype.toObject = function(opt_includeInstan
 proto.grpcpb.GetBlockListRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     start: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    end: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    end: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    limit: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -6848,6 +6849,10 @@ proto.grpcpb.GetBlockListRequest.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {number} */ (reader.readUint64());
       msg.setEnd(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -6891,6 +6896,13 @@ proto.grpcpb.GetBlockListRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -6921,6 +6933,21 @@ proto.grpcpb.GetBlockListRequest.prototype.getEnd = function() {
 /** @param {number} value */
 proto.grpcpb.GetBlockListRequest.prototype.setEnd = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional uint32 limit = 3;
+ * @return {number}
+ */
+proto.grpcpb.GetBlockListRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetBlockListRequest.prototype.setLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -7189,7 +7216,7 @@ proto.grpcpb.BlockInfo.prototype.getWitness = function() {
 };
 
 
-/** @param {account_name} value */
+/** @param {?proto.prototype.account_name|undefined} value */
 proto.grpcpb.BlockInfo.prototype.setWitness = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
@@ -9395,6 +9422,7 @@ proto.grpcpb.GetTrxListByTimeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     start: (f = msg.getStart()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    limit: jspb.Message.getFieldWithDefault(msg, 3, 0),
     lastInfo: (f = msg.getLastInfo()) && proto.grpcpb.TrxInfo.toObject(includeInstance, f)
   };
 
@@ -9443,6 +9471,10 @@ proto.grpcpb.GetTrxListByTimeRequest.deserializeBinaryFromReader = function(msg,
       msg.setEnd(value);
       break;
     case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
+      break;
+    case 4:
       var value = new proto.grpcpb.TrxInfo;
       reader.readMessage(value,proto.grpcpb.TrxInfo.deserializeBinaryFromReader);
       msg.setLastInfo(value);
@@ -9492,10 +9524,17 @@ proto.grpcpb.GetTrxListByTimeRequest.serializeBinaryToWriter = function(message,
       prototype_type_pb.time_point_sec.serializeBinaryToWriter
     );
   }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      3,
+      f
+    );
+  }
   f = message.getLastInfo();
   if (f != null) {
     writer.writeMessage(
-      3,
+      4,
       f,
       proto.grpcpb.TrxInfo.serializeBinaryToWriter
     );
@@ -9564,18 +9603,33 @@ proto.grpcpb.GetTrxListByTimeRequest.prototype.hasEnd = function() {
 
 
 /**
- * optional TrxInfo last_info = 3;
+ * optional uint32 limit = 3;
+ * @return {number}
+ */
+proto.grpcpb.GetTrxListByTimeRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetTrxListByTimeRequest.prototype.setLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional TrxInfo last_info = 4;
  * @return {?proto.grpcpb.TrxInfo}
  */
 proto.grpcpb.GetTrxListByTimeRequest.prototype.getLastInfo = function() {
   return /** @type{?proto.grpcpb.TrxInfo} */ (
-    jspb.Message.getWrapperField(this, proto.grpcpb.TrxInfo, 3));
+    jspb.Message.getWrapperField(this, proto.grpcpb.TrxInfo, 4));
 };
 
 
 /** @param {?proto.grpcpb.TrxInfo|undefined} value */
 proto.grpcpb.GetTrxListByTimeRequest.prototype.setLastInfo = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+  jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -9589,7 +9643,7 @@ proto.grpcpb.GetTrxListByTimeRequest.prototype.clearLastInfo = function() {
  * @return {!boolean}
  */
 proto.grpcpb.GetTrxListByTimeRequest.prototype.hasLastInfo = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

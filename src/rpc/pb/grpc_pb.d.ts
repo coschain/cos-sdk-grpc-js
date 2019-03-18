@@ -939,6 +939,9 @@ export class GetBlockListRequest extends jspb.Message {
   getEnd(): number;
   setEnd(value: number): void;
 
+  getLimit(): number;
+  setLimit(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetBlockListRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetBlockListRequest): GetBlockListRequest.AsObject;
@@ -953,6 +956,7 @@ export namespace GetBlockListRequest {
   export type AsObject = {
     start: number,
     end: number,
+    limit: number,
   }
 }
 
@@ -1299,6 +1303,9 @@ export class GetTrxListByTimeRequest extends jspb.Message {
   getEnd(): prototype_type_pb.time_point_sec | undefined;
   setEnd(value?: prototype_type_pb.time_point_sec): void;
 
+  getLimit(): number;
+  setLimit(value: number): void;
+
   hasLastInfo(): boolean;
   clearLastInfo(): void;
   getLastInfo(): TrxInfo | undefined;
@@ -1318,6 +1325,7 @@ export namespace GetTrxListByTimeRequest {
   export type AsObject = {
     start?: prototype_type_pb.time_point_sec.AsObject,
     end?: prototype_type_pb.time_point_sec.AsObject,
+    limit: number,
     lastInfo?: TrxInfo.AsObject,
   }
 }
