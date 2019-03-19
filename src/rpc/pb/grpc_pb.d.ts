@@ -1088,6 +1088,9 @@ export class GetAccountListByBalanceRequest extends jspb.Message {
   getLastAccount(): AccountResponse | undefined;
   setLastAccount(value?: AccountResponse): void;
 
+  getLimit(): number;
+  setLimit(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAccountListByBalanceRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetAccountListByBalanceRequest): GetAccountListByBalanceRequest.AsObject;
@@ -1103,6 +1106,7 @@ export namespace GetAccountListByBalanceRequest {
     start?: prototype_type_pb.coin.AsObject,
     end?: prototype_type_pb.coin.AsObject,
     lastAccount?: AccountResponse.AsObject,
+    limit: number,
   }
 }
 
@@ -1170,6 +1174,9 @@ export class GetDailyTotalTrxRequest extends jspb.Message {
   getLastInfo(): DailyTotalTrx | undefined;
   setLastInfo(value?: DailyTotalTrx): void;
 
+  getLimit(): number;
+  setLimit(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetDailyTotalTrxRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetDailyTotalTrxRequest): GetDailyTotalTrxRequest.AsObject;
@@ -1185,6 +1192,7 @@ export namespace GetDailyTotalTrxRequest {
     start?: prototype_type_pb.time_point_sec.AsObject,
     end?: prototype_type_pb.time_point_sec.AsObject,
     lastInfo?: DailyTotalTrx.AsObject,
+    limit: number,
   }
 }
 
@@ -1434,6 +1442,9 @@ export class GetPostListByCreateTimeRequest extends jspb.Message {
   getLastPost(): PostResponse | undefined;
   setLastPost(value?: PostResponse): void;
 
+  getLimit(): number;
+  setLimit(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPostListByCreateTimeRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPostListByCreateTimeRequest): GetPostListByCreateTimeRequest.AsObject;
@@ -1449,6 +1460,7 @@ export namespace GetPostListByCreateTimeRequest {
     start?: prototype_type_pb.time_point_sec.AsObject,
     end?: prototype_type_pb.time_point_sec.AsObject,
     lastPost?: PostResponse.AsObject,
+    limit: number,
   }
 }
 
@@ -1490,6 +1502,9 @@ export class GetPostListByNameRequest extends jspb.Message {
   getLastPost(): PostResponse | undefined;
   setLastPost(value?: PostResponse): void;
 
+  getLimit(): number;
+  setLimit(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPostListByNameRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPostListByNameRequest): GetPostListByNameRequest.AsObject;
@@ -1505,6 +1520,7 @@ export namespace GetPostListByNameRequest {
     start?: prototype_multi_id_pb.user_post_create_order.AsObject,
     end?: prototype_multi_id_pb.user_post_create_order.AsObject,
     lastPost?: PostResponse.AsObject,
+    limit: number,
   }
 }
 
