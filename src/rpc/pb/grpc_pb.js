@@ -7817,7 +7817,8 @@ proto.grpcpb.GetAccountListByBalanceRequest.toObject = function(includeInstance,
   var f, obj = {
     start: (f = msg.getStart()) && prototype_type_pb.coin.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && prototype_type_pb.coin.toObject(includeInstance, f),
-    lastAccount: (f = msg.getLastAccount()) && proto.grpcpb.AccountResponse.toObject(includeInstance, f)
+    lastAccount: (f = msg.getLastAccount()) && proto.grpcpb.AccountResponse.toObject(includeInstance, f),
+    limit: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -7868,6 +7869,10 @@ proto.grpcpb.GetAccountListByBalanceRequest.deserializeBinaryFromReader = functi
       var value = new proto.grpcpb.AccountResponse;
       reader.readMessage(value,proto.grpcpb.AccountResponse.deserializeBinaryFromReader);
       msg.setLastAccount(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
       break;
     default:
       reader.skipField();
@@ -7920,6 +7925,13 @@ proto.grpcpb.GetAccountListByBalanceRequest.serializeBinaryToWriter = function(m
       3,
       f,
       proto.grpcpb.AccountResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
     );
   }
 };
@@ -8012,6 +8024,21 @@ proto.grpcpb.GetAccountListByBalanceRequest.prototype.clearLastAccount = functio
  */
 proto.grpcpb.GetAccountListByBalanceRequest.prototype.hasLastAccount = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional uint32 limit = 4;
+ * @return {number}
+ */
+proto.grpcpb.GetAccountListByBalanceRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetAccountListByBalanceRequest.prototype.setLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -8418,7 +8445,8 @@ proto.grpcpb.GetDailyTotalTrxRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     start: (f = msg.getStart()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
-    lastInfo: (f = msg.getLastInfo()) && proto.grpcpb.DailyTotalTrx.toObject(includeInstance, f)
+    lastInfo: (f = msg.getLastInfo()) && proto.grpcpb.DailyTotalTrx.toObject(includeInstance, f),
+    limit: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -8469,6 +8497,10 @@ proto.grpcpb.GetDailyTotalTrxRequest.deserializeBinaryFromReader = function(msg,
       var value = new proto.grpcpb.DailyTotalTrx;
       reader.readMessage(value,proto.grpcpb.DailyTotalTrx.deserializeBinaryFromReader);
       msg.setLastInfo(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
       break;
     default:
       reader.skipField();
@@ -8521,6 +8553,13 @@ proto.grpcpb.GetDailyTotalTrxRequest.serializeBinaryToWriter = function(message,
       3,
       f,
       proto.grpcpb.DailyTotalTrx.serializeBinaryToWriter
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
     );
   }
 };
@@ -8613,6 +8652,21 @@ proto.grpcpb.GetDailyTotalTrxRequest.prototype.clearLastInfo = function() {
  */
 proto.grpcpb.GetDailyTotalTrxRequest.prototype.hasLastInfo = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional uint32 limit = 4;
+ * @return {number}
+ */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetDailyTotalTrxRequest.prototype.setLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -10346,7 +10400,8 @@ proto.grpcpb.GetPostListByCreateTimeRequest.toObject = function(includeInstance,
   var f, obj = {
     start: (f = msg.getStart()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
-    lastPost: (f = msg.getLastPost()) && proto.grpcpb.PostResponse.toObject(includeInstance, f)
+    lastPost: (f = msg.getLastPost()) && proto.grpcpb.PostResponse.toObject(includeInstance, f),
+    limit: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -10397,6 +10452,10 @@ proto.grpcpb.GetPostListByCreateTimeRequest.deserializeBinaryFromReader = functi
       var value = new proto.grpcpb.PostResponse;
       reader.readMessage(value,proto.grpcpb.PostResponse.deserializeBinaryFromReader);
       msg.setLastPost(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
       break;
     default:
       reader.skipField();
@@ -10449,6 +10508,13 @@ proto.grpcpb.GetPostListByCreateTimeRequest.serializeBinaryToWriter = function(m
       3,
       f,
       proto.grpcpb.PostResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
     );
   }
 };
@@ -10541,6 +10607,21 @@ proto.grpcpb.GetPostListByCreateTimeRequest.prototype.clearLastPost = function()
  */
 proto.grpcpb.GetPostListByCreateTimeRequest.prototype.hasLastPost = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional uint32 limit = 4;
+ * @return {number}
+ */
+proto.grpcpb.GetPostListByCreateTimeRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetPostListByCreateTimeRequest.prototype.setLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -10761,7 +10842,8 @@ proto.grpcpb.GetPostListByNameRequest.toObject = function(includeInstance, msg) 
   var f, obj = {
     start: (f = msg.getStart()) && prototype_multi_id_pb.user_post_create_order.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && prototype_multi_id_pb.user_post_create_order.toObject(includeInstance, f),
-    lastPost: (f = msg.getLastPost()) && proto.grpcpb.PostResponse.toObject(includeInstance, f)
+    lastPost: (f = msg.getLastPost()) && proto.grpcpb.PostResponse.toObject(includeInstance, f),
+    limit: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -10812,6 +10894,10 @@ proto.grpcpb.GetPostListByNameRequest.deserializeBinaryFromReader = function(msg
       var value = new proto.grpcpb.PostResponse;
       reader.readMessage(value,proto.grpcpb.PostResponse.deserializeBinaryFromReader);
       msg.setLastPost(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
       break;
     default:
       reader.skipField();
@@ -10864,6 +10950,13 @@ proto.grpcpb.GetPostListByNameRequest.serializeBinaryToWriter = function(message
       3,
       f,
       proto.grpcpb.PostResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
     );
   }
 };
@@ -10956,6 +11049,21 @@ proto.grpcpb.GetPostListByNameRequest.prototype.clearLastPost = function() {
  */
 proto.grpcpb.GetPostListByNameRequest.prototype.hasLastPost = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional uint32 limit = 4;
+ * @return {number}
+ */
+proto.grpcpb.GetPostListByNameRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetPostListByNameRequest.prototype.setLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
