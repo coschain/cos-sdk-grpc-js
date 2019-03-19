@@ -1210,6 +1210,72 @@ export namespace GetDailyTotalTrxResponse {
   }
 }
 
+export class StatByHour extends jspb.Message {
+  getHour(): number;
+  setHour(value: number): void;
+
+  getCount(): number;
+  setCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StatByHour.AsObject;
+  static toObject(includeInstance: boolean, msg: StatByHour): StatByHour.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StatByHour, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StatByHour;
+  static deserializeBinaryFromReader(message: StatByHour, reader: jspb.BinaryReader): StatByHour;
+}
+
+export namespace StatByHour {
+  export type AsObject = {
+    hour: number,
+    count: number,
+  }
+}
+
+export class TrxStatByHourRequest extends jspb.Message {
+  getHours(): number;
+  setHours(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrxStatByHourRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TrxStatByHourRequest): TrxStatByHourRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrxStatByHourRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrxStatByHourRequest;
+  static deserializeBinaryFromReader(message: TrxStatByHourRequest, reader: jspb.BinaryReader): TrxStatByHourRequest;
+}
+
+export namespace TrxStatByHourRequest {
+  export type AsObject = {
+    hours: number,
+  }
+}
+
+export class TrxStatByHourResponse extends jspb.Message {
+  clearStatList(): void;
+  getStatList(): Array<StatByHour>;
+  setStatList(value: Array<StatByHour>): void;
+  addStat(value?: StatByHour, index?: number): StatByHour;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrxStatByHourResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TrxStatByHourResponse): TrxStatByHourResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrxStatByHourResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrxStatByHourResponse;
+  static deserializeBinaryFromReader(message: TrxStatByHourResponse, reader: jspb.BinaryReader): TrxStatByHourResponse;
+}
+
+export namespace TrxStatByHourResponse {
+  export type AsObject = {
+    statList: Array<StatByHour.AsObject>,
+  }
+}
+
 export class TrxInfo extends jspb.Message {
   hasTrxId(): boolean;
   clearTrxId(): void;
