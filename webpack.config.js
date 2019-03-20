@@ -6,37 +6,6 @@ module.exports = [{
     entry: {
         'sdk': "./src/index.ts"
     },
-    mode: "development",
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js',
-        library: 'sdk',
-        libraryTarget: "umd",
-        globalObject: "this"
-    },
-    devtool: 'inline-source-map',
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                include: /src|_proto/,
-                exclude: /node_modules/,
-                loader: "ts-loader"
-            }
-        ]
-    },
-    resolve: {
-        extensions: [".ts", ".js"]
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            'USE_TLS': process.env.USE_TLS !== undefined
-        })
-    ]
-}, {
-    entry: {
-        'sdk.min': "./src/index.ts"
-    },
     mode: "production",
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -73,7 +42,7 @@ module.exports = [{
     entry: {
         'sdk': "./src/index.ts"
     },
-    mode: "development",
+    mode: "production",
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].node.js',
@@ -94,6 +63,9 @@ module.exports = [{
     },
     resolve: {
         extensions: [".ts", ".js"]
+    },
+    optimization: {
+        minimizer: [new TerserPlugin()],
     },
     plugins: [
         new webpack.DefinePlugin({
