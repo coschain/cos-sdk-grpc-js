@@ -7006,7 +7006,8 @@ proto.grpcpb.BlockInfo.toObject = function(includeInstance, msg) {
     trxCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
     witness: (f = msg.getWitness()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     blockId: (f = msg.getBlockId()) && prototype_type_pb.sha256.toObject(includeInstance, f),
-    preId: (f = msg.getPreId()) && prototype_type_pb.sha256.toObject(includeInstance, f)
+    preId: (f = msg.getPreId()) && prototype_type_pb.sha256.toObject(includeInstance, f),
+    blockSize: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -7070,6 +7071,10 @@ proto.grpcpb.BlockInfo.deserializeBinaryFromReader = function(msg, reader) {
       var value = new prototype_type_pb.sha256;
       reader.readMessage(value,prototype_type_pb.sha256.deserializeBinaryFromReader);
       msg.setPreId(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setBlockSize(value);
       break;
     default:
       reader.skipField();
@@ -7144,6 +7149,13 @@ proto.grpcpb.BlockInfo.serializeBinaryToWriter = function(message, writer) {
       6,
       f,
       prototype_type_pb.sha256.serializeBinaryToWriter
+    );
+  }
+  f = message.getBlockSize();
+  if (f !== 0) {
+    writer.writeUint32(
+      7,
+      f
     );
   }
 };
@@ -7296,6 +7308,21 @@ proto.grpcpb.BlockInfo.prototype.clearPreId = function() {
  */
 proto.grpcpb.BlockInfo.prototype.hasPreId = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional uint32 block_size = 7;
+ * @return {number}
+ */
+proto.grpcpb.BlockInfo.prototype.getBlockSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.BlockInfo.prototype.setBlockSize = function(value) {
+  jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
