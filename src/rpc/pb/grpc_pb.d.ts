@@ -987,6 +987,9 @@ export class BlockInfo extends jspb.Message {
   getPreId(): prototype_type_pb.sha256 | undefined;
   setPreId(value?: prototype_type_pb.sha256): void;
 
+  getBlockSize(): number;
+  setBlockSize(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BlockInfo.AsObject;
   static toObject(includeInstance: boolean, msg: BlockInfo): BlockInfo.AsObject;
@@ -1005,6 +1008,7 @@ export namespace BlockInfo {
     witness?: prototype_type_pb.account_name.AsObject,
     blockId?: prototype_type_pb.sha256.AsObject,
     preId?: prototype_type_pb.sha256.AsObject,
+    blockSize: number,
   }
 }
 
