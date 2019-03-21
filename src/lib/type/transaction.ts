@@ -108,7 +108,7 @@ const getActionName = function (op) {
     // @ts-ignore
     if (op.hasOp5()) return "Bp Vote";
     // @ts-ignore
-    if (op.hasOp6()) return "Transfer";
+    if (op.hasOp6()) return "Post";
     // @ts-ignore
     if (op.hasOp7()) return "Replay";
     // @ts-ignore
@@ -129,6 +129,39 @@ const getActionName = function (op) {
 };
 
 // @ts-ignore
+const getActionObject = function (op) {
+    if (op.hasOp1()) return op.getOp1().toObject();
+    // @ts-ignore
+    if (op.hasOp2()) return op.getOp2().toObject();
+    // @ts-ignore
+    if (op.hasOp3()) return op.getOp3().toObject();
+    // @ts-ignore
+    if (op.hasOp4()) return op.getOp4().toObject();
+    // @ts-ignore
+    if (op.hasOp5()) return op.getOp5().toObject();
+    // @ts-ignore
+    if (op.hasOp6()) return op.getOp6().toObject();
+    // @ts-ignore
+    if (op.hasOp7()) return op.getOp7().toObject();
+    // @ts-ignore
+    if (op.hasOp8()) return op.getOp8().toObject();
+    // @ts-ignore
+    if (op.hasOp9()) return op.getOp9().toObject();
+    // @ts-ignore
+    if (op.hasOp10()) return op.getOp10().toObject();
+    // @ts-ignore
+    if (op.hasOp11()) return op.getOp11().toObject();
+    // @ts-ignore
+    if (op.hasOp12()) return op.getOp12().toObject();
+    // @ts-ignore
+    if (op.hasOp13()) return op.getOp13().toObject();
+    // @ts-ignore
+    if (op.hasOp14()) return op.getOp14().toObject();
+    return null
+}
+
+
+// @ts-ignore
 transaction.prototype.getAllActions = function () {
   let ops = this.getOperationsList();
     // @ts-ignore
@@ -141,6 +174,25 @@ transaction.prototype.getAllActions = function () {
   }
     // @ts-ignore
   return actionList;
+};
+
+// @ts-ignore
+transaction.prototype.getOperationsObjectList = function () {
+    let ops = this.getOperationsList();
+    let operationObjectList = [];
+    for (let op of ops) {
+        let actionName = getActionName(op);
+        let actionObject = getActionObject(op);
+        if (actionName.length > 0 && actionObject !== null) {
+            let action = {};
+            // @ts-ignore
+            actionName = actionName.replace(/\s+/g, '');
+            // @ts-ignore
+            action[actionName] = actionObject;
+            operationObjectList.push(action)
+        }
+    }
+    return operationObjectList;
 };
 
 
