@@ -177,6 +177,12 @@ export class AccountResponse extends jspb.Message {
   getPostCount(): number;
   setPostCount(value: number): void;
 
+  getFollowerCount(): number;
+  setFollowerCount(value: number): void;
+
+  getFollowingCount(): number;
+  setFollowingCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountResponse.AsObject;
   static toObject(includeInstance: boolean, msg: AccountResponse): AccountResponse.AsObject;
@@ -197,6 +203,8 @@ export namespace AccountResponse {
     witness?: WitnessResponse.AsObject,
     state?: ChainState.AsObject,
     postCount: number,
+    followerCount: number,
+    followingCount: number,
   }
 }
 
@@ -214,6 +222,11 @@ export class GetFollowerListByNameRequest extends jspb.Message {
   getLimit(): number;
   setLimit(value: number): void;
 
+  hasLastOrder(): boolean;
+  clearLastOrder(): void;
+  getLastOrder(): prototype_multi_id_pb.follower_created_order | undefined;
+  setLastOrder(value?: prototype_multi_id_pb.follower_created_order): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFollowerListByNameRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetFollowerListByNameRequest): GetFollowerListByNameRequest.AsObject;
@@ -229,14 +242,43 @@ export namespace GetFollowerListByNameRequest {
     start?: prototype_multi_id_pb.follower_created_order.AsObject,
     end?: prototype_multi_id_pb.follower_created_order.AsObject,
     limit: number,
+    lastOrder?: prototype_multi_id_pb.follower_created_order.AsObject,
+  }
+}
+
+export class FollowerListInfo extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): AccountResponse | undefined;
+  setAccount(value?: AccountResponse): void;
+
+  hasCreateOrder(): boolean;
+  clearCreateOrder(): void;
+  getCreateOrder(): prototype_multi_id_pb.follower_created_order | undefined;
+  setCreateOrder(value?: prototype_multi_id_pb.follower_created_order): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FollowerListInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: FollowerListInfo): FollowerListInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FollowerListInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FollowerListInfo;
+  static deserializeBinaryFromReader(message: FollowerListInfo, reader: jspb.BinaryReader): FollowerListInfo;
+}
+
+export namespace FollowerListInfo {
+  export type AsObject = {
+    account?: AccountResponse.AsObject,
+    createOrder?: prototype_multi_id_pb.follower_created_order.AsObject,
   }
 }
 
 export class GetFollowerListByNameResponse extends jspb.Message {
   clearFollowerListList(): void;
-  getFollowerListList(): Array<prototype_type_pb.account_name>;
-  setFollowerListList(value: Array<prototype_type_pb.account_name>): void;
-  addFollowerList(value?: prototype_type_pb.account_name, index?: number): prototype_type_pb.account_name;
+  getFollowerListList(): Array<FollowerListInfo>;
+  setFollowerListList(value: Array<FollowerListInfo>): void;
+  addFollowerList(value?: FollowerListInfo, index?: number): FollowerListInfo;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFollowerListByNameResponse.AsObject;
@@ -250,7 +292,7 @@ export class GetFollowerListByNameResponse extends jspb.Message {
 
 export namespace GetFollowerListByNameResponse {
   export type AsObject = {
-    followerListList: Array<prototype_type_pb.account_name.AsObject>,
+    followerListList: Array<FollowerListInfo.AsObject>,
   }
 }
 
@@ -268,6 +310,11 @@ export class GetFollowingListByNameRequest extends jspb.Message {
   getLimit(): number;
   setLimit(value: number): void;
 
+  hasLastOrder(): boolean;
+  clearLastOrder(): void;
+  getLastOrder(): prototype_multi_id_pb.following_created_order | undefined;
+  setLastOrder(value?: prototype_multi_id_pb.following_created_order): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFollowingListByNameRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetFollowingListByNameRequest): GetFollowingListByNameRequest.AsObject;
@@ -283,14 +330,43 @@ export namespace GetFollowingListByNameRequest {
     start?: prototype_multi_id_pb.following_created_order.AsObject,
     end?: prototype_multi_id_pb.following_created_order.AsObject,
     limit: number,
+    lastOrder?: prototype_multi_id_pb.following_created_order.AsObject,
+  }
+}
+
+export class FollowingListInfo extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): AccountResponse | undefined;
+  setAccount(value?: AccountResponse): void;
+
+  hasCreateOrder(): boolean;
+  clearCreateOrder(): void;
+  getCreateOrder(): prototype_multi_id_pb.following_created_order | undefined;
+  setCreateOrder(value?: prototype_multi_id_pb.following_created_order): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FollowingListInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: FollowingListInfo): FollowingListInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FollowingListInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FollowingListInfo;
+  static deserializeBinaryFromReader(message: FollowingListInfo, reader: jspb.BinaryReader): FollowingListInfo;
+}
+
+export namespace FollowingListInfo {
+  export type AsObject = {
+    account?: AccountResponse.AsObject,
+    createOrder?: prototype_multi_id_pb.following_created_order.AsObject,
   }
 }
 
 export class GetFollowingListByNameResponse extends jspb.Message {
   clearFollowingListList(): void;
-  getFollowingListList(): Array<prototype_type_pb.account_name>;
-  setFollowingListList(value: Array<prototype_type_pb.account_name>): void;
-  addFollowingList(value?: prototype_type_pb.account_name, index?: number): prototype_type_pb.account_name;
+  getFollowingListList(): Array<FollowingListInfo>;
+  setFollowingListList(value: Array<FollowingListInfo>): void;
+  addFollowingList(value?: FollowingListInfo, index?: number): FollowingListInfo;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFollowingListByNameResponse.AsObject;
@@ -304,7 +380,7 @@ export class GetFollowingListByNameResponse extends jspb.Message {
 
 export namespace GetFollowingListByNameResponse {
   export type AsObject = {
-    followingListList: Array<prototype_type_pb.account_name.AsObject>,
+    followingListList: Array<FollowingListInfo.AsObject>,
   }
 }
 
