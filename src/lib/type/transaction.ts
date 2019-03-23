@@ -98,7 +98,7 @@ transaction.prototype.sender = function () {
 // @ts-ignore
 const getActionName = function (op) {
     // @ts-ignore
-    if (op.hasOp1()) return "Create account";
+    if (op.hasOp1()) return "Create Account";
     // @ts-ignore
     if (op.hasOp2()) return "Transfer";
     // @ts-ignore
