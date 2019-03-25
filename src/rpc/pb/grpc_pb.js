@@ -14,6 +14,7 @@ var global = Function('return this')();
 var prototype_type_pb = require('../../prototype/type_pb.js');
 var prototype_multi_id_pb = require('../../prototype/multi_id_pb.js');
 var prototype_transaction_pb = require('../../prototype/transaction_pb.js');
+goog.exportSymbol('proto.grpcpb.AccountInfo', null, global);
 goog.exportSymbol('proto.grpcpb.AccountResponse', null, global);
 goog.exportSymbol('proto.grpcpb.AccountRewardResponse', null, global);
 goog.exportSymbol('proto.grpcpb.BlockInfo', null, global);
@@ -22,6 +23,8 @@ goog.exportSymbol('proto.grpcpb.BroadcastTrxResponse', null, global);
 goog.exportSymbol('proto.grpcpb.CallResponse', null, global);
 goog.exportSymbol('proto.grpcpb.ChainState', null, global);
 goog.exportSymbol('proto.grpcpb.DailyTotalTrx', null, global);
+goog.exportSymbol('proto.grpcpb.FollowerListInfo', null, global);
+goog.exportSymbol('proto.grpcpb.FollowingListInfo', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountByNameRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountListByBalanceRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountListResponse', null, global);
@@ -1017,12 +1020,12 @@ proto.grpcpb.AccountRewardResponse.prototype.hasReward = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.grpcpb.AccountResponse = function(opt_data) {
+proto.grpcpb.AccountInfo = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.grpcpb.AccountResponse, jspb.Message);
+goog.inherits(proto.grpcpb.AccountInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.grpcpb.AccountResponse.displayName = 'proto.grpcpb.AccountResponse';
+  proto.grpcpb.AccountInfo.displayName = 'proto.grpcpb.AccountInfo';
 }
 
 
@@ -1037,8 +1040,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.grpcpb.AccountResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.grpcpb.AccountResponse.toObject(opt_includeInstance, this);
+proto.grpcpb.AccountInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.AccountInfo.toObject(opt_includeInstance, this);
 };
 
 
@@ -1047,11 +1050,11 @@ proto.grpcpb.AccountResponse.prototype.toObject = function(opt_includeInstance) 
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.grpcpb.AccountResponse} msg The msg instance to transform.
+ * @param {!proto.grpcpb.AccountInfo} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.grpcpb.AccountResponse.toObject = function(includeInstance, msg) {
+proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     accountName: (f = msg.getAccountName()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     coin: (f = msg.getCoin()) && prototype_type_pb.coin.toObject(includeInstance, f),
@@ -1059,8 +1062,9 @@ proto.grpcpb.AccountResponse.toObject = function(includeInstance, msg) {
     publicKey: (f = msg.getPublicKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
     createdTime: (f = msg.getCreatedTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     witness: (f = msg.getWitness()) && proto.grpcpb.WitnessResponse.toObject(includeInstance, f),
-    state: (f = msg.getState()) && proto.grpcpb.ChainState.toObject(includeInstance, f),
-    postCount: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    postCount: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    followerCount: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    followingCount: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
   if (includeInstance) {
@@ -1074,23 +1078,23 @@ proto.grpcpb.AccountResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.grpcpb.AccountResponse}
+ * @return {!proto.grpcpb.AccountInfo}
  */
-proto.grpcpb.AccountResponse.deserializeBinary = function(bytes) {
+proto.grpcpb.AccountInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.grpcpb.AccountResponse;
-  return proto.grpcpb.AccountResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.grpcpb.AccountInfo;
+  return proto.grpcpb.AccountInfo.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.grpcpb.AccountResponse} msg The message object to deserialize into.
+ * @param {!proto.grpcpb.AccountInfo} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.grpcpb.AccountResponse}
+ * @return {!proto.grpcpb.AccountInfo}
  */
-proto.grpcpb.AccountResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1128,13 +1132,16 @@ proto.grpcpb.AccountResponse.deserializeBinaryFromReader = function(msg, reader)
       msg.setWitness(value);
       break;
     case 7:
-      var value = new proto.grpcpb.ChainState;
-      reader.readMessage(value,proto.grpcpb.ChainState.deserializeBinaryFromReader);
-      msg.setState(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setPostCount(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setPostCount(value);
+      msg.setFollowerCount(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setFollowingCount(value);
       break;
     default:
       reader.skipField();
@@ -1149,9 +1156,9 @@ proto.grpcpb.AccountResponse.deserializeBinaryFromReader = function(msg, reader)
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.grpcpb.AccountResponse.prototype.serializeBinary = function() {
+proto.grpcpb.AccountInfo.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.grpcpb.AccountResponse.serializeBinaryToWriter(this, writer);
+  proto.grpcpb.AccountInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1159,11 +1166,11 @@ proto.grpcpb.AccountResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.grpcpb.AccountResponse} message
+ * @param {!proto.grpcpb.AccountInfo} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.grpcpb.AccountResponse.serializeBinaryToWriter = function(message, writer) {
+proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getAccountName();
   if (f != null) {
@@ -1213,18 +1220,24 @@ proto.grpcpb.AccountResponse.serializeBinaryToWriter = function(message, writer)
       proto.grpcpb.WitnessResponse.serializeBinaryToWriter
     );
   }
-  f = message.getState();
-  if (f != null) {
-    writer.writeMessage(
-      7,
-      f,
-      proto.grpcpb.ChainState.serializeBinaryToWriter
-    );
-  }
   f = message.getPostCount();
   if (f !== 0) {
     writer.writeUint32(
+      7,
+      f
+    );
+  }
+  f = message.getFollowerCount();
+  if (f !== 0) {
+    writer.writeUint32(
       8,
+      f
+    );
+  }
+  f = message.getFollowingCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      9,
       f
     );
   }
@@ -1235,19 +1248,19 @@ proto.grpcpb.AccountResponse.serializeBinaryToWriter = function(message, writer)
  * optional prototype.account_name account_name = 1;
  * @return {?proto.prototype.account_name}
  */
-proto.grpcpb.AccountResponse.prototype.getAccountName = function() {
+proto.grpcpb.AccountInfo.prototype.getAccountName = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.grpcpb.AccountResponse.prototype.setAccountName = function(value) {
+proto.grpcpb.AccountInfo.prototype.setAccountName = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.grpcpb.AccountResponse.prototype.clearAccountName = function() {
+proto.grpcpb.AccountInfo.prototype.clearAccountName = function() {
   this.setAccountName(undefined);
 };
 
@@ -1256,7 +1269,7 @@ proto.grpcpb.AccountResponse.prototype.clearAccountName = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.AccountResponse.prototype.hasAccountName = function() {
+proto.grpcpb.AccountInfo.prototype.hasAccountName = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1265,19 +1278,19 @@ proto.grpcpb.AccountResponse.prototype.hasAccountName = function() {
  * optional prototype.coin coin = 2;
  * @return {?proto.prototype.coin}
  */
-proto.grpcpb.AccountResponse.prototype.getCoin = function() {
+proto.grpcpb.AccountInfo.prototype.getCoin = function() {
   return /** @type{?proto.prototype.coin} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.coin, 2));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
-proto.grpcpb.AccountResponse.prototype.setCoin = function(value) {
+proto.grpcpb.AccountInfo.prototype.setCoin = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.grpcpb.AccountResponse.prototype.clearCoin = function() {
+proto.grpcpb.AccountInfo.prototype.clearCoin = function() {
   this.setCoin(undefined);
 };
 
@@ -1286,7 +1299,7 @@ proto.grpcpb.AccountResponse.prototype.clearCoin = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.AccountResponse.prototype.hasCoin = function() {
+proto.grpcpb.AccountInfo.prototype.hasCoin = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -1295,19 +1308,19 @@ proto.grpcpb.AccountResponse.prototype.hasCoin = function() {
  * optional prototype.vest vest = 3;
  * @return {?proto.prototype.vest}
  */
-proto.grpcpb.AccountResponse.prototype.getVest = function() {
+proto.grpcpb.AccountInfo.prototype.getVest = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.vest, 3));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.grpcpb.AccountResponse.prototype.setVest = function(value) {
+proto.grpcpb.AccountInfo.prototype.setVest = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
 
-proto.grpcpb.AccountResponse.prototype.clearVest = function() {
+proto.grpcpb.AccountInfo.prototype.clearVest = function() {
   this.setVest(undefined);
 };
 
@@ -1316,7 +1329,7 @@ proto.grpcpb.AccountResponse.prototype.clearVest = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.AccountResponse.prototype.hasVest = function() {
+proto.grpcpb.AccountInfo.prototype.hasVest = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -1325,19 +1338,19 @@ proto.grpcpb.AccountResponse.prototype.hasVest = function() {
  * optional prototype.public_key_type public_key = 4;
  * @return {?proto.prototype.public_key_type}
  */
-proto.grpcpb.AccountResponse.prototype.getPublicKey = function() {
+proto.grpcpb.AccountInfo.prototype.getPublicKey = function() {
   return /** @type{?proto.prototype.public_key_type} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.public_key_type, 4));
 };
 
 
 /** @param {?proto.prototype.public_key_type|undefined} value */
-proto.grpcpb.AccountResponse.prototype.setPublicKey = function(value) {
+proto.grpcpb.AccountInfo.prototype.setPublicKey = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
 
-proto.grpcpb.AccountResponse.prototype.clearPublicKey = function() {
+proto.grpcpb.AccountInfo.prototype.clearPublicKey = function() {
   this.setPublicKey(undefined);
 };
 
@@ -1346,7 +1359,7 @@ proto.grpcpb.AccountResponse.prototype.clearPublicKey = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.AccountResponse.prototype.hasPublicKey = function() {
+proto.grpcpb.AccountInfo.prototype.hasPublicKey = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -1355,19 +1368,19 @@ proto.grpcpb.AccountResponse.prototype.hasPublicKey = function() {
  * optional prototype.time_point_sec created_time = 5;
  * @return {?proto.prototype.time_point_sec}
  */
-proto.grpcpb.AccountResponse.prototype.getCreatedTime = function() {
+proto.grpcpb.AccountInfo.prototype.getCreatedTime = function() {
   return /** @type{?proto.prototype.time_point_sec} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 5));
 };
 
 
 /** @param {?proto.prototype.time_point_sec|undefined} value */
-proto.grpcpb.AccountResponse.prototype.setCreatedTime = function(value) {
+proto.grpcpb.AccountInfo.prototype.setCreatedTime = function(value) {
   jspb.Message.setWrapperField(this, 5, value);
 };
 
 
-proto.grpcpb.AccountResponse.prototype.clearCreatedTime = function() {
+proto.grpcpb.AccountInfo.prototype.clearCreatedTime = function() {
   this.setCreatedTime(undefined);
 };
 
@@ -1376,7 +1389,7 @@ proto.grpcpb.AccountResponse.prototype.clearCreatedTime = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.AccountResponse.prototype.hasCreatedTime = function() {
+proto.grpcpb.AccountInfo.prototype.hasCreatedTime = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -1385,19 +1398,19 @@ proto.grpcpb.AccountResponse.prototype.hasCreatedTime = function() {
  * optional WitnessResponse witness = 6;
  * @return {?proto.grpcpb.WitnessResponse}
  */
-proto.grpcpb.AccountResponse.prototype.getWitness = function() {
+proto.grpcpb.AccountInfo.prototype.getWitness = function() {
   return /** @type{?proto.grpcpb.WitnessResponse} */ (
     jspb.Message.getWrapperField(this, proto.grpcpb.WitnessResponse, 6));
 };
 
 
 /** @param {?proto.grpcpb.WitnessResponse|undefined} value */
-proto.grpcpb.AccountResponse.prototype.setWitness = function(value) {
+proto.grpcpb.AccountInfo.prototype.setWitness = function(value) {
   jspb.Message.setWrapperField(this, 6, value);
 };
 
 
-proto.grpcpb.AccountResponse.prototype.clearWitness = function() {
+proto.grpcpb.AccountInfo.prototype.clearWitness = function() {
   this.setWitness(undefined);
 };
 
@@ -1406,24 +1419,242 @@ proto.grpcpb.AccountResponse.prototype.clearWitness = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.AccountResponse.prototype.hasWitness = function() {
+proto.grpcpb.AccountInfo.prototype.hasWitness = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional ChainState state = 7;
+ * optional uint32 post_count = 7;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getPostCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setPostCount = function(value) {
+  jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional uint32 follower_count = 8;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getFollowerCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setFollowerCount = function(value) {
+  jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+/**
+ * optional uint32 following_count = 9;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getFollowingCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setFollowingCount = function(value) {
+  jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.AccountResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.AccountResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.AccountResponse.displayName = 'proto.grpcpb.AccountResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.AccountResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.AccountResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.AccountResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.AccountResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    info: (f = msg.getInfo()) && proto.grpcpb.AccountInfo.toObject(includeInstance, f),
+    state: (f = msg.getState()) && proto.grpcpb.ChainState.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.AccountResponse}
+ */
+proto.grpcpb.AccountResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.AccountResponse;
+  return proto.grpcpb.AccountResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.AccountResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.AccountResponse}
+ */
+proto.grpcpb.AccountResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.grpcpb.AccountInfo;
+      reader.readMessage(value,proto.grpcpb.AccountInfo.deserializeBinaryFromReader);
+      msg.setInfo(value);
+      break;
+    case 2:
+      var value = new proto.grpcpb.ChainState;
+      reader.readMessage(value,proto.grpcpb.ChainState.deserializeBinaryFromReader);
+      msg.setState(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.AccountResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.AccountResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.AccountResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.AccountResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getInfo();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.grpcpb.AccountInfo.serializeBinaryToWriter
+    );
+  }
+  f = message.getState();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.grpcpb.ChainState.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional AccountInfo info = 1;
+ * @return {?proto.grpcpb.AccountInfo}
+ */
+proto.grpcpb.AccountResponse.prototype.getInfo = function() {
+  return /** @type{?proto.grpcpb.AccountInfo} */ (
+    jspb.Message.getWrapperField(this, proto.grpcpb.AccountInfo, 1));
+};
+
+
+/** @param {?proto.grpcpb.AccountInfo|undefined} value */
+proto.grpcpb.AccountResponse.prototype.setInfo = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.AccountResponse.prototype.clearInfo = function() {
+  this.setInfo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountResponse.prototype.hasInfo = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional ChainState state = 2;
  * @return {?proto.grpcpb.ChainState}
  */
 proto.grpcpb.AccountResponse.prototype.getState = function() {
   return /** @type{?proto.grpcpb.ChainState} */ (
-    jspb.Message.getWrapperField(this, proto.grpcpb.ChainState, 7));
+    jspb.Message.getWrapperField(this, proto.grpcpb.ChainState, 2));
 };
 
 
 /** @param {?proto.grpcpb.ChainState|undefined} value */
 proto.grpcpb.AccountResponse.prototype.setState = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -1437,22 +1668,7 @@ proto.grpcpb.AccountResponse.prototype.clearState = function() {
  * @return {!boolean}
  */
 proto.grpcpb.AccountResponse.prototype.hasState = function() {
-  return jspb.Message.getField(this, 7) != null;
-};
-
-
-/**
- * optional uint32 post_count = 8;
- * @return {number}
- */
-proto.grpcpb.AccountResponse.prototype.getPostCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/** @param {number} value */
-proto.grpcpb.AccountResponse.prototype.setPostCount = function(value) {
-  jspb.Message.setProto3IntField(this, 8, value);
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -1505,7 +1721,8 @@ proto.grpcpb.GetFollowerListByNameRequest.toObject = function(includeInstance, m
   var f, obj = {
     start: (f = msg.getStart()) && prototype_multi_id_pb.follower_created_order.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && prototype_multi_id_pb.follower_created_order.toObject(includeInstance, f),
-    limit: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    limit: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    lastOrder: (f = msg.getLastOrder()) && prototype_multi_id_pb.follower_created_order.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1555,6 +1772,11 @@ proto.grpcpb.GetFollowerListByNameRequest.deserializeBinaryFromReader = function
     case 3:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setLimit(value);
+      break;
+    case 4:
+      var value = new prototype_multi_id_pb.follower_created_order;
+      reader.readMessage(value,prototype_multi_id_pb.follower_created_order.deserializeBinaryFromReader);
+      msg.setLastOrder(value);
       break;
     default:
       reader.skipField();
@@ -1606,6 +1828,14 @@ proto.grpcpb.GetFollowerListByNameRequest.serializeBinaryToWriter = function(mes
     writer.writeUint32(
       3,
       f
+    );
+  }
+  f = message.getLastOrder();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      prototype_multi_id_pb.follower_created_order.serializeBinaryToWriter
     );
   }
 };
@@ -1686,6 +1916,239 @@ proto.grpcpb.GetFollowerListByNameRequest.prototype.setLimit = function(value) {
 };
 
 
+/**
+ * optional prototype.follower_created_order last_order = 4;
+ * @return {?proto.prototype.follower_created_order}
+ */
+proto.grpcpb.GetFollowerListByNameRequest.prototype.getLastOrder = function() {
+  return /** @type{?proto.prototype.follower_created_order} */ (
+    jspb.Message.getWrapperField(this, prototype_multi_id_pb.follower_created_order, 4));
+};
+
+
+/** @param {?proto.prototype.follower_created_order|undefined} value */
+proto.grpcpb.GetFollowerListByNameRequest.prototype.setLastOrder = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.grpcpb.GetFollowerListByNameRequest.prototype.clearLastOrder = function() {
+  this.setLastOrder(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetFollowerListByNameRequest.prototype.hasLastOrder = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.FollowerListInfo = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.FollowerListInfo, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.FollowerListInfo.displayName = 'proto.grpcpb.FollowerListInfo';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.FollowerListInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.FollowerListInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.FollowerListInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.FollowerListInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    account: (f = msg.getAccount()) && proto.grpcpb.AccountResponse.toObject(includeInstance, f),
+    createOrder: (f = msg.getCreateOrder()) && prototype_multi_id_pb.follower_created_order.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.FollowerListInfo}
+ */
+proto.grpcpb.FollowerListInfo.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.FollowerListInfo;
+  return proto.grpcpb.FollowerListInfo.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.FollowerListInfo} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.FollowerListInfo}
+ */
+proto.grpcpb.FollowerListInfo.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.grpcpb.AccountResponse;
+      reader.readMessage(value,proto.grpcpb.AccountResponse.deserializeBinaryFromReader);
+      msg.setAccount(value);
+      break;
+    case 2:
+      var value = new prototype_multi_id_pb.follower_created_order;
+      reader.readMessage(value,prototype_multi_id_pb.follower_created_order.deserializeBinaryFromReader);
+      msg.setCreateOrder(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.FollowerListInfo.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.FollowerListInfo.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.FollowerListInfo} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.FollowerListInfo.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAccount();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.grpcpb.AccountResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreateOrder();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      prototype_multi_id_pb.follower_created_order.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional AccountResponse account = 1;
+ * @return {?proto.grpcpb.AccountResponse}
+ */
+proto.grpcpb.FollowerListInfo.prototype.getAccount = function() {
+  return /** @type{?proto.grpcpb.AccountResponse} */ (
+    jspb.Message.getWrapperField(this, proto.grpcpb.AccountResponse, 1));
+};
+
+
+/** @param {?proto.grpcpb.AccountResponse|undefined} value */
+proto.grpcpb.FollowerListInfo.prototype.setAccount = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.FollowerListInfo.prototype.clearAccount = function() {
+  this.setAccount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.FollowerListInfo.prototype.hasAccount = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional prototype.follower_created_order create_order = 2;
+ * @return {?proto.prototype.follower_created_order}
+ */
+proto.grpcpb.FollowerListInfo.prototype.getCreateOrder = function() {
+  return /** @type{?proto.prototype.follower_created_order} */ (
+    jspb.Message.getWrapperField(this, prototype_multi_id_pb.follower_created_order, 2));
+};
+
+
+/** @param {?proto.prototype.follower_created_order|undefined} value */
+proto.grpcpb.FollowerListInfo.prototype.setCreateOrder = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.grpcpb.FollowerListInfo.prototype.clearCreateOrder = function() {
+  this.setCreateOrder(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.FollowerListInfo.prototype.hasCreateOrder = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1741,7 +2204,7 @@ proto.grpcpb.GetFollowerListByNameResponse.prototype.toObject = function(opt_inc
 proto.grpcpb.GetFollowerListByNameResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     followerListList: jspb.Message.toObjectList(msg.getFollowerListList(),
-    prototype_type_pb.account_name.toObject, includeInstance)
+    proto.grpcpb.FollowerListInfo.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -1779,8 +2242,8 @@ proto.grpcpb.GetFollowerListByNameResponse.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      var value = new proto.grpcpb.FollowerListInfo;
+      reader.readMessage(value,proto.grpcpb.FollowerListInfo.deserializeBinaryFromReader);
       msg.addFollowerList(value);
       break;
     default:
@@ -1817,35 +2280,35 @@ proto.grpcpb.GetFollowerListByNameResponse.serializeBinaryToWriter = function(me
     writer.writeRepeatedMessage(
       1,
       f,
-      prototype_type_pb.account_name.serializeBinaryToWriter
+      proto.grpcpb.FollowerListInfo.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated prototype.account_name follower_list = 1;
- * @return {!Array<!proto.prototype.account_name>}
+ * repeated FollowerListInfo follower_list = 1;
+ * @return {!Array<!proto.grpcpb.FollowerListInfo>}
  */
 proto.grpcpb.GetFollowerListByNameResponse.prototype.getFollowerListList = function() {
-  return /** @type{!Array<!proto.prototype.account_name>} */ (
-    jspb.Message.getRepeatedWrapperField(this, prototype_type_pb.account_name, 1));
+  return /** @type{!Array<!proto.grpcpb.FollowerListInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.grpcpb.FollowerListInfo, 1));
 };
 
 
-/** @param {!Array<!proto.prototype.account_name>} value */
+/** @param {!Array<!proto.grpcpb.FollowerListInfo>} value */
 proto.grpcpb.GetFollowerListByNameResponse.prototype.setFollowerListList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.prototype.account_name=} opt_value
+ * @param {!proto.grpcpb.FollowerListInfo=} opt_value
  * @param {number=} opt_index
- * @return {!proto.prototype.account_name}
+ * @return {!proto.grpcpb.FollowerListInfo}
  */
 proto.grpcpb.GetFollowerListByNameResponse.prototype.addFollowerList = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.prototype.account_name, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.grpcpb.FollowerListInfo, opt_index);
 };
 
 
@@ -1903,7 +2366,8 @@ proto.grpcpb.GetFollowingListByNameRequest.toObject = function(includeInstance, 
   var f, obj = {
     start: (f = msg.getStart()) && prototype_multi_id_pb.following_created_order.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && prototype_multi_id_pb.following_created_order.toObject(includeInstance, f),
-    limit: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    limit: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    lastOrder: (f = msg.getLastOrder()) && prototype_multi_id_pb.following_created_order.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1953,6 +2417,11 @@ proto.grpcpb.GetFollowingListByNameRequest.deserializeBinaryFromReader = functio
     case 3:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setLimit(value);
+      break;
+    case 4:
+      var value = new prototype_multi_id_pb.following_created_order;
+      reader.readMessage(value,prototype_multi_id_pb.following_created_order.deserializeBinaryFromReader);
+      msg.setLastOrder(value);
       break;
     default:
       reader.skipField();
@@ -2004,6 +2473,14 @@ proto.grpcpb.GetFollowingListByNameRequest.serializeBinaryToWriter = function(me
     writer.writeUint32(
       3,
       f
+    );
+  }
+  f = message.getLastOrder();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      prototype_multi_id_pb.following_created_order.serializeBinaryToWriter
     );
   }
 };
@@ -2084,6 +2561,239 @@ proto.grpcpb.GetFollowingListByNameRequest.prototype.setLimit = function(value) 
 };
 
 
+/**
+ * optional prototype.following_created_order last_order = 4;
+ * @return {?proto.prototype.following_created_order}
+ */
+proto.grpcpb.GetFollowingListByNameRequest.prototype.getLastOrder = function() {
+  return /** @type{?proto.prototype.following_created_order} */ (
+    jspb.Message.getWrapperField(this, prototype_multi_id_pb.following_created_order, 4));
+};
+
+
+/** @param {?proto.prototype.following_created_order|undefined} value */
+proto.grpcpb.GetFollowingListByNameRequest.prototype.setLastOrder = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.grpcpb.GetFollowingListByNameRequest.prototype.clearLastOrder = function() {
+  this.setLastOrder(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetFollowingListByNameRequest.prototype.hasLastOrder = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.FollowingListInfo = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.FollowingListInfo, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.FollowingListInfo.displayName = 'proto.grpcpb.FollowingListInfo';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.FollowingListInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.FollowingListInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.FollowingListInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.FollowingListInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    account: (f = msg.getAccount()) && proto.grpcpb.AccountResponse.toObject(includeInstance, f),
+    createOrder: (f = msg.getCreateOrder()) && prototype_multi_id_pb.following_created_order.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.FollowingListInfo}
+ */
+proto.grpcpb.FollowingListInfo.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.FollowingListInfo;
+  return proto.grpcpb.FollowingListInfo.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.FollowingListInfo} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.FollowingListInfo}
+ */
+proto.grpcpb.FollowingListInfo.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.grpcpb.AccountResponse;
+      reader.readMessage(value,proto.grpcpb.AccountResponse.deserializeBinaryFromReader);
+      msg.setAccount(value);
+      break;
+    case 2:
+      var value = new prototype_multi_id_pb.following_created_order;
+      reader.readMessage(value,prototype_multi_id_pb.following_created_order.deserializeBinaryFromReader);
+      msg.setCreateOrder(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.FollowingListInfo.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.FollowingListInfo.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.FollowingListInfo} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.FollowingListInfo.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAccount();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.grpcpb.AccountResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreateOrder();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      prototype_multi_id_pb.following_created_order.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional AccountResponse account = 1;
+ * @return {?proto.grpcpb.AccountResponse}
+ */
+proto.grpcpb.FollowingListInfo.prototype.getAccount = function() {
+  return /** @type{?proto.grpcpb.AccountResponse} */ (
+    jspb.Message.getWrapperField(this, proto.grpcpb.AccountResponse, 1));
+};
+
+
+/** @param {?proto.grpcpb.AccountResponse|undefined} value */
+proto.grpcpb.FollowingListInfo.prototype.setAccount = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.FollowingListInfo.prototype.clearAccount = function() {
+  this.setAccount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.FollowingListInfo.prototype.hasAccount = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional prototype.following_created_order create_order = 2;
+ * @return {?proto.prototype.following_created_order}
+ */
+proto.grpcpb.FollowingListInfo.prototype.getCreateOrder = function() {
+  return /** @type{?proto.prototype.following_created_order} */ (
+    jspb.Message.getWrapperField(this, prototype_multi_id_pb.following_created_order, 2));
+};
+
+
+/** @param {?proto.prototype.following_created_order|undefined} value */
+proto.grpcpb.FollowingListInfo.prototype.setCreateOrder = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.grpcpb.FollowingListInfo.prototype.clearCreateOrder = function() {
+  this.setCreateOrder(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.FollowingListInfo.prototype.hasCreateOrder = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2139,7 +2849,7 @@ proto.grpcpb.GetFollowingListByNameResponse.prototype.toObject = function(opt_in
 proto.grpcpb.GetFollowingListByNameResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     followingListList: jspb.Message.toObjectList(msg.getFollowingListList(),
-    prototype_type_pb.account_name.toObject, includeInstance)
+    proto.grpcpb.FollowingListInfo.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -2177,8 +2887,8 @@ proto.grpcpb.GetFollowingListByNameResponse.deserializeBinaryFromReader = functi
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      var value = new proto.grpcpb.FollowingListInfo;
+      reader.readMessage(value,proto.grpcpb.FollowingListInfo.deserializeBinaryFromReader);
       msg.addFollowingList(value);
       break;
     default:
@@ -2215,35 +2925,35 @@ proto.grpcpb.GetFollowingListByNameResponse.serializeBinaryToWriter = function(m
     writer.writeRepeatedMessage(
       1,
       f,
-      prototype_type_pb.account_name.serializeBinaryToWriter
+      proto.grpcpb.FollowingListInfo.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated prototype.account_name following_list = 1;
- * @return {!Array<!proto.prototype.account_name>}
+ * repeated FollowingListInfo following_list = 1;
+ * @return {!Array<!proto.grpcpb.FollowingListInfo>}
  */
 proto.grpcpb.GetFollowingListByNameResponse.prototype.getFollowingListList = function() {
-  return /** @type{!Array<!proto.prototype.account_name>} */ (
-    jspb.Message.getRepeatedWrapperField(this, prototype_type_pb.account_name, 1));
+  return /** @type{!Array<!proto.grpcpb.FollowingListInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.grpcpb.FollowingListInfo, 1));
 };
 
 
-/** @param {!Array<!proto.prototype.account_name>} value */
+/** @param {!Array<!proto.grpcpb.FollowingListInfo>} value */
 proto.grpcpb.GetFollowingListByNameResponse.prototype.setFollowingListList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.prototype.account_name=} opt_value
+ * @param {!proto.grpcpb.FollowingListInfo=} opt_value
  * @param {number=} opt_index
- * @return {!proto.prototype.account_name}
+ * @return {!proto.grpcpb.FollowingListInfo}
  */
 proto.grpcpb.GetFollowingListByNameResponse.prototype.addFollowingList = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.prototype.account_name, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.grpcpb.FollowingListInfo, opt_index);
 };
 
 
@@ -7844,7 +8554,7 @@ proto.grpcpb.GetAccountListByBalanceRequest.toObject = function(includeInstance,
   var f, obj = {
     start: (f = msg.getStart()) && prototype_type_pb.coin.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && prototype_type_pb.coin.toObject(includeInstance, f),
-    lastAccount: (f = msg.getLastAccount()) && proto.grpcpb.AccountResponse.toObject(includeInstance, f),
+    lastAccount: (f = msg.getLastAccount()) && proto.grpcpb.AccountInfo.toObject(includeInstance, f),
     limit: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
@@ -7893,8 +8603,8 @@ proto.grpcpb.GetAccountListByBalanceRequest.deserializeBinaryFromReader = functi
       msg.setEnd(value);
       break;
     case 3:
-      var value = new proto.grpcpb.AccountResponse;
-      reader.readMessage(value,proto.grpcpb.AccountResponse.deserializeBinaryFromReader);
+      var value = new proto.grpcpb.AccountInfo;
+      reader.readMessage(value,proto.grpcpb.AccountInfo.deserializeBinaryFromReader);
       msg.setLastAccount(value);
       break;
     case 4:
@@ -7951,7 +8661,7 @@ proto.grpcpb.GetAccountListByBalanceRequest.serializeBinaryToWriter = function(m
     writer.writeMessage(
       3,
       f,
-      proto.grpcpb.AccountResponse.serializeBinaryToWriter
+      proto.grpcpb.AccountInfo.serializeBinaryToWriter
     );
   }
   f = message.getLimit();
@@ -8025,16 +8735,16 @@ proto.grpcpb.GetAccountListByBalanceRequest.prototype.hasEnd = function() {
 
 
 /**
- * optional AccountResponse last_account = 3;
- * @return {?proto.grpcpb.AccountResponse}
+ * optional AccountInfo last_account = 3;
+ * @return {?proto.grpcpb.AccountInfo}
  */
 proto.grpcpb.GetAccountListByBalanceRequest.prototype.getLastAccount = function() {
-  return /** @type{?proto.grpcpb.AccountResponse} */ (
-    jspb.Message.getWrapperField(this, proto.grpcpb.AccountResponse, 3));
+  return /** @type{?proto.grpcpb.AccountInfo} */ (
+    jspb.Message.getWrapperField(this, proto.grpcpb.AccountInfo, 3));
 };
 
 
-/** @param {?proto.grpcpb.AccountResponse|undefined} value */
+/** @param {?proto.grpcpb.AccountInfo|undefined} value */
 proto.grpcpb.GetAccountListByBalanceRequest.prototype.setLastAccount = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
