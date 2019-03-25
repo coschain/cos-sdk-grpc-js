@@ -138,7 +138,7 @@ export namespace AccountRewardResponse {
   }
 }
 
-export class AccountResponse extends jspb.Message {
+export class AccountInfo extends jspb.Message {
   hasAccountName(): boolean;
   clearAccountName(): void;
   getAccountName(): prototype_type_pb.account_name | undefined;
@@ -169,11 +169,6 @@ export class AccountResponse extends jspb.Message {
   getWitness(): WitnessResponse | undefined;
   setWitness(value?: WitnessResponse): void;
 
-  hasState(): boolean;
-  clearState(): void;
-  getState(): ChainState | undefined;
-  setState(value?: ChainState): void;
-
   getPostCount(): number;
   setPostCount(value: number): void;
 
@@ -182,6 +177,41 @@ export class AccountResponse extends jspb.Message {
 
   getFollowingCount(): number;
   setFollowingCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AccountInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AccountInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AccountInfo;
+  static deserializeBinaryFromReader(message: AccountInfo, reader: jspb.BinaryReader): AccountInfo;
+}
+
+export namespace AccountInfo {
+  export type AsObject = {
+    accountName?: prototype_type_pb.account_name.AsObject,
+    coin?: prototype_type_pb.coin.AsObject,
+    vest?: prototype_type_pb.vest.AsObject,
+    publicKey?: prototype_type_pb.public_key_type.AsObject,
+    createdTime?: prototype_type_pb.time_point_sec.AsObject,
+    witness?: WitnessResponse.AsObject,
+    postCount: number,
+    followerCount: number,
+    followingCount: number,
+  }
+}
+
+export class AccountResponse extends jspb.Message {
+  hasInfo(): boolean;
+  clearInfo(): void;
+  getInfo(): AccountInfo | undefined;
+  setInfo(value?: AccountInfo): void;
+
+  hasState(): boolean;
+  clearState(): void;
+  getState(): ChainState | undefined;
+  setState(value?: ChainState): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountResponse.AsObject;
@@ -195,16 +225,8 @@ export class AccountResponse extends jspb.Message {
 
 export namespace AccountResponse {
   export type AsObject = {
-    accountName?: prototype_type_pb.account_name.AsObject,
-    coin?: prototype_type_pb.coin.AsObject,
-    vest?: prototype_type_pb.vest.AsObject,
-    publicKey?: prototype_type_pb.public_key_type.AsObject,
-    createdTime?: prototype_type_pb.time_point_sec.AsObject,
-    witness?: WitnessResponse.AsObject,
+    info?: AccountInfo.AsObject,
     state?: ChainState.AsObject,
-    postCount: number,
-    followerCount: number,
-    followingCount: number,
   }
 }
 
@@ -1165,8 +1187,8 @@ export class GetAccountListByBalanceRequest extends jspb.Message {
 
   hasLastAccount(): boolean;
   clearLastAccount(): void;
-  getLastAccount(): AccountResponse | undefined;
-  setLastAccount(value?: AccountResponse): void;
+  getLastAccount(): AccountInfo | undefined;
+  setLastAccount(value?: AccountInfo): void;
 
   getLimit(): number;
   setLimit(value: number): void;
@@ -1185,7 +1207,7 @@ export namespace GetAccountListByBalanceRequest {
   export type AsObject = {
     start?: prototype_type_pb.coin.AsObject,
     end?: prototype_type_pb.coin.AsObject,
-    lastAccount?: AccountResponse.AsObject,
+    lastAccount?: AccountInfo.AsObject,
     limit: number,
   }
 }
