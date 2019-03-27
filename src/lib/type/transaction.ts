@@ -110,7 +110,7 @@ const getActionName = function (op) {
     // @ts-ignore
     if (op.hasOp6()) return "Post";
     // @ts-ignore
-    if (op.hasOp7()) return "Replay";
+    if (op.hasOp7()) return "Reply";
     // @ts-ignore
     if (op.hasOp8()) return "Follow";
     // @ts-ignore
