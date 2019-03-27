@@ -1810,7 +1810,8 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     totalPostCnt: jspb.Message.getFieldWithDefault(msg, 17, 0),
     totalUserCnt: jspb.Message.getFieldWithDefault(msg, 18, 0),
     maxTps: jspb.Message.getFieldWithDefault(msg, 19, 0),
-    headBlockPrefix: jspb.Message.getFieldWithDefault(msg, 20, 0)
+    maxTpsBlockNum: jspb.Message.getFieldWithDefault(msg, 20, "0"),
+    headBlockPrefix: jspb.Message.getFieldWithDefault(msg, 21, 0)
   };
 
   if (includeInstance) {
@@ -1932,6 +1933,10 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       msg.setMaxTps(value);
       break;
     case 20:
+      var value = /** @type {string} */ (reader.readUint64String());
+      msg.setMaxTpsBlockNum(value);
+      break;
+    case 21:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setHeadBlockPrefix(value);
       break;
@@ -2105,10 +2110,17 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       f
     );
   }
+  f = message.getMaxTpsBlockNum();
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
+      20,
+      f
+    );
+  }
   f = message.getHeadBlockPrefix();
   if (f !== 0) {
     writer.writeUint32(
-      20,
+      21,
       f
     );
   }
@@ -2521,17 +2533,32 @@ proto.prototype.dynamic_properties.prototype.setMaxTps = function(value) {
 
 
 /**
- * optional uint32 head_block_prefix = 20;
+ * optional uint64 max_tps_block_num = 20;
+ * @return {string}
+ */
+proto.prototype.dynamic_properties.prototype.getMaxTpsBlockNum = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, "0"));
+};
+
+
+/** @param {string} value */
+proto.prototype.dynamic_properties.prototype.setMaxTpsBlockNum = function(value) {
+  jspb.Message.setProto3StringIntField(this, 20, value);
+};
+
+
+/**
+ * optional uint32 head_block_prefix = 21;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getHeadBlockPrefix = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 20, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 21, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setHeadBlockPrefix = function(value) {
-  jspb.Message.setProto3IntField(this, 20, value);
+  jspb.Message.setProto3IntField(this, 21, value);
 };
 
 
