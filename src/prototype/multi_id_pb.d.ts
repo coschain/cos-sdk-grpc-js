@@ -346,3 +346,31 @@ export namespace user_post_create_order {
   }
 }
 
+export class user_trx_create_order extends jspb.Message {
+  hasCreator(): boolean;
+  clearCreator(): void;
+  getCreator(): prototype_type_pb.account_name | undefined;
+  setCreator(value?: prototype_type_pb.account_name): void;
+
+  hasCreateTime(): boolean;
+  clearCreateTime(): void;
+  getCreateTime(): prototype_type_pb.time_point_sec | undefined;
+  setCreateTime(value?: prototype_type_pb.time_point_sec): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): user_trx_create_order.AsObject;
+  static toObject(includeInstance: boolean, msg: user_trx_create_order): user_trx_create_order.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: user_trx_create_order, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): user_trx_create_order;
+  static deserializeBinaryFromReader(message: user_trx_create_order, reader: jspb.BinaryReader): user_trx_create_order;
+}
+
+export namespace user_trx_create_order {
+  export type AsObject = {
+    creator?: prototype_type_pb.account_name.AsObject,
+    createTime?: prototype_type_pb.time_point_sec.AsObject,
+  }
+}
+

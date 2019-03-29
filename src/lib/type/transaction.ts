@@ -54,7 +54,7 @@ transaction.prototype.addOperation = function(op: any){
 // @ts-ignore
 const sender = function (op) {
     // @ts-ignore
-    if (op.hasOp1()) return op.getOp1().getNewAccountName().getValue();
+    if (op.hasOp1()) return op.getOp1().getCreator().getValue();
     // @ts-ignore
     if (op.hasOp2()) return op.getOp2().getFrom().getValue();
     // @ts-ignore

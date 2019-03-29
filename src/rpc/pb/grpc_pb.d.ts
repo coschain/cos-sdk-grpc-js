@@ -178,6 +178,9 @@ export class AccountInfo extends jspb.Message {
   getFollowingCount(): number;
   setFollowingCount(value: number): void;
 
+  getTrxCount(): number;
+  setTrxCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -199,6 +202,7 @@ export namespace AccountInfo {
     postCount: number,
     followerCount: number,
     followingCount: number,
+    trxCount: number,
   }
 }
 
@@ -1623,6 +1627,72 @@ export namespace GetPostListByNameRequest {
     end?: prototype_multi_id_pb.user_post_create_order.AsObject,
     lastPost?: PostResponse.AsObject,
     limit: number,
+  }
+}
+
+export class GetUserTrxListByTimeRequest extends jspb.Message {
+  hasName(): boolean;
+  clearName(): void;
+  getName(): prototype_type_pb.account_name | undefined;
+  setName(value?: prototype_type_pb.account_name): void;
+
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.time_point_sec | undefined;
+  setStart(value?: prototype_type_pb.time_point_sec): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.time_point_sec | undefined;
+  setEnd(value?: prototype_type_pb.time_point_sec): void;
+
+  hasLastTrx(): boolean;
+  clearLastTrx(): void;
+  getLastTrx(): TrxInfo | undefined;
+  setLastTrx(value?: TrxInfo): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetUserTrxListByTimeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetUserTrxListByTimeRequest): GetUserTrxListByTimeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetUserTrxListByTimeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetUserTrxListByTimeRequest;
+  static deserializeBinaryFromReader(message: GetUserTrxListByTimeRequest, reader: jspb.BinaryReader): GetUserTrxListByTimeRequest;
+}
+
+export namespace GetUserTrxListByTimeRequest {
+  export type AsObject = {
+    name?: prototype_type_pb.account_name.AsObject,
+    start?: prototype_type_pb.time_point_sec.AsObject,
+    end?: prototype_type_pb.time_point_sec.AsObject,
+    lastTrx?: TrxInfo.AsObject,
+    limit: number,
+  }
+}
+
+export class GetUserTrxListByTimeResponse extends jspb.Message {
+  clearTrxListList(): void;
+  getTrxListList(): Array<TrxInfo>;
+  setTrxListList(value: Array<TrxInfo>): void;
+  addTrxList(value?: TrxInfo, index?: number): TrxInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetUserTrxListByTimeResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetUserTrxListByTimeResponse): GetUserTrxListByTimeResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetUserTrxListByTimeResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetUserTrxListByTimeResponse;
+  static deserializeBinaryFromReader(message: GetUserTrxListByTimeResponse, reader: jspb.BinaryReader): GetUserTrxListByTimeResponse;
+}
+
+export namespace GetUserTrxListByTimeResponse {
+  export type AsObject = {
+    trxListList: Array<TrxInfo.AsObject>,
   }
 }
 

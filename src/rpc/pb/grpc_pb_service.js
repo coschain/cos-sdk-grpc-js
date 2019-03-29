@@ -217,6 +217,15 @@ ApiService.TrxStatByHour = {
   responseType: rpc_pb_grpc_pb.TrxStatByHourResponse
 };
 
+ApiService.GetUserTrxListByTime = {
+  methodName: "GetUserTrxListByTime",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetUserTrxListByTimeRequest,
+  responseType: rpc_pb_grpc_pb.GetUserTrxListByTimeResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -911,6 +920,37 @@ ApiServiceClient.prototype.trxStatByHour = function trxStatByHour(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.TrxStatByHour, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getUserTrxListByTime = function getUserTrxListByTime(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetUserTrxListByTime, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
