@@ -238,6 +238,15 @@ type ApiServiceGetUserTrxListByTime = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetUserTrxListByTimeResponse;
 };
 
+type ApiServiceGetPostInfoById = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetPostInfoByIdRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetPostInfoByIdResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -266,6 +275,7 @@ export class ApiService {
   static readonly GetPostListByName: ApiServiceGetPostListByName;
   static readonly TrxStatByHour: ApiServiceTrxStatByHour;
   static readonly GetUserTrxListByTime: ApiServiceGetUserTrxListByTime;
+  static readonly GetPostInfoById: ApiServiceGetPostInfoById;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -533,6 +543,15 @@ export class ApiServiceClient {
   getUserTrxListByTime(
     requestMessage: rpc_pb_grpc_pb.GetUserTrxListByTimeRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetUserTrxListByTimeResponse|null) => void
+  ): UnaryResponse;
+  getPostInfoById(
+    requestMessage: rpc_pb_grpc_pb.GetPostInfoByIdRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostInfoByIdResponse|null) => void
+  ): UnaryResponse;
+  getPostInfoById(
+    requestMessage: rpc_pb_grpc_pb.GetPostInfoByIdRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostInfoByIdResponse|null) => void
   ): UnaryResponse;
 }
 

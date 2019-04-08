@@ -46,6 +46,8 @@ goog.exportSymbol('proto.grpcpb.GetFollowerListByNameRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetFollowerListByNameResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetFollowingListByNameRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetFollowingListByNameResponse', null, global);
+goog.exportSymbol('proto.grpcpb.GetPostInfoByIdRequest', null, global);
+goog.exportSymbol('proto.grpcpb.GetPostInfoByIdResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetPostListByCreateTimeRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetPostListByCreateTimeResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetPostListByCreatedRequest', null, global);
@@ -74,6 +76,7 @@ goog.exportSymbol('proto.grpcpb.TableContentResponse', null, global);
 goog.exportSymbol('proto.grpcpb.TrxInfo', null, global);
 goog.exportSymbol('proto.grpcpb.TrxStatByHourRequest', null, global);
 goog.exportSymbol('proto.grpcpb.TrxStatByHourResponse', null, global);
+goog.exportSymbol('proto.grpcpb.VoterOfPost', null, global);
 goog.exportSymbol('proto.grpcpb.WitnessResponse', null, global);
 
 /**
@@ -1770,7 +1773,8 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     postCount: jspb.Message.getFieldWithDefault(msg, 7, 0),
     followerCount: jspb.Message.getFieldWithDefault(msg, 8, 0),
     followingCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    trxCount: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    trxCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    votePower: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -1852,6 +1856,10 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setTrxCount(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setVotePower(value);
       break;
     default:
       reader.skipField();
@@ -1955,6 +1963,13 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint32(
       10,
+      f
+    );
+  }
+  f = message.getVotePower();
+  if (f !== 0) {
+    writer.writeUint32(
+      11,
       f
     );
   }
@@ -2198,6 +2213,21 @@ proto.grpcpb.AccountInfo.prototype.getTrxCount = function() {
 /** @param {number} value */
 proto.grpcpb.AccountInfo.prototype.setTrxCount = function(value) {
   jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional uint32 vote_power = 11;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getVotePower = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setVotePower = function(value) {
+  jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
@@ -4871,7 +4901,11 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     tagsList: jspb.Message.getRepeatedField(msg, 18),
     beneficiariesList: jspb.Message.toObjectList(msg.getBeneficiariesList(),
     prototype_type_pb.beneficiary_route_type.toObject, includeInstance),
-    voteCnt: jspb.Message.getFieldWithDefault(msg, 20, 0)
+    voteCnt: jspb.Message.getFieldWithDefault(msg, 20, 0),
+    weightedVp: jspb.Message.getFieldWithDefault(msg, 21, "0"),
+    rewards: (f = msg.getRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    dappRewards: (f = msg.getDappRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    cashoutTime: (f = msg.getCashoutTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4972,6 +5006,25 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 20:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setVoteCnt(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readUint64String());
+      msg.setWeightedVp(value);
+      break;
+    case 22:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setRewards(value);
+      break;
+    case 23:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setDappRewards(value);
+      break;
+    case 24:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setCashoutTime(value);
       break;
     default:
       reader.skipField();
@@ -5110,6 +5163,37 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
     writer.writeUint64(
       20,
       f
+    );
+  }
+  f = message.getWeightedVp();
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
+      21,
+      f
+    );
+  }
+  f = message.getRewards();
+  if (f != null) {
+    writer.writeMessage(
+      22,
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getDappRewards();
+  if (f != null) {
+    writer.writeMessage(
+      23,
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getCashoutTime();
+  if (f != null) {
+    writer.writeMessage(
+      24,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
     );
   }
 };
@@ -5427,6 +5511,111 @@ proto.grpcpb.PostResponse.prototype.getVoteCnt = function() {
 /** @param {number} value */
 proto.grpcpb.PostResponse.prototype.setVoteCnt = function(value) {
   jspb.Message.setProto3IntField(this, 20, value);
+};
+
+
+/**
+ * optional uint64 weighted_vp = 21;
+ * @return {string}
+ */
+proto.grpcpb.PostResponse.prototype.getWeightedVp = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, "0"));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.PostResponse.prototype.setWeightedVp = function(value) {
+  jspb.Message.setProto3StringIntField(this, 21, value);
+};
+
+
+/**
+ * optional prototype.vest rewards = 22;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.PostResponse.prototype.getRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 22));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.PostResponse.prototype.setRewards = function(value) {
+  jspb.Message.setWrapperField(this, 22, value);
+};
+
+
+proto.grpcpb.PostResponse.prototype.clearRewards = function() {
+  this.setRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.PostResponse.prototype.hasRewards = function() {
+  return jspb.Message.getField(this, 22) != null;
+};
+
+
+/**
+ * optional prototype.vest dapp_rewards = 23;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.PostResponse.prototype.getDappRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 23));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.PostResponse.prototype.setDappRewards = function(value) {
+  jspb.Message.setWrapperField(this, 23, value);
+};
+
+
+proto.grpcpb.PostResponse.prototype.clearDappRewards = function() {
+  this.setDappRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.PostResponse.prototype.hasDappRewards = function() {
+  return jspb.Message.getField(this, 23) != null;
+};
+
+
+/**
+ * optional prototype.time_point_sec cashout_time = 24;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.PostResponse.prototype.getCashoutTime = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 24));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.PostResponse.prototype.setCashoutTime = function(value) {
+  jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+proto.grpcpb.PostResponse.prototype.clearCashoutTime = function() {
+  this.setCashoutTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.PostResponse.prototype.hasCashoutTime = function() {
+  return jspb.Message.getField(this, 24) != null;
 };
 
 
@@ -13019,6 +13208,646 @@ proto.grpcpb.GetUserTrxListByTimeResponse.prototype.addTrxList = function(opt_va
 
 proto.grpcpb.GetUserTrxListByTimeResponse.prototype.clearTrxListList = function() {
   this.setTrxListList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.VoterOfPost = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.VoterOfPost, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.VoterOfPost.displayName = 'proto.grpcpb.VoterOfPost';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.VoterOfPost.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.VoterOfPost.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.VoterOfPost} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.VoterOfPost.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    accountName: (f = msg.getAccountName()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    weightedVp: jspb.Message.getFieldWithDefault(msg, 2, "0")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.VoterOfPost}
+ */
+proto.grpcpb.VoterOfPost.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.VoterOfPost;
+  return proto.grpcpb.VoterOfPost.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.VoterOfPost} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.VoterOfPost}
+ */
+proto.grpcpb.VoterOfPost.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.setAccountName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readUint64String());
+      msg.setWeightedVp(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.VoterOfPost.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.VoterOfPost.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.VoterOfPost} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.VoterOfPost.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAccountName();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      prototype_type_pb.account_name.serializeBinaryToWriter
+    );
+  }
+  f = message.getWeightedVp();
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional prototype.account_name account_name = 1;
+ * @return {?proto.prototype.account_name}
+ */
+proto.grpcpb.VoterOfPost.prototype.getAccountName = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.grpcpb.VoterOfPost.prototype.setAccountName = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.VoterOfPost.prototype.clearAccountName = function() {
+  this.setAccountName(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.VoterOfPost.prototype.hasAccountName = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional uint64 weighted_vp = 2;
+ * @return {string}
+ */
+proto.grpcpb.VoterOfPost.prototype.getWeightedVp = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.VoterOfPost.prototype.setWeightedVp = function(value) {
+  jspb.Message.setProto3StringIntField(this, 2, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetPostInfoByIdRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetPostInfoByIdRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetPostInfoByIdRequest.displayName = 'proto.grpcpb.GetPostInfoByIdRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetPostInfoByIdRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetPostInfoByIdRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetPostInfoByIdRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetPostInfoByIdRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    postId: jspb.Message.getFieldWithDefault(msg, 1, "0"),
+    voterListLimit: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    replyListLimit: jspb.Message.getFieldWithDefault(msg, 3, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetPostInfoByIdRequest}
+ */
+proto.grpcpb.GetPostInfoByIdRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetPostInfoByIdRequest;
+  return proto.grpcpb.GetPostInfoByIdRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetPostInfoByIdRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetPostInfoByIdRequest}
+ */
+proto.grpcpb.GetPostInfoByIdRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readUint64String());
+      msg.setPostId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setVoterListLimit(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setReplyListLimit(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetPostInfoByIdRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetPostInfoByIdRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetPostInfoByIdRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetPostInfoByIdRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPostId();
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
+      1,
+      f
+    );
+  }
+  f = message.getVoterListLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      2,
+      f
+    );
+  }
+  f = message.getReplyListLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 post_id = 1;
+ * @return {string}
+ */
+proto.grpcpb.GetPostInfoByIdRequest.prototype.getPostId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetPostInfoByIdRequest.prototype.setPostId = function(value) {
+  jspb.Message.setProto3StringIntField(this, 1, value);
+};
+
+
+/**
+ * optional uint32 voter_list_limit = 2;
+ * @return {number}
+ */
+proto.grpcpb.GetPostInfoByIdRequest.prototype.getVoterListLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetPostInfoByIdRequest.prototype.setVoterListLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional uint32 reply_list_limit = 3;
+ * @return {number}
+ */
+proto.grpcpb.GetPostInfoByIdRequest.prototype.getReplyListLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetPostInfoByIdRequest.prototype.setReplyListLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetPostInfoByIdResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.grpcpb.GetPostInfoByIdResponse.repeatedFields_, null);
+};
+goog.inherits(proto.grpcpb.GetPostInfoByIdResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetPostInfoByIdResponse.displayName = 'proto.grpcpb.GetPostInfoByIdResponse';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.grpcpb.GetPostInfoByIdResponse.repeatedFields_ = [2,3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetPostInfoByIdResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetPostInfoByIdResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetPostInfoByIdResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    postInfo: (f = msg.getPostInfo()) && proto.grpcpb.PostResponse.toObject(includeInstance, f),
+    voterListList: jspb.Message.toObjectList(msg.getVoterListList(),
+    proto.grpcpb.VoterOfPost.toObject, includeInstance),
+    replyListList: jspb.Message.toObjectList(msg.getReplyListList(),
+    proto.grpcpb.PostResponse.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetPostInfoByIdResponse}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetPostInfoByIdResponse;
+  return proto.grpcpb.GetPostInfoByIdResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetPostInfoByIdResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetPostInfoByIdResponse}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.grpcpb.PostResponse;
+      reader.readMessage(value,proto.grpcpb.PostResponse.deserializeBinaryFromReader);
+      msg.setPostInfo(value);
+      break;
+    case 2:
+      var value = new proto.grpcpb.VoterOfPost;
+      reader.readMessage(value,proto.grpcpb.VoterOfPost.deserializeBinaryFromReader);
+      msg.addVoterList(value);
+      break;
+    case 3:
+      var value = new proto.grpcpb.PostResponse;
+      reader.readMessage(value,proto.grpcpb.PostResponse.deserializeBinaryFromReader);
+      msg.addReplyList(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetPostInfoByIdResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetPostInfoByIdResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetPostInfoByIdResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPostInfo();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.grpcpb.PostResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getVoterListList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.grpcpb.VoterOfPost.serializeBinaryToWriter
+    );
+  }
+  f = message.getReplyListList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.grpcpb.PostResponse.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional PostResponse post_info = 1;
+ * @return {?proto.grpcpb.PostResponse}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.getPostInfo = function() {
+  return /** @type{?proto.grpcpb.PostResponse} */ (
+    jspb.Message.getWrapperField(this, proto.grpcpb.PostResponse, 1));
+};
+
+
+/** @param {?proto.grpcpb.PostResponse|undefined} value */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.setPostInfo = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.GetPostInfoByIdResponse.prototype.clearPostInfo = function() {
+  this.setPostInfo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.hasPostInfo = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * repeated VoterOfPost voter_list = 2;
+ * @return {!Array<!proto.grpcpb.VoterOfPost>}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.getVoterListList = function() {
+  return /** @type{!Array<!proto.grpcpb.VoterOfPost>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.grpcpb.VoterOfPost, 2));
+};
+
+
+/** @param {!Array<!proto.grpcpb.VoterOfPost>} value */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.setVoterListList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.grpcpb.VoterOfPost=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.grpcpb.VoterOfPost}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.addVoterList = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.grpcpb.VoterOfPost, opt_index);
+};
+
+
+proto.grpcpb.GetPostInfoByIdResponse.prototype.clearVoterListList = function() {
+  this.setVoterListList([]);
+};
+
+
+/**
+ * repeated PostResponse reply_list = 3;
+ * @return {!Array<!proto.grpcpb.PostResponse>}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.getReplyListList = function() {
+  return /** @type{!Array<!proto.grpcpb.PostResponse>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.grpcpb.PostResponse, 3));
+};
+
+
+/** @param {!Array<!proto.grpcpb.PostResponse>} value */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.setReplyListList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.grpcpb.PostResponse=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.grpcpb.PostResponse}
+ */
+proto.grpcpb.GetPostInfoByIdResponse.prototype.addReplyList = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.grpcpb.PostResponse, opt_index);
+};
+
+
+proto.grpcpb.GetPostInfoByIdResponse.prototype.clearReplyListList = function() {
+  this.setReplyListList([]);
 };
 
 

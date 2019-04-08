@@ -277,6 +277,9 @@ export class AccountInfo extends jspb.Message {
   getTrxCount(): number;
   setTrxCount(value: number): void;
 
+  getVotePower(): number;
+  setVotePower(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -299,6 +302,7 @@ export namespace AccountInfo {
     followerCount: number,
     followingCount: number,
     trxCount: number,
+    votePower: number,
   }
 }
 
@@ -718,6 +722,24 @@ export class PostResponse extends jspb.Message {
   getVoteCnt(): number;
   setVoteCnt(value: number): void;
 
+  getWeightedVp(): string;
+  setWeightedVp(value: string): void;
+
+  hasRewards(): boolean;
+  clearRewards(): void;
+  getRewards(): prototype_type_pb.vest | undefined;
+  setRewards(value?: prototype_type_pb.vest): void;
+
+  hasDappRewards(): boolean;
+  clearDappRewards(): void;
+  getDappRewards(): prototype_type_pb.vest | undefined;
+  setDappRewards(value?: prototype_type_pb.vest): void;
+
+  hasCashoutTime(): boolean;
+  clearCashoutTime(): void;
+  getCashoutTime(): prototype_type_pb.time_point_sec | undefined;
+  setCashoutTime(value?: prototype_type_pb.time_point_sec): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
   static toObject(includeInstance: boolean, msg: PostResponse): PostResponse.AsObject;
@@ -745,6 +767,10 @@ export namespace PostResponse {
     tagsList: Array<string>,
     beneficiariesList: Array<prototype_type_pb.beneficiary_route_type.AsObject>,
     voteCnt: number,
+    weightedVp: string,
+    rewards?: prototype_type_pb.vest.AsObject,
+    dappRewards?: prototype_type_pb.vest.AsObject,
+    cashoutTime?: prototype_type_pb.time_point_sec.AsObject,
   }
 }
 
@@ -1789,6 +1815,94 @@ export class GetUserTrxListByTimeResponse extends jspb.Message {
 export namespace GetUserTrxListByTimeResponse {
   export type AsObject = {
     trxListList: Array<TrxInfo.AsObject>,
+  }
+}
+
+export class VoterOfPost extends jspb.Message {
+  hasAccountName(): boolean;
+  clearAccountName(): void;
+  getAccountName(): prototype_type_pb.account_name | undefined;
+  setAccountName(value?: prototype_type_pb.account_name): void;
+
+  getWeightedVp(): string;
+  setWeightedVp(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): VoterOfPost.AsObject;
+  static toObject(includeInstance: boolean, msg: VoterOfPost): VoterOfPost.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: VoterOfPost, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): VoterOfPost;
+  static deserializeBinaryFromReader(message: VoterOfPost, reader: jspb.BinaryReader): VoterOfPost;
+}
+
+export namespace VoterOfPost {
+  export type AsObject = {
+    accountName?: prototype_type_pb.account_name.AsObject,
+    weightedVp: string,
+  }
+}
+
+export class GetPostInfoByIdRequest extends jspb.Message {
+  getPostId(): string;
+  setPostId(value: string): void;
+
+  getVoterListLimit(): number;
+  setVoterListLimit(value: number): void;
+
+  getReplyListLimit(): number;
+  setReplyListLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPostInfoByIdRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPostInfoByIdRequest): GetPostInfoByIdRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPostInfoByIdRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPostInfoByIdRequest;
+  static deserializeBinaryFromReader(message: GetPostInfoByIdRequest, reader: jspb.BinaryReader): GetPostInfoByIdRequest;
+}
+
+export namespace GetPostInfoByIdRequest {
+  export type AsObject = {
+    postId: string,
+    voterListLimit: number,
+    replyListLimit: number,
+  }
+}
+
+export class GetPostInfoByIdResponse extends jspb.Message {
+  hasPostInfo(): boolean;
+  clearPostInfo(): void;
+  getPostInfo(): PostResponse | undefined;
+  setPostInfo(value?: PostResponse): void;
+
+  clearVoterListList(): void;
+  getVoterListList(): Array<VoterOfPost>;
+  setVoterListList(value: Array<VoterOfPost>): void;
+  addVoterList(value?: VoterOfPost, index?: number): VoterOfPost;
+
+  clearReplyListList(): void;
+  getReplyListList(): Array<PostResponse>;
+  setReplyListList(value: Array<PostResponse>): void;
+  addReplyList(value?: PostResponse, index?: number): PostResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPostInfoByIdResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPostInfoByIdResponse): GetPostInfoByIdResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPostInfoByIdResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPostInfoByIdResponse;
+  static deserializeBinaryFromReader(message: GetPostInfoByIdResponse, reader: jspb.BinaryReader): GetPostInfoByIdResponse;
+}
+
+export namespace GetPostInfoByIdResponse {
+  export type AsObject = {
+    postInfo?: PostResponse.AsObject,
+    voterListList: Array<VoterOfPost.AsObject>,
+    replyListList: Array<PostResponse.AsObject>,
   }
 }
 
