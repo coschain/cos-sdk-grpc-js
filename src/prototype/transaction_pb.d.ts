@@ -81,6 +81,11 @@ export class operation extends jspb.Message {
   getOp15(): prototype_operation_pb.report_operation | undefined;
   setOp15(value?: prototype_operation_pb.report_operation): void;
 
+  hasOp16(): boolean;
+  clearOp16(): void;
+  getOp16(): prototype_operation_pb.convert_vesting_operation | undefined;
+  setOp16(value?: prototype_operation_pb.convert_vesting_operation): void;
+
   getOpCase(): operation.OpCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): operation.AsObject;
@@ -109,6 +114,7 @@ export namespace operation {
     op13?: prototype_operation_pb.contract_deploy_operation.AsObject,
     op14?: prototype_operation_pb.contract_apply_operation.AsObject,
     op15?: prototype_operation_pb.report_operation.AsObject,
+    op16?: prototype_operation_pb.convert_vesting_operation.AsObject,
   }
 
   export enum OpCase {
@@ -128,6 +134,7 @@ export namespace operation {
     OP13 = 13,
     OP14 = 14,
     OP15 = 15,
+    OP16 = 16,
   }
 }
 

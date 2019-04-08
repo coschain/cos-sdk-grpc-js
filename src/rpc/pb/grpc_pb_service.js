@@ -37,6 +37,24 @@ ApiService.GetAccountRewardByName = {
   responseType: rpc_pb_grpc_pb.AccountRewardResponse
 };
 
+ApiService.GetAccountCashout = {
+  methodName: "GetAccountCashout",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetAccountCashoutRequest,
+  responseType: rpc_pb_grpc_pb.AccountCashoutResponse
+};
+
+ApiService.GetBlockCashout = {
+  methodName: "GetBlockCashout",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetBlockCashoutRequest,
+  responseType: rpc_pb_grpc_pb.BlockCashoutResponse
+};
+
 ApiService.GetFollowerListByName = {
   methodName: "GetFollowerListByName",
   service: ApiService,
@@ -300,6 +318,68 @@ ApiServiceClient.prototype.getAccountRewardByName = function getAccountRewardByN
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetAccountRewardByName, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getAccountCashout = function getAccountCashout(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetAccountCashout, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getBlockCashout = function getBlockCashout(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetBlockCashout, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

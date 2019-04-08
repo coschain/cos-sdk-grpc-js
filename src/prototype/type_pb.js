@@ -1811,7 +1811,13 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     totalUserCnt: jspb.Message.getFieldWithDefault(msg, 18, 0),
     maxTps: jspb.Message.getFieldWithDefault(msg, 19, 0),
     maxTpsBlockNum: jspb.Message.getFieldWithDefault(msg, 20, "0"),
-    headBlockPrefix: jspb.Message.getFieldWithDefault(msg, 21, 0)
+    headBlockPrefix: jspb.Message.getFieldWithDefault(msg, 21, 0),
+    reportRewards: (f = msg.getReportRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    ithYear: jspb.Message.getFieldWithDefault(msg, 23, 0),
+    annualBudget: (f = msg.getAnnualBudget()) && proto.prototype.vest.toObject(includeInstance, f),
+    annualMinted: (f = msg.getAnnualMinted()) && proto.prototype.vest.toObject(includeInstance, f),
+    dappRewards: (f = msg.getDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    voterRewards: (f = msg.getVoterRewards()) && proto.prototype.vest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1939,6 +1945,35 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
     case 21:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setHeadBlockPrefix(value);
+      break;
+    case 22:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setReportRewards(value);
+      break;
+    case 23:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setIthYear(value);
+      break;
+    case 24:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setAnnualBudget(value);
+      break;
+    case 25:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setAnnualMinted(value);
+      break;
+    case 26:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setDappRewards(value);
+      break;
+    case 27:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setVoterRewards(value);
       break;
     default:
       reader.skipField();
@@ -2122,6 +2157,53 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
     writer.writeUint32(
       21,
       f
+    );
+  }
+  f = message.getReportRewards();
+  if (f != null) {
+    writer.writeMessage(
+      22,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getIthYear();
+  if (f !== 0) {
+    writer.writeUint32(
+      23,
+      f
+    );
+  }
+  f = message.getAnnualBudget();
+  if (f != null) {
+    writer.writeMessage(
+      24,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAnnualMinted();
+  if (f != null) {
+    writer.writeMessage(
+      25,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getDappRewards();
+  if (f != null) {
+    writer.writeMessage(
+      26,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getVoterRewards();
+  if (f != null) {
+    writer.writeMessage(
+      27,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
     );
   }
 };
@@ -2559,6 +2641,171 @@ proto.prototype.dynamic_properties.prototype.getHeadBlockPrefix = function() {
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setHeadBlockPrefix = function(value) {
   jspb.Message.setProto3IntField(this, 21, value);
+};
+
+
+/**
+ * optional vest report_rewards = 22;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getReportRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 22));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setReportRewards = function(value) {
+  jspb.Message.setWrapperField(this, 22, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearReportRewards = function() {
+  this.setReportRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasReportRewards = function() {
+  return jspb.Message.getField(this, 22) != null;
+};
+
+
+/**
+ * optional uint32 ith_year = 23;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getIthYear = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 23, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setIthYear = function(value) {
+  jspb.Message.setProto3IntField(this, 23, value);
+};
+
+
+/**
+ * optional vest annual_budget = 24;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getAnnualBudget = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 24));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setAnnualBudget = function(value) {
+  jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearAnnualBudget = function() {
+  this.setAnnualBudget(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasAnnualBudget = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional vest annual_minted = 25;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getAnnualMinted = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 25));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setAnnualMinted = function(value) {
+  jspb.Message.setWrapperField(this, 25, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearAnnualMinted = function() {
+  this.setAnnualMinted(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasAnnualMinted = function() {
+  return jspb.Message.getField(this, 25) != null;
+};
+
+
+/**
+ * optional vest dapp_rewards = 26;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getDappRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 26));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setDappRewards = function(value) {
+  jspb.Message.setWrapperField(this, 26, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearDappRewards = function() {
+  this.setDappRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasDappRewards = function() {
+  return jspb.Message.getField(this, 26) != null;
+};
+
+
+/**
+ * optional vest voter_rewards = 27;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getVoterRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 27));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setVoterRewards = function(value) {
+  jspb.Message.setWrapperField(this, 27, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearVoterRewards = function() {
+  this.setVoterRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasVoterRewards = function() {
+  return jspb.Message.getField(this, 27) != null;
 };
 
 

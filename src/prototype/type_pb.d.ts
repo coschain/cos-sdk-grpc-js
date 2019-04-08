@@ -319,6 +319,34 @@ export class dynamic_properties extends jspb.Message {
   getHeadBlockPrefix(): number;
   setHeadBlockPrefix(value: number): void;
 
+  hasReportRewards(): boolean;
+  clearReportRewards(): void;
+  getReportRewards(): vest | undefined;
+  setReportRewards(value?: vest): void;
+
+  getIthYear(): number;
+  setIthYear(value: number): void;
+
+  hasAnnualBudget(): boolean;
+  clearAnnualBudget(): void;
+  getAnnualBudget(): vest | undefined;
+  setAnnualBudget(value?: vest): void;
+
+  hasAnnualMinted(): boolean;
+  clearAnnualMinted(): void;
+  getAnnualMinted(): vest | undefined;
+  setAnnualMinted(value?: vest): void;
+
+  hasDappRewards(): boolean;
+  clearDappRewards(): void;
+  getDappRewards(): vest | undefined;
+  setDappRewards(value?: vest): void;
+
+  hasVoterRewards(): boolean;
+  clearVoterRewards(): void;
+  getVoterRewards(): vest | undefined;
+  setVoterRewards(value?: vest): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): dynamic_properties.AsObject;
   static toObject(includeInstance: boolean, msg: dynamic_properties): dynamic_properties.AsObject;
@@ -352,6 +380,12 @@ export namespace dynamic_properties {
     maxTps: number,
     maxTpsBlockNum: string,
     headBlockPrefix: number,
+    reportRewards?: vest.AsObject,
+    ithYear: number,
+    annualBudget?: vest.AsObject,
+    annualMinted?: vest.AsObject,
+    dappRewards?: vest.AsObject,
+    voterRewards?: vest.AsObject,
   }
 }
 

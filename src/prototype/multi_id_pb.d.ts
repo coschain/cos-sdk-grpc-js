@@ -346,6 +346,32 @@ export namespace user_post_create_order {
   }
 }
 
+export class reward_cashout_id extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): prototype_type_pb.account_name | undefined;
+  setAccount(value?: prototype_type_pb.account_name): void;
+
+  getPostId(): number;
+  setPostId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): reward_cashout_id.AsObject;
+  static toObject(includeInstance: boolean, msg: reward_cashout_id): reward_cashout_id.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: reward_cashout_id, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): reward_cashout_id;
+  static deserializeBinaryFromReader(message: reward_cashout_id, reader: jspb.BinaryReader): reward_cashout_id;
+}
+
+export namespace reward_cashout_id {
+  export type AsObject = {
+    account?: prototype_type_pb.account_name.AsObject,
+    postId: number,
+  }
+}
+
 export class user_trx_create_order extends jspb.Message {
   hasCreator(): boolean;
   clearCreator(): void;

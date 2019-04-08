@@ -31,6 +31,24 @@ type ApiServiceGetAccountRewardByName = {
   readonly responseType: typeof rpc_pb_grpc_pb.AccountRewardResponse;
 };
 
+type ApiServiceGetAccountCashout = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetAccountCashoutRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.AccountCashoutResponse;
+};
+
+type ApiServiceGetBlockCashout = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetBlockCashoutRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.BlockCashoutResponse;
+};
+
 type ApiServiceGetFollowerListByName = {
   readonly methodName: string;
   readonly service: typeof ApiService;
@@ -225,6 +243,8 @@ export class ApiService {
   static readonly QueryTableContent: ApiServiceQueryTableContent;
   static readonly GetAccountByName: ApiServiceGetAccountByName;
   static readonly GetAccountRewardByName: ApiServiceGetAccountRewardByName;
+  static readonly GetAccountCashout: ApiServiceGetAccountCashout;
+  static readonly GetBlockCashout: ApiServiceGetBlockCashout;
   static readonly GetFollowerListByName: ApiServiceGetFollowerListByName;
   static readonly GetFollowingListByName: ApiServiceGetFollowingListByName;
   static readonly GetFollowCountByName: ApiServiceGetFollowCountByName;
@@ -306,6 +326,24 @@ export class ApiServiceClient {
   getAccountRewardByName(
     requestMessage: rpc_pb_grpc_pb.GetAccountRewardByNameRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountRewardResponse|null) => void
+  ): UnaryResponse;
+  getAccountCashout(
+    requestMessage: rpc_pb_grpc_pb.GetAccountCashoutRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountCashoutResponse|null) => void
+  ): UnaryResponse;
+  getAccountCashout(
+    requestMessage: rpc_pb_grpc_pb.GetAccountCashoutRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountCashoutResponse|null) => void
+  ): UnaryResponse;
+  getBlockCashout(
+    requestMessage: rpc_pb_grpc_pb.GetBlockCashoutRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.BlockCashoutResponse|null) => void
+  ): UnaryResponse;
+  getBlockCashout(
+    requestMessage: rpc_pb_grpc_pb.GetBlockCashoutRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.BlockCashoutResponse|null) => void
   ): UnaryResponse;
   getFollowerListByName(
     requestMessage: rpc_pb_grpc_pb.GetFollowerListByNameRequest,

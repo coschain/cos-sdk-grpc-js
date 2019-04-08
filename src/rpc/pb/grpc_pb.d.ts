@@ -88,6 +88,102 @@ export namespace GetAccountByNameRequest {
   }
 }
 
+export class GetAccountCashoutRequest extends jspb.Message {
+  hasAccountName(): boolean;
+  clearAccountName(): void;
+  getAccountName(): prototype_type_pb.account_name | undefined;
+  setAccountName(value?: prototype_type_pb.account_name): void;
+
+  getPostId(): number;
+  setPostId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAccountCashoutRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAccountCashoutRequest): GetAccountCashoutRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAccountCashoutRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAccountCashoutRequest;
+  static deserializeBinaryFromReader(message: GetAccountCashoutRequest, reader: jspb.BinaryReader): GetAccountCashoutRequest;
+}
+
+export namespace GetAccountCashoutRequest {
+  export type AsObject = {
+    accountName?: prototype_type_pb.account_name.AsObject,
+    postId: number,
+  }
+}
+
+export class AccountCashoutResponse extends jspb.Message {
+  hasAccountName(): boolean;
+  clearAccountName(): void;
+  getAccountName(): prototype_type_pb.account_name | undefined;
+  setAccountName(value?: prototype_type_pb.account_name): void;
+
+  hasReward(): boolean;
+  clearReward(): void;
+  getReward(): prototype_type_pb.vest | undefined;
+  setReward(value?: prototype_type_pb.vest): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AccountCashoutResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AccountCashoutResponse): AccountCashoutResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AccountCashoutResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AccountCashoutResponse;
+  static deserializeBinaryFromReader(message: AccountCashoutResponse, reader: jspb.BinaryReader): AccountCashoutResponse;
+}
+
+export namespace AccountCashoutResponse {
+  export type AsObject = {
+    accountName?: prototype_type_pb.account_name.AsObject,
+    reward?: prototype_type_pb.vest.AsObject,
+  }
+}
+
+export class GetBlockCashoutRequest extends jspb.Message {
+  getBlockHeight(): number;
+  setBlockHeight(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlockCashoutRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockCashoutRequest): GetBlockCashoutRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlockCashoutRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockCashoutRequest;
+  static deserializeBinaryFromReader(message: GetBlockCashoutRequest, reader: jspb.BinaryReader): GetBlockCashoutRequest;
+}
+
+export namespace GetBlockCashoutRequest {
+  export type AsObject = {
+    blockHeight: number,
+  }
+}
+
+export class BlockCashoutResponse extends jspb.Message {
+  clearCashoutListList(): void;
+  getCashoutListList(): Array<AccountCashoutResponse>;
+  setCashoutListList(value: Array<AccountCashoutResponse>): void;
+  addCashoutList(value?: AccountCashoutResponse, index?: number): AccountCashoutResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BlockCashoutResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: BlockCashoutResponse): BlockCashoutResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BlockCashoutResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BlockCashoutResponse;
+  static deserializeBinaryFromReader(message: BlockCashoutResponse, reader: jspb.BinaryReader): BlockCashoutResponse;
+}
+
+export namespace BlockCashoutResponse {
+  export type AsObject = {
+    cashoutListList: Array<AccountCashoutResponse.AsObject>,
+  }
+}
+
 export class GetAccountRewardByNameRequest extends jspb.Message {
   hasAccountName(): boolean;
   clearAccountName(): void;

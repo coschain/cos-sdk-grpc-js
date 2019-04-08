@@ -614,3 +614,31 @@ export namespace report_operation {
   }
 }
 
+export class convert_vesting_operation extends jspb.Message {
+  hasFrom(): boolean;
+  clearFrom(): void;
+  getFrom(): prototype_type_pb.account_name | undefined;
+  setFrom(value?: prototype_type_pb.account_name): void;
+
+  hasAmount(): boolean;
+  clearAmount(): void;
+  getAmount(): prototype_type_pb.vest | undefined;
+  setAmount(value?: prototype_type_pb.vest): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): convert_vesting_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: convert_vesting_operation): convert_vesting_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: convert_vesting_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): convert_vesting_operation;
+  static deserializeBinaryFromReader(message: convert_vesting_operation, reader: jspb.BinaryReader): convert_vesting_operation;
+}
+
+export namespace convert_vesting_operation {
+  export type AsObject = {
+    from?: prototype_type_pb.account_name.AsObject,
+    amount?: prototype_type_pb.vest.AsObject,
+  }
+}
+
