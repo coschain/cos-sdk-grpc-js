@@ -112,15 +112,6 @@ type ApiServiceGetBlockTransactionsByNum = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetBlockTransactionsByNumResponse;
 };
 
-type ApiServiceGetTrxById = {
-  readonly methodName: string;
-  readonly service: typeof ApiService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof rpc_pb_grpc_pb.GetTrxByIdRequest;
-  readonly responseType: typeof rpc_pb_grpc_pb.GetTrxByIdResponse;
-};
-
 type ApiServiceGetChainState = {
   readonly methodName: string;
   readonly service: typeof ApiService;
@@ -247,6 +238,24 @@ type ApiServiceGetPostInfoById = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetPostInfoByIdResponse;
 };
 
+type ApiServiceGetContractInfo = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetContractInfoRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetContractInfoResponse;
+};
+
+type ApiServiceGetBlkIsIrreversibleByTxId = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -261,7 +270,6 @@ export class ApiService {
   static readonly GetPostListByCreated: ApiServiceGetPostListByCreated;
   static readonly GetReplyListByPostId: ApiServiceGetReplyListByPostId;
   static readonly GetBlockTransactionsByNum: ApiServiceGetBlockTransactionsByNum;
-  static readonly GetTrxById: ApiServiceGetTrxById;
   static readonly GetChainState: ApiServiceGetChainState;
   static readonly GetStatisticsInfo: ApiServiceGetStatisticsInfo;
   static readonly BroadcastTrx: ApiServiceBroadcastTrx;
@@ -276,6 +284,8 @@ export class ApiService {
   static readonly TrxStatByHour: ApiServiceTrxStatByHour;
   static readonly GetUserTrxListByTime: ApiServiceGetUserTrxListByTime;
   static readonly GetPostInfoById: ApiServiceGetPostInfoById;
+  static readonly GetContractInfo: ApiServiceGetContractInfo;
+  static readonly GetBlkIsIrreversibleByTxId: ApiServiceGetBlkIsIrreversibleByTxId;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -418,15 +428,6 @@ export class ApiServiceClient {
     requestMessage: rpc_pb_grpc_pb.GetBlockTransactionsByNumRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockTransactionsByNumResponse|null) => void
   ): UnaryResponse;
-  getTrxById(
-    requestMessage: rpc_pb_grpc_pb.GetTrxByIdRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetTrxByIdResponse|null) => void
-  ): UnaryResponse;
-  getTrxById(
-    requestMessage: rpc_pb_grpc_pb.GetTrxByIdRequest,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetTrxByIdResponse|null) => void
-  ): UnaryResponse;
   getChainState(
     requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
     metadata: grpc.Metadata,
@@ -552,6 +553,24 @@ export class ApiServiceClient {
   getPostInfoById(
     requestMessage: rpc_pb_grpc_pb.GetPostInfoByIdRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostInfoByIdResponse|null) => void
+  ): UnaryResponse;
+  getContractInfo(
+    requestMessage: rpc_pb_grpc_pb.GetContractInfoRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetContractInfoResponse|null) => void
+  ): UnaryResponse;
+  getContractInfo(
+    requestMessage: rpc_pb_grpc_pb.GetContractInfoRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetContractInfoResponse|null) => void
+  ): UnaryResponse;
+  getBlkIsIrreversibleByTxId(
+    requestMessage: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdResponse|null) => void
+  ): UnaryResponse;
+  getBlkIsIrreversibleByTxId(
+    requestMessage: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdResponse|null) => void
   ): UnaryResponse;
 }
 

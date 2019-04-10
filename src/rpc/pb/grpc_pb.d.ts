@@ -10,8 +10,8 @@ export class GetTableContentRequest extends jspb.Message {
   getOwner(): string;
   setOwner(value: string): void;
 
-  getContranct(): string;
-  setContranct(value: string): void;
+  getContract(): string;
+  setContract(value: string): void;
 
   getTable(): string;
   setTable(value: string): void;
@@ -22,8 +22,11 @@ export class GetTableContentRequest extends jspb.Message {
   getBegin(): string;
   setBegin(value: string): void;
 
-  getEnd(): string;
-  setEnd(value: string): void;
+  getCount(): number;
+  setCount(value: number): void;
+
+  getReverse(): boolean;
+  setReverse(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetTableContentRequest.AsObject;
@@ -38,11 +41,12 @@ export class GetTableContentRequest extends jspb.Message {
 export namespace GetTableContentRequest {
   export type AsObject = {
     owner: string,
-    contranct: string,
+    contract: string,
     table: string,
     field: string,
     begin: string,
-    end: string,
+    count: number,
+    reverse: boolean,
   }
 }
 
@@ -932,50 +936,6 @@ export namespace GetBlockTransactionsByNumResponse {
   }
 }
 
-export class GetTrxByIdRequest extends jspb.Message {
-  hasTrxId(): boolean;
-  clearTrxId(): void;
-  getTrxId(): prototype_type_pb.sha256 | undefined;
-  setTrxId(value?: prototype_type_pb.sha256): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetTrxByIdRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetTrxByIdRequest): GetTrxByIdRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetTrxByIdRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetTrxByIdRequest;
-  static deserializeBinaryFromReader(message: GetTrxByIdRequest, reader: jspb.BinaryReader): GetTrxByIdRequest;
-}
-
-export namespace GetTrxByIdRequest {
-  export type AsObject = {
-    trxId?: prototype_type_pb.sha256.AsObject,
-  }
-}
-
-export class GetTrxByIdResponse extends jspb.Message {
-  hasTrx(): boolean;
-  clearTrx(): void;
-  getTrx(): prototype_transaction_pb.transaction | undefined;
-  setTrx(value?: prototype_transaction_pb.transaction): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetTrxByIdResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetTrxByIdResponse): GetTrxByIdResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetTrxByIdResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetTrxByIdResponse;
-  static deserializeBinaryFromReader(message: GetTrxByIdResponse, reader: jspb.BinaryReader): GetTrxByIdResponse;
-}
-
-export namespace GetTrxByIdResponse {
-  export type AsObject = {
-    trx?: prototype_transaction_pb.transaction.AsObject,
-  }
-}
-
 export class GetChainStateResponse extends jspb.Message {
   hasState(): boolean;
   clearState(): void;
@@ -1531,6 +1491,14 @@ export class TrxInfo extends jspb.Message {
   getBlockTime(): prototype_type_pb.time_point_sec | undefined;
   setBlockTime(value?: prototype_type_pb.time_point_sec): void;
 
+  hasBlockId(): boolean;
+  clearBlockId(): void;
+  getBlockId(): prototype_type_pb.sha256 | undefined;
+  setBlockId(value?: prototype_type_pb.sha256): void;
+
+  getBlkIsIrreversible(): boolean;
+  setBlkIsIrreversible(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrxInfo.AsObject;
   static toObject(includeInstance: boolean, msg: TrxInfo): TrxInfo.AsObject;
@@ -1547,6 +1515,8 @@ export namespace TrxInfo {
     blockHeight: number,
     trxWrap?: prototype_transaction_pb.transaction_wrapper.AsObject,
     blockTime?: prototype_type_pb.time_point_sec.AsObject,
+    blockId?: prototype_type_pb.sha256.AsObject,
+    blkIsIrreversible: boolean,
   }
 }
 
@@ -1903,6 +1873,112 @@ export namespace GetPostInfoByIdResponse {
     postInfo?: PostResponse.AsObject,
     voterListList: Array<VoterOfPost.AsObject>,
     replyListList: Array<PostResponse.AsObject>,
+  }
+}
+
+export class GetContractInfoRequest extends jspb.Message {
+  hasOwner(): boolean;
+  clearOwner(): void;
+  getOwner(): prototype_type_pb.account_name | undefined;
+  setOwner(value?: prototype_type_pb.account_name): void;
+
+  getContractName(): string;
+  setContractName(value: string): void;
+
+  getFetchabi(): boolean;
+  setFetchabi(value: boolean): void;
+
+  getFetchcode(): boolean;
+  setFetchcode(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetContractInfoRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetContractInfoRequest): GetContractInfoRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetContractInfoRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetContractInfoRequest;
+  static deserializeBinaryFromReader(message: GetContractInfoRequest, reader: jspb.BinaryReader): GetContractInfoRequest;
+}
+
+export namespace GetContractInfoRequest {
+  export type AsObject = {
+    owner?: prototype_type_pb.account_name.AsObject,
+    contractName: string,
+    fetchabi: boolean,
+    fetchcode: boolean,
+  }
+}
+
+export class GetContractInfoResponse extends jspb.Message {
+  getExist(): boolean;
+  setExist(value: boolean): void;
+
+  getAbi(): string;
+  setAbi(value: string): void;
+
+  getCode(): Uint8Array | string;
+  getCode_asU8(): Uint8Array;
+  getCode_asB64(): string;
+  setCode(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetContractInfoResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetContractInfoResponse): GetContractInfoResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetContractInfoResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetContractInfoResponse;
+  static deserializeBinaryFromReader(message: GetContractInfoResponse, reader: jspb.BinaryReader): GetContractInfoResponse;
+}
+
+export namespace GetContractInfoResponse {
+  export type AsObject = {
+    exist: boolean,
+    abi: string,
+    code: Uint8Array | string,
+  }
+}
+
+export class GetBlkIsIrreversibleByTxIdRequest extends jspb.Message {
+  hasTrxId(): boolean;
+  clearTrxId(): void;
+  getTrxId(): prototype_type_pb.sha256 | undefined;
+  setTrxId(value?: prototype_type_pb.sha256): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlkIsIrreversibleByTxIdRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlkIsIrreversibleByTxIdRequest): GetBlkIsIrreversibleByTxIdRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlkIsIrreversibleByTxIdRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlkIsIrreversibleByTxIdRequest;
+  static deserializeBinaryFromReader(message: GetBlkIsIrreversibleByTxIdRequest, reader: jspb.BinaryReader): GetBlkIsIrreversibleByTxIdRequest;
+}
+
+export namespace GetBlkIsIrreversibleByTxIdRequest {
+  export type AsObject = {
+    trxId?: prototype_type_pb.sha256.AsObject,
+  }
+}
+
+export class GetBlkIsIrreversibleByTxIdResponse extends jspb.Message {
+  getResult(): boolean;
+  setResult(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlkIsIrreversibleByTxIdResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlkIsIrreversibleByTxIdResponse): GetBlkIsIrreversibleByTxIdResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlkIsIrreversibleByTxIdResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlkIsIrreversibleByTxIdResponse;
+  static deserializeBinaryFromReader(message: GetBlkIsIrreversibleByTxIdResponse, reader: jspb.BinaryReader): GetBlkIsIrreversibleByTxIdResponse;
+}
+
+export namespace GetBlkIsIrreversibleByTxIdResponse {
+  export type AsObject = {
+    result: boolean,
   }
 }
 

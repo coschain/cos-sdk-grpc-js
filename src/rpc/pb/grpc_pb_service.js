@@ -118,15 +118,6 @@ ApiService.GetBlockTransactionsByNum = {
   responseType: rpc_pb_grpc_pb.GetBlockTransactionsByNumResponse
 };
 
-ApiService.GetTrxById = {
-  methodName: "GetTrxById",
-  service: ApiService,
-  requestStream: false,
-  responseStream: false,
-  requestType: rpc_pb_grpc_pb.GetTrxByIdRequest,
-  responseType: rpc_pb_grpc_pb.GetTrxByIdResponse
-};
-
 ApiService.GetChainState = {
   methodName: "GetChainState",
   service: ApiService,
@@ -251,6 +242,24 @@ ApiService.GetPostInfoById = {
   responseStream: false,
   requestType: rpc_pb_grpc_pb.GetPostInfoByIdRequest,
   responseType: rpc_pb_grpc_pb.GetPostInfoByIdResponse
+};
+
+ApiService.GetContractInfo = {
+  methodName: "GetContractInfo",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetContractInfoRequest,
+  responseType: rpc_pb_grpc_pb.GetContractInfoResponse
+};
+
+ApiService.GetBlkIsIrreversibleByTxId = {
+  methodName: "GetBlkIsIrreversibleByTxId",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdRequest,
+  responseType: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdResponse
 };
 
 exports.ApiService = ApiService;
@@ -606,37 +615,6 @@ ApiServiceClient.prototype.getBlockTransactionsByNum = function getBlockTransact
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetBlockTransactionsByNum, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-ApiServiceClient.prototype.getTrxById = function getTrxById(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(ApiService.GetTrxById, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1071,6 +1049,68 @@ ApiServiceClient.prototype.getPostInfoById = function getPostInfoById(requestMes
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetPostInfoById, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getContractInfo = function getContractInfo(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetContractInfo, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getBlkIsIrreversibleByTxId = function getBlkIsIrreversibleByTxId(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetBlkIsIrreversibleByTxId, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
