@@ -127,28 +127,6 @@ export namespace private_key_type {
   }
 }
 
-export class authority extends jspb.Message {
-  hasKey(): boolean;
-  clearKey(): void;
-  getKey(): public_key_type | undefined;
-  setKey(value?: public_key_type): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): authority.AsObject;
-  static toObject(includeInstance: boolean, msg: authority): authority.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: authority, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): authority;
-  static deserializeBinaryFromReader(message: authority, reader: jspb.BinaryReader): authority;
-}
-
-export namespace authority {
-  export type AsObject = {
-    key?: public_key_type.AsObject,
-  }
-}
-
 export class time_point_sec extends jspb.Message {
   getUtcSeconds(): number;
   setUtcSeconds(value: number): void;
@@ -291,15 +269,10 @@ export class dynamic_properties extends jspb.Message {
   getWeightedVps(): number;
   setWeightedVps(value: number): void;
 
-  hasPostRewards(): boolean;
-  clearPostRewards(): void;
-  getPostRewards(): vest | undefined;
-  setPostRewards(value?: vest): void;
-
-  hasReplyRewards(): boolean;
-  clearReplyRewards(): void;
-  getReplyRewards(): vest | undefined;
-  setReplyRewards(value?: vest): void;
+  hasAuthorRewards(): boolean;
+  clearAuthorRewards(): void;
+  getAuthorRewards(): vest | undefined;
+  setAuthorRewards(value?: vest): void;
 
   getTotalTrxCnt(): number;
   setTotalTrxCnt(value: number): void;
@@ -372,8 +345,7 @@ export namespace dynamic_properties {
     currentSupply?: coin.AsObject,
     currentAslot: number,
     weightedVps: number,
-    postRewards?: vest.AsObject,
-    replyRewards?: vest.AsObject,
+    authorRewards?: vest.AsObject,
     totalTrxCnt: number,
     totalPostCnt: number,
     totalUserCnt: number,

@@ -22,8 +22,8 @@ export class account_create_operation extends jspb.Message {
 
   hasOwner(): boolean;
   clearOwner(): void;
-  getOwner(): prototype_type_pb.authority | undefined;
-  setOwner(value?: prototype_type_pb.authority): void;
+  getOwner(): prototype_type_pb.public_key_type | undefined;
+  setOwner(value?: prototype_type_pb.public_key_type): void;
 
   getJsonMetadata(): string;
   setJsonMetadata(value: string): void;
@@ -43,7 +43,7 @@ export namespace account_create_operation {
     fee?: prototype_type_pb.coin.AsObject,
     creator?: prototype_type_pb.account_name.AsObject,
     newAccountName?: prototype_type_pb.account_name.AsObject,
-    owner?: prototype_type_pb.authority.AsObject,
+    owner?: prototype_type_pb.public_key_type.AsObject,
     jsonMetadata: string,
   }
 }

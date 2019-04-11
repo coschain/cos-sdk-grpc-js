@@ -80,7 +80,7 @@ proto.prototype.account_create_operation.toObject = function(includeInstance, ms
     fee: (f = msg.getFee()) && prototype_type_pb.coin.toObject(includeInstance, f),
     creator: (f = msg.getCreator()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     newAccountName: (f = msg.getNewAccountName()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    owner: (f = msg.getOwner()) && prototype_type_pb.authority.toObject(includeInstance, f),
+    owner: (f = msg.getOwner()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
     jsonMetadata: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
@@ -134,8 +134,8 @@ proto.prototype.account_create_operation.deserializeBinaryFromReader = function(
       msg.setNewAccountName(value);
       break;
     case 4:
-      var value = new prototype_type_pb.authority;
-      reader.readMessage(value,prototype_type_pb.authority.deserializeBinaryFromReader);
+      var value = new prototype_type_pb.public_key_type;
+      reader.readMessage(value,prototype_type_pb.public_key_type.deserializeBinaryFromReader);
       msg.setOwner(value);
       break;
     case 8:
@@ -200,7 +200,7 @@ proto.prototype.account_create_operation.serializeBinaryToWriter = function(mess
     writer.writeMessage(
       4,
       f,
-      prototype_type_pb.authority.serializeBinaryToWriter
+      prototype_type_pb.public_key_type.serializeBinaryToWriter
     );
   }
   f = message.getJsonMetadata();
@@ -304,16 +304,16 @@ proto.prototype.account_create_operation.prototype.hasNewAccountName = function(
 
 
 /**
- * optional authority owner = 4;
- * @return {?proto.prototype.authority}
+ * optional public_key_type owner = 4;
+ * @return {?proto.prototype.public_key_type}
  */
 proto.prototype.account_create_operation.prototype.getOwner = function() {
-  return /** @type{?proto.prototype.authority} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.authority, 4));
+  return /** @type{?proto.prototype.public_key_type} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.public_key_type, 4));
 };
 
 
-/** @param {?proto.prototype.authority|undefined} value */
+/** @param {?proto.prototype.public_key_type|undefined} value */
 proto.prototype.account_create_operation.prototype.setOwner = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
