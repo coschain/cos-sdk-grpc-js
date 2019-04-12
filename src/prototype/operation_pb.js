@@ -917,7 +917,7 @@ proto.prototype.vote_operation.prototype.toObject = function(opt_includeInstance
 proto.prototype.vote_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
     voter: (f = msg.getVoter()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    idx: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    idx: jspb.Message.getFieldWithDefault(msg, 2, "0")
   };
 
   if (includeInstance) {
@@ -959,8 +959,8 @@ proto.prototype.vote_operation.deserializeBinaryFromReader = function(msg, reade
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
       msg.setVoter(value);
       break;
-    case 3:
-      var value = /** @type {number} */ (reader.readUint64());
+    case 2:
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setIdx(value);
       break;
     default:
@@ -1001,9 +1001,9 @@ proto.prototype.vote_operation.serializeBinaryToWriter = function(message, write
     );
   }
   f = message.getIdx();
-  if (f !== 0) {
-    writer.writeUint64(
-      3,
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
+      2,
       f
     );
   }
@@ -1041,17 +1041,17 @@ proto.prototype.vote_operation.prototype.hasVoter = function() {
 
 
 /**
- * optional uint64 idx = 3;
- * @return {number}
+ * optional uint64 idx = 2;
+ * @return {string}
  */
 proto.prototype.vote_operation.prototype.getIdx = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.prototype.vote_operation.prototype.setIdx = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
+  jspb.Message.setProto3StringIntField(this, 2, value);
 };
 
 

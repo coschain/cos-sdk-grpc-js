@@ -126,8 +126,8 @@ export class vote_operation extends jspb.Message {
   getVoter(): prototype_type_pb.account_name | undefined;
   setVoter(value?: prototype_type_pb.account_name): void;
 
-  getIdx(): number;
-  setIdx(value: number): void;
+  getIdx(): string;
+  setIdx(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): vote_operation.AsObject;
@@ -142,7 +142,7 @@ export class vote_operation extends jspb.Message {
 export namespace vote_operation {
   export type AsObject = {
     voter?: prototype_type_pb.account_name.AsObject,
-    idx: number,
+    idx: string,
   }
 }
 
