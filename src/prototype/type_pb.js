@@ -1643,8 +1643,8 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     totalVestingShares: (f = msg.getTotalVestingShares()) && proto.prototype.vest.toObject(includeInstance, f),
     currentSupply: (f = msg.getCurrentSupply()) && proto.prototype.coin.toObject(includeInstance, f),
     currentAslot: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    weightedVps: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    authorRewards: (f = msg.getAuthorRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    postWeightedVps: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    postRewards: (f = msg.getPostRewards()) && proto.prototype.vest.toObject(includeInstance, f),
     totalTrxCnt: jspb.Message.getFieldWithDefault(msg, 15, 0),
     totalPostCnt: jspb.Message.getFieldWithDefault(msg, 16, 0),
     totalUserCnt: jspb.Message.getFieldWithDefault(msg, 17, 0),
@@ -1655,8 +1655,11 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     ithYear: jspb.Message.getFieldWithDefault(msg, 22, 0),
     annualBudget: (f = msg.getAnnualBudget()) && proto.prototype.vest.toObject(includeInstance, f),
     annualMinted: (f = msg.getAnnualMinted()) && proto.prototype.vest.toObject(includeInstance, f),
-    dappRewards: (f = msg.getDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
-    voterRewards: (f = msg.getVoterRewards()) && proto.prototype.vest.toObject(includeInstance, f)
+    postDappRewards: (f = msg.getPostDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    voterRewards: (f = msg.getVoterRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    replyRewards: (f = msg.getReplyRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    replyWeightedVps: jspb.Message.getFieldWithDefault(msg, 28, 0),
+    replyDappRewards: (f = msg.getReplyDappRewards()) && proto.prototype.vest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1749,12 +1752,12 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       break;
     case 13:
       var value = /** @type {number} */ (reader.readUint64());
-      msg.setWeightedVps(value);
+      msg.setPostWeightedVps(value);
       break;
     case 14:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setAuthorRewards(value);
+      msg.setPostRewards(value);
       break;
     case 15:
       var value = /** @type {number} */ (reader.readUint64());
@@ -1802,12 +1805,26 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
     case 25:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setDappRewards(value);
+      msg.setPostDappRewards(value);
       break;
     case 26:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
       msg.setVoterRewards(value);
+      break;
+    case 27:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setReplyRewards(value);
+      break;
+    case 28:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setReplyWeightedVps(value);
+      break;
+    case 29:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setReplyDappRewards(value);
       break;
     default:
       reader.skipField();
@@ -1928,14 +1945,14 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getWeightedVps();
+  f = message.getPostWeightedVps();
   if (f !== 0) {
     writer.writeUint64(
       13,
       f
     );
   }
-  f = message.getAuthorRewards();
+  f = message.getPostRewards();
   if (f != null) {
     writer.writeMessage(
       14,
@@ -2016,7 +2033,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       proto.prototype.vest.serializeBinaryToWriter
     );
   }
-  f = message.getDappRewards();
+  f = message.getPostDappRewards();
   if (f != null) {
     writer.writeMessage(
       25,
@@ -2028,6 +2045,29 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   if (f != null) {
     writer.writeMessage(
       26,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getReplyRewards();
+  if (f != null) {
+    writer.writeMessage(
+      27,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getReplyWeightedVps();
+  if (f !== 0) {
+    writer.writeUint64(
+      28,
+      f
+    );
+  }
+  f = message.getReplyDappRewards();
+  if (f != null) {
+    writer.writeMessage(
+      29,
       f,
       proto.prototype.vest.serializeBinaryToWriter
     );
@@ -2306,38 +2346,38 @@ proto.prototype.dynamic_properties.prototype.setCurrentAslot = function(value) {
 
 
 /**
- * optional uint64 weighted_vps = 13;
+ * optional uint64 post_weighted_vps = 13;
  * @return {number}
  */
-proto.prototype.dynamic_properties.prototype.getWeightedVps = function() {
+proto.prototype.dynamic_properties.prototype.getPostWeightedVps = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
 };
 
 
 /** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setWeightedVps = function(value) {
+proto.prototype.dynamic_properties.prototype.setPostWeightedVps = function(value) {
   jspb.Message.setProto3IntField(this, 13, value);
 };
 
 
 /**
- * optional vest author_rewards = 14;
+ * optional vest post_rewards = 14;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.dynamic_properties.prototype.getAuthorRewards = function() {
+proto.prototype.dynamic_properties.prototype.getPostRewards = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, proto.prototype.vest, 14));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setAuthorRewards = function(value) {
+proto.prototype.dynamic_properties.prototype.setPostRewards = function(value) {
   jspb.Message.setWrapperField(this, 14, value);
 };
 
 
-proto.prototype.dynamic_properties.prototype.clearAuthorRewards = function() {
-  this.setAuthorRewards(undefined);
+proto.prototype.dynamic_properties.prototype.clearPostRewards = function() {
+  this.setPostRewards(undefined);
 };
 
 
@@ -2345,7 +2385,7 @@ proto.prototype.dynamic_properties.prototype.clearAuthorRewards = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.dynamic_properties.prototype.hasAuthorRewards = function() {
+proto.prototype.dynamic_properties.prototype.hasPostRewards = function() {
   return jspb.Message.getField(this, 14) != null;
 };
 
@@ -2546,23 +2586,23 @@ proto.prototype.dynamic_properties.prototype.hasAnnualMinted = function() {
 
 
 /**
- * optional vest dapp_rewards = 25;
+ * optional vest post_dapp_rewards = 25;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.dynamic_properties.prototype.getDappRewards = function() {
+proto.prototype.dynamic_properties.prototype.getPostDappRewards = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, proto.prototype.vest, 25));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setDappRewards = function(value) {
+proto.prototype.dynamic_properties.prototype.setPostDappRewards = function(value) {
   jspb.Message.setWrapperField(this, 25, value);
 };
 
 
-proto.prototype.dynamic_properties.prototype.clearDappRewards = function() {
-  this.setDappRewards(undefined);
+proto.prototype.dynamic_properties.prototype.clearPostDappRewards = function() {
+  this.setPostDappRewards(undefined);
 };
 
 
@@ -2570,7 +2610,7 @@ proto.prototype.dynamic_properties.prototype.clearDappRewards = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.dynamic_properties.prototype.hasDappRewards = function() {
+proto.prototype.dynamic_properties.prototype.hasPostDappRewards = function() {
   return jspb.Message.getField(this, 25) != null;
 };
 
@@ -2602,6 +2642,81 @@ proto.prototype.dynamic_properties.prototype.clearVoterRewards = function() {
  */
 proto.prototype.dynamic_properties.prototype.hasVoterRewards = function() {
   return jspb.Message.getField(this, 26) != null;
+};
+
+
+/**
+ * optional vest reply_rewards = 27;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getReplyRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 27));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setReplyRewards = function(value) {
+  jspb.Message.setWrapperField(this, 27, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearReplyRewards = function() {
+  this.setReplyRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasReplyRewards = function() {
+  return jspb.Message.getField(this, 27) != null;
+};
+
+
+/**
+ * optional uint64 reply_weighted_vps = 28;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getReplyWeightedVps = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 28, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setReplyWeightedVps = function(value) {
+  jspb.Message.setProto3IntField(this, 28, value);
+};
+
+
+/**
+ * optional vest reply_dapp_rewards = 29;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getReplyDappRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 29));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setReplyDappRewards = function(value) {
+  jspb.Message.setWrapperField(this, 29, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearReplyDappRewards = function() {
+  this.setReplyDappRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasReplyDappRewards = function() {
+  return jspb.Message.getField(this, 29) != null;
 };
 
 

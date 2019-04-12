@@ -266,13 +266,13 @@ export class dynamic_properties extends jspb.Message {
   getCurrentAslot(): number;
   setCurrentAslot(value: number): void;
 
-  getWeightedVps(): number;
-  setWeightedVps(value: number): void;
+  getPostWeightedVps(): number;
+  setPostWeightedVps(value: number): void;
 
-  hasAuthorRewards(): boolean;
-  clearAuthorRewards(): void;
-  getAuthorRewards(): vest | undefined;
-  setAuthorRewards(value?: vest): void;
+  hasPostRewards(): boolean;
+  clearPostRewards(): void;
+  getPostRewards(): vest | undefined;
+  setPostRewards(value?: vest): void;
 
   getTotalTrxCnt(): number;
   setTotalTrxCnt(value: number): void;
@@ -310,15 +310,28 @@ export class dynamic_properties extends jspb.Message {
   getAnnualMinted(): vest | undefined;
   setAnnualMinted(value?: vest): void;
 
-  hasDappRewards(): boolean;
-  clearDappRewards(): void;
-  getDappRewards(): vest | undefined;
-  setDappRewards(value?: vest): void;
+  hasPostDappRewards(): boolean;
+  clearPostDappRewards(): void;
+  getPostDappRewards(): vest | undefined;
+  setPostDappRewards(value?: vest): void;
 
   hasVoterRewards(): boolean;
   clearVoterRewards(): void;
   getVoterRewards(): vest | undefined;
   setVoterRewards(value?: vest): void;
+
+  hasReplyRewards(): boolean;
+  clearReplyRewards(): void;
+  getReplyRewards(): vest | undefined;
+  setReplyRewards(value?: vest): void;
+
+  getReplyWeightedVps(): number;
+  setReplyWeightedVps(value: number): void;
+
+  hasReplyDappRewards(): boolean;
+  clearReplyDappRewards(): void;
+  getReplyDappRewards(): vest | undefined;
+  setReplyDappRewards(value?: vest): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): dynamic_properties.AsObject;
@@ -344,8 +357,8 @@ export namespace dynamic_properties {
     totalVestingShares?: vest.AsObject,
     currentSupply?: coin.AsObject,
     currentAslot: number,
-    weightedVps: number,
-    authorRewards?: vest.AsObject,
+    postWeightedVps: number,
+    postRewards?: vest.AsObject,
     totalTrxCnt: number,
     totalPostCnt: number,
     totalUserCnt: number,
@@ -356,8 +369,11 @@ export namespace dynamic_properties {
     ithYear: number,
     annualBudget?: vest.AsObject,
     annualMinted?: vest.AsObject,
-    dappRewards?: vest.AsObject,
+    postDappRewards?: vest.AsObject,
     voterRewards?: vest.AsObject,
+    replyRewards?: vest.AsObject,
+    replyWeightedVps: number,
+    replyDappRewards?: vest.AsObject,
   }
 }
 

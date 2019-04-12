@@ -4936,7 +4936,9 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     weightedVp: jspb.Message.getFieldWithDefault(msg, 21, "0"),
     rewards: (f = msg.getRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
     dappRewards: (f = msg.getDappRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
-    cashoutTime: (f = msg.getCashoutTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f)
+    cashoutInterval: jspb.Message.getFieldWithDefault(msg, 24, 0),
+    globalRewards: (f = msg.getGlobalRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, 0)
   };
 
   if (includeInstance) {
@@ -5053,9 +5055,17 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
       msg.setDappRewards(value);
       break;
     case 24:
-      var value = new prototype_type_pb.time_point_sec;
-      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
-      msg.setCashoutTime(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCashoutInterval(value);
+      break;
+    case 25:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setGlobalRewards(value);
+      break;
+    case 26:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setGlobalWeightedVp(value);
       break;
     default:
       reader.skipField();
@@ -5219,12 +5229,26 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
       prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
-  f = message.getCashoutTime();
+  f = message.getCashoutInterval();
+  if (f !== 0) {
+    writer.writeUint64(
+      24,
+      f
+    );
+  }
+  f = message.getGlobalRewards();
   if (f != null) {
     writer.writeMessage(
-      24,
+      25,
       f,
-      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+      prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getGlobalWeightedVp();
+  if (f !== 0) {
+    writer.writeUint64(
+      26,
+      f
     );
   }
 };
@@ -5621,23 +5645,38 @@ proto.grpcpb.PostResponse.prototype.hasDappRewards = function() {
 
 
 /**
- * optional prototype.time_point_sec cashout_time = 24;
- * @return {?proto.prototype.time_point_sec}
+ * optional uint64 cashout_interval = 24;
+ * @return {number}
  */
-proto.grpcpb.PostResponse.prototype.getCashoutTime = function() {
-  return /** @type{?proto.prototype.time_point_sec} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 24));
+proto.grpcpb.PostResponse.prototype.getCashoutInterval = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 24, 0));
 };
 
 
-/** @param {?proto.prototype.time_point_sec|undefined} value */
-proto.grpcpb.PostResponse.prototype.setCashoutTime = function(value) {
-  jspb.Message.setWrapperField(this, 24, value);
+/** @param {number} value */
+proto.grpcpb.PostResponse.prototype.setCashoutInterval = function(value) {
+  jspb.Message.setProto3IntField(this, 24, value);
 };
 
 
-proto.grpcpb.PostResponse.prototype.clearCashoutTime = function() {
-  this.setCashoutTime(undefined);
+/**
+ * optional prototype.vest global_rewards = 25;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.PostResponse.prototype.getGlobalRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 25));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.PostResponse.prototype.setGlobalRewards = function(value) {
+  jspb.Message.setWrapperField(this, 25, value);
+};
+
+
+proto.grpcpb.PostResponse.prototype.clearGlobalRewards = function() {
+  this.setGlobalRewards(undefined);
 };
 
 
@@ -5645,8 +5684,23 @@ proto.grpcpb.PostResponse.prototype.clearCashoutTime = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.PostResponse.prototype.hasCashoutTime = function() {
-  return jspb.Message.getField(this, 24) != null;
+proto.grpcpb.PostResponse.prototype.hasGlobalRewards = function() {
+  return jspb.Message.getField(this, 25) != null;
+};
+
+
+/**
+ * optional uint64 global_weighted_vp = 26;
+ * @return {number}
+ */
+proto.grpcpb.PostResponse.prototype.getGlobalWeightedVp = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 26, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.PostResponse.prototype.setGlobalWeightedVp = function(value) {
+  jspb.Message.setProto3IntField(this, 26, value);
 };
 
 

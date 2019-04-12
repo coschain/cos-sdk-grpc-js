@@ -739,10 +739,16 @@ export class PostResponse extends jspb.Message {
   getDappRewards(): prototype_type_pb.vest | undefined;
   setDappRewards(value?: prototype_type_pb.vest): void;
 
-  hasCashoutTime(): boolean;
-  clearCashoutTime(): void;
-  getCashoutTime(): prototype_type_pb.time_point_sec | undefined;
-  setCashoutTime(value?: prototype_type_pb.time_point_sec): void;
+  getCashoutInterval(): number;
+  setCashoutInterval(value: number): void;
+
+  hasGlobalRewards(): boolean;
+  clearGlobalRewards(): void;
+  getGlobalRewards(): prototype_type_pb.vest | undefined;
+  setGlobalRewards(value?: prototype_type_pb.vest): void;
+
+  getGlobalWeightedVp(): number;
+  setGlobalWeightedVp(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
@@ -774,7 +780,9 @@ export namespace PostResponse {
     weightedVp: string,
     rewards?: prototype_type_pb.vest.AsObject,
     dappRewards?: prototype_type_pb.vest.AsObject,
-    cashoutTime?: prototype_type_pb.time_point_sec.AsObject,
+    cashoutInterval: number,
+    globalRewards?: prototype_type_pb.vest.AsObject,
+    globalWeightedVp: number,
   }
 }
 
