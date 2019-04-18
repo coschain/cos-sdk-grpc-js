@@ -1990,3 +1990,41 @@ export namespace GetBlkIsIrreversibleByTxIdResponse {
   }
 }
 
+export class GetAccountListByCreTimeRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.time_point_sec | undefined;
+  setStart(value?: prototype_type_pb.time_point_sec): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.time_point_sec | undefined;
+  setEnd(value?: prototype_type_pb.time_point_sec): void;
+
+  hasLastAccount(): boolean;
+  clearLastAccount(): void;
+  getLastAccount(): AccountInfo | undefined;
+  setLastAccount(value?: AccountInfo): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAccountListByCreTimeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAccountListByCreTimeRequest): GetAccountListByCreTimeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAccountListByCreTimeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAccountListByCreTimeRequest;
+  static deserializeBinaryFromReader(message: GetAccountListByCreTimeRequest, reader: jspb.BinaryReader): GetAccountListByCreTimeRequest;
+}
+
+export namespace GetAccountListByCreTimeRequest {
+  export type AsObject = {
+    start?: prototype_type_pb.time_point_sec.AsObject,
+    end?: prototype_type_pb.time_point_sec.AsObject,
+    lastAccount?: AccountInfo.AsObject,
+    limit: number,
+  }
+}
+

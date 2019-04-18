@@ -262,6 +262,15 @@ ApiService.GetBlkIsIrreversibleByTxId = {
   responseType: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdResponse
 };
 
+ApiService.GetAccountListByCreTime = {
+  methodName: "GetAccountListByCreTime",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetAccountListByCreTimeRequest,
+  responseType: rpc_pb_grpc_pb.GetAccountListResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -1111,6 +1120,37 @@ ApiServiceClient.prototype.getBlkIsIrreversibleByTxId = function getBlkIsIrrever
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetBlkIsIrreversibleByTxId, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getAccountListByCreTime = function getAccountListByCreTime(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetAccountListByCreTime, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -256,6 +256,15 @@ type ApiServiceGetBlkIsIrreversibleByTxId = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdResponse;
 };
 
+type ApiServiceGetAccountListByCreTime = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetAccountListByCreTimeRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetAccountListResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -286,6 +295,7 @@ export class ApiService {
   static readonly GetPostInfoById: ApiServiceGetPostInfoById;
   static readonly GetContractInfo: ApiServiceGetContractInfo;
   static readonly GetBlkIsIrreversibleByTxId: ApiServiceGetBlkIsIrreversibleByTxId;
+  static readonly GetAccountListByCreTime: ApiServiceGetAccountListByCreTime;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -571,6 +581,15 @@ export class ApiServiceClient {
   getBlkIsIrreversibleByTxId(
     requestMessage: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlkIsIrreversibleByTxIdResponse|null) => void
+  ): UnaryResponse;
+  getAccountListByCreTime(
+    requestMessage: rpc_pb_grpc_pb.GetAccountListByCreTimeRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAccountListResponse|null) => void
+  ): UnaryResponse;
+  getAccountListByCreTime(
+    requestMessage: rpc_pb_grpc_pb.GetAccountListByCreTimeRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAccountListResponse|null) => void
   ): UnaryResponse;
 }
 
