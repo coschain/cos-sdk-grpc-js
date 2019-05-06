@@ -271,6 +271,15 @@ ApiService.GetAccountListByCreTime = {
   responseType: rpc_pb_grpc_pb.GetAccountListResponse
 };
 
+ApiService.GetDailyStats = {
+  methodName: "GetDailyStats",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetDailyStatsRequest,
+  responseType: rpc_pb_grpc_pb.GetDailyStatsResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -1151,6 +1160,37 @@ ApiServiceClient.prototype.getAccountListByCreTime = function getAccountListByCr
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetAccountListByCreTime, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getDailyStats = function getDailyStats(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetDailyStats, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -2028,3 +2028,89 @@ export namespace GetAccountListByCreTimeRequest {
   }
 }
 
+export class DailyStat extends jspb.Message {
+  getDate(): number;
+  setDate(value: number): void;
+
+  getDapp(): string;
+  setDapp(value: string): void;
+
+  getDau(): number;
+  setDau(value: number): void;
+
+  getDnu(): number;
+  setDnu(value: number): void;
+
+  getTrxs(): number;
+  setTrxs(value: number): void;
+
+  getAmount(): string;
+  setAmount(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DailyStat.AsObject;
+  static toObject(includeInstance: boolean, msg: DailyStat): DailyStat.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DailyStat, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DailyStat;
+  static deserializeBinaryFromReader(message: DailyStat, reader: jspb.BinaryReader): DailyStat;
+}
+
+export namespace DailyStat {
+  export type AsObject = {
+    date: number,
+    dapp: string,
+    dau: number,
+    dnu: number,
+    trxs: number,
+    amount: string,
+  }
+}
+
+export class GetDailyStatsRequest extends jspb.Message {
+  getDays(): number;
+  setDays(value: number): void;
+
+  getDapp(): string;
+  setDapp(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDailyStatsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDailyStatsRequest): GetDailyStatsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDailyStatsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDailyStatsRequest;
+  static deserializeBinaryFromReader(message: GetDailyStatsRequest, reader: jspb.BinaryReader): GetDailyStatsRequest;
+}
+
+export namespace GetDailyStatsRequest {
+  export type AsObject = {
+    days: number,
+    dapp: string,
+  }
+}
+
+export class GetDailyStatsResponse extends jspb.Message {
+  clearStatList(): void;
+  getStatList(): Array<DailyStat>;
+  setStatList(value: Array<DailyStat>): void;
+  addStat(value?: DailyStat, index?: number): DailyStat;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDailyStatsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDailyStatsResponse): GetDailyStatsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDailyStatsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDailyStatsResponse;
+  static deserializeBinaryFromReader(message: GetDailyStatsResponse, reader: jspb.BinaryReader): GetDailyStatsResponse;
+}
+
+export namespace GetDailyStatsResponse {
+  export type AsObject = {
+    statList: Array<DailyStat.AsObject>,
+  }
+}
+
