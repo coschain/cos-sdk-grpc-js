@@ -24,6 +24,7 @@ goog.exportSymbol('proto.grpcpb.BroadcastTrxRequest', null, global);
 goog.exportSymbol('proto.grpcpb.BroadcastTrxResponse', null, global);
 goog.exportSymbol('proto.grpcpb.CallResponse', null, global);
 goog.exportSymbol('proto.grpcpb.ChainState', null, global);
+goog.exportSymbol('proto.grpcpb.ContractInfo', null, global);
 goog.exportSymbol('proto.grpcpb.DailyStat', null, global);
 goog.exportSymbol('proto.grpcpb.DailyTotalTrx', null, global);
 goog.exportSymbol('proto.grpcpb.FollowerListInfo', null, global);
@@ -44,6 +45,8 @@ goog.exportSymbol('proto.grpcpb.GetBlockTransactionsByNumResponse', null, global
 goog.exportSymbol('proto.grpcpb.GetChainStateResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetContractInfoRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetContractInfoResponse', null, global);
+goog.exportSymbol('proto.grpcpb.GetContractListByTimeRequest', null, global);
+goog.exportSymbol('proto.grpcpb.GetContractListResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetDailyStatsRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetDailyStatsResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetDailyTotalTrxRequest', null, global);
@@ -1809,7 +1812,11 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     followerCount: jspb.Message.getFieldWithDefault(msg, 8, 0),
     followingCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
     trxCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    votePower: jspb.Message.getFieldWithDefault(msg, 11, 0)
+    votePower: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    staminaFreeRemain: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    staminaStakeRemain: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    staminaMax: jspb.Message.getFieldWithDefault(msg, 14, 0),
+    stakeVest: (f = msg.getStakeVest()) && prototype_type_pb.vest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1895,6 +1902,23 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 11:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setVotePower(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setStaminaFreeRemain(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setStaminaStakeRemain(value);
+      break;
+    case 14:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setStaminaMax(value);
+      break;
+    case 15:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setStakeVest(value);
       break;
     default:
       reader.skipField();
@@ -2006,6 +2030,35 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
     writer.writeUint32(
       11,
       f
+    );
+  }
+  f = message.getStaminaFreeRemain();
+  if (f !== 0) {
+    writer.writeUint64(
+      12,
+      f
+    );
+  }
+  f = message.getStaminaStakeRemain();
+  if (f !== 0) {
+    writer.writeUint64(
+      13,
+      f
+    );
+  }
+  f = message.getStaminaMax();
+  if (f !== 0) {
+    writer.writeUint64(
+      14,
+      f
+    );
+  }
+  f = message.getStakeVest();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
 };
@@ -2263,6 +2316,81 @@ proto.grpcpb.AccountInfo.prototype.getVotePower = function() {
 /** @param {number} value */
 proto.grpcpb.AccountInfo.prototype.setVotePower = function(value) {
   jspb.Message.setProto3IntField(this, 11, value);
+};
+
+
+/**
+ * optional uint64 stamina_free_remain = 12;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getStaminaFreeRemain = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setStaminaFreeRemain = function(value) {
+  jspb.Message.setProto3IntField(this, 12, value);
+};
+
+
+/**
+ * optional uint64 stamina_stake_remain = 13;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getStaminaStakeRemain = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setStaminaStakeRemain = function(value) {
+  jspb.Message.setProto3IntField(this, 13, value);
+};
+
+
+/**
+ * optional uint64 stamina_max = 14;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getStaminaMax = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setStaminaMax = function(value) {
+  jspb.Message.setProto3IntField(this, 14, value);
+};
+
+
+/**
+ * optional prototype.vest stake_vest = 15;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.AccountInfo.prototype.getStakeVest = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 15));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.AccountInfo.prototype.setStakeVest = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+proto.grpcpb.AccountInfo.prototype.clearStakeVest = function() {
+  this.setStakeVest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountInfo.prototype.hasStakeVest = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
@@ -4942,7 +5070,7 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     dappRewards: (f = msg.getDappRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
     cashoutInterval: jspb.Message.getFieldWithDefault(msg, 24, 0),
     globalRewards: (f = msg.getGlobalRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
-    globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, 0)
+    globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, "0")
   };
 
   if (includeInstance) {
@@ -5068,7 +5196,7 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
       msg.setGlobalRewards(value);
       break;
     case 26:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setGlobalWeightedVp(value);
       break;
     default:
@@ -5249,8 +5377,8 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getGlobalWeightedVp();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       26,
       f
     );
@@ -5695,16 +5823,16 @@ proto.grpcpb.PostResponse.prototype.hasGlobalRewards = function() {
 
 /**
  * optional uint64 global_weighted_vp = 26;
- * @return {number}
+ * @return {string}
  */
 proto.grpcpb.PostResponse.prototype.getGlobalWeightedVp = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 26, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 26, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.grpcpb.PostResponse.prototype.setGlobalWeightedVp = function(value) {
-  jspb.Message.setProto3IntField(this, 26, value);
+  jspb.Message.setProto3StringIntField(this, 26, value);
 };
 
 
@@ -7469,7 +7597,7 @@ proto.grpcpb.BroadcastTrxResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.grpcpb.BroadcastTrxResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    invoice: (f = msg.getInvoice()) && prototype_transaction_pb.transaction_receipt_with_info.toObject(includeInstance, f),
+    invoice: (f = msg.getInvoice()) && prototype_transaction_pb.transaction_receipt.toObject(includeInstance, f),
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
     msg: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -7509,8 +7637,8 @@ proto.grpcpb.BroadcastTrxResponse.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new prototype_transaction_pb.transaction_receipt_with_info;
-      reader.readMessage(value,prototype_transaction_pb.transaction_receipt_with_info.deserializeBinaryFromReader);
+      var value = new prototype_transaction_pb.transaction_receipt;
+      reader.readMessage(value,prototype_transaction_pb.transaction_receipt.deserializeBinaryFromReader);
       msg.setInvoice(value);
       break;
     case 2:
@@ -7555,7 +7683,7 @@ proto.grpcpb.BroadcastTrxResponse.serializeBinaryToWriter = function(message, wr
     writer.writeMessage(
       1,
       f,
-      prototype_transaction_pb.transaction_receipt_with_info.serializeBinaryToWriter
+      prototype_transaction_pb.transaction_receipt.serializeBinaryToWriter
     );
   }
   f = message.getStatus();
@@ -7576,16 +7704,16 @@ proto.grpcpb.BroadcastTrxResponse.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional prototype.transaction_receipt_with_info invoice = 1;
- * @return {?proto.prototype.transaction_receipt_with_info}
+ * optional prototype.transaction_receipt invoice = 1;
+ * @return {?proto.prototype.transaction_receipt}
  */
 proto.grpcpb.BroadcastTrxResponse.prototype.getInvoice = function() {
-  return /** @type{?proto.prototype.transaction_receipt_with_info} */ (
-    jspb.Message.getWrapperField(this, prototype_transaction_pb.transaction_receipt_with_info, 1));
+  return /** @type{?proto.prototype.transaction_receipt} */ (
+    jspb.Message.getWrapperField(this, prototype_transaction_pb.transaction_receipt, 1));
 };
 
 
-/** @param {?proto.prototype.transaction_receipt_with_info|undefined} value */
+/** @param {?proto.prototype.transaction_receipt|undefined} value */
 proto.grpcpb.BroadcastTrxResponse.prototype.setInvoice = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
@@ -15349,6 +15477,695 @@ proto.grpcpb.GetDailyStatsResponse.prototype.addStat = function(opt_value, opt_i
 
 proto.grpcpb.GetDailyStatsResponse.prototype.clearStatList = function() {
   this.setStatList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.ContractInfo = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.ContractInfo, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.ContractInfo.displayName = 'proto.grpcpb.ContractInfo';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.ContractInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.ContractInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.ContractInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.ContractInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    name: (f = msg.getName()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    createTime: (f = msg.getCreateTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.ContractInfo}
+ */
+proto.grpcpb.ContractInfo.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.ContractInfo;
+  return proto.grpcpb.ContractInfo.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.ContractInfo} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.ContractInfo}
+ */
+proto.grpcpb.ContractInfo.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.setOwner(value);
+      break;
+    case 2:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.setName(value);
+      break;
+    case 3:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setCreateTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.ContractInfo.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.ContractInfo.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.ContractInfo} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.ContractInfo.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOwner();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      prototype_type_pb.account_name.serializeBinaryToWriter
+    );
+  }
+  f = message.getName();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      prototype_type_pb.account_name.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreateTime();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional prototype.account_name owner = 1;
+ * @return {?proto.prototype.account_name}
+ */
+proto.grpcpb.ContractInfo.prototype.getOwner = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.grpcpb.ContractInfo.prototype.setOwner = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.ContractInfo.prototype.clearOwner = function() {
+  this.setOwner(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.ContractInfo.prototype.hasOwner = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional prototype.account_name name = 2;
+ * @return {?proto.prototype.account_name}
+ */
+proto.grpcpb.ContractInfo.prototype.getName = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 2));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.grpcpb.ContractInfo.prototype.setName = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.grpcpb.ContractInfo.prototype.clearName = function() {
+  this.setName(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.ContractInfo.prototype.hasName = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional prototype.time_point_sec create_time = 3;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.ContractInfo.prototype.getCreateTime = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 3));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.ContractInfo.prototype.setCreateTime = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.grpcpb.ContractInfo.prototype.clearCreateTime = function() {
+  this.setCreateTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.ContractInfo.prototype.hasCreateTime = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetContractListByTimeRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetContractListByTimeRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetContractListByTimeRequest.displayName = 'proto.grpcpb.GetContractListByTimeRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetContractListByTimeRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetContractListByTimeRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetContractListByTimeRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    start: (f = msg.getStart()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    end: (f = msg.getEnd()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    lastContract: (f = msg.getLastContract()) && proto.grpcpb.ContractInfo.toObject(includeInstance, f),
+    limit: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetContractListByTimeRequest}
+ */
+proto.grpcpb.GetContractListByTimeRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetContractListByTimeRequest;
+  return proto.grpcpb.GetContractListByTimeRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetContractListByTimeRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetContractListByTimeRequest}
+ */
+proto.grpcpb.GetContractListByTimeRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setStart(value);
+      break;
+    case 2:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setEnd(value);
+      break;
+    case 3:
+      var value = new proto.grpcpb.ContractInfo;
+      reader.readMessage(value,proto.grpcpb.ContractInfo.deserializeBinaryFromReader);
+      msg.setLastContract(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetContractListByTimeRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetContractListByTimeRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetContractListByTimeRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStart();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+  f = message.getEnd();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastContract();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.grpcpb.ContractInfo.serializeBinaryToWriter
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional prototype.time_point_sec start = 1;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.getStart = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 1));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.GetContractListByTimeRequest.prototype.setStart = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.GetContractListByTimeRequest.prototype.clearStart = function() {
+  this.setStart(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.hasStart = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional prototype.time_point_sec end = 2;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.getEnd = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 2));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.GetContractListByTimeRequest.prototype.setEnd = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.grpcpb.GetContractListByTimeRequest.prototype.clearEnd = function() {
+  this.setEnd(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.hasEnd = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional ContractInfo last_contract = 3;
+ * @return {?proto.grpcpb.ContractInfo}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.getLastContract = function() {
+  return /** @type{?proto.grpcpb.ContractInfo} */ (
+    jspb.Message.getWrapperField(this, proto.grpcpb.ContractInfo, 3));
+};
+
+
+/** @param {?proto.grpcpb.ContractInfo|undefined} value */
+proto.grpcpb.GetContractListByTimeRequest.prototype.setLastContract = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.grpcpb.GetContractListByTimeRequest.prototype.clearLastContract = function() {
+  this.setLastContract(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.hasLastContract = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional uint32 limit = 4;
+ * @return {number}
+ */
+proto.grpcpb.GetContractListByTimeRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetContractListByTimeRequest.prototype.setLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetContractListResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.grpcpb.GetContractListResponse.repeatedFields_, null);
+};
+goog.inherits(proto.grpcpb.GetContractListResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetContractListResponse.displayName = 'proto.grpcpb.GetContractListResponse';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.grpcpb.GetContractListResponse.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetContractListResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetContractListResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetContractListResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetContractListResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    contractListList: jspb.Message.toObjectList(msg.getContractListList(),
+    proto.grpcpb.ContractInfo.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetContractListResponse}
+ */
+proto.grpcpb.GetContractListResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetContractListResponse;
+  return proto.grpcpb.GetContractListResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetContractListResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetContractListResponse}
+ */
+proto.grpcpb.GetContractListResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.grpcpb.ContractInfo;
+      reader.readMessage(value,proto.grpcpb.ContractInfo.deserializeBinaryFromReader);
+      msg.addContractList(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetContractListResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetContractListResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetContractListResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetContractListResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getContractListList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.grpcpb.ContractInfo.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated ContractInfo contract_list = 1;
+ * @return {!Array<!proto.grpcpb.ContractInfo>}
+ */
+proto.grpcpb.GetContractListResponse.prototype.getContractListList = function() {
+  return /** @type{!Array<!proto.grpcpb.ContractInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.grpcpb.ContractInfo, 1));
+};
+
+
+/** @param {!Array<!proto.grpcpb.ContractInfo>} value */
+proto.grpcpb.GetContractListResponse.prototype.setContractListList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.grpcpb.ContractInfo=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.grpcpb.ContractInfo}
+ */
+proto.grpcpb.GetContractListResponse.prototype.addContractList = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.grpcpb.ContractInfo, opt_index);
+};
+
+
+proto.grpcpb.GetContractListResponse.prototype.clearContractListList = function() {
+  this.setContractListList([]);
 };
 
 

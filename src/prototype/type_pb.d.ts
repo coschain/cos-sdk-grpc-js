@@ -333,6 +333,11 @@ export class dynamic_properties extends jspb.Message {
   getReplyDappRewards(): vest | undefined;
   setReplyDappRewards(value?: vest): void;
 
+  hasStakeVestingShares(): boolean;
+  clearStakeVestingShares(): void;
+  getStakeVestingShares(): vest | undefined;
+  setStakeVestingShares(value?: vest): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): dynamic_properties.AsObject;
   static toObject(includeInstance: boolean, msg: dynamic_properties): dynamic_properties.AsObject;
@@ -374,6 +379,7 @@ export namespace dynamic_properties {
     replyRewards?: vest.AsObject,
     replyWeightedVps: number,
     replyDappRewards?: vest.AsObject,
+    stakeVestingShares?: vest.AsObject,
   }
 }
 

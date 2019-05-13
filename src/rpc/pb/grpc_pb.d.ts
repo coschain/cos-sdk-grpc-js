@@ -284,6 +284,20 @@ export class AccountInfo extends jspb.Message {
   getVotePower(): number;
   setVotePower(value: number): void;
 
+  getStaminaFreeRemain(): number;
+  setStaminaFreeRemain(value: number): void;
+
+  getStaminaStakeRemain(): number;
+  setStaminaStakeRemain(value: number): void;
+
+  getStaminaMax(): number;
+  setStaminaMax(value: number): void;
+
+  hasStakeVest(): boolean;
+  clearStakeVest(): void;
+  getStakeVest(): prototype_type_pb.vest | undefined;
+  setStakeVest(value?: prototype_type_pb.vest): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -307,6 +321,10 @@ export namespace AccountInfo {
     followingCount: number,
     trxCount: number,
     votePower: number,
+    staminaFreeRemain: number,
+    staminaStakeRemain: number,
+    staminaMax: number,
+    stakeVest?: prototype_type_pb.vest.AsObject,
   }
 }
 
@@ -747,8 +765,8 @@ export class PostResponse extends jspb.Message {
   getGlobalRewards(): prototype_type_pb.vest | undefined;
   setGlobalRewards(value?: prototype_type_pb.vest): void;
 
-  getGlobalWeightedVp(): number;
-  setGlobalWeightedVp(value: number): void;
+  getGlobalWeightedVp(): string;
+  setGlobalWeightedVp(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
@@ -782,7 +800,7 @@ export namespace PostResponse {
     dappRewards?: prototype_type_pb.vest.AsObject,
     cashoutInterval: number,
     globalRewards?: prototype_type_pb.vest.AsObject,
-    globalWeightedVp: number,
+    globalWeightedVp: string,
   }
 }
 
@@ -1023,8 +1041,8 @@ export namespace BroadcastTrxRequest {
 export class BroadcastTrxResponse extends jspb.Message {
   hasInvoice(): boolean;
   clearInvoice(): void;
-  getInvoice(): prototype_transaction_pb.transaction_receipt_with_info | undefined;
-  setInvoice(value?: prototype_transaction_pb.transaction_receipt_with_info): void;
+  getInvoice(): prototype_transaction_pb.transaction_receipt | undefined;
+  setInvoice(value?: prototype_transaction_pb.transaction_receipt): void;
 
   getStatus(): number;
   setStatus(value: number): void;
@@ -1044,7 +1062,7 @@ export class BroadcastTrxResponse extends jspb.Message {
 
 export namespace BroadcastTrxResponse {
   export type AsObject = {
-    invoice?: prototype_transaction_pb.transaction_receipt_with_info.AsObject,
+    invoice?: prototype_transaction_pb.transaction_receipt.AsObject,
     status: number,
     msg: string,
   }
@@ -2111,6 +2129,100 @@ export class GetDailyStatsResponse extends jspb.Message {
 export namespace GetDailyStatsResponse {
   export type AsObject = {
     statList: Array<DailyStat.AsObject>,
+  }
+}
+
+export class ContractInfo extends jspb.Message {
+  hasOwner(): boolean;
+  clearOwner(): void;
+  getOwner(): prototype_type_pb.account_name | undefined;
+  setOwner(value?: prototype_type_pb.account_name): void;
+
+  hasName(): boolean;
+  clearName(): void;
+  getName(): prototype_type_pb.account_name | undefined;
+  setName(value?: prototype_type_pb.account_name): void;
+
+  hasCreateTime(): boolean;
+  clearCreateTime(): void;
+  getCreateTime(): prototype_type_pb.time_point_sec | undefined;
+  setCreateTime(value?: prototype_type_pb.time_point_sec): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ContractInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: ContractInfo): ContractInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ContractInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ContractInfo;
+  static deserializeBinaryFromReader(message: ContractInfo, reader: jspb.BinaryReader): ContractInfo;
+}
+
+export namespace ContractInfo {
+  export type AsObject = {
+    owner?: prototype_type_pb.account_name.AsObject,
+    name?: prototype_type_pb.account_name.AsObject,
+    createTime?: prototype_type_pb.time_point_sec.AsObject,
+  }
+}
+
+export class GetContractListByTimeRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.time_point_sec | undefined;
+  setStart(value?: prototype_type_pb.time_point_sec): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.time_point_sec | undefined;
+  setEnd(value?: prototype_type_pb.time_point_sec): void;
+
+  hasLastContract(): boolean;
+  clearLastContract(): void;
+  getLastContract(): ContractInfo | undefined;
+  setLastContract(value?: ContractInfo): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetContractListByTimeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetContractListByTimeRequest): GetContractListByTimeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetContractListByTimeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetContractListByTimeRequest;
+  static deserializeBinaryFromReader(message: GetContractListByTimeRequest, reader: jspb.BinaryReader): GetContractListByTimeRequest;
+}
+
+export namespace GetContractListByTimeRequest {
+  export type AsObject = {
+    start?: prototype_type_pb.time_point_sec.AsObject,
+    end?: prototype_type_pb.time_point_sec.AsObject,
+    lastContract?: ContractInfo.AsObject,
+    limit: number,
+  }
+}
+
+export class GetContractListResponse extends jspb.Message {
+  clearContractListList(): void;
+  getContractListList(): Array<ContractInfo>;
+  setContractListList(value: Array<ContractInfo>): void;
+  addContractList(value?: ContractInfo, index?: number): ContractInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetContractListResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetContractListResponse): GetContractListResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetContractListResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetContractListResponse;
+  static deserializeBinaryFromReader(message: GetContractListResponse, reader: jspb.BinaryReader): GetContractListResponse;
+}
+
+export namespace GetContractListResponse {
+  export type AsObject = {
+    contractListList: Array<ContractInfo.AsObject>,
   }
 }
 

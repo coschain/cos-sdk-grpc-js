@@ -274,6 +274,15 @@ type ApiServiceGetDailyStats = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetDailyStatsResponse;
 };
 
+type ApiServiceGetContractListByTime = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetContractListByTimeRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetContractListResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -306,6 +315,7 @@ export class ApiService {
   static readonly GetBlkIsIrreversibleByTxId: ApiServiceGetBlkIsIrreversibleByTxId;
   static readonly GetAccountListByCreTime: ApiServiceGetAccountListByCreTime;
   static readonly GetDailyStats: ApiServiceGetDailyStats;
+  static readonly GetContractListByTime: ApiServiceGetContractListByTime;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -609,6 +619,15 @@ export class ApiServiceClient {
   getDailyStats(
     requestMessage: rpc_pb_grpc_pb.GetDailyStatsRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetDailyStatsResponse|null) => void
+  ): UnaryResponse;
+  getContractListByTime(
+    requestMessage: rpc_pb_grpc_pb.GetContractListByTimeRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetContractListResponse|null) => void
+  ): UnaryResponse;
+  getContractListByTime(
+    requestMessage: rpc_pb_grpc_pb.GetContractListByTimeRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetContractListResponse|null) => void
   ): UnaryResponse;
 }
 
