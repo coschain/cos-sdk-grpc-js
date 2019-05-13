@@ -2148,6 +2148,14 @@ export class ContractInfo extends jspb.Message {
   getCreateTime(): prototype_type_pb.time_point_sec | undefined;
   setCreateTime(value?: prototype_type_pb.time_point_sec): void;
 
+  hasBalance(): boolean;
+  clearBalance(): void;
+  getBalance(): prototype_type_pb.coin | undefined;
+  setBalance(value?: prototype_type_pb.coin): void;
+
+  getApplyCount(): number;
+  setApplyCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ContractInfo.AsObject;
   static toObject(includeInstance: boolean, msg: ContractInfo): ContractInfo.AsObject;
@@ -2163,6 +2171,8 @@ export namespace ContractInfo {
     owner?: prototype_type_pb.account_name.AsObject,
     name?: prototype_type_pb.account_name.AsObject,
     createTime?: prototype_type_pb.time_point_sec.AsObject,
+    balance?: prototype_type_pb.coin.AsObject,
+    applyCount: number,
   }
 }
 

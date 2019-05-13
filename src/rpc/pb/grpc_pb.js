@@ -15529,7 +15529,9 @@ proto.grpcpb.ContractInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     name: (f = msg.getName()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    createTime: (f = msg.getCreateTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f)
+    createTime: (f = msg.getCreateTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    balance: (f = msg.getBalance()) && prototype_type_pb.coin.toObject(includeInstance, f),
+    applyCount: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -15580,6 +15582,15 @@ proto.grpcpb.ContractInfo.deserializeBinaryFromReader = function(msg, reader) {
       var value = new prototype_type_pb.time_point_sec;
       reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
       msg.setCreateTime(value);
+      break;
+    case 4:
+      var value = new prototype_type_pb.coin;
+      reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
+      msg.setBalance(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setApplyCount(value);
       break;
     default:
       reader.skipField();
@@ -15632,6 +15643,21 @@ proto.grpcpb.ContractInfo.serializeBinaryToWriter = function(message, writer) {
       3,
       f,
       prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+  f = message.getBalance();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      prototype_type_pb.coin.serializeBinaryToWriter
+    );
+  }
+  f = message.getApplyCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      5,
+      f
     );
   }
 };
@@ -15724,6 +15750,51 @@ proto.grpcpb.ContractInfo.prototype.clearCreateTime = function() {
  */
 proto.grpcpb.ContractInfo.prototype.hasCreateTime = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional prototype.coin balance = 4;
+ * @return {?proto.prototype.coin}
+ */
+proto.grpcpb.ContractInfo.prototype.getBalance = function() {
+  return /** @type{?proto.prototype.coin} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 4));
+};
+
+
+/** @param {?proto.prototype.coin|undefined} value */
+proto.grpcpb.ContractInfo.prototype.setBalance = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.grpcpb.ContractInfo.prototype.clearBalance = function() {
+  this.setBalance(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.ContractInfo.prototype.hasBalance = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional uint32 apply_count = 5;
+ * @return {number}
+ */
+proto.grpcpb.ContractInfo.prototype.getApplyCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.ContractInfo.prototype.setApplyCount = function(value) {
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
