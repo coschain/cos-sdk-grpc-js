@@ -1812,11 +1812,7 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     followerCount: jspb.Message.getFieldWithDefault(msg, 8, 0),
     followingCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
     trxCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    votePower: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    staminaFreeRemain: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    staminaStakeRemain: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    staminaMax: jspb.Message.getFieldWithDefault(msg, 14, 0),
-    stakeVest: (f = msg.getStakeVest()) && prototype_type_pb.vest.toObject(includeInstance, f)
+    votePower: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -1902,23 +1898,6 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 11:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setVotePower(value);
-      break;
-    case 12:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setStaminaFreeRemain(value);
-      break;
-    case 13:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setStaminaStakeRemain(value);
-      break;
-    case 14:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setStaminaMax(value);
-      break;
-    case 15:
-      var value = new prototype_type_pb.vest;
-      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
-      msg.setStakeVest(value);
       break;
     default:
       reader.skipField();
@@ -2030,35 +2009,6 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
     writer.writeUint32(
       11,
       f
-    );
-  }
-  f = message.getStaminaFreeRemain();
-  if (f !== 0) {
-    writer.writeUint64(
-      12,
-      f
-    );
-  }
-  f = message.getStaminaStakeRemain();
-  if (f !== 0) {
-    writer.writeUint64(
-      13,
-      f
-    );
-  }
-  f = message.getStaminaMax();
-  if (f !== 0) {
-    writer.writeUint64(
-      14,
-      f
-    );
-  }
-  f = message.getStakeVest();
-  if (f != null) {
-    writer.writeMessage(
-      15,
-      f,
-      prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
 };
@@ -2316,81 +2266,6 @@ proto.grpcpb.AccountInfo.prototype.getVotePower = function() {
 /** @param {number} value */
 proto.grpcpb.AccountInfo.prototype.setVotePower = function(value) {
   jspb.Message.setProto3IntField(this, 11, value);
-};
-
-
-/**
- * optional uint64 stamina_free_remain = 12;
- * @return {number}
- */
-proto.grpcpb.AccountInfo.prototype.getStaminaFreeRemain = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
-};
-
-
-/** @param {number} value */
-proto.grpcpb.AccountInfo.prototype.setStaminaFreeRemain = function(value) {
-  jspb.Message.setProto3IntField(this, 12, value);
-};
-
-
-/**
- * optional uint64 stamina_stake_remain = 13;
- * @return {number}
- */
-proto.grpcpb.AccountInfo.prototype.getStaminaStakeRemain = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
-};
-
-
-/** @param {number} value */
-proto.grpcpb.AccountInfo.prototype.setStaminaStakeRemain = function(value) {
-  jspb.Message.setProto3IntField(this, 13, value);
-};
-
-
-/**
- * optional uint64 stamina_max = 14;
- * @return {number}
- */
-proto.grpcpb.AccountInfo.prototype.getStaminaMax = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
-};
-
-
-/** @param {number} value */
-proto.grpcpb.AccountInfo.prototype.setStaminaMax = function(value) {
-  jspb.Message.setProto3IntField(this, 14, value);
-};
-
-
-/**
- * optional prototype.vest stake_vest = 15;
- * @return {?proto.prototype.vest}
- */
-proto.grpcpb.AccountInfo.prototype.getStakeVest = function() {
-  return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 15));
-};
-
-
-/** @param {?proto.prototype.vest|undefined} value */
-proto.grpcpb.AccountInfo.prototype.setStakeVest = function(value) {
-  jspb.Message.setWrapperField(this, 15, value);
-};
-
-
-proto.grpcpb.AccountInfo.prototype.clearStakeVest = function() {
-  this.setStakeVest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.grpcpb.AccountInfo.prototype.hasStakeVest = function() {
-  return jspb.Message.getField(this, 15) != null;
 };
 
 
@@ -5070,7 +4945,7 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     dappRewards: (f = msg.getDappRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
     cashoutInterval: jspb.Message.getFieldWithDefault(msg, 24, 0),
     globalRewards: (f = msg.getGlobalRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
-    globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, "0")
+    globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, 0)
   };
 
   if (includeInstance) {
@@ -5196,7 +5071,7 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
       msg.setGlobalRewards(value);
       break;
     case 26:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setGlobalWeightedVp(value);
       break;
     default:
@@ -5377,8 +5252,8 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getGlobalWeightedVp();
-  if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+  if (f !== 0) {
+    writer.writeUint64(
       26,
       f
     );
@@ -5823,16 +5698,16 @@ proto.grpcpb.PostResponse.prototype.hasGlobalRewards = function() {
 
 /**
  * optional uint64 global_weighted_vp = 26;
- * @return {string}
+ * @return {number}
  */
 proto.grpcpb.PostResponse.prototype.getGlobalWeightedVp = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 26, "0"));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 26, 0));
 };
 
 
-/** @param {string} value */
+/** @param {number} value */
 proto.grpcpb.PostResponse.prototype.setGlobalWeightedVp = function(value) {
-  jspb.Message.setProto3StringIntField(this, 26, value);
+  jspb.Message.setProto3IntField(this, 26, value);
 };
 
 
@@ -7597,7 +7472,7 @@ proto.grpcpb.BroadcastTrxResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.grpcpb.BroadcastTrxResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    invoice: (f = msg.getInvoice()) && prototype_transaction_pb.transaction_receipt.toObject(includeInstance, f),
+    invoice: (f = msg.getInvoice()) && prototype_transaction_pb.transaction_receipt_with_info.toObject(includeInstance, f),
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
     msg: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -7637,8 +7512,8 @@ proto.grpcpb.BroadcastTrxResponse.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new prototype_transaction_pb.transaction_receipt;
-      reader.readMessage(value,prototype_transaction_pb.transaction_receipt.deserializeBinaryFromReader);
+      var value = new prototype_transaction_pb.transaction_receipt_with_info;
+      reader.readMessage(value,prototype_transaction_pb.transaction_receipt_with_info.deserializeBinaryFromReader);
       msg.setInvoice(value);
       break;
     case 2:
@@ -7683,7 +7558,7 @@ proto.grpcpb.BroadcastTrxResponse.serializeBinaryToWriter = function(message, wr
     writer.writeMessage(
       1,
       f,
-      prototype_transaction_pb.transaction_receipt.serializeBinaryToWriter
+      prototype_transaction_pb.transaction_receipt_with_info.serializeBinaryToWriter
     );
   }
   f = message.getStatus();
@@ -7704,16 +7579,16 @@ proto.grpcpb.BroadcastTrxResponse.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional prototype.transaction_receipt invoice = 1;
- * @return {?proto.prototype.transaction_receipt}
+ * optional prototype.transaction_receipt_with_info invoice = 1;
+ * @return {?proto.prototype.transaction_receipt_with_info}
  */
 proto.grpcpb.BroadcastTrxResponse.prototype.getInvoice = function() {
-  return /** @type{?proto.prototype.transaction_receipt} */ (
-    jspb.Message.getWrapperField(this, prototype_transaction_pb.transaction_receipt, 1));
+  return /** @type{?proto.prototype.transaction_receipt_with_info} */ (
+    jspb.Message.getWrapperField(this, prototype_transaction_pb.transaction_receipt_with_info, 1));
 };
 
 
-/** @param {?proto.prototype.transaction_receipt|undefined} value */
+/** @param {?proto.prototype.transaction_receipt_with_info|undefined} value */
 proto.grpcpb.BroadcastTrxResponse.prototype.setInvoice = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
@@ -14918,7 +14793,8 @@ proto.grpcpb.DailyStat.toObject = function(includeInstance, msg) {
     dau: jspb.Message.getFieldWithDefault(msg, 3, 0),
     dnu: jspb.Message.getFieldWithDefault(msg, 4, 0),
     trxs: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    amount: jspb.Message.getFieldWithDefault(msg, 6, "0")
+    amount: jspb.Message.getFieldWithDefault(msg, 6, "0"),
+    totalUserCount: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -14978,6 +14854,10 @@ proto.grpcpb.DailyStat.deserializeBinaryFromReader = function(msg, reader) {
     case 6:
       var value = /** @type {string} */ (reader.readUint64String());
       msg.setAmount(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTotalUserCount(value);
       break;
     default:
       reader.skipField();
@@ -15047,6 +14927,13 @@ proto.grpcpb.DailyStat.serializeBinaryToWriter = function(message, writer) {
   if (parseInt(f, 10) !== 0) {
     writer.writeUint64String(
       6,
+      f
+    );
+  }
+  f = message.getTotalUserCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      7,
       f
     );
   }
@@ -15140,6 +15027,21 @@ proto.grpcpb.DailyStat.prototype.getAmount = function() {
 /** @param {string} value */
 proto.grpcpb.DailyStat.prototype.setAmount = function(value) {
   jspb.Message.setProto3StringIntField(this, 6, value);
+};
+
+
+/**
+ * optional uint32 total_user_count = 7;
+ * @return {number}
+ */
+proto.grpcpb.DailyStat.prototype.getTotalUserCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.DailyStat.prototype.setTotalUserCount = function(value) {
+  jspb.Message.setProto3IntField(this, 7, value);
 };
 
 

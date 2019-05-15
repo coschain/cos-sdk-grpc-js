@@ -15,13 +15,16 @@ var prototype_type_pb = require('../prototype/type_pb.js');
 var prototype_operation_pb = require('../prototype/operation_pb.js');
 goog.exportSymbol('proto.prototype.block_header', null, global);
 goog.exportSymbol('proto.prototype.empty_signed_block', null, global);
+goog.exportSymbol('proto.prototype.estimate_trx_result', null, global);
 goog.exportSymbol('proto.prototype.operation', null, global);
+goog.exportSymbol('proto.prototype.operation_receipt', null, global);
 goog.exportSymbol('proto.prototype.operation_receipt_with_info', null, global);
 goog.exportSymbol('proto.prototype.signed_block', null, global);
 goog.exportSymbol('proto.prototype.signed_block_header', null, global);
 goog.exportSymbol('proto.prototype.signed_transaction', null, global);
 goog.exportSymbol('proto.prototype.transaction', null, global);
 goog.exportSymbol('proto.prototype.transaction_receipt', null, global);
+goog.exportSymbol('proto.prototype.transaction_receipt_with_info', null, global);
 goog.exportSymbol('proto.prototype.transaction_wrapper', null, global);
 
 /**
@@ -49,7 +52,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.prototype.operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]];
+proto.prototype.operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]];
 
 /**
  * @enum {number}
@@ -71,9 +74,7 @@ proto.prototype.operation.OpCase = {
   OP13: 13,
   OP14: 14,
   OP15: 15,
-  OP16: 16,
-  OP17: 17,
-  OP18: 18
+  OP16: 16
 };
 
 /**
@@ -127,9 +128,7 @@ proto.prototype.operation.toObject = function(includeInstance, msg) {
     op13: (f = msg.getOp13()) && prototype_operation_pb.contract_deploy_operation.toObject(includeInstance, f),
     op14: (f = msg.getOp14()) && prototype_operation_pb.contract_apply_operation.toObject(includeInstance, f),
     op15: (f = msg.getOp15()) && prototype_operation_pb.report_operation.toObject(includeInstance, f),
-    op16: (f = msg.getOp16()) && prototype_operation_pb.convert_vesting_operation.toObject(includeInstance, f),
-    op17: (f = msg.getOp17()) && prototype_operation_pb.stake_operation.toObject(includeInstance, f),
-    op18: (f = msg.getOp18()) && prototype_operation_pb.un_stake_operation.toObject(includeInstance, f)
+    op16: (f = msg.getOp16()) && prototype_operation_pb.convert_vesting_operation.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -245,16 +244,6 @@ proto.prototype.operation.deserializeBinaryFromReader = function(msg, reader) {
       var value = new prototype_operation_pb.convert_vesting_operation;
       reader.readMessage(value,prototype_operation_pb.convert_vesting_operation.deserializeBinaryFromReader);
       msg.setOp16(value);
-      break;
-    case 17:
-      var value = new prototype_operation_pb.stake_operation;
-      reader.readMessage(value,prototype_operation_pb.stake_operation.deserializeBinaryFromReader);
-      msg.setOp17(value);
-      break;
-    case 18:
-      var value = new prototype_operation_pb.un_stake_operation;
-      reader.readMessage(value,prototype_operation_pb.un_stake_operation.deserializeBinaryFromReader);
-      msg.setOp18(value);
       break;
     default:
       reader.skipField();
@@ -411,22 +400,6 @@ proto.prototype.operation.serializeBinaryToWriter = function(message, writer) {
       16,
       f,
       prototype_operation_pb.convert_vesting_operation.serializeBinaryToWriter
-    );
-  }
-  f = message.getOp17();
-  if (f != null) {
-    writer.writeMessage(
-      17,
-      f,
-      prototype_operation_pb.stake_operation.serializeBinaryToWriter
-    );
-  }
-  f = message.getOp18();
-  if (f != null) {
-    writer.writeMessage(
-      18,
-      f,
-      prototype_operation_pb.un_stake_operation.serializeBinaryToWriter
     );
   }
 };
@@ -909,66 +882,6 @@ proto.prototype.operation.prototype.clearOp16 = function() {
  */
 proto.prototype.operation.prototype.hasOp16 = function() {
   return jspb.Message.getField(this, 16) != null;
-};
-
-
-/**
- * optional stake_operation op17 = 17;
- * @return {?proto.prototype.stake_operation}
- */
-proto.prototype.operation.prototype.getOp17 = function() {
-  return /** @type{?proto.prototype.stake_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.stake_operation, 17));
-};
-
-
-/** @param {?proto.prototype.stake_operation|undefined} value */
-proto.prototype.operation.prototype.setOp17 = function(value) {
-  jspb.Message.setOneofWrapperField(this, 17, proto.prototype.operation.oneofGroups_[0], value);
-};
-
-
-proto.prototype.operation.prototype.clearOp17 = function() {
-  this.setOp17(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.operation.prototype.hasOp17 = function() {
-  return jspb.Message.getField(this, 17) != null;
-};
-
-
-/**
- * optional un_stake_operation op18 = 18;
- * @return {?proto.prototype.un_stake_operation}
- */
-proto.prototype.operation.prototype.getOp18 = function() {
-  return /** @type{?proto.prototype.un_stake_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.un_stake_operation, 18));
-};
-
-
-/** @param {?proto.prototype.un_stake_operation|undefined} value */
-proto.prototype.operation.prototype.setOp18 = function(value) {
-  jspb.Message.setOneofWrapperField(this, 18, proto.prototype.operation.oneofGroups_[0], value);
-};
-
-
-proto.prototype.operation.prototype.clearOp18 = function() {
-  this.setOp18(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.operation.prototype.hasOp18 = function() {
-  return jspb.Message.getField(this, 18) != null;
 };
 
 
@@ -1648,6 +1561,148 @@ proto.prototype.operation_receipt_with_info.prototype.setVmConsole = function(va
  * @extends {jspb.Message}
  * @constructor
  */
+proto.prototype.operation_receipt = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.prototype.operation_receipt, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.prototype.operation_receipt.displayName = 'proto.prototype.operation_receipt';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.prototype.operation_receipt.prototype.toObject = function(opt_includeInstance) {
+  return proto.prototype.operation_receipt.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.prototype.operation_receipt} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.prototype.operation_receipt.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    status: jspb.Message.getFieldWithDefault(msg, 1, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.prototype.operation_receipt}
+ */
+proto.prototype.operation_receipt.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.prototype.operation_receipt;
+  return proto.prototype.operation_receipt.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.prototype.operation_receipt} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.prototype.operation_receipt}
+ */
+proto.prototype.operation_receipt.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setStatus(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.prototype.operation_receipt.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.prototype.operation_receipt.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.prototype.operation_receipt} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.prototype.operation_receipt.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStatus();
+  if (f !== 0) {
+    writer.writeUint32(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint32 status = 1;
+ * @return {number}
+ */
+proto.prototype.operation_receipt.prototype.getStatus = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.operation_receipt.prototype.setStatus = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.prototype.transaction_receipt = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.prototype.transaction_receipt.repeatedFields_, null);
 };
@@ -1660,7 +1715,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.prototype.transaction_receipt.repeatedFields_ = [5];
+proto.prototype.transaction_receipt.repeatedFields_ = [3];
 
 
 
@@ -1692,11 +1747,9 @@ proto.prototype.transaction_receipt.prototype.toObject = function(opt_includeIns
 proto.prototype.transaction_receipt.toObject = function(includeInstance, msg) {
   var f, obj = {
     status: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    netUsage: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    cpuUsage: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    errorInfo: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    totalGasUsage: jspb.Message.getFieldWithDefault(msg, 2, 0),
     opResultsList: jspb.Message.toObjectList(msg.getOpResultsList(),
-    proto.prototype.operation_receipt_with_info.toObject, includeInstance)
+    proto.prototype.operation_receipt.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -1739,19 +1792,11 @@ proto.prototype.transaction_receipt.deserializeBinaryFromReader = function(msg, 
       break;
     case 2:
       var value = /** @type {number} */ (reader.readUint64());
-      msg.setNetUsage(value);
+      msg.setTotalGasUsage(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setCpuUsage(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setErrorInfo(value);
-      break;
-    case 5:
-      var value = new proto.prototype.operation_receipt_with_info;
-      reader.readMessage(value,proto.prototype.operation_receipt_with_info.deserializeBinaryFromReader);
+      var value = new proto.prototype.operation_receipt;
+      reader.readMessage(value,proto.prototype.operation_receipt.deserializeBinaryFromReader);
       msg.addOpResults(value);
       break;
     default:
@@ -1790,33 +1835,19 @@ proto.prototype.transaction_receipt.serializeBinaryToWriter = function(message, 
       f
     );
   }
-  f = message.getNetUsage();
+  f = message.getTotalGasUsage();
   if (f !== 0) {
     writer.writeUint64(
       2,
       f
     );
   }
-  f = message.getCpuUsage();
-  if (f !== 0) {
-    writer.writeUint64(
-      3,
-      f
-    );
-  }
-  f = message.getErrorInfo();
-  if (f.length > 0) {
-    writer.writeString(
-      4,
-      f
-    );
-  }
   f = message.getOpResultsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      5,
+      3,
       f,
-      proto.prototype.operation_receipt_with_info.serializeBinaryToWriter
+      proto.prototype.operation_receipt.serializeBinaryToWriter
     );
   }
 };
@@ -1838,63 +1869,282 @@ proto.prototype.transaction_receipt.prototype.setStatus = function(value) {
 
 
 /**
- * optional uint64 net_usage = 2;
+ * optional uint64 total_gas_usage = 2;
  * @return {number}
  */
-proto.prototype.transaction_receipt.prototype.getNetUsage = function() {
+proto.prototype.transaction_receipt.prototype.getTotalGasUsage = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /** @param {number} value */
-proto.prototype.transaction_receipt.prototype.setNetUsage = function(value) {
+proto.prototype.transaction_receipt.prototype.setTotalGasUsage = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional uint64 cpu_usage = 3;
+ * repeated operation_receipt op_results = 3;
+ * @return {!Array<!proto.prototype.operation_receipt>}
+ */
+proto.prototype.transaction_receipt.prototype.getOpResultsList = function() {
+  return /** @type{!Array<!proto.prototype.operation_receipt>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.prototype.operation_receipt, 3));
+};
+
+
+/** @param {!Array<!proto.prototype.operation_receipt>} value */
+proto.prototype.transaction_receipt.prototype.setOpResultsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.prototype.operation_receipt=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.prototype.operation_receipt}
+ */
+proto.prototype.transaction_receipt.prototype.addOpResults = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.prototype.operation_receipt, opt_index);
+};
+
+
+proto.prototype.transaction_receipt.prototype.clearOpResultsList = function() {
+  this.setOpResultsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.prototype.transaction_receipt_with_info = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.prototype.transaction_receipt_with_info.repeatedFields_, null);
+};
+goog.inherits(proto.prototype.transaction_receipt_with_info, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.prototype.transaction_receipt_with_info.displayName = 'proto.prototype.transaction_receipt_with_info';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.prototype.transaction_receipt_with_info.repeatedFields_ = [4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.prototype.transaction_receipt_with_info.prototype.toObject = function(opt_includeInstance) {
+  return proto.prototype.transaction_receipt_with_info.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.prototype.transaction_receipt_with_info} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.prototype.transaction_receipt_with_info.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    status: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    totalGasUsage: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    errorInfo: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    opResultsList: jspb.Message.toObjectList(msg.getOpResultsList(),
+    proto.prototype.operation_receipt_with_info.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.prototype.transaction_receipt_with_info}
+ */
+proto.prototype.transaction_receipt_with_info.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.prototype.transaction_receipt_with_info;
+  return proto.prototype.transaction_receipt_with_info.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.prototype.transaction_receipt_with_info} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.prototype.transaction_receipt_with_info}
+ */
+proto.prototype.transaction_receipt_with_info.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setStatus(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalGasUsage(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorInfo(value);
+      break;
+    case 4:
+      var value = new proto.prototype.operation_receipt_with_info;
+      reader.readMessage(value,proto.prototype.operation_receipt_with_info.deserializeBinaryFromReader);
+      msg.addOpResults(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.prototype.transaction_receipt_with_info.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.prototype.transaction_receipt_with_info.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.prototype.transaction_receipt_with_info} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.prototype.transaction_receipt_with_info.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStatus();
+  if (f !== 0) {
+    writer.writeUint32(
+      1,
+      f
+    );
+  }
+  f = message.getTotalGasUsage();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+  f = message.getErrorInfo();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getOpResultsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.prototype.operation_receipt_with_info.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional uint32 status = 1;
  * @return {number}
  */
-proto.prototype.transaction_receipt.prototype.getCpuUsage = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+proto.prototype.transaction_receipt_with_info.prototype.getStatus = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /** @param {number} value */
-proto.prototype.transaction_receipt.prototype.setCpuUsage = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
+proto.prototype.transaction_receipt_with_info.prototype.setStatus = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string error_info = 4;
+ * optional uint64 total_gas_usage = 2;
+ * @return {number}
+ */
+proto.prototype.transaction_receipt_with_info.prototype.getTotalGasUsage = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.transaction_receipt_with_info.prototype.setTotalGasUsage = function(value) {
+  jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional string error_info = 3;
  * @return {string}
  */
-proto.prototype.transaction_receipt.prototype.getErrorInfo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+proto.prototype.transaction_receipt_with_info.prototype.getErrorInfo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.prototype.transaction_receipt.prototype.setErrorInfo = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+proto.prototype.transaction_receipt_with_info.prototype.setErrorInfo = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * repeated operation_receipt_with_info op_results = 5;
+ * repeated operation_receipt_with_info op_results = 4;
  * @return {!Array<!proto.prototype.operation_receipt_with_info>}
  */
-proto.prototype.transaction_receipt.prototype.getOpResultsList = function() {
+proto.prototype.transaction_receipt_with_info.prototype.getOpResultsList = function() {
   return /** @type{!Array<!proto.prototype.operation_receipt_with_info>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.prototype.operation_receipt_with_info, 5));
+    jspb.Message.getRepeatedWrapperField(this, proto.prototype.operation_receipt_with_info, 4));
 };
 
 
 /** @param {!Array<!proto.prototype.operation_receipt_with_info>} value */
-proto.prototype.transaction_receipt.prototype.setOpResultsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 5, value);
+proto.prototype.transaction_receipt_with_info.prototype.setOpResultsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
 
@@ -1903,13 +2153,216 @@ proto.prototype.transaction_receipt.prototype.setOpResultsList = function(value)
  * @param {number=} opt_index
  * @return {!proto.prototype.operation_receipt_with_info}
  */
-proto.prototype.transaction_receipt.prototype.addOpResults = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.prototype.operation_receipt_with_info, opt_index);
+proto.prototype.transaction_receipt_with_info.prototype.addOpResults = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.prototype.operation_receipt_with_info, opt_index);
 };
 
 
-proto.prototype.transaction_receipt.prototype.clearOpResultsList = function() {
+proto.prototype.transaction_receipt_with_info.prototype.clearOpResultsList = function() {
   this.setOpResultsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.prototype.estimate_trx_result = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.prototype.estimate_trx_result, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.prototype.estimate_trx_result.displayName = 'proto.prototype.estimate_trx_result';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.prototype.estimate_trx_result.prototype.toObject = function(opt_includeInstance) {
+  return proto.prototype.estimate_trx_result.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.prototype.estimate_trx_result} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.prototype.estimate_trx_result.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    sigTrx: (f = msg.getSigTrx()) && proto.prototype.signed_transaction.toObject(includeInstance, f),
+    receipt: (f = msg.getReceipt()) && proto.prototype.transaction_receipt_with_info.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.prototype.estimate_trx_result}
+ */
+proto.prototype.estimate_trx_result.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.prototype.estimate_trx_result;
+  return proto.prototype.estimate_trx_result.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.prototype.estimate_trx_result} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.prototype.estimate_trx_result}
+ */
+proto.prototype.estimate_trx_result.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.prototype.signed_transaction;
+      reader.readMessage(value,proto.prototype.signed_transaction.deserializeBinaryFromReader);
+      msg.setSigTrx(value);
+      break;
+    case 2:
+      var value = new proto.prototype.transaction_receipt_with_info;
+      reader.readMessage(value,proto.prototype.transaction_receipt_with_info.deserializeBinaryFromReader);
+      msg.setReceipt(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.prototype.estimate_trx_result.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.prototype.estimate_trx_result.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.prototype.estimate_trx_result} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.prototype.estimate_trx_result.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSigTrx();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.prototype.signed_transaction.serializeBinaryToWriter
+    );
+  }
+  f = message.getReceipt();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.prototype.transaction_receipt_with_info.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional signed_transaction sig_trx = 1;
+ * @return {?proto.prototype.signed_transaction}
+ */
+proto.prototype.estimate_trx_result.prototype.getSigTrx = function() {
+  return /** @type{?proto.prototype.signed_transaction} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.signed_transaction, 1));
+};
+
+
+/** @param {?proto.prototype.signed_transaction|undefined} value */
+proto.prototype.estimate_trx_result.prototype.setSigTrx = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.prototype.estimate_trx_result.prototype.clearSigTrx = function() {
+  this.setSigTrx(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.estimate_trx_result.prototype.hasSigTrx = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional transaction_receipt_with_info receipt = 2;
+ * @return {?proto.prototype.transaction_receipt_with_info}
+ */
+proto.prototype.estimate_trx_result.prototype.getReceipt = function() {
+  return /** @type{?proto.prototype.transaction_receipt_with_info} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.transaction_receipt_with_info, 2));
+};
+
+
+/** @param {?proto.prototype.transaction_receipt_with_info|undefined} value */
+proto.prototype.estimate_trx_result.prototype.setReceipt = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.prototype.estimate_trx_result.prototype.clearReceipt = function() {
+  this.setReceipt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.estimate_trx_result.prototype.hasReceipt = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -1961,7 +2414,7 @@ proto.prototype.transaction_wrapper.prototype.toObject = function(opt_includeIns
 proto.prototype.transaction_wrapper.toObject = function(includeInstance, msg) {
   var f, obj = {
     sigTrx: (f = msg.getSigTrx()) && proto.prototype.signed_transaction.toObject(includeInstance, f),
-    receipt: (f = msg.getReceipt()) && proto.prototype.transaction_receipt.toObject(includeInstance, f)
+    invoice: (f = msg.getInvoice()) && proto.prototype.transaction_receipt.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2006,7 +2459,7 @@ proto.prototype.transaction_wrapper.deserializeBinaryFromReader = function(msg, 
     case 2:
       var value = new proto.prototype.transaction_receipt;
       reader.readMessage(value,proto.prototype.transaction_receipt.deserializeBinaryFromReader);
-      msg.setReceipt(value);
+      msg.setInvoice(value);
       break;
     default:
       reader.skipField();
@@ -2045,7 +2498,7 @@ proto.prototype.transaction_wrapper.serializeBinaryToWriter = function(message, 
       proto.prototype.signed_transaction.serializeBinaryToWriter
     );
   }
-  f = message.getReceipt();
+  f = message.getInvoice();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -2087,23 +2540,23 @@ proto.prototype.transaction_wrapper.prototype.hasSigTrx = function() {
 
 
 /**
- * optional transaction_receipt receipt = 2;
+ * optional transaction_receipt invoice = 2;
  * @return {?proto.prototype.transaction_receipt}
  */
-proto.prototype.transaction_wrapper.prototype.getReceipt = function() {
+proto.prototype.transaction_wrapper.prototype.getInvoice = function() {
   return /** @type{?proto.prototype.transaction_receipt} */ (
     jspb.Message.getWrapperField(this, proto.prototype.transaction_receipt, 2));
 };
 
 
 /** @param {?proto.prototype.transaction_receipt|undefined} value */
-proto.prototype.transaction_wrapper.prototype.setReceipt = function(value) {
+proto.prototype.transaction_wrapper.prototype.setInvoice = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.prototype.transaction_wrapper.prototype.clearReceipt = function() {
-  this.setReceipt(undefined);
+proto.prototype.transaction_wrapper.prototype.clearInvoice = function() {
+  this.setInvoice(undefined);
 };
 
 
@@ -2111,7 +2564,7 @@ proto.prototype.transaction_wrapper.prototype.clearReceipt = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.transaction_wrapper.prototype.hasReceipt = function() {
+proto.prototype.transaction_wrapper.prototype.hasInvoice = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -2166,8 +2619,7 @@ proto.prototype.block_header.toObject = function(includeInstance, msg) {
     previous: (f = msg.getPrevious()) && prototype_type_pb.sha256.toObject(includeInstance, f),
     timestamp: (f = msg.getTimestamp()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     witness: (f = msg.getWitness()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    transactionMerkleRoot: (f = msg.getTransactionMerkleRoot()) && prototype_type_pb.sha256.toObject(includeInstance, f),
-    prevApplyHash: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    transactionMerkleRoot: (f = msg.getTransactionMerkleRoot()) && prototype_type_pb.sha256.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2223,10 +2675,6 @@ proto.prototype.block_header.deserializeBinaryFromReader = function(msg, reader)
       var value = new prototype_type_pb.sha256;
       reader.readMessage(value,prototype_type_pb.sha256.deserializeBinaryFromReader);
       msg.setTransactionMerkleRoot(value);
-      break;
-    case 5:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setPrevApplyHash(value);
       break;
     default:
       reader.skipField();
@@ -2287,13 +2735,6 @@ proto.prototype.block_header.serializeBinaryToWriter = function(message, writer)
       4,
       f,
       prototype_type_pb.sha256.serializeBinaryToWriter
-    );
-  }
-  f = message.getPrevApplyHash();
-  if (f !== 0) {
-    writer.writeUint64(
-      5,
-      f
     );
   }
 };
@@ -2416,21 +2857,6 @@ proto.prototype.block_header.prototype.clearTransactionMerkleRoot = function() {
  */
 proto.prototype.block_header.prototype.hasTransactionMerkleRoot = function() {
   return jspb.Message.getField(this, 4) != null;
-};
-
-
-/**
- * optional uint64 prev_apply_hash = 5;
- * @return {number}
- */
-proto.prototype.block_header.prototype.getPrevApplyHash = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.block_header.prototype.setPrevApplyHash = function(value) {
-  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
