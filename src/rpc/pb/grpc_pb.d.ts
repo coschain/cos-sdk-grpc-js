@@ -284,6 +284,20 @@ export class AccountInfo extends jspb.Message {
   getVotePower(): number;
   setVotePower(value: number): void;
 
+  getStaminaFreeRemain(): number;
+  setStaminaFreeRemain(value: number): void;
+
+  getStaminaStakeRemain(): number;
+  setStaminaStakeRemain(value: number): void;
+
+  getStaminaMax(): number;
+  setStaminaMax(value: number): void;
+
+  hasStakeVest(): boolean;
+  clearStakeVest(): void;
+  getStakeVest(): prototype_type_pb.vest | undefined;
+  setStakeVest(value?: prototype_type_pb.vest): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -307,6 +321,10 @@ export namespace AccountInfo {
     followingCount: number,
     trxCount: number,
     votePower: number,
+    staminaFreeRemain: number,
+    staminaStakeRemain: number,
+    staminaMax: number,
+    stakeVest?: prototype_type_pb.vest.AsObject,
   }
 }
 
@@ -596,6 +614,15 @@ export class WitnessResponse extends jspb.Message {
   getRunningVersion(): number;
   setRunningVersion(value: number): void;
 
+  getProposedStaminaFree(): number;
+  setProposedStaminaFree(value: number): void;
+
+  getActive(): boolean;
+  setActive(value: boolean): void;
+
+  getTpsExpected(): number;
+  setTpsExpected(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WitnessResponse.AsObject;
   static toObject(includeInstance: boolean, msg: WitnessResponse): WitnessResponse.AsObject;
@@ -617,6 +644,9 @@ export namespace WitnessResponse {
     signingKey?: prototype_type_pb.public_key_type.AsObject,
     lastWork?: prototype_type_pb.sha256.AsObject,
     runningVersion: number,
+    proposedStaminaFree: number,
+    active: boolean,
+    tpsExpected: number,
   }
 }
 
@@ -747,8 +777,8 @@ export class PostResponse extends jspb.Message {
   getGlobalRewards(): prototype_type_pb.vest | undefined;
   setGlobalRewards(value?: prototype_type_pb.vest): void;
 
-  getGlobalWeightedVp(): number;
-  setGlobalWeightedVp(value: number): void;
+  getGlobalWeightedVp(): string;
+  setGlobalWeightedVp(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
@@ -782,7 +812,7 @@ export namespace PostResponse {
     dappRewards?: prototype_type_pb.vest.AsObject,
     cashoutInterval: number,
     globalRewards?: prototype_type_pb.vest.AsObject,
-    globalWeightedVp: number,
+    globalWeightedVp: string,
   }
 }
 
@@ -1023,8 +1053,8 @@ export namespace BroadcastTrxRequest {
 export class BroadcastTrxResponse extends jspb.Message {
   hasInvoice(): boolean;
   clearInvoice(): void;
-  getInvoice(): prototype_transaction_pb.transaction_receipt_with_info | undefined;
-  setInvoice(value?: prototype_transaction_pb.transaction_receipt_with_info): void;
+  getInvoice(): prototype_transaction_pb.transaction_receipt | undefined;
+  setInvoice(value?: prototype_transaction_pb.transaction_receipt): void;
 
   getStatus(): number;
   setStatus(value: number): void;
@@ -1044,7 +1074,7 @@ export class BroadcastTrxResponse extends jspb.Message {
 
 export namespace BroadcastTrxResponse {
   export type AsObject = {
-    invoice?: prototype_transaction_pb.transaction_receipt_with_info.AsObject,
+    invoice?: prototype_transaction_pb.transaction_receipt.AsObject,
     status: number,
     msg: string,
   }
@@ -2142,6 +2172,9 @@ export class ContractInfo extends jspb.Message {
   getApplyCount(): number;
   setApplyCount(value: number): void;
 
+  getUpgradeable(): boolean;
+  setUpgradeable(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ContractInfo.AsObject;
   static toObject(includeInstance: boolean, msg: ContractInfo): ContractInfo.AsObject;
@@ -2159,6 +2192,7 @@ export namespace ContractInfo {
     createTime?: prototype_type_pb.time_point_sec.AsObject,
     balance?: prototype_type_pb.coin.AsObject,
     applyCount: number,
+    upgradeable: boolean,
   }
 }
 

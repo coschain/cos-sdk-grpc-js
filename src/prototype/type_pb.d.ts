@@ -200,6 +200,12 @@ export class chain_properties extends jspb.Message {
   getMaximumBlockSize(): number;
   setMaximumBlockSize(value: number): void;
 
+  getStaminaFree(): number;
+  setStaminaFree(value: number): void;
+
+  getTpsExpected(): number;
+  setTpsExpected(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): chain_properties.AsObject;
   static toObject(includeInstance: boolean, msg: chain_properties): chain_properties.AsObject;
@@ -214,6 +220,8 @@ export namespace chain_properties {
   export type AsObject = {
     accountCreationFee?: coin.AsObject,
     maximumBlockSize: number,
+    staminaFree: number,
+    tpsExpected: number,
   }
 }
 
@@ -266,8 +274,8 @@ export class dynamic_properties extends jspb.Message {
   getCurrentAslot(): number;
   setCurrentAslot(value: number): void;
 
-  getPostWeightedVps(): number;
-  setPostWeightedVps(value: number): void;
+  getPostWeightedVps(): string;
+  setPostWeightedVps(value: string): void;
 
   hasPostRewards(): boolean;
   clearPostRewards(): void;
@@ -325,13 +333,36 @@ export class dynamic_properties extends jspb.Message {
   getReplyRewards(): vest | undefined;
   setReplyRewards(value?: vest): void;
 
-  getReplyWeightedVps(): number;
-  setReplyWeightedVps(value: number): void;
+  getReplyWeightedVps(): string;
+  setReplyWeightedVps(value: string): void;
 
   hasReplyDappRewards(): boolean;
   clearReplyDappRewards(): void;
   getReplyDappRewards(): vest | undefined;
   setReplyDappRewards(value?: vest): void;
+
+  hasStakeVestingShares(): boolean;
+  clearStakeVestingShares(): void;
+  getStakeVestingShares(): vest | undefined;
+  setStakeVestingShares(value?: vest): void;
+
+  getWitnessBootCompleted(): boolean;
+  setWitnessBootCompleted(value: boolean): void;
+
+  getStaminaFree(): number;
+  setStaminaFree(value: number): void;
+
+  getTpsExpected(): number;
+  setTpsExpected(value: number): void;
+
+  getAvgTpsUpdateBlock(): number;
+  setAvgTpsUpdateBlock(value: number): void;
+
+  getAvgTpsInWindow(): number;
+  setAvgTpsInWindow(value: number): void;
+
+  getOneDayStamina(): number;
+  setOneDayStamina(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): dynamic_properties.AsObject;
@@ -357,7 +388,7 @@ export namespace dynamic_properties {
     totalVestingShares?: vest.AsObject,
     currentSupply?: coin.AsObject,
     currentAslot: number,
-    postWeightedVps: number,
+    postWeightedVps: string,
     postRewards?: vest.AsObject,
     totalTrxCnt: number,
     totalPostCnt: number,
@@ -372,8 +403,15 @@ export namespace dynamic_properties {
     postDappRewards?: vest.AsObject,
     voterRewards?: vest.AsObject,
     replyRewards?: vest.AsObject,
-    replyWeightedVps: number,
+    replyWeightedVps: string,
     replyDappRewards?: vest.AsObject,
+    stakeVestingShares?: vest.AsObject,
+    witnessBootCompleted: boolean,
+    staminaFree: number,
+    tpsExpected: number,
+    avgTpsUpdateBlock: number,
+    avgTpsInWindow: number,
+    oneDayStamina: number,
   }
 }
 

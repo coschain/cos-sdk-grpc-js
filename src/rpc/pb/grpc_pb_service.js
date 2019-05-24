@@ -28,15 +28,6 @@ ApiService.GetAccountByName = {
   responseType: rpc_pb_grpc_pb.AccountResponse
 };
 
-ApiService.GetAccountRewardByName = {
-  methodName: "GetAccountRewardByName",
-  service: ApiService,
-  requestStream: false,
-  responseStream: false,
-  requestType: rpc_pb_grpc_pb.GetAccountRewardByNameRequest,
-  responseType: rpc_pb_grpc_pb.AccountRewardResponse
-};
-
 ApiService.GetAccountCashout = {
   methodName: "GetAccountCashout",
   service: ApiService,
@@ -332,37 +323,6 @@ ApiServiceClient.prototype.getAccountByName = function getAccountByName(requestM
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetAccountByName, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-ApiServiceClient.prototype.getAccountRewardByName = function getAccountRewardByName(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(ApiService.GetAccountRewardByName, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

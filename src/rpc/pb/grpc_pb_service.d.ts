@@ -22,15 +22,6 @@ type ApiServiceGetAccountByName = {
   readonly responseType: typeof rpc_pb_grpc_pb.AccountResponse;
 };
 
-type ApiServiceGetAccountRewardByName = {
-  readonly methodName: string;
-  readonly service: typeof ApiService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof rpc_pb_grpc_pb.GetAccountRewardByNameRequest;
-  readonly responseType: typeof rpc_pb_grpc_pb.AccountRewardResponse;
-};
-
 type ApiServiceGetAccountCashout = {
   readonly methodName: string;
   readonly service: typeof ApiService;
@@ -287,7 +278,6 @@ export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
   static readonly GetAccountByName: ApiServiceGetAccountByName;
-  static readonly GetAccountRewardByName: ApiServiceGetAccountRewardByName;
   static readonly GetAccountCashout: ApiServiceGetAccountCashout;
   static readonly GetBlockCashout: ApiServiceGetBlockCashout;
   static readonly GetFollowerListByName: ApiServiceGetFollowerListByName;
@@ -367,15 +357,6 @@ export class ApiServiceClient {
   getAccountByName(
     requestMessage: rpc_pb_grpc_pb.GetAccountByNameRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountResponse|null) => void
-  ): UnaryResponse;
-  getAccountRewardByName(
-    requestMessage: rpc_pb_grpc_pb.GetAccountRewardByNameRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountRewardResponse|null) => void
-  ): UnaryResponse;
-  getAccountRewardByName(
-    requestMessage: rpc_pb_grpc_pb.GetAccountRewardByNameRequest,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountRewardResponse|null) => void
   ): UnaryResponse;
   getAccountCashout(
     requestMessage: rpc_pb_grpc_pb.GetAccountCashoutRequest,

@@ -262,36 +262,6 @@ export namespace contract_id {
   }
 }
 
-export class contract_data_id extends jspb.Message {
-  hasOwner(): boolean;
-  clearOwner(): void;
-  getOwner(): prototype_type_pb.account_name | undefined;
-  setOwner(value?: prototype_type_pb.account_name): void;
-
-  getCname(): string;
-  setCname(value: string): void;
-
-  getPos(): number;
-  setPos(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): contract_data_id.AsObject;
-  static toObject(includeInstance: boolean, msg: contract_data_id): contract_data_id.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: contract_data_id, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): contract_data_id;
-  static deserializeBinaryFromReader(message: contract_data_id, reader: jspb.BinaryReader): contract_data_id;
-}
-
-export namespace contract_data_id {
-  export type AsObject = {
-    owner?: prototype_type_pb.account_name.AsObject,
-    cname: string,
-    pos: number,
-  }
-}
-
 export class reply_created_order extends jspb.Message {
   getParentId(): number;
   setParentId(value: number): void;

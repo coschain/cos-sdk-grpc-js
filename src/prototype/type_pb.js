@@ -1446,7 +1446,9 @@ proto.prototype.chain_properties.prototype.toObject = function(opt_includeInstan
 proto.prototype.chain_properties.toObject = function(includeInstance, msg) {
   var f, obj = {
     accountCreationFee: (f = msg.getAccountCreationFee()) && proto.prototype.coin.toObject(includeInstance, f),
-    maximumBlockSize: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    maximumBlockSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    staminaFree: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -1492,6 +1494,14 @@ proto.prototype.chain_properties.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {number} */ (reader.readUint32());
       msg.setMaximumBlockSize(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setStaminaFree(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTpsExpected(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1533,6 +1543,20 @@ proto.prototype.chain_properties.serializeBinaryToWriter = function(message, wri
   if (f !== 0) {
     writer.writeUint32(
       2,
+      f
+    );
+  }
+  f = message.getStaminaFree();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
+    );
+  }
+  f = message.getTpsExpected();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
       f
     );
   }
@@ -1581,6 +1605,36 @@ proto.prototype.chain_properties.prototype.getMaximumBlockSize = function() {
 /** @param {number} value */
 proto.prototype.chain_properties.prototype.setMaximumBlockSize = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional uint64 stamina_free = 3;
+ * @return {number}
+ */
+proto.prototype.chain_properties.prototype.getStaminaFree = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.chain_properties.prototype.setStaminaFree = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 tps_expected = 4;
+ * @return {number}
+ */
+proto.prototype.chain_properties.prototype.getTpsExpected = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.chain_properties.prototype.setTpsExpected = function(value) {
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -1643,7 +1697,7 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     totalVestingShares: (f = msg.getTotalVestingShares()) && proto.prototype.vest.toObject(includeInstance, f),
     currentSupply: (f = msg.getCurrentSupply()) && proto.prototype.coin.toObject(includeInstance, f),
     currentAslot: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    postWeightedVps: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    postWeightedVps: jspb.Message.getFieldWithDefault(msg, 13, ""),
     postRewards: (f = msg.getPostRewards()) && proto.prototype.vest.toObject(includeInstance, f),
     totalTrxCnt: jspb.Message.getFieldWithDefault(msg, 15, 0),
     totalPostCnt: jspb.Message.getFieldWithDefault(msg, 16, 0),
@@ -1658,8 +1712,15 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     postDappRewards: (f = msg.getPostDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
     voterRewards: (f = msg.getVoterRewards()) && proto.prototype.vest.toObject(includeInstance, f),
     replyRewards: (f = msg.getReplyRewards()) && proto.prototype.vest.toObject(includeInstance, f),
-    replyWeightedVps: jspb.Message.getFieldWithDefault(msg, 28, 0),
-    replyDappRewards: (f = msg.getReplyDappRewards()) && proto.prototype.vest.toObject(includeInstance, f)
+    replyWeightedVps: jspb.Message.getFieldWithDefault(msg, 28, ""),
+    replyDappRewards: (f = msg.getReplyDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    stakeVestingShares: (f = msg.getStakeVestingShares()) && proto.prototype.vest.toObject(includeInstance, f),
+    witnessBootCompleted: jspb.Message.getFieldWithDefault(msg, 31, false),
+    staminaFree: jspb.Message.getFieldWithDefault(msg, 32, 0),
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 33, 0),
+    avgTpsUpdateBlock: jspb.Message.getFieldWithDefault(msg, 34, 0),
+    avgTpsInWindow: jspb.Message.getFieldWithDefault(msg, 35, 0),
+    oneDayStamina: jspb.Message.getFieldWithDefault(msg, 36, 0)
   };
 
   if (includeInstance) {
@@ -1751,7 +1812,7 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       msg.setCurrentAslot(value);
       break;
     case 13:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPostWeightedVps(value);
       break;
     case 14:
@@ -1818,13 +1879,42 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       msg.setReplyRewards(value);
       break;
     case 28:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setReplyWeightedVps(value);
       break;
     case 29:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
       msg.setReplyDappRewards(value);
+      break;
+    case 30:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setStakeVestingShares(value);
+      break;
+    case 31:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setWitnessBootCompleted(value);
+      break;
+    case 32:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setStaminaFree(value);
+      break;
+    case 33:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTpsExpected(value);
+      break;
+    case 34:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAvgTpsUpdateBlock(value);
+      break;
+    case 35:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAvgTpsInWindow(value);
+      break;
+    case 36:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setOneDayStamina(value);
       break;
     default:
       reader.skipField();
@@ -1946,8 +2036,8 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
     );
   }
   f = message.getPostWeightedVps();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (f.length > 0) {
+    writer.writeString(
       13,
       f
     );
@@ -2058,8 +2148,8 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
     );
   }
   f = message.getReplyWeightedVps();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (f.length > 0) {
+    writer.writeString(
       28,
       f
     );
@@ -2070,6 +2160,56 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       29,
       f,
       proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getStakeVestingShares();
+  if (f != null) {
+    writer.writeMessage(
+      30,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getWitnessBootCompleted();
+  if (f) {
+    writer.writeBool(
+      31,
+      f
+    );
+  }
+  f = message.getStaminaFree();
+  if (f !== 0) {
+    writer.writeUint64(
+      32,
+      f
+    );
+  }
+  f = message.getTpsExpected();
+  if (f !== 0) {
+    writer.writeUint64(
+      33,
+      f
+    );
+  }
+  f = message.getAvgTpsUpdateBlock();
+  if (f !== 0) {
+    writer.writeUint64(
+      34,
+      f
+    );
+  }
+  f = message.getAvgTpsInWindow();
+  if (f !== 0) {
+    writer.writeUint64(
+      35,
+      f
+    );
+  }
+  f = message.getOneDayStamina();
+  if (f !== 0) {
+    writer.writeUint64(
+      36,
+      f
     );
   }
 };
@@ -2346,17 +2486,17 @@ proto.prototype.dynamic_properties.prototype.setCurrentAslot = function(value) {
 
 
 /**
- * optional uint64 post_weighted_vps = 13;
- * @return {number}
+ * optional string post_weighted_vps = 13;
+ * @return {string}
  */
 proto.prototype.dynamic_properties.prototype.getPostWeightedVps = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.prototype.dynamic_properties.prototype.setPostWeightedVps = function(value) {
-  jspb.Message.setProto3IntField(this, 13, value);
+  jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
@@ -2676,17 +2816,17 @@ proto.prototype.dynamic_properties.prototype.hasReplyRewards = function() {
 
 
 /**
- * optional uint64 reply_weighted_vps = 28;
- * @return {number}
+ * optional string reply_weighted_vps = 28;
+ * @return {string}
  */
 proto.prototype.dynamic_properties.prototype.getReplyWeightedVps = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 28, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 28, ""));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.prototype.dynamic_properties.prototype.setReplyWeightedVps = function(value) {
-  jspb.Message.setProto3IntField(this, 28, value);
+  jspb.Message.setProto3StringField(this, 28, value);
 };
 
 
@@ -2717,6 +2857,128 @@ proto.prototype.dynamic_properties.prototype.clearReplyDappRewards = function() 
  */
 proto.prototype.dynamic_properties.prototype.hasReplyDappRewards = function() {
   return jspb.Message.getField(this, 29) != null;
+};
+
+
+/**
+ * optional vest stake_vesting_shares = 30;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getStakeVestingShares = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 30));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setStakeVestingShares = function(value) {
+  jspb.Message.setWrapperField(this, 30, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearStakeVestingShares = function() {
+  this.setStakeVestingShares(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasStakeVestingShares = function() {
+  return jspb.Message.getField(this, 30) != null;
+};
+
+
+/**
+ * optional bool witness_boot_completed = 31;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.prototype.dynamic_properties.prototype.getWitnessBootCompleted = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 31, false));
+};
+
+
+/** @param {boolean} value */
+proto.prototype.dynamic_properties.prototype.setWitnessBootCompleted = function(value) {
+  jspb.Message.setProto3BooleanField(this, 31, value);
+};
+
+
+/**
+ * optional uint64 stamina_free = 32;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getStaminaFree = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 32, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setStaminaFree = function(value) {
+  jspb.Message.setProto3IntField(this, 32, value);
+};
+
+
+/**
+ * optional uint64 tps_expected = 33;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getTpsExpected = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 33, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setTpsExpected = function(value) {
+  jspb.Message.setProto3IntField(this, 33, value);
+};
+
+
+/**
+ * optional uint64 avg_tps_update_block = 34;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getAvgTpsUpdateBlock = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 34, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setAvgTpsUpdateBlock = function(value) {
+  jspb.Message.setProto3IntField(this, 34, value);
+};
+
+
+/**
+ * optional uint64 avg_tps_in_window = 35;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getAvgTpsInWindow = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 35, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setAvgTpsInWindow = function(value) {
+  jspb.Message.setProto3IntField(this, 35, value);
+};
+
+
+/**
+ * optional uint64 one_day_stamina = 36;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getOneDayStamina = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 36, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setOneDayStamina = function(value) {
+  jspb.Message.setProto3IntField(this, 36, value);
 };
 
 

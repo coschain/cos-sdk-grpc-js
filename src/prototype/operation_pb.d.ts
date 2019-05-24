@@ -188,6 +188,36 @@ export namespace bp_register_operation {
   }
 }
 
+export class bp_update_operation extends jspb.Message {
+  hasOwner(): boolean;
+  clearOwner(): void;
+  getOwner(): prototype_type_pb.account_name | undefined;
+  setOwner(value?: prototype_type_pb.account_name): void;
+
+  getProposedStaminaFree(): number;
+  setProposedStaminaFree(value: number): void;
+
+  getTpsExpected(): number;
+  setTpsExpected(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): bp_update_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: bp_update_operation): bp_update_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: bp_update_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): bp_update_operation;
+  static deserializeBinaryFromReader(message: bp_update_operation, reader: jspb.BinaryReader): bp_update_operation;
+}
+
+export namespace bp_update_operation {
+  export type AsObject = {
+    owner?: prototype_type_pb.account_name.AsObject,
+    proposedStaminaFree: number,
+    tpsExpected: number,
+  }
+}
+
 export class bp_unregister_operation extends jspb.Message {
   hasOwner(): boolean;
   clearOwner(): void;
@@ -283,13 +313,18 @@ export class contract_deploy_operation extends jspb.Message {
   getContract(): string;
   setContract(value: string): void;
 
-  getAbi(): string;
-  setAbi(value: string): void;
+  getAbi(): Uint8Array | string;
+  getAbi_asU8(): Uint8Array;
+  getAbi_asB64(): string;
+  setAbi(value: Uint8Array | string): void;
 
   getCode(): Uint8Array | string;
   getCode_asU8(): Uint8Array;
   getCode_asB64(): string;
   setCode(value: Uint8Array | string): void;
+
+  getUpgradeable(): boolean;
+  setUpgradeable(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): contract_deploy_operation.AsObject;
@@ -305,8 +340,9 @@ export namespace contract_deploy_operation {
   export type AsObject = {
     owner?: prototype_type_pb.account_name.AsObject,
     contract: string,
-    abi: string,
+    abi: Uint8Array | string,
     code: Uint8Array | string,
+    upgradeable: boolean,
   }
 }
 
@@ -335,11 +371,6 @@ export class contract_apply_operation extends jspb.Message {
   getAmount(): prototype_type_pb.coin | undefined;
   setAmount(value?: prototype_type_pb.coin): void;
 
-  hasGas(): boolean;
-  clearGas(): void;
-  getGas(): prototype_type_pb.coin | undefined;
-  setGas(value?: prototype_type_pb.coin): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): contract_apply_operation.AsObject;
   static toObject(includeInstance: boolean, msg: contract_apply_operation): contract_apply_operation.AsObject;
@@ -358,7 +389,6 @@ export namespace contract_apply_operation {
     method: string,
     params: string,
     amount?: prototype_type_pb.coin.AsObject,
-    gas?: prototype_type_pb.coin.AsObject,
   }
 }
 
@@ -400,11 +430,6 @@ export class internal_contract_apply_operation extends jspb.Message {
   getAmount(): prototype_type_pb.coin | undefined;
   setAmount(value?: prototype_type_pb.coin): void;
 
-  hasGas(): boolean;
-  clearGas(): void;
-  getGas(): prototype_type_pb.coin | undefined;
-  setGas(value?: prototype_type_pb.coin): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): internal_contract_apply_operation.AsObject;
   static toObject(includeInstance: boolean, msg: internal_contract_apply_operation): internal_contract_apply_operation.AsObject;
@@ -426,7 +451,6 @@ export namespace internal_contract_apply_operation {
     toMethod: string,
     params: Uint8Array | string,
     amount?: prototype_type_pb.coin.AsObject,
-    gas?: prototype_type_pb.coin.AsObject,
   }
 }
 
@@ -639,6 +663,58 @@ export namespace convert_vesting_operation {
   export type AsObject = {
     from?: prototype_type_pb.account_name.AsObject,
     amount?: prototype_type_pb.vest.AsObject,
+  }
+}
+
+export class stake_operation extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): prototype_type_pb.account_name | undefined;
+  setAccount(value?: prototype_type_pb.account_name): void;
+
+  getAmount(): number;
+  setAmount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): stake_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: stake_operation): stake_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: stake_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): stake_operation;
+  static deserializeBinaryFromReader(message: stake_operation, reader: jspb.BinaryReader): stake_operation;
+}
+
+export namespace stake_operation {
+  export type AsObject = {
+    account?: prototype_type_pb.account_name.AsObject,
+    amount: number,
+  }
+}
+
+export class un_stake_operation extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): prototype_type_pb.account_name | undefined;
+  setAccount(value?: prototype_type_pb.account_name): void;
+
+  getAmount(): number;
+  setAmount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): un_stake_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: un_stake_operation): un_stake_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: un_stake_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): un_stake_operation;
+  static deserializeBinaryFromReader(message: un_stake_operation, reader: jspb.BinaryReader): un_stake_operation;
+}
+
+export namespace un_stake_operation {
+  export type AsObject = {
+    account?: prototype_type_pb.account_name.AsObject,
+    amount: number,
   }
 }
 
