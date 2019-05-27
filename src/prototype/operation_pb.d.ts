@@ -718,3 +718,37 @@ export namespace un_stake_operation {
   }
 }
 
+export class transfer_to_stake_vesting_operation extends jspb.Message {
+  hasFrom(): boolean;
+  clearFrom(): void;
+  getFrom(): prototype_type_pb.account_name | undefined;
+  setFrom(value?: prototype_type_pb.account_name): void;
+
+  hasTo(): boolean;
+  clearTo(): void;
+  getTo(): prototype_type_pb.account_name | undefined;
+  setTo(value?: prototype_type_pb.account_name): void;
+
+  hasAmount(): boolean;
+  clearAmount(): void;
+  getAmount(): prototype_type_pb.coin | undefined;
+  setAmount(value?: prototype_type_pb.coin): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): transfer_to_stake_vesting_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: transfer_to_stake_vesting_operation): transfer_to_stake_vesting_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: transfer_to_stake_vesting_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): transfer_to_stake_vesting_operation;
+  static deserializeBinaryFromReader(message: transfer_to_stake_vesting_operation, reader: jspb.BinaryReader): transfer_to_stake_vesting_operation;
+}
+
+export namespace transfer_to_stake_vesting_operation {
+  export type AsObject = {
+    from?: prototype_type_pb.account_name.AsObject,
+    to?: prototype_type_pb.account_name.AsObject,
+    amount?: prototype_type_pb.coin.AsObject,
+  }
+}
+

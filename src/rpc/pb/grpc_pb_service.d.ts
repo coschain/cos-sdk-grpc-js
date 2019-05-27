@@ -112,15 +112,6 @@ type ApiServiceGetChainState = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetChainStateResponse;
 };
 
-type ApiServiceGetStatisticsInfo = {
-  readonly methodName: string;
-  readonly service: typeof ApiService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof rpc_pb_grpc_pb.NonParamsRequest;
-  readonly responseType: typeof rpc_pb_grpc_pb.GetStatResponse;
-};
-
 type ApiServiceBroadcastTrx = {
   readonly methodName: string;
   readonly service: typeof ApiService;
@@ -288,7 +279,6 @@ export class ApiService {
   static readonly GetReplyListByPostId: ApiServiceGetReplyListByPostId;
   static readonly GetBlockTransactionsByNum: ApiServiceGetBlockTransactionsByNum;
   static readonly GetChainState: ApiServiceGetChainState;
-  static readonly GetStatisticsInfo: ApiServiceGetStatisticsInfo;
   static readonly BroadcastTrx: ApiServiceBroadcastTrx;
   static readonly GetBlockList: ApiServiceGetBlockList;
   static readonly GetSignedBlock: ApiServiceGetSignedBlock;
@@ -447,15 +437,6 @@ export class ApiServiceClient {
   getChainState(
     requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetChainStateResponse|null) => void
-  ): UnaryResponse;
-  getStatisticsInfo(
-    requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetStatResponse|null) => void
-  ): UnaryResponse;
-  getStatisticsInfo(
-    requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetStatResponse|null) => void
   ): UnaryResponse;
   broadcastTrx(
     requestMessage: rpc_pb_grpc_pb.BroadcastTrxRequest,

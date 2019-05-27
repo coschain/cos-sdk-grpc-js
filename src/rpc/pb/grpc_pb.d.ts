@@ -996,34 +996,6 @@ export namespace GetChainStateResponse {
   }
 }
 
-export class GetStatResponse extends jspb.Message {
-  hasState(): boolean;
-  clearState(): void;
-  getState(): ChainState | undefined;
-  setState(value?: ChainState): void;
-
-  clearDailyTrxCountsList(): void;
-  getDailyTrxCountsList(): Array<number>;
-  setDailyTrxCountsList(value: Array<number>): void;
-  addDailyTrxCounts(value: number, index?: number): number;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetStatResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetStatResponse): GetStatResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetStatResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetStatResponse;
-  static deserializeBinaryFromReader(message: GetStatResponse, reader: jspb.BinaryReader): GetStatResponse;
-}
-
-export namespace GetStatResponse {
-  export type AsObject = {
-    state?: ChainState.AsObject,
-    dailyTrxCountsList: Array<number>,
-  }
-}
-
 export class BroadcastTrxRequest extends jspb.Message {
   hasTransaction(): boolean;
   clearTransaction(): void;
