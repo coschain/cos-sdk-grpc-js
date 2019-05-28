@@ -271,6 +271,15 @@ ApiService.GetContractListByTime = {
   responseType: rpc_pb_grpc_pb.GetContractListResponse
 };
 
+ApiService.GetWitnessListByVoteCount = {
+  methodName: "GetWitnessListByVoteCount",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetWitnessListByVoteCountRequest,
+  responseType: rpc_pb_grpc_pb.GetWitnessListResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -1151,6 +1160,37 @@ ApiServiceClient.prototype.getContractListByTime = function getContractListByTim
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetContractListByTime, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getWitnessListByVoteCount = function getWitnessListByVoteCount(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetWitnessListByVoteCount, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

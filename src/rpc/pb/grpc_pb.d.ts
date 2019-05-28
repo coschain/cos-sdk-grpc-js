@@ -592,12 +592,6 @@ export class WitnessResponse extends jspb.Message {
   getUrl(): string;
   setUrl(value: string): void;
 
-  getLastConfirmedBlockNum(): number;
-  setLastConfirmedBlockNum(value: number): void;
-
-  getTotalMissed(): number;
-  setTotalMissed(value: number): void;
-
   getVoteCount(): number;
   setVoteCount(value: number): void;
 
@@ -605,14 +599,6 @@ export class WitnessResponse extends jspb.Message {
   clearSigningKey(): void;
   getSigningKey(): prototype_type_pb.public_key_type | undefined;
   setSigningKey(value?: prototype_type_pb.public_key_type): void;
-
-  hasLastWork(): boolean;
-  clearLastWork(): void;
-  getLastWork(): prototype_type_pb.sha256 | undefined;
-  setLastWork(value?: prototype_type_pb.sha256): void;
-
-  getRunningVersion(): number;
-  setRunningVersion(value: number): void;
 
   getProposedStaminaFree(): number;
   setProposedStaminaFree(value: number): void;
@@ -638,12 +624,8 @@ export namespace WitnessResponse {
     owner?: prototype_type_pb.account_name.AsObject,
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
     url: string,
-    lastConfirmedBlockNum: number,
-    totalMissed: number,
     voteCount: number,
     signingKey?: prototype_type_pb.public_key_type.AsObject,
-    lastWork?: prototype_type_pb.sha256.AsObject,
-    runningVersion: number,
     proposedStaminaFree: number,
     active: boolean,
     tpsExpected: number,
@@ -2225,6 +2207,40 @@ export class GetContractListResponse extends jspb.Message {
 export namespace GetContractListResponse {
   export type AsObject = {
     contractListList: Array<ContractInfo.AsObject>,
+  }
+}
+
+export class GetWitnessListByVoteCountRequest extends jspb.Message {
+  getStart(): string;
+  setStart(value: string): void;
+
+  getEnd(): string;
+  setEnd(value: string): void;
+
+  hasLastWitness(): boolean;
+  clearLastWitness(): void;
+  getLastWitness(): WitnessResponse | undefined;
+  setLastWitness(value?: WitnessResponse): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetWitnessListByVoteCountRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetWitnessListByVoteCountRequest): GetWitnessListByVoteCountRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetWitnessListByVoteCountRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetWitnessListByVoteCountRequest;
+  static deserializeBinaryFromReader(message: GetWitnessListByVoteCountRequest, reader: jspb.BinaryReader): GetWitnessListByVoteCountRequest;
+}
+
+export namespace GetWitnessListByVoteCountRequest {
+  export type AsObject = {
+    start: string,
+    end: string,
+    lastWitness?: WitnessResponse.AsObject,
+    limit: number,
   }
 }
 

@@ -265,6 +265,15 @@ type ApiServiceGetContractListByTime = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetContractListResponse;
 };
 
+type ApiServiceGetWitnessListByVoteCount = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetWitnessListByVoteCountRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetWitnessListResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -296,6 +305,7 @@ export class ApiService {
   static readonly GetAccountListByCreTime: ApiServiceGetAccountListByCreTime;
   static readonly GetDailyStats: ApiServiceGetDailyStats;
   static readonly GetContractListByTime: ApiServiceGetContractListByTime;
+  static readonly GetWitnessListByVoteCount: ApiServiceGetWitnessListByVoteCount;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -590,6 +600,15 @@ export class ApiServiceClient {
   getContractListByTime(
     requestMessage: rpc_pb_grpc_pb.GetContractListByTimeRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetContractListResponse|null) => void
+  ): UnaryResponse;
+  getWitnessListByVoteCount(
+    requestMessage: rpc_pb_grpc_pb.GetWitnessListByVoteCountRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetWitnessListResponse|null) => void
+  ): UnaryResponse;
+  getWitnessListByVoteCount(
+    requestMessage: rpc_pb_grpc_pb.GetWitnessListByVoteCountRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetWitnessListResponse|null) => void
   ): UnaryResponse;
 }
 

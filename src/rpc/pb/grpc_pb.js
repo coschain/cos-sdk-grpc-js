@@ -75,6 +75,7 @@ goog.exportSymbol('proto.grpcpb.GetTrxListByTimeRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetTrxListByTimeResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetUserTrxListByTimeRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetUserTrxListByTimeResponse', null, global);
+goog.exportSymbol('proto.grpcpb.GetWitnessListByVoteCountRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetWitnessListRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetWitnessListResponse', null, global);
 goog.exportSymbol('proto.grpcpb.NonParamsRequest', null, global);
@@ -4263,16 +4264,12 @@ proto.grpcpb.WitnessResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     createdTime: (f = msg.getCreatedTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
-    url: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    lastConfirmedBlockNum: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    totalMissed: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    voteCount: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    url: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    voteCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
     signingKey: (f = msg.getSigningKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
-    lastWork: (f = msg.getLastWork()) && prototype_type_pb.sha256.toObject(includeInstance, f),
-    runningVersion: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    proposedStaminaFree: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    active: jspb.Message.getFieldWithDefault(msg, 11, false),
-    tpsExpected: jspb.Message.getFieldWithDefault(msg, 12, 0)
+    proposedStaminaFree: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    active: jspb.Message.getFieldWithDefault(msg, 7, false),
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -4314,50 +4311,33 @@ proto.grpcpb.WitnessResponse.deserializeBinaryFromReader = function(msg, reader)
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
       msg.setOwner(value);
       break;
-    case 3:
+    case 2:
       var value = new prototype_type_pb.time_point_sec;
       reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
       msg.setCreatedTime(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setUrl(value);
       break;
-    case 5:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setLastConfirmedBlockNum(value);
-      break;
-    case 6:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setTotalMissed(value);
-      break;
-    case 7:
+    case 4:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setVoteCount(value);
       break;
-    case 8:
+    case 5:
       var value = new prototype_type_pb.public_key_type;
       reader.readMessage(value,prototype_type_pb.public_key_type.deserializeBinaryFromReader);
       msg.setSigningKey(value);
       break;
-    case 9:
-      var value = new prototype_type_pb.sha256;
-      reader.readMessage(value,prototype_type_pb.sha256.deserializeBinaryFromReader);
-      msg.setLastWork(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setRunningVersion(value);
-      break;
-    case 10:
+    case 6:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setProposedStaminaFree(value);
       break;
-    case 11:
+    case 7:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setActive(value);
       break;
-    case 12:
+    case 8:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTpsExpected(value);
       break;
@@ -4401,7 +4381,7 @@ proto.grpcpb.WitnessResponse.serializeBinaryToWriter = function(message, writer)
   f = message.getCreatedTime();
   if (f != null) {
     writer.writeMessage(
-      3,
+      2,
       f,
       prototype_type_pb.time_point_sec.serializeBinaryToWriter
     );
@@ -4409,72 +4389,43 @@ proto.grpcpb.WitnessResponse.serializeBinaryToWriter = function(message, writer)
   f = message.getUrl();
   if (f.length > 0) {
     writer.writeString(
-      4,
-      f
-    );
-  }
-  f = message.getLastConfirmedBlockNum();
-  if (f !== 0) {
-    writer.writeUint32(
-      5,
-      f
-    );
-  }
-  f = message.getTotalMissed();
-  if (f !== 0) {
-    writer.writeUint32(
-      6,
+      3,
       f
     );
   }
   f = message.getVoteCount();
   if (f !== 0) {
     writer.writeUint64(
-      7,
+      4,
       f
     );
   }
   f = message.getSigningKey();
   if (f != null) {
     writer.writeMessage(
-      8,
+      5,
       f,
       prototype_type_pb.public_key_type.serializeBinaryToWriter
-    );
-  }
-  f = message.getLastWork();
-  if (f != null) {
-    writer.writeMessage(
-      9,
-      f,
-      prototype_type_pb.sha256.serializeBinaryToWriter
-    );
-  }
-  f = message.getRunningVersion();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
     );
   }
   f = message.getProposedStaminaFree();
   if (f !== 0) {
     writer.writeUint64(
-      10,
+      6,
       f
     );
   }
   f = message.getActive();
   if (f) {
     writer.writeBool(
-      11,
+      7,
       f
     );
   }
   f = message.getTpsExpected();
   if (f !== 0) {
     writer.writeUint64(
-      12,
+      8,
       f
     );
   }
@@ -4512,18 +4463,18 @@ proto.grpcpb.WitnessResponse.prototype.hasOwner = function() {
 
 
 /**
- * optional prototype.time_point_sec created_time = 3;
+ * optional prototype.time_point_sec created_time = 2;
  * @return {?proto.prototype.time_point_sec}
  */
 proto.grpcpb.WitnessResponse.prototype.getCreatedTime = function() {
   return /** @type{?proto.prototype.time_point_sec} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 3));
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 2));
 };
 
 
 /** @param {?proto.prototype.time_point_sec|undefined} value */
 proto.grpcpb.WitnessResponse.prototype.setCreatedTime = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -4537,83 +4488,53 @@ proto.grpcpb.WitnessResponse.prototype.clearCreatedTime = function() {
  * @return {!boolean}
  */
 proto.grpcpb.WitnessResponse.prototype.hasCreatedTime = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional string url = 4;
+ * optional string url = 3;
  * @return {string}
  */
 proto.grpcpb.WitnessResponse.prototype.getUrl = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
 proto.grpcpb.WitnessResponse.prototype.setUrl = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional uint32 last_confirmed_block_num = 5;
- * @return {number}
- */
-proto.grpcpb.WitnessResponse.prototype.getLastConfirmedBlockNum = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-
-/** @param {number} value */
-proto.grpcpb.WitnessResponse.prototype.setLastConfirmedBlockNum = function(value) {
-  jspb.Message.setProto3IntField(this, 5, value);
-};
-
-
-/**
- * optional uint32 total_missed = 6;
- * @return {number}
- */
-proto.grpcpb.WitnessResponse.prototype.getTotalMissed = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
-};
-
-
-/** @param {number} value */
-proto.grpcpb.WitnessResponse.prototype.setTotalMissed = function(value) {
-  jspb.Message.setProto3IntField(this, 6, value);
-};
-
-
-/**
- * optional uint64 vote_count = 7;
+ * optional uint64 vote_count = 4;
  * @return {number}
  */
 proto.grpcpb.WitnessResponse.prototype.getVoteCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.WitnessResponse.prototype.setVoteCount = function(value) {
-  jspb.Message.setProto3IntField(this, 7, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional prototype.public_key_type signing_key = 8;
+ * optional prototype.public_key_type signing_key = 5;
  * @return {?proto.prototype.public_key_type}
  */
 proto.grpcpb.WitnessResponse.prototype.getSigningKey = function() {
   return /** @type{?proto.prototype.public_key_type} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.public_key_type, 8));
+    jspb.Message.getWrapperField(this, prototype_type_pb.public_key_type, 5));
 };
 
 
 /** @param {?proto.prototype.public_key_type|undefined} value */
 proto.grpcpb.WitnessResponse.prototype.setSigningKey = function(value) {
-  jspb.Message.setWrapperField(this, 8, value);
+  jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -4627,99 +4548,54 @@ proto.grpcpb.WitnessResponse.prototype.clearSigningKey = function() {
  * @return {!boolean}
  */
 proto.grpcpb.WitnessResponse.prototype.hasSigningKey = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional prototype.sha256 last_work = 9;
- * @return {?proto.prototype.sha256}
- */
-proto.grpcpb.WitnessResponse.prototype.getLastWork = function() {
-  return /** @type{?proto.prototype.sha256} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.sha256, 9));
-};
-
-
-/** @param {?proto.prototype.sha256|undefined} value */
-proto.grpcpb.WitnessResponse.prototype.setLastWork = function(value) {
-  jspb.Message.setWrapperField(this, 9, value);
-};
-
-
-proto.grpcpb.WitnessResponse.prototype.clearLastWork = function() {
-  this.setLastWork(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.grpcpb.WitnessResponse.prototype.hasLastWork = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * optional uint32 running_version = 2;
- * @return {number}
- */
-proto.grpcpb.WitnessResponse.prototype.getRunningVersion = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/** @param {number} value */
-proto.grpcpb.WitnessResponse.prototype.setRunningVersion = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional uint64 proposed_stamina_free = 10;
+ * optional uint64 proposed_stamina_free = 6;
  * @return {number}
  */
 proto.grpcpb.WitnessResponse.prototype.getProposedStaminaFree = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.WitnessResponse.prototype.setProposedStaminaFree = function(value) {
-  jspb.Message.setProto3IntField(this, 10, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional bool active = 11;
+ * optional bool active = 7;
  * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
  * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
 proto.grpcpb.WitnessResponse.prototype.getActive = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 11, false));
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 7, false));
 };
 
 
 /** @param {boolean} value */
 proto.grpcpb.WitnessResponse.prototype.setActive = function(value) {
-  jspb.Message.setProto3BooleanField(this, 11, value);
+  jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
 /**
- * optional uint64 tps_expected = 12;
+ * optional uint64 tps_expected = 8;
  * @return {number}
  */
 proto.grpcpb.WitnessResponse.prototype.getTpsExpected = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.WitnessResponse.prototype.setTpsExpected = function(value) {
-  jspb.Message.setProto3IntField(this, 12, value);
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
@@ -16168,6 +16044,246 @@ proto.grpcpb.GetContractListResponse.prototype.addContractList = function(opt_va
 
 proto.grpcpb.GetContractListResponse.prototype.clearContractListList = function() {
   this.setContractListList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetWitnessListByVoteCountRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetWitnessListByVoteCountRequest.displayName = 'proto.grpcpb.GetWitnessListByVoteCountRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetWitnessListByVoteCountRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetWitnessListByVoteCountRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    start: jspb.Message.getFieldWithDefault(msg, 1, "0"),
+    end: jspb.Message.getFieldWithDefault(msg, 2, "0"),
+    lastWitness: (f = msg.getLastWitness()) && proto.grpcpb.WitnessResponse.toObject(includeInstance, f),
+    limit: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetWitnessListByVoteCountRequest}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetWitnessListByVoteCountRequest;
+  return proto.grpcpb.GetWitnessListByVoteCountRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetWitnessListByVoteCountRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetWitnessListByVoteCountRequest}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readUint64String());
+      msg.setStart(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readUint64String());
+      msg.setEnd(value);
+      break;
+    case 3:
+      var value = new proto.grpcpb.WitnessResponse;
+      reader.readMessage(value,proto.grpcpb.WitnessResponse.deserializeBinaryFromReader);
+      msg.setLastWitness(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setLimit(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetWitnessListByVoteCountRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetWitnessListByVoteCountRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStart();
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
+      1,
+      f
+    );
+  }
+  f = message.getEnd();
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
+      2,
+      f
+    );
+  }
+  f = message.getLastWitness();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.grpcpb.WitnessResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLimit();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 start = 1;
+ * @return {string}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.getStart = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.setStart = function(value) {
+  jspb.Message.setProto3StringIntField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 end = 2;
+ * @return {string}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.getEnd = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.setEnd = function(value) {
+  jspb.Message.setProto3StringIntField(this, 2, value);
+};
+
+
+/**
+ * optional WitnessResponse last_witness = 3;
+ * @return {?proto.grpcpb.WitnessResponse}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.getLastWitness = function() {
+  return /** @type{?proto.grpcpb.WitnessResponse} */ (
+    jspb.Message.getWrapperField(this, proto.grpcpb.WitnessResponse, 3));
+};
+
+
+/** @param {?proto.grpcpb.WitnessResponse|undefined} value */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.setLastWitness = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.clearLastWitness = function() {
+  this.setLastWitness(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.hasLastWitness = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional uint32 limit = 4;
+ * @return {number}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.getLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.setLimit = function(value) {
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
