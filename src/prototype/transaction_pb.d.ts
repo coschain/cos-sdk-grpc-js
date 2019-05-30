@@ -106,6 +106,11 @@ export class operation extends jspb.Message {
   getOp20(): prototype_operation_pb.transfer_to_stake_vesting_operation | undefined;
   setOp20(value?: prototype_operation_pb.transfer_to_stake_vesting_operation): void;
 
+  hasOp21(): boolean;
+  clearOp21(): void;
+  getOp21(): prototype_operation_pb.account_update_operation | undefined;
+  setOp21(value?: prototype_operation_pb.account_update_operation): void;
+
   getOpCase(): operation.OpCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): operation.AsObject;
@@ -139,6 +144,7 @@ export namespace operation {
     op18?: prototype_operation_pb.un_stake_operation.AsObject,
     op19?: prototype_operation_pb.bp_update_operation.AsObject,
     op20?: prototype_operation_pb.transfer_to_stake_vesting_operation.AsObject,
+    op21?: prototype_operation_pb.account_update_operation.AsObject,
   }
 
   export enum OpCase {
@@ -163,6 +169,7 @@ export namespace operation {
     OP18 = 18,
     OP19 = 19,
     OP20 = 20,
+    OP21 = 21,
   }
 }
 

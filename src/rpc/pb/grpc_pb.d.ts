@@ -298,6 +298,21 @@ export class AccountInfo extends jspb.Message {
   getStakeVest(): prototype_type_pb.vest | undefined;
   setStakeVest(value?: prototype_type_pb.vest): void;
 
+  hasWithdrawRemains(): boolean;
+  clearWithdrawRemains(): void;
+  getWithdrawRemains(): prototype_type_pb.vest | undefined;
+  setWithdrawRemains(value?: prototype_type_pb.vest): void;
+
+  hasWithdrawEachTime(): boolean;
+  clearWithdrawEachTime(): void;
+  getWithdrawEachTime(): prototype_type_pb.vest | undefined;
+  setWithdrawEachTime(value?: prototype_type_pb.vest): void;
+
+  hasNextWithdrawTime(): boolean;
+  clearNextWithdrawTime(): void;
+  getNextWithdrawTime(): prototype_type_pb.time_point_sec | undefined;
+  setNextWithdrawTime(value?: prototype_type_pb.time_point_sec): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -325,6 +340,9 @@ export namespace AccountInfo {
     staminaStakeRemain: number,
     staminaMax: number,
     stakeVest?: prototype_type_pb.vest.AsObject,
+    withdrawRemains?: prototype_type_pb.vest.AsObject,
+    withdrawEachTime?: prototype_type_pb.vest.AsObject,
+    nextWithdrawTime?: prototype_type_pb.time_point_sec.AsObject,
   }
 }
 

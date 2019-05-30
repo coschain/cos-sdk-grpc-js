@@ -1816,7 +1816,10 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     staminaFreeRemain: jspb.Message.getFieldWithDefault(msg, 12, 0),
     staminaStakeRemain: jspb.Message.getFieldWithDefault(msg, 13, 0),
     staminaMax: jspb.Message.getFieldWithDefault(msg, 14, 0),
-    stakeVest: (f = msg.getStakeVest()) && prototype_type_pb.vest.toObject(includeInstance, f)
+    stakeVest: (f = msg.getStakeVest()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    withdrawRemains: (f = msg.getWithdrawRemains()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    withdrawEachTime: (f = msg.getWithdrawEachTime()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    nextWithdrawTime: (f = msg.getNextWithdrawTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1919,6 +1922,21 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
       var value = new prototype_type_pb.vest;
       reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
       msg.setStakeVest(value);
+      break;
+    case 16:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setWithdrawRemains(value);
+      break;
+    case 17:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setWithdrawEachTime(value);
+      break;
+    case 18:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setNextWithdrawTime(value);
       break;
     default:
       reader.skipField();
@@ -2059,6 +2077,30 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
       15,
       f,
       prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getWithdrawRemains();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getWithdrawEachTime();
+  if (f != null) {
+    writer.writeMessage(
+      17,
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextWithdrawTime();
+  if (f != null) {
+    writer.writeMessage(
+      18,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
     );
   }
 };
@@ -2391,6 +2433,96 @@ proto.grpcpb.AccountInfo.prototype.clearStakeVest = function() {
  */
 proto.grpcpb.AccountInfo.prototype.hasStakeVest = function() {
   return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional prototype.vest withdraw_remains = 16;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.AccountInfo.prototype.getWithdrawRemains = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 16));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.AccountInfo.prototype.setWithdrawRemains = function(value) {
+  jspb.Message.setWrapperField(this, 16, value);
+};
+
+
+proto.grpcpb.AccountInfo.prototype.clearWithdrawRemains = function() {
+  this.setWithdrawRemains(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountInfo.prototype.hasWithdrawRemains = function() {
+  return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional prototype.vest withdraw_each_time = 17;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.AccountInfo.prototype.getWithdrawEachTime = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 17));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.AccountInfo.prototype.setWithdrawEachTime = function(value) {
+  jspb.Message.setWrapperField(this, 17, value);
+};
+
+
+proto.grpcpb.AccountInfo.prototype.clearWithdrawEachTime = function() {
+  this.setWithdrawEachTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountInfo.prototype.hasWithdrawEachTime = function() {
+  return jspb.Message.getField(this, 17) != null;
+};
+
+
+/**
+ * optional prototype.time_point_sec next_withdraw_time = 18;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.AccountInfo.prototype.getNextWithdrawTime = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 18));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.AccountInfo.prototype.setNextWithdrawTime = function(value) {
+  jspb.Message.setWrapperField(this, 18, value);
+};
+
+
+proto.grpcpb.AccountInfo.prototype.clearNextWithdrawTime = function() {
+  this.setNextWithdrawTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountInfo.prototype.hasNextWithdrawTime = function() {
+  return jspb.Message.getField(this, 18) != null;
 };
 
 

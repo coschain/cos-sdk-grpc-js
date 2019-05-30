@@ -48,6 +48,34 @@ export namespace account_create_operation {
   }
 }
 
+export class account_update_operation extends jspb.Message {
+  hasOwner(): boolean;
+  clearOwner(): void;
+  getOwner(): prototype_type_pb.account_name | undefined;
+  setOwner(value?: prototype_type_pb.account_name): void;
+
+  hasPubkey(): boolean;
+  clearPubkey(): void;
+  getPubkey(): prototype_type_pb.public_key_type | undefined;
+  setPubkey(value?: prototype_type_pb.public_key_type): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): account_update_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: account_update_operation): account_update_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: account_update_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): account_update_operation;
+  static deserializeBinaryFromReader(message: account_update_operation, reader: jspb.BinaryReader): account_update_operation;
+}
+
+export namespace account_update_operation {
+  export type AsObject = {
+    owner?: prototype_type_pb.account_name.AsObject,
+    pubkey?: prototype_type_pb.public_key_type.AsObject,
+  }
+}
+
 export class transfer_operation extends jspb.Message {
   hasFrom(): boolean;
   clearFrom(): void;
@@ -672,8 +700,10 @@ export class stake_operation extends jspb.Message {
   getAccount(): prototype_type_pb.account_name | undefined;
   setAccount(value?: prototype_type_pb.account_name): void;
 
-  getAmount(): number;
-  setAmount(value: number): void;
+  hasAmount(): boolean;
+  clearAmount(): void;
+  getAmount(): prototype_type_pb.coin | undefined;
+  setAmount(value?: prototype_type_pb.coin): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): stake_operation.AsObject;
@@ -688,7 +718,7 @@ export class stake_operation extends jspb.Message {
 export namespace stake_operation {
   export type AsObject = {
     account?: prototype_type_pb.account_name.AsObject,
-    amount: number,
+    amount?: prototype_type_pb.coin.AsObject,
   }
 }
 
@@ -698,8 +728,10 @@ export class un_stake_operation extends jspb.Message {
   getAccount(): prototype_type_pb.account_name | undefined;
   setAccount(value?: prototype_type_pb.account_name): void;
 
-  getAmount(): number;
-  setAmount(value: number): void;
+  hasAmount(): boolean;
+  clearAmount(): void;
+  getAmount(): prototype_type_pb.coin | undefined;
+  setAmount(value?: prototype_type_pb.coin): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): un_stake_operation.AsObject;
@@ -714,7 +746,7 @@ export class un_stake_operation extends jspb.Message {
 export namespace un_stake_operation {
   export type AsObject = {
     account?: prototype_type_pb.account_name.AsObject,
-    amount: number,
+    amount?: prototype_type_pb.coin.AsObject,
   }
 }
 
