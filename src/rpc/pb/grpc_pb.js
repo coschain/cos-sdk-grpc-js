@@ -4401,7 +4401,8 @@ proto.grpcpb.WitnessResponse.toObject = function(includeInstance, msg) {
     signingKey: (f = msg.getSigningKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
     proposedStaminaFree: jspb.Message.getFieldWithDefault(msg, 6, 0),
     active: jspb.Message.getFieldWithDefault(msg, 7, false),
-    tpsExpected: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    accountCreateFee: (f = msg.getAccountCreateFee()) && prototype_type_pb.coin.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4472,6 +4473,11 @@ proto.grpcpb.WitnessResponse.deserializeBinaryFromReader = function(msg, reader)
     case 8:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTpsExpected(value);
+      break;
+    case 9:
+      var value = new prototype_type_pb.coin;
+      reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
+      msg.setAccountCreateFee(value);
       break;
     default:
       reader.skipField();
@@ -4559,6 +4565,14 @@ proto.grpcpb.WitnessResponse.serializeBinaryToWriter = function(message, writer)
     writer.writeUint64(
       8,
       f
+    );
+  }
+  f = message.getAccountCreateFee();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      prototype_type_pb.coin.serializeBinaryToWriter
     );
   }
 };
@@ -4728,6 +4742,36 @@ proto.grpcpb.WitnessResponse.prototype.getTpsExpected = function() {
 /** @param {number} value */
 proto.grpcpb.WitnessResponse.prototype.setTpsExpected = function(value) {
   jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+/**
+ * optional prototype.coin account_create_fee = 9;
+ * @return {?proto.prototype.coin}
+ */
+proto.grpcpb.WitnessResponse.prototype.getAccountCreateFee = function() {
+  return /** @type{?proto.prototype.coin} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 9));
+};
+
+
+/** @param {?proto.prototype.coin|undefined} value */
+proto.grpcpb.WitnessResponse.prototype.setAccountCreateFee = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.grpcpb.WitnessResponse.prototype.clearAccountCreateFee = function() {
+  this.setAccountCreateFee(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.WitnessResponse.prototype.hasAccountCreateFee = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -7480,7 +7524,7 @@ proto.grpcpb.BroadcastTrxResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.grpcpb.BroadcastTrxResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    invoice: (f = msg.getInvoice()) && prototype_transaction_pb.transaction_receipt.toObject(includeInstance, f),
+    invoice: (f = msg.getInvoice()) && prototype_transaction_pb.transaction_receipt_with_info.toObject(includeInstance, f),
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
     msg: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -7520,8 +7564,8 @@ proto.grpcpb.BroadcastTrxResponse.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new prototype_transaction_pb.transaction_receipt;
-      reader.readMessage(value,prototype_transaction_pb.transaction_receipt.deserializeBinaryFromReader);
+      var value = new prototype_transaction_pb.transaction_receipt_with_info;
+      reader.readMessage(value,prototype_transaction_pb.transaction_receipt_with_info.deserializeBinaryFromReader);
       msg.setInvoice(value);
       break;
     case 2:
@@ -7566,7 +7610,7 @@ proto.grpcpb.BroadcastTrxResponse.serializeBinaryToWriter = function(message, wr
     writer.writeMessage(
       1,
       f,
-      prototype_transaction_pb.transaction_receipt.serializeBinaryToWriter
+      prototype_transaction_pb.transaction_receipt_with_info.serializeBinaryToWriter
     );
   }
   f = message.getStatus();
@@ -7587,16 +7631,16 @@ proto.grpcpb.BroadcastTrxResponse.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional prototype.transaction_receipt invoice = 1;
- * @return {?proto.prototype.transaction_receipt}
+ * optional prototype.transaction_receipt_with_info invoice = 1;
+ * @return {?proto.prototype.transaction_receipt_with_info}
  */
 proto.grpcpb.BroadcastTrxResponse.prototype.getInvoice = function() {
-  return /** @type{?proto.prototype.transaction_receipt} */ (
-    jspb.Message.getWrapperField(this, prototype_transaction_pb.transaction_receipt, 1));
+  return /** @type{?proto.prototype.transaction_receipt_with_info} */ (
+    jspb.Message.getWrapperField(this, prototype_transaction_pb.transaction_receipt_with_info, 1));
 };
 
 
-/** @param {?proto.prototype.transaction_receipt|undefined} value */
+/** @param {?proto.prototype.transaction_receipt_with_info|undefined} value */
 proto.grpcpb.BroadcastTrxResponse.prototype.setInvoice = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };

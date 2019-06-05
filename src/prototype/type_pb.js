@@ -17,7 +17,6 @@ goog.exportSymbol('proto.prototype.chain_id', null, global);
 goog.exportSymbol('proto.prototype.chain_properties', null, global);
 goog.exportSymbol('proto.prototype.coin', null, global);
 goog.exportSymbol('proto.prototype.dynamic_properties', null, global);
-goog.exportSymbol('proto.prototype.internal_rewards_keeper', null, global);
 goog.exportSymbol('proto.prototype.private_key_type', null, global);
 goog.exportSymbol('proto.prototype.public_key_type', null, global);
 goog.exportSymbol('proto.prototype.sha256', null, global);
@@ -1685,18 +1684,15 @@ proto.prototype.dynamic_properties.prototype.toObject = function(opt_includeInst
  */
 proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     headBlockId: (f = msg.getHeadBlockId()) && proto.prototype.sha256.toObject(includeInstance, f),
     headBlockNumber: jspb.Message.getFieldWithDefault(msg, 3, 0),
     maximumBlockSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
     totalCos: (f = msg.getTotalCos()) && proto.prototype.coin.toObject(includeInstance, f),
     time: (f = msg.getTime()) && proto.prototype.time_point_sec.toObject(includeInstance, f),
     currentWitness: (f = msg.getCurrentWitness()) && proto.prototype.account_name.toObject(includeInstance, f),
-    irreversibleBlockNum: jspb.Message.getFieldWithDefault(msg, 8, 0),
     tps: jspb.Message.getFieldWithDefault(msg, 9, 0),
     totalVestingShares: (f = msg.getTotalVestingShares()) && proto.prototype.vest.toObject(includeInstance, f),
     currentSupply: (f = msg.getCurrentSupply()) && proto.prototype.coin.toObject(includeInstance, f),
-    currentAslot: jspb.Message.getFieldWithDefault(msg, 12, 0),
     postWeightedVps: jspb.Message.getFieldWithDefault(msg, 13, ""),
     postRewards: (f = msg.getPostRewards()) && proto.prototype.vest.toObject(includeInstance, f),
     totalTrxCnt: jspb.Message.getFieldWithDefault(msg, 15, 0),
@@ -1720,7 +1716,8 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     tpsExpected: jspb.Message.getFieldWithDefault(msg, 33, 0),
     avgTpsUpdateBlock: jspb.Message.getFieldWithDefault(msg, 34, 0),
     avgTpsInWindow: jspb.Message.getFieldWithDefault(msg, 35, 0),
-    oneDayStamina: jspb.Message.getFieldWithDefault(msg, 36, 0)
+    oneDayStamina: jspb.Message.getFieldWithDefault(msg, 36, 0),
+    accountCreateFee: (f = msg.getAccountCreateFee()) && proto.prototype.coin.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1757,10 +1754,6 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setId(value);
-      break;
     case 2:
       var value = new proto.prototype.sha256;
       reader.readMessage(value,proto.prototype.sha256.deserializeBinaryFromReader);
@@ -1789,10 +1782,6 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       reader.readMessage(value,proto.prototype.account_name.deserializeBinaryFromReader);
       msg.setCurrentWitness(value);
       break;
-    case 8:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setIrreversibleBlockNum(value);
-      break;
     case 9:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setTps(value);
@@ -1806,10 +1795,6 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       var value = new proto.prototype.coin;
       reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
       msg.setCurrentSupply(value);
-      break;
-    case 12:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setCurrentAslot(value);
       break;
     case 13:
       var value = /** @type {string} */ (reader.readString());
@@ -1916,6 +1901,11 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       var value = /** @type {number} */ (reader.readUint64());
       msg.setOneDayStamina(value);
       break;
+    case 37:
+      var value = new proto.prototype.coin;
+      reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
+      msg.setAccountCreateFee(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1945,13 +1935,6 @@ proto.prototype.dynamic_properties.prototype.serializeBinary = function() {
  */
 proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
-      1,
-      f
-    );
-  }
   f = message.getHeadBlockId();
   if (f != null) {
     writer.writeMessage(
@@ -1998,13 +1981,6 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       proto.prototype.account_name.serializeBinaryToWriter
     );
   }
-  f = message.getIrreversibleBlockNum();
-  if (f !== 0) {
-    writer.writeUint64(
-      8,
-      f
-    );
-  }
   f = message.getTps();
   if (f !== 0) {
     writer.writeUint32(
@@ -2026,13 +2002,6 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       11,
       f,
       proto.prototype.coin.serializeBinaryToWriter
-    );
-  }
-  f = message.getCurrentAslot();
-  if (f !== 0) {
-    writer.writeUint32(
-      12,
-      f
     );
   }
   f = message.getPostWeightedVps();
@@ -2212,21 +2181,14 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       f
     );
   }
-};
-
-
-/**
- * optional int32 id = 1;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setId = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  f = message.getAccountCreateFee();
+  if (f != null) {
+    writer.writeMessage(
+      37,
+      f,
+      proto.prototype.coin.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -2381,21 +2343,6 @@ proto.prototype.dynamic_properties.prototype.hasCurrentWitness = function() {
 
 
 /**
- * optional uint64 irreversible_block_num = 8;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getIrreversibleBlockNum = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setIrreversibleBlockNum = function(value) {
-  jspb.Message.setProto3IntField(this, 8, value);
-};
-
-
-/**
  * optional uint32 tps = 9;
  * @return {number}
  */
@@ -2467,21 +2414,6 @@ proto.prototype.dynamic_properties.prototype.clearCurrentSupply = function() {
  */
 proto.prototype.dynamic_properties.prototype.hasCurrentSupply = function() {
   return jspb.Message.getField(this, 11) != null;
-};
-
-
-/**
- * optional uint32 current_aslot = 12;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getCurrentAslot = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setCurrentAslot = function(value) {
-  jspb.Message.setProto3IntField(this, 12, value);
 };
 
 
@@ -2982,174 +2914,33 @@ proto.prototype.dynamic_properties.prototype.setOneDayStamina = function(value) 
 };
 
 
-
 /**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
+ * optional coin account_create_fee = 37;
+ * @return {?proto.prototype.coin}
  */
-proto.prototype.internal_rewards_keeper = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+proto.prototype.dynamic_properties.prototype.getAccountCreateFee = function() {
+  return /** @type{?proto.prototype.coin} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.coin, 37));
 };
-goog.inherits(proto.prototype.internal_rewards_keeper, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.prototype.internal_rewards_keeper.displayName = 'proto.prototype.internal_rewards_keeper';
-}
 
 
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.prototype.internal_rewards_keeper.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.internal_rewards_keeper.toObject(opt_includeInstance, this);
+/** @param {?proto.prototype.coin|undefined} value */
+proto.prototype.dynamic_properties.prototype.setAccountCreateFee = function(value) {
+  jspb.Message.setWrapperField(this, 37, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearAccountCreateFee = function() {
+  this.setAccountCreateFee(undefined);
 };
 
 
 /**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.prototype.internal_rewards_keeper} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
+ * Returns whether this field is set.
+ * @return {!boolean}
  */
-proto.prototype.internal_rewards_keeper.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    rewardsMap: (f = msg.getRewardsMap()) ? f.toObject(includeInstance, proto.prototype.vest.toObject) : []
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.internal_rewards_keeper}
- */
-proto.prototype.internal_rewards_keeper.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.internal_rewards_keeper;
-  return proto.prototype.internal_rewards_keeper.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.prototype.internal_rewards_keeper} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.internal_rewards_keeper}
- */
-proto.prototype.internal_rewards_keeper.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setId(value);
-      break;
-    case 2:
-      var value = msg.getRewardsMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.prototype.vest.deserializeBinaryFromReader, "");
-         });
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.prototype.internal_rewards_keeper.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.prototype.internal_rewards_keeper.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.internal_rewards_keeper} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.internal_rewards_keeper.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
-      1,
-      f
-    );
-  }
-  f = message.getRewardsMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.prototype.vest.serializeBinaryToWriter);
-  }
-};
-
-
-/**
- * optional int32 id = 1;
- * @return {number}
- */
-proto.prototype.internal_rewards_keeper.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.internal_rewards_keeper.prototype.setId = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * map<string, vest> rewards = 2;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.prototype.vest>}
- */
-proto.prototype.internal_rewards_keeper.prototype.getRewardsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.prototype.vest>} */ (
-      jspb.Message.getMapField(this, 2, opt_noLazyCreate,
-      proto.prototype.vest));
-};
-
-
-proto.prototype.internal_rewards_keeper.prototype.clearRewardsMap = function() {
-  this.getRewardsMap().clear();
+proto.prototype.dynamic_properties.prototype.hasAccountCreateFee = function() {
+  return jspb.Message.getField(this, 37) != null;
 };
 
 

@@ -15,7 +15,6 @@ import {
     convert_vesting_operation,
     stake_operation, un_stake_operation,
     bp_update_operation,
-    transfer_to_stake_vesting_operation,
     account_update_operation
 } from "../../prototype/operation_pb";
 
@@ -58,10 +57,8 @@ transaction.prototype.addOperation = function(op: any){
         operation.setOp18(op)
     } else if (op instanceof bp_update_operation) {
         operation.setOp19(op)
-    } else if (op instanceof transfer_to_stake_vesting_operation) {
-        operation.setOp20(op)
     } else if (op instanceof account_update_operation) {
-        operation.setOp21(op)
+        operation.setOp20(op)
     } else {
         console.error("unknown operation when add operation, update sdk is necessary")
     }
@@ -101,11 +98,10 @@ const sender = function (op) {
     // @ts-ignore
     if (op.hasOp14()) return op.getOp14().getCaller().getValue();
     if (op.hasOp16()) return op.getOp16().getFrom().getValue();
-    if (op.hasOp17()) return op.getOp17().getAccount().getValue();
-    if (op.hasOp18()) return op.getOp18().getAccount().getValue();
+    if (op.hasOp17()) return op.getOp17().getFrom().getValue();
+    if (op.hasOp18()) return op.getOp18().getCreditor().getValue();
     if (op.hasOp19()) return op.getOp19().getOwner().getValue();
     if (op.hasOp20()) return op.getOp20().getFrom().getValue();
-    if (op.hasOp21()) return op.getOp21().getOwner().getValue();
     return ''
 };
 
@@ -155,7 +151,6 @@ const getActionName = function (op) {
     if (op.hasOp18()) return "Unstake";
     if (op.hasOp19()) return "Bp Update";
     if (op.hasOp20()) return "Transfer To Stake Vesting";
-    if (op.hasOp21()) return "Account Update";
     return '';
 };
 
@@ -194,7 +189,6 @@ const getActionObject = function (op) {
     if (op.hasOp18()) return op.getOp18().toObject();
     if (op.hasOp19()) return op.getOp19().toObject();
     if (op.hasOp20()) return op.getOp20().toObject();
-    if (op.hasOp21()) return op.getOp21().toObject();
     return null
 }
 

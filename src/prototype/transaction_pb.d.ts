@@ -103,13 +103,8 @@ export class operation extends jspb.Message {
 
   hasOp20(): boolean;
   clearOp20(): void;
-  getOp20(): prototype_operation_pb.transfer_to_stake_vesting_operation | undefined;
-  setOp20(value?: prototype_operation_pb.transfer_to_stake_vesting_operation): void;
-
-  hasOp21(): boolean;
-  clearOp21(): void;
-  getOp21(): prototype_operation_pb.account_update_operation | undefined;
-  setOp21(value?: prototype_operation_pb.account_update_operation): void;
+  getOp20(): prototype_operation_pb.account_update_operation | undefined;
+  setOp20(value?: prototype_operation_pb.account_update_operation): void;
 
   getOpCase(): operation.OpCase;
   serializeBinary(): Uint8Array;
@@ -143,8 +138,7 @@ export namespace operation {
     op17?: prototype_operation_pb.stake_operation.AsObject,
     op18?: prototype_operation_pb.un_stake_operation.AsObject,
     op19?: prototype_operation_pb.bp_update_operation.AsObject,
-    op20?: prototype_operation_pb.transfer_to_stake_vesting_operation.AsObject,
-    op21?: prototype_operation_pb.account_update_operation.AsObject,
+    op20?: prototype_operation_pb.account_update_operation.AsObject,
   }
 
   export enum OpCase {
@@ -169,7 +163,6 @@ export namespace operation {
     OP18 = 18,
     OP19 = 19,
     OP20 = 20,
-    OP21 = 21,
   }
 }
 
@@ -265,7 +258,7 @@ export namespace operation_receipt_with_info {
   }
 }
 
-export class transaction_receipt extends jspb.Message {
+export class transaction_receipt_with_info extends jspb.Message {
   getStatus(): number;
   setStatus(value: number): void;
 
@@ -284,6 +277,64 @@ export class transaction_receipt extends jspb.Message {
   addOpResults(value?: operation_receipt_with_info, index?: number): operation_receipt_with_info;
 
   serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): transaction_receipt_with_info.AsObject;
+  static toObject(includeInstance: boolean, msg: transaction_receipt_with_info): transaction_receipt_with_info.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: transaction_receipt_with_info, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): transaction_receipt_with_info;
+  static deserializeBinaryFromReader(message: transaction_receipt_with_info, reader: jspb.BinaryReader): transaction_receipt_with_info;
+}
+
+export namespace transaction_receipt_with_info {
+  export type AsObject = {
+    status: number,
+    netUsage: number,
+    cpuUsage: number,
+    errorInfo: string,
+    opResultsList: Array<operation_receipt_with_info.AsObject>,
+  }
+}
+
+export class transaction_wrapper_with_info extends jspb.Message {
+  hasSigTrx(): boolean;
+  clearSigTrx(): void;
+  getSigTrx(): signed_transaction | undefined;
+  setSigTrx(value?: signed_transaction): void;
+
+  hasReceipt(): boolean;
+  clearReceipt(): void;
+  getReceipt(): transaction_receipt_with_info | undefined;
+  setReceipt(value?: transaction_receipt_with_info): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): transaction_wrapper_with_info.AsObject;
+  static toObject(includeInstance: boolean, msg: transaction_wrapper_with_info): transaction_wrapper_with_info.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: transaction_wrapper_with_info, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): transaction_wrapper_with_info;
+  static deserializeBinaryFromReader(message: transaction_wrapper_with_info, reader: jspb.BinaryReader): transaction_wrapper_with_info;
+}
+
+export namespace transaction_wrapper_with_info {
+  export type AsObject = {
+    sigTrx?: signed_transaction.AsObject,
+    receipt?: transaction_receipt_with_info.AsObject,
+  }
+}
+
+export class transaction_receipt extends jspb.Message {
+  getStatus(): number;
+  setStatus(value: number): void;
+
+  getNetUsage(): number;
+  setNetUsage(value: number): void;
+
+  getCpuUsage(): number;
+  setCpuUsage(value: number): void;
+
+  serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): transaction_receipt.AsObject;
   static toObject(includeInstance: boolean, msg: transaction_receipt): transaction_receipt.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
@@ -298,8 +349,6 @@ export namespace transaction_receipt {
     status: number,
     netUsage: number,
     cpuUsage: number,
-    errorInfo: string,
-    opResultsList: Array<operation_receipt_with_info.AsObject>,
   }
 }
 

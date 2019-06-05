@@ -226,9 +226,6 @@ export namespace chain_properties {
 }
 
 export class dynamic_properties extends jspb.Message {
-  getId(): number;
-  setId(value: number): void;
-
   hasHeadBlockId(): boolean;
   clearHeadBlockId(): void;
   getHeadBlockId(): sha256 | undefined;
@@ -255,9 +252,6 @@ export class dynamic_properties extends jspb.Message {
   getCurrentWitness(): account_name | undefined;
   setCurrentWitness(value?: account_name): void;
 
-  getIrreversibleBlockNum(): number;
-  setIrreversibleBlockNum(value: number): void;
-
   getTps(): number;
   setTps(value: number): void;
 
@@ -270,9 +264,6 @@ export class dynamic_properties extends jspb.Message {
   clearCurrentSupply(): void;
   getCurrentSupply(): coin | undefined;
   setCurrentSupply(value?: coin): void;
-
-  getCurrentAslot(): number;
-  setCurrentAslot(value: number): void;
 
   getPostWeightedVps(): string;
   setPostWeightedVps(value: string): void;
@@ -364,6 +355,11 @@ export class dynamic_properties extends jspb.Message {
   getOneDayStamina(): number;
   setOneDayStamina(value: number): void;
 
+  hasAccountCreateFee(): boolean;
+  clearAccountCreateFee(): void;
+  getAccountCreateFee(): coin | undefined;
+  setAccountCreateFee(value?: coin): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): dynamic_properties.AsObject;
   static toObject(includeInstance: boolean, msg: dynamic_properties): dynamic_properties.AsObject;
@@ -376,18 +372,15 @@ export class dynamic_properties extends jspb.Message {
 
 export namespace dynamic_properties {
   export type AsObject = {
-    id: number,
     headBlockId?: sha256.AsObject,
     headBlockNumber: number,
     maximumBlockSize: number,
     totalCos?: coin.AsObject,
     time?: time_point_sec.AsObject,
     currentWitness?: account_name.AsObject,
-    irreversibleBlockNum: number,
     tps: number,
     totalVestingShares?: vest.AsObject,
     currentSupply?: coin.AsObject,
-    currentAslot: number,
     postWeightedVps: string,
     postRewards?: vest.AsObject,
     totalTrxCnt: number,
@@ -412,29 +405,7 @@ export namespace dynamic_properties {
     avgTpsUpdateBlock: number,
     avgTpsInWindow: number,
     oneDayStamina: number,
-  }
-}
-
-export class internal_rewards_keeper extends jspb.Message {
-  getId(): number;
-  setId(value: number): void;
-
-  getRewardsMap(): jspb.Map<string, vest>;
-  clearRewardsMap(): void;
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): internal_rewards_keeper.AsObject;
-  static toObject(includeInstance: boolean, msg: internal_rewards_keeper): internal_rewards_keeper.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: internal_rewards_keeper, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): internal_rewards_keeper;
-  static deserializeBinaryFromReader(message: internal_rewards_keeper, reader: jspb.BinaryReader): internal_rewards_keeper;
-}
-
-export namespace internal_rewards_keeper {
-  export type AsObject = {
-    id: number,
-    rewardsMap: Array<[string, vest.AsObject]>,
+    accountCreateFee?: coin.AsObject,
   }
 }
 

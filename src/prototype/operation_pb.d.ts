@@ -228,6 +228,11 @@ export class bp_update_operation extends jspb.Message {
   getTpsExpected(): number;
   setTpsExpected(value: number): void;
 
+  hasAccountCreationFee(): boolean;
+  clearAccountCreationFee(): void;
+  getAccountCreationFee(): prototype_type_pb.coin | undefined;
+  setAccountCreationFee(value?: prototype_type_pb.coin): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): bp_update_operation.AsObject;
   static toObject(includeInstance: boolean, msg: bp_update_operation): bp_update_operation.AsObject;
@@ -243,6 +248,7 @@ export namespace bp_update_operation {
     owner?: prototype_type_pb.account_name.AsObject,
     proposedStaminaFree: number,
     tpsExpected: number,
+    accountCreationFee?: prototype_type_pb.coin.AsObject,
   }
 }
 
@@ -695,10 +701,15 @@ export namespace convert_vesting_operation {
 }
 
 export class stake_operation extends jspb.Message {
-  hasAccount(): boolean;
-  clearAccount(): void;
-  getAccount(): prototype_type_pb.account_name | undefined;
-  setAccount(value?: prototype_type_pb.account_name): void;
+  hasFrom(): boolean;
+  clearFrom(): void;
+  getFrom(): prototype_type_pb.account_name | undefined;
+  setFrom(value?: prototype_type_pb.account_name): void;
+
+  hasTo(): boolean;
+  clearTo(): void;
+  getTo(): prototype_type_pb.account_name | undefined;
+  setTo(value?: prototype_type_pb.account_name): void;
 
   hasAmount(): boolean;
   clearAmount(): void;
@@ -717,16 +728,22 @@ export class stake_operation extends jspb.Message {
 
 export namespace stake_operation {
   export type AsObject = {
-    account?: prototype_type_pb.account_name.AsObject,
+    from?: prototype_type_pb.account_name.AsObject,
+    to?: prototype_type_pb.account_name.AsObject,
     amount?: prototype_type_pb.coin.AsObject,
   }
 }
 
 export class un_stake_operation extends jspb.Message {
-  hasAccount(): boolean;
-  clearAccount(): void;
-  getAccount(): prototype_type_pb.account_name | undefined;
-  setAccount(value?: prototype_type_pb.account_name): void;
+  hasCreditor(): boolean;
+  clearCreditor(): void;
+  getCreditor(): prototype_type_pb.account_name | undefined;
+  setCreditor(value?: prototype_type_pb.account_name): void;
+
+  hasDebtor(): boolean;
+  clearDebtor(): void;
+  getDebtor(): prototype_type_pb.account_name | undefined;
+  setDebtor(value?: prototype_type_pb.account_name): void;
 
   hasAmount(): boolean;
   clearAmount(): void;
@@ -745,41 +762,8 @@ export class un_stake_operation extends jspb.Message {
 
 export namespace un_stake_operation {
   export type AsObject = {
-    account?: prototype_type_pb.account_name.AsObject,
-    amount?: prototype_type_pb.coin.AsObject,
-  }
-}
-
-export class transfer_to_stake_vesting_operation extends jspb.Message {
-  hasFrom(): boolean;
-  clearFrom(): void;
-  getFrom(): prototype_type_pb.account_name | undefined;
-  setFrom(value?: prototype_type_pb.account_name): void;
-
-  hasTo(): boolean;
-  clearTo(): void;
-  getTo(): prototype_type_pb.account_name | undefined;
-  setTo(value?: prototype_type_pb.account_name): void;
-
-  hasAmount(): boolean;
-  clearAmount(): void;
-  getAmount(): prototype_type_pb.coin | undefined;
-  setAmount(value?: prototype_type_pb.coin): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): transfer_to_stake_vesting_operation.AsObject;
-  static toObject(includeInstance: boolean, msg: transfer_to_stake_vesting_operation): transfer_to_stake_vesting_operation.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: transfer_to_stake_vesting_operation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): transfer_to_stake_vesting_operation;
-  static deserializeBinaryFromReader(message: transfer_to_stake_vesting_operation, reader: jspb.BinaryReader): transfer_to_stake_vesting_operation;
-}
-
-export namespace transfer_to_stake_vesting_operation {
-  export type AsObject = {
-    from?: prototype_type_pb.account_name.AsObject,
-    to?: prototype_type_pb.account_name.AsObject,
+    creditor?: prototype_type_pb.account_name.AsObject,
+    debtor?: prototype_type_pb.account_name.AsObject,
     amount?: prototype_type_pb.coin.AsObject,
   }
 }

@@ -627,6 +627,11 @@ export class WitnessResponse extends jspb.Message {
   getTpsExpected(): number;
   setTpsExpected(value: number): void;
 
+  hasAccountCreateFee(): boolean;
+  clearAccountCreateFee(): void;
+  getAccountCreateFee(): prototype_type_pb.coin | undefined;
+  setAccountCreateFee(value?: prototype_type_pb.coin): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WitnessResponse.AsObject;
   static toObject(includeInstance: boolean, msg: WitnessResponse): WitnessResponse.AsObject;
@@ -647,6 +652,7 @@ export namespace WitnessResponse {
     proposedStaminaFree: number,
     active: boolean,
     tpsExpected: number,
+    accountCreateFee?: prototype_type_pb.coin.AsObject,
   }
 }
 
@@ -1025,8 +1031,8 @@ export namespace BroadcastTrxRequest {
 export class BroadcastTrxResponse extends jspb.Message {
   hasInvoice(): boolean;
   clearInvoice(): void;
-  getInvoice(): prototype_transaction_pb.transaction_receipt | undefined;
-  setInvoice(value?: prototype_transaction_pb.transaction_receipt): void;
+  getInvoice(): prototype_transaction_pb.transaction_receipt_with_info | undefined;
+  setInvoice(value?: prototype_transaction_pb.transaction_receipt_with_info): void;
 
   getStatus(): number;
   setStatus(value: number): void;
@@ -1046,7 +1052,7 @@ export class BroadcastTrxResponse extends jspb.Message {
 
 export namespace BroadcastTrxResponse {
   export type AsObject = {
-    invoice?: prototype_transaction_pb.transaction_receipt.AsObject,
+    invoice?: prototype_transaction_pb.transaction_receipt_with_info.AsObject,
     status: number,
     msg: string,
   }

@@ -31,7 +31,6 @@ goog.exportSymbol('proto.prototype.report_operation', null, global);
 goog.exportSymbol('proto.prototype.report_operation.tag', null, global);
 goog.exportSymbol('proto.prototype.stake_operation', null, global);
 goog.exportSymbol('proto.prototype.transfer_operation', null, global);
-goog.exportSymbol('proto.prototype.transfer_to_stake_vesting_operation', null, global);
 goog.exportSymbol('proto.prototype.transfer_to_vesting_operation', null, global);
 goog.exportSymbol('proto.prototype.un_stake_operation', null, global);
 goog.exportSymbol('proto.prototype.vote_operation', null, global);
@@ -1613,7 +1612,8 @@ proto.prototype.bp_update_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     proposedStaminaFree: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    tpsExpected: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    accountCreationFee: (f = msg.getAccountCreationFee()) && prototype_type_pb.coin.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1662,6 +1662,11 @@ proto.prototype.bp_update_operation.deserializeBinaryFromReader = function(msg, 
     case 3:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTpsExpected(value);
+      break;
+    case 4:
+      var value = new prototype_type_pb.coin;
+      reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
+      msg.setAccountCreationFee(value);
       break;
     default:
       reader.skipField();
@@ -1712,6 +1717,14 @@ proto.prototype.bp_update_operation.serializeBinaryToWriter = function(message, 
     writer.writeUint64(
       3,
       f
+    );
+  }
+  f = message.getAccountCreationFee();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      prototype_type_pb.coin.serializeBinaryToWriter
     );
   }
 };
@@ -1774,6 +1787,36 @@ proto.prototype.bp_update_operation.prototype.getTpsExpected = function() {
 /** @param {number} value */
 proto.prototype.bp_update_operation.prototype.setTpsExpected = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional coin account_creation_fee = 4;
+ * @return {?proto.prototype.coin}
+ */
+proto.prototype.bp_update_operation.prototype.getAccountCreationFee = function() {
+  return /** @type{?proto.prototype.coin} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 4));
+};
+
+
+/** @param {?proto.prototype.coin|undefined} value */
+proto.prototype.bp_update_operation.prototype.setAccountCreationFee = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.prototype.bp_update_operation.prototype.clearAccountCreationFee = function() {
+  this.setAccountCreationFee(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.bp_update_operation.prototype.hasAccountCreationFee = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -5022,7 +5065,8 @@ proto.prototype.stake_operation.prototype.toObject = function(opt_includeInstanc
  */
 proto.prototype.stake_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: (f = msg.getAccount()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    from: (f = msg.getFrom()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    to: (f = msg.getTo()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     amount: (f = msg.getAmount()) && prototype_type_pb.coin.toObject(includeInstance, f)
   };
 
@@ -5063,9 +5107,14 @@ proto.prototype.stake_operation.deserializeBinaryFromReader = function(msg, read
     case 1:
       var value = new prototype_type_pb.account_name;
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setAccount(value);
+      msg.setFrom(value);
       break;
     case 2:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.setTo(value);
+      break;
+    case 3:
       var value = new prototype_type_pb.coin;
       reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
       msg.setAmount(value);
@@ -5099,7 +5148,7 @@ proto.prototype.stake_operation.prototype.serializeBinary = function() {
  */
 proto.prototype.stake_operation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getFrom();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -5107,10 +5156,18 @@ proto.prototype.stake_operation.serializeBinaryToWriter = function(message, writ
       prototype_type_pb.account_name.serializeBinaryToWriter
     );
   }
-  f = message.getAmount();
+  f = message.getTo();
   if (f != null) {
     writer.writeMessage(
       2,
+      f,
+      prototype_type_pb.account_name.serializeBinaryToWriter
+    );
+  }
+  f = message.getAmount();
+  if (f != null) {
+    writer.writeMessage(
+      3,
       f,
       prototype_type_pb.coin.serializeBinaryToWriter
     );
@@ -5119,23 +5176,23 @@ proto.prototype.stake_operation.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional account_name account = 1;
+ * optional account_name from = 1;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.stake_operation.prototype.getAccount = function() {
+proto.prototype.stake_operation.prototype.getFrom = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.stake_operation.prototype.setAccount = function(value) {
+proto.prototype.stake_operation.prototype.setFrom = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.prototype.stake_operation.prototype.clearAccount = function() {
-  this.setAccount(undefined);
+proto.prototype.stake_operation.prototype.clearFrom = function() {
+  this.setFrom(undefined);
 };
 
 
@@ -5143,24 +5200,54 @@ proto.prototype.stake_operation.prototype.clearAccount = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.stake_operation.prototype.hasAccount = function() {
+proto.prototype.stake_operation.prototype.hasFrom = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional coin amount = 2;
+ * optional account_name to = 2;
+ * @return {?proto.prototype.account_name}
+ */
+proto.prototype.stake_operation.prototype.getTo = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 2));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.prototype.stake_operation.prototype.setTo = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.prototype.stake_operation.prototype.clearTo = function() {
+  this.setTo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.stake_operation.prototype.hasTo = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional coin amount = 3;
  * @return {?proto.prototype.coin}
  */
 proto.prototype.stake_operation.prototype.getAmount = function() {
   return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 2));
+    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 3));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
 proto.prototype.stake_operation.prototype.setAmount = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -5174,7 +5261,7 @@ proto.prototype.stake_operation.prototype.clearAmount = function() {
  * @return {!boolean}
  */
 proto.prototype.stake_operation.prototype.hasAmount = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -5225,7 +5312,8 @@ proto.prototype.un_stake_operation.prototype.toObject = function(opt_includeInst
  */
 proto.prototype.un_stake_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: (f = msg.getAccount()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    creditor: (f = msg.getCreditor()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    debtor: (f = msg.getDebtor()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     amount: (f = msg.getAmount()) && prototype_type_pb.coin.toObject(includeInstance, f)
   };
 
@@ -5266,9 +5354,14 @@ proto.prototype.un_stake_operation.deserializeBinaryFromReader = function(msg, r
     case 1:
       var value = new prototype_type_pb.account_name;
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setAccount(value);
+      msg.setCreditor(value);
       break;
     case 2:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.setDebtor(value);
+      break;
+    case 3:
       var value = new prototype_type_pb.coin;
       reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
       msg.setAmount(value);
@@ -5302,7 +5395,7 @@ proto.prototype.un_stake_operation.prototype.serializeBinary = function() {
  */
 proto.prototype.un_stake_operation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getCreditor();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -5310,216 +5403,7 @@ proto.prototype.un_stake_operation.serializeBinaryToWriter = function(message, w
       prototype_type_pb.account_name.serializeBinaryToWriter
     );
   }
-  f = message.getAmount();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      prototype_type_pb.coin.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional account_name account = 1;
- * @return {?proto.prototype.account_name}
- */
-proto.prototype.un_stake_operation.prototype.getAccount = function() {
-  return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
-};
-
-
-/** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.un_stake_operation.prototype.setAccount = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.prototype.un_stake_operation.prototype.clearAccount = function() {
-  this.setAccount(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.un_stake_operation.prototype.hasAccount = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional coin amount = 2;
- * @return {?proto.prototype.coin}
- */
-proto.prototype.un_stake_operation.prototype.getAmount = function() {
-  return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 2));
-};
-
-
-/** @param {?proto.prototype.coin|undefined} value */
-proto.prototype.un_stake_operation.prototype.setAmount = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.prototype.un_stake_operation.prototype.clearAmount = function() {
-  this.setAmount(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.un_stake_operation.prototype.hasAmount = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.prototype.transfer_to_stake_vesting_operation = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.prototype.transfer_to_stake_vesting_operation, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.prototype.transfer_to_stake_vesting_operation.displayName = 'proto.prototype.transfer_to_stake_vesting_operation';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.transfer_to_stake_vesting_operation.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.prototype.transfer_to_stake_vesting_operation} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.transfer_to_stake_vesting_operation.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    from: (f = msg.getFrom()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    to: (f = msg.getTo()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    amount: (f = msg.getAmount()) && prototype_type_pb.coin.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.transfer_to_stake_vesting_operation}
- */
-proto.prototype.transfer_to_stake_vesting_operation.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.transfer_to_stake_vesting_operation;
-  return proto.prototype.transfer_to_stake_vesting_operation.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.prototype.transfer_to_stake_vesting_operation} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.transfer_to_stake_vesting_operation}
- */
-proto.prototype.transfer_to_stake_vesting_operation.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setFrom(value);
-      break;
-    case 2:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setTo(value);
-      break;
-    case 3:
-      var value = new prototype_type_pb.coin;
-      reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
-      msg.setAmount(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.prototype.transfer_to_stake_vesting_operation.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.transfer_to_stake_vesting_operation} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.transfer_to_stake_vesting_operation.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getFrom();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      prototype_type_pb.account_name.serializeBinaryToWriter
-    );
-  }
-  f = message.getTo();
+  f = message.getDebtor();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -5539,23 +5423,23 @@ proto.prototype.transfer_to_stake_vesting_operation.serializeBinaryToWriter = fu
 
 
 /**
- * optional account_name from = 1;
+ * optional account_name creditor = 1;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.getFrom = function() {
+proto.prototype.un_stake_operation.prototype.getCreditor = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.setFrom = function(value) {
+proto.prototype.un_stake_operation.prototype.setCreditor = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.prototype.transfer_to_stake_vesting_operation.prototype.clearFrom = function() {
-  this.setFrom(undefined);
+proto.prototype.un_stake_operation.prototype.clearCreditor = function() {
+  this.setCreditor(undefined);
 };
 
 
@@ -5563,29 +5447,29 @@ proto.prototype.transfer_to_stake_vesting_operation.prototype.clearFrom = functi
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.hasFrom = function() {
+proto.prototype.un_stake_operation.prototype.hasCreditor = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional account_name to = 2;
+ * optional account_name debtor = 2;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.getTo = function() {
+proto.prototype.un_stake_operation.prototype.getDebtor = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 2));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.setTo = function(value) {
+proto.prototype.un_stake_operation.prototype.setDebtor = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.prototype.transfer_to_stake_vesting_operation.prototype.clearTo = function() {
-  this.setTo(undefined);
+proto.prototype.un_stake_operation.prototype.clearDebtor = function() {
+  this.setDebtor(undefined);
 };
 
 
@@ -5593,7 +5477,7 @@ proto.prototype.transfer_to_stake_vesting_operation.prototype.clearTo = function
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.hasTo = function() {
+proto.prototype.un_stake_operation.prototype.hasDebtor = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -5602,19 +5486,19 @@ proto.prototype.transfer_to_stake_vesting_operation.prototype.hasTo = function()
  * optional coin amount = 3;
  * @return {?proto.prototype.coin}
  */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.getAmount = function() {
+proto.prototype.un_stake_operation.prototype.getAmount = function() {
   return /** @type{?proto.prototype.coin} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.coin, 3));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.setAmount = function(value) {
+proto.prototype.un_stake_operation.prototype.setAmount = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
 
-proto.prototype.transfer_to_stake_vesting_operation.prototype.clearAmount = function() {
+proto.prototype.un_stake_operation.prototype.clearAmount = function() {
   this.setAmount(undefined);
 };
 
@@ -5623,7 +5507,7 @@ proto.prototype.transfer_to_stake_vesting_operation.prototype.clearAmount = func
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.transfer_to_stake_vesting_operation.prototype.hasAmount = function() {
+proto.prototype.un_stake_operation.prototype.hasAmount = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 

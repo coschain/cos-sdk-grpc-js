@@ -370,3 +370,31 @@ export namespace user_trx_create_order {
   }
 }
 
+export class stake_record extends jspb.Message {
+  hasFrom(): boolean;
+  clearFrom(): void;
+  getFrom(): prototype_type_pb.account_name | undefined;
+  setFrom(value?: prototype_type_pb.account_name): void;
+
+  hasTo(): boolean;
+  clearTo(): void;
+  getTo(): prototype_type_pb.account_name | undefined;
+  setTo(value?: prototype_type_pb.account_name): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): stake_record.AsObject;
+  static toObject(includeInstance: boolean, msg: stake_record): stake_record.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: stake_record, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): stake_record;
+  static deserializeBinaryFromReader(message: stake_record, reader: jspb.BinaryReader): stake_record;
+}
+
+export namespace stake_record {
+  export type AsObject = {
+    from?: prototype_type_pb.account_name.AsObject,
+    to?: prototype_type_pb.account_name.AsObject,
+  }
+}
+
