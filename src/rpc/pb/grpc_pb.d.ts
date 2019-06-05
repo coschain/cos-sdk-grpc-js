@@ -313,6 +313,9 @@ export class AccountInfo extends jspb.Message {
   getNextWithdrawTime(): prototype_type_pb.time_point_sec | undefined;
   setNextWithdrawTime(value?: prototype_type_pb.time_point_sec): void;
 
+  getBpVoteCount(): number;
+  setBpVoteCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -343,6 +346,7 @@ export namespace AccountInfo {
     withdrawRemains?: prototype_type_pb.vest.AsObject,
     withdrawEachTime?: prototype_type_pb.vest.AsObject,
     nextWithdrawTime?: prototype_type_pb.time_point_sec.AsObject,
+    bpVoteCount: number,
   }
 }
 
@@ -610,8 +614,10 @@ export class WitnessResponse extends jspb.Message {
   getUrl(): string;
   setUrl(value: string): void;
 
-  getVoteCount(): number;
-  setVoteCount(value: number): void;
+  hasVoteCount(): boolean;
+  clearVoteCount(): void;
+  getVoteCount(): prototype_type_pb.vest | undefined;
+  setVoteCount(value?: prototype_type_pb.vest): void;
 
   hasSigningKey(): boolean;
   clearSigningKey(): void;
@@ -632,6 +638,11 @@ export class WitnessResponse extends jspb.Message {
   getAccountCreateFee(): prototype_type_pb.coin | undefined;
   setAccountCreateFee(value?: prototype_type_pb.coin): void;
 
+  clearVoterListList(): void;
+  getVoterListList(): Array<prototype_type_pb.account_name>;
+  setVoterListList(value: Array<prototype_type_pb.account_name>): void;
+  addVoterList(value?: prototype_type_pb.account_name, index?: number): prototype_type_pb.account_name;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WitnessResponse.AsObject;
   static toObject(includeInstance: boolean, msg: WitnessResponse): WitnessResponse.AsObject;
@@ -647,12 +658,13 @@ export namespace WitnessResponse {
     owner?: prototype_type_pb.account_name.AsObject,
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
     url: string,
-    voteCount: number,
+    voteCount?: prototype_type_pb.vest.AsObject,
     signingKey?: prototype_type_pb.public_key_type.AsObject,
     proposedStaminaFree: number,
     active: boolean,
     tpsExpected: number,
     accountCreateFee?: prototype_type_pb.coin.AsObject,
+    voterListList: Array<prototype_type_pb.account_name.AsObject>,
   }
 }
 
@@ -2235,11 +2247,15 @@ export namespace GetContractListResponse {
 }
 
 export class GetWitnessListByVoteCountRequest extends jspb.Message {
-  getStart(): string;
-  setStart(value: string): void;
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.vest | undefined;
+  setStart(value?: prototype_type_pb.vest): void;
 
-  getEnd(): string;
-  setEnd(value: string): void;
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.vest | undefined;
+  setEnd(value?: prototype_type_pb.vest): void;
 
   hasLastWitness(): boolean;
   clearLastWitness(): void;
@@ -2261,8 +2277,8 @@ export class GetWitnessListByVoteCountRequest extends jspb.Message {
 
 export namespace GetWitnessListByVoteCountRequest {
   export type AsObject = {
-    start: string,
-    end: string,
+    start?: prototype_type_pb.vest.AsObject,
+    end?: prototype_type_pb.vest.AsObject,
     lastWitness?: WitnessResponse.AsObject,
     limit: number,
   }

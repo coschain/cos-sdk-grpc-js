@@ -1819,7 +1819,8 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     stakeVest: (f = msg.getStakeVest()) && prototype_type_pb.vest.toObject(includeInstance, f),
     withdrawRemains: (f = msg.getWithdrawRemains()) && prototype_type_pb.vest.toObject(includeInstance, f),
     withdrawEachTime: (f = msg.getWithdrawEachTime()) && prototype_type_pb.vest.toObject(includeInstance, f),
-    nextWithdrawTime: (f = msg.getNextWithdrawTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f)
+    nextWithdrawTime: (f = msg.getNextWithdrawTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    bpVoteCount: jspb.Message.getFieldWithDefault(msg, 19, 0)
   };
 
   if (includeInstance) {
@@ -1937,6 +1938,10 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
       var value = new prototype_type_pb.time_point_sec;
       reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
       msg.setNextWithdrawTime(value);
+      break;
+    case 19:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setBpVoteCount(value);
       break;
     default:
       reader.skipField();
@@ -2101,6 +2106,13 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
       18,
       f,
       prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+  f = message.getBpVoteCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      19,
+      f
     );
   }
 };
@@ -2523,6 +2535,21 @@ proto.grpcpb.AccountInfo.prototype.clearNextWithdrawTime = function() {
  */
 proto.grpcpb.AccountInfo.prototype.hasNextWithdrawTime = function() {
   return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional uint32 bp_vote_count = 19;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getBpVoteCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setBpVoteCount = function(value) {
+  jspb.Message.setProto3IntField(this, 19, value);
 };
 
 
@@ -4359,12 +4386,19 @@ proto.grpcpb.GetFollowCountByNameResponse.prototype.setFingCnt = function(value)
  * @constructor
  */
 proto.grpcpb.WitnessResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.grpcpb.WitnessResponse.repeatedFields_, null);
 };
 goog.inherits(proto.grpcpb.WitnessResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.grpcpb.WitnessResponse.displayName = 'proto.grpcpb.WitnessResponse';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.grpcpb.WitnessResponse.repeatedFields_ = [10];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -4397,12 +4431,14 @@ proto.grpcpb.WitnessResponse.toObject = function(includeInstance, msg) {
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     createdTime: (f = msg.getCreatedTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     url: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    voteCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    voteCount: (f = msg.getVoteCount()) && prototype_type_pb.vest.toObject(includeInstance, f),
     signingKey: (f = msg.getSigningKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
     proposedStaminaFree: jspb.Message.getFieldWithDefault(msg, 6, 0),
     active: jspb.Message.getFieldWithDefault(msg, 7, false),
     tpsExpected: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    accountCreateFee: (f = msg.getAccountCreateFee()) && prototype_type_pb.coin.toObject(includeInstance, f)
+    accountCreateFee: (f = msg.getAccountCreateFee()) && prototype_type_pb.coin.toObject(includeInstance, f),
+    voterListList: jspb.Message.toObjectList(msg.getVoterListList(),
+    prototype_type_pb.account_name.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -4454,7 +4490,8 @@ proto.grpcpb.WitnessResponse.deserializeBinaryFromReader = function(msg, reader)
       msg.setUrl(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
       msg.setVoteCount(value);
       break;
     case 5:
@@ -4478,6 +4515,11 @@ proto.grpcpb.WitnessResponse.deserializeBinaryFromReader = function(msg, reader)
       var value = new prototype_type_pb.coin;
       reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
       msg.setAccountCreateFee(value);
+      break;
+    case 10:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.addVoterList(value);
       break;
     default:
       reader.skipField();
@@ -4532,10 +4574,11 @@ proto.grpcpb.WitnessResponse.serializeBinaryToWriter = function(message, writer)
     );
   }
   f = message.getVoteCount();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (f != null) {
+    writer.writeMessage(
       4,
-      f
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
   f = message.getSigningKey();
@@ -4573,6 +4616,14 @@ proto.grpcpb.WitnessResponse.serializeBinaryToWriter = function(message, writer)
       9,
       f,
       prototype_type_pb.coin.serializeBinaryToWriter
+    );
+  }
+  f = message.getVoterListList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      10,
+      f,
+      prototype_type_pb.account_name.serializeBinaryToWriter
     );
   }
 };
@@ -4654,17 +4705,32 @@ proto.grpcpb.WitnessResponse.prototype.setUrl = function(value) {
 
 
 /**
- * optional uint64 vote_count = 4;
- * @return {number}
+ * optional prototype.vest vote_count = 4;
+ * @return {?proto.prototype.vest}
  */
 proto.grpcpb.WitnessResponse.prototype.getVoteCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 4));
 };
 
 
-/** @param {number} value */
+/** @param {?proto.prototype.vest|undefined} value */
 proto.grpcpb.WitnessResponse.prototype.setVoteCount = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.grpcpb.WitnessResponse.prototype.clearVoteCount = function() {
+  this.setVoteCount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.WitnessResponse.prototype.hasVoteCount = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -4772,6 +4838,37 @@ proto.grpcpb.WitnessResponse.prototype.clearAccountCreateFee = function() {
  */
 proto.grpcpb.WitnessResponse.prototype.hasAccountCreateFee = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * repeated prototype.account_name voter_list = 10;
+ * @return {!Array<!proto.prototype.account_name>}
+ */
+proto.grpcpb.WitnessResponse.prototype.getVoterListList = function() {
+  return /** @type{!Array<!proto.prototype.account_name>} */ (
+    jspb.Message.getRepeatedWrapperField(this, prototype_type_pb.account_name, 10));
+};
+
+
+/** @param {!Array<!proto.prototype.account_name>} value */
+proto.grpcpb.WitnessResponse.prototype.setVoterListList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 10, value);
+};
+
+
+/**
+ * @param {!proto.prototype.account_name=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.prototype.account_name}
+ */
+proto.grpcpb.WitnessResponse.prototype.addVoterList = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.prototype.account_name, opt_index);
+};
+
+
+proto.grpcpb.WitnessResponse.prototype.clearVoterListList = function() {
+  this.setVoterListList([]);
 };
 
 
@@ -16270,8 +16367,8 @@ proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.toObject = function(opt_
  */
 proto.grpcpb.GetWitnessListByVoteCountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    start: jspb.Message.getFieldWithDefault(msg, 1, "0"),
-    end: jspb.Message.getFieldWithDefault(msg, 2, "0"),
+    start: (f = msg.getStart()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    end: (f = msg.getEnd()) && prototype_type_pb.vest.toObject(includeInstance, f),
     lastWitness: (f = msg.getLastWitness()) && proto.grpcpb.WitnessResponse.toObject(includeInstance, f),
     limit: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
@@ -16311,11 +16408,13 @@ proto.grpcpb.GetWitnessListByVoteCountRequest.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
       msg.setStart(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
       msg.setEnd(value);
       break;
     case 3:
@@ -16357,17 +16456,19 @@ proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.serializeBinary = functi
 proto.grpcpb.GetWitnessListByVoteCountRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getStart();
-  if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
   f = message.getEnd();
-  if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
   f = message.getLastWitness();
@@ -16389,32 +16490,62 @@ proto.grpcpb.GetWitnessListByVoteCountRequest.serializeBinaryToWriter = function
 
 
 /**
- * optional uint64 start = 1;
- * @return {string}
+ * optional prototype.vest start = 1;
+ * @return {?proto.prototype.vest}
  */
 proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.getStart = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 1));
 };
 
 
-/** @param {string} value */
+/** @param {?proto.prototype.vest|undefined} value */
 proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.setStart = function(value) {
-  jspb.Message.setProto3StringIntField(this, 1, value);
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.clearStart = function() {
+  this.setStart(undefined);
 };
 
 
 /**
- * optional uint64 end = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {!boolean}
  */
-proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.getEnd = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.hasStart = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
-/** @param {string} value */
+/**
+ * optional prototype.vest end = 2;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.getEnd = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 2));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
 proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.setEnd = function(value) {
-  jspb.Message.setProto3StringIntField(this, 2, value);
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.clearEnd = function() {
+  this.setEnd(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetWitnessListByVoteCountRequest.prototype.hasEnd = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
