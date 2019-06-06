@@ -2284,3 +2284,63 @@ export namespace GetWitnessListByVoteCountRequest {
   }
 }
 
+export class GetPostListByVestRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.vest | undefined;
+  setStart(value?: prototype_type_pb.vest): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.vest | undefined;
+  setEnd(value?: prototype_type_pb.vest): void;
+
+  hasLastPost(): boolean;
+  clearLastPost(): void;
+  getLastPost(): PostResponse | undefined;
+  setLastPost(value?: PostResponse): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPostListByVestRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPostListByVestRequest): GetPostListByVestRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPostListByVestRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPostListByVestRequest;
+  static deserializeBinaryFromReader(message: GetPostListByVestRequest, reader: jspb.BinaryReader): GetPostListByVestRequest;
+}
+
+export namespace GetPostListByVestRequest {
+  export type AsObject = {
+    start?: prototype_type_pb.vest.AsObject,
+    end?: prototype_type_pb.vest.AsObject,
+    lastPost?: PostResponse.AsObject,
+    limit: number,
+  }
+}
+
+export class GetPostListByVestResponse extends jspb.Message {
+  clearPostListList(): void;
+  getPostListList(): Array<PostResponse>;
+  setPostListList(value: Array<PostResponse>): void;
+  addPostList(value?: PostResponse, index?: number): PostResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPostListByVestResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPostListByVestResponse): GetPostListByVestResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPostListByVestResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPostListByVestResponse;
+  static deserializeBinaryFromReader(message: GetPostListByVestResponse, reader: jspb.BinaryReader): GetPostListByVestResponse;
+}
+
+export namespace GetPostListByVestResponse {
+  export type AsObject = {
+    postListList: Array<PostResponse.AsObject>,
+  }
+}
+
