@@ -289,6 +289,24 @@ ApiService.GetPostListByVest = {
   responseType: rpc_pb_grpc_pb.GetPostListByVestResponse
 };
 
+ApiService.EstimateStamina = {
+  methodName: "EstimateStamina",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.EsimateRequest,
+  responseType: rpc_pb_grpc_pb.EsimateResponse
+};
+
+ApiService.GetNodeNeighbours = {
+  methodName: "GetNodeNeighbours",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.NonParamsRequest,
+  responseType: rpc_pb_grpc_pb.GetNodeNeighboursResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -1231,6 +1249,68 @@ ApiServiceClient.prototype.getPostListByVest = function getPostListByVest(reques
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetPostListByVest, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.estimateStamina = function estimateStamina(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.EstimateStamina, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getNodeNeighbours = function getNodeNeighbours(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetNodeNeighbours, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

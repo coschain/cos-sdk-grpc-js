@@ -27,6 +27,8 @@ goog.exportSymbol('proto.grpcpb.ChainState', null, global);
 goog.exportSymbol('proto.grpcpb.ContractInfo', null, global);
 goog.exportSymbol('proto.grpcpb.DailyStat', null, global);
 goog.exportSymbol('proto.grpcpb.DailyTotalTrx', null, global);
+goog.exportSymbol('proto.grpcpb.EsimateRequest', null, global);
+goog.exportSymbol('proto.grpcpb.EsimateResponse', null, global);
 goog.exportSymbol('proto.grpcpb.FollowerListInfo', null, global);
 goog.exportSymbol('proto.grpcpb.FollowingListInfo', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountByNameRequest', null, global);
@@ -57,6 +59,7 @@ goog.exportSymbol('proto.grpcpb.GetFollowerListByNameRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetFollowerListByNameResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetFollowingListByNameRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetFollowingListByNameResponse', null, global);
+goog.exportSymbol('proto.grpcpb.GetNodeNeighboursResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetPostInfoByIdRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetPostInfoByIdResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetPostListByCreateTimeRequest', null, global);
@@ -1822,7 +1825,13 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     withdrawRemains: (f = msg.getWithdrawRemains()) && prototype_type_pb.vest.toObject(includeInstance, f),
     withdrawEachTime: (f = msg.getWithdrawEachTime()) && prototype_type_pb.vest.toObject(includeInstance, f),
     nextWithdrawTime: (f = msg.getNextWithdrawTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
-    bpVoteCount: jspb.Message.getFieldWithDefault(msg, 19, 0)
+    bpVoteCount: jspb.Message.getFieldWithDefault(msg, 19, 0),
+    reputation: jspb.Message.getFieldWithDefault(msg, 20, 0),
+    reputationMemo: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    chargedTicket: jspb.Message.getFieldWithDefault(msg, 22, 0),
+    freeTicket: jspb.Message.getFieldWithDefault(msg, 23, 0),
+    freeze: jspb.Message.getFieldWithDefault(msg, 24, 0),
+    freezeMemo: jspb.Message.getFieldWithDefault(msg, 25, "")
   };
 
   if (includeInstance) {
@@ -1944,6 +1953,30 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 19:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setBpVoteCount(value);
+      break;
+    case 20:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setReputation(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReputationMemo(value);
+      break;
+    case 22:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setChargedTicket(value);
+      break;
+    case 23:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setFreeTicket(value);
+      break;
+    case 24:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setFreeze(value);
+      break;
+    case 25:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFreezeMemo(value);
       break;
     default:
       reader.skipField();
@@ -2114,6 +2147,48 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint32(
       19,
+      f
+    );
+  }
+  f = message.getReputation();
+  if (f !== 0) {
+    writer.writeUint32(
+      20,
+      f
+    );
+  }
+  f = message.getReputationMemo();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getChargedTicket();
+  if (f !== 0) {
+    writer.writeUint32(
+      22,
+      f
+    );
+  }
+  f = message.getFreeTicket();
+  if (f !== 0) {
+    writer.writeUint32(
+      23,
+      f
+    );
+  }
+  f = message.getFreeze();
+  if (f !== 0) {
+    writer.writeUint32(
+      24,
+      f
+    );
+  }
+  f = message.getFreezeMemo();
+  if (f.length > 0) {
+    writer.writeString(
+      25,
       f
     );
   }
@@ -2552,6 +2627,96 @@ proto.grpcpb.AccountInfo.prototype.getBpVoteCount = function() {
 /** @param {number} value */
 proto.grpcpb.AccountInfo.prototype.setBpVoteCount = function(value) {
   jspb.Message.setProto3IntField(this, 19, value);
+};
+
+
+/**
+ * optional uint32 reputation = 20;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getReputation = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 20, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setReputation = function(value) {
+  jspb.Message.setProto3IntField(this, 20, value);
+};
+
+
+/**
+ * optional string reputation_memo = 21;
+ * @return {string}
+ */
+proto.grpcpb.AccountInfo.prototype.getReputationMemo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.AccountInfo.prototype.setReputationMemo = function(value) {
+  jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
+/**
+ * optional uint32 charged_ticket = 22;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getChargedTicket = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 22, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setChargedTicket = function(value) {
+  jspb.Message.setProto3IntField(this, 22, value);
+};
+
+
+/**
+ * optional uint32 free_ticket = 23;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getFreeTicket = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 23, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setFreeTicket = function(value) {
+  jspb.Message.setProto3IntField(this, 23, value);
+};
+
+
+/**
+ * optional uint32 freeze = 24;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getFreeze = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 24, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setFreeze = function(value) {
+  jspb.Message.setProto3IntField(this, 24, value);
+};
+
+
+/**
+ * optional string freeze_memo = 25;
+ * @return {string}
+ */
+proto.grpcpb.AccountInfo.prototype.getFreezeMemo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 25, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.AccountInfo.prototype.setFreezeMemo = function(value) {
+  jspb.Message.setProto3StringField(this, 25, value);
 };
 
 
@@ -4399,7 +4564,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.grpcpb.WitnessResponse.repeatedFields_ = [10];
+proto.grpcpb.WitnessResponse.repeatedFields_ = [14];
 
 
 
@@ -4439,6 +4604,10 @@ proto.grpcpb.WitnessResponse.toObject = function(includeInstance, msg) {
     active: jspb.Message.getFieldWithDefault(msg, 7, false),
     tpsExpected: jspb.Message.getFieldWithDefault(msg, 8, 0),
     accountCreateFee: (f = msg.getAccountCreateFee()) && prototype_type_pb.coin.toObject(includeInstance, f),
+    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    ticketFlushInterval: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    perTicketPrice: (f = msg.getPerTicketPrice()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 13, 0),
     voterListList: jspb.Message.toObjectList(msg.getVoterListList(),
     prototype_type_pb.account_name.toObject, includeInstance)
   };
@@ -4519,6 +4688,23 @@ proto.grpcpb.WitnessResponse.deserializeBinaryFromReader = function(msg, reader)
       msg.setAccountCreateFee(value);
       break;
     case 10:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTopNAcquireFreeToken(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTicketFlushInterval(value);
+      break;
+    case 12:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setPerTicketPrice(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setPerTicketWeight(value);
+      break;
+    case 14:
       var value = new prototype_type_pb.account_name;
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
       msg.addVoterList(value);
@@ -4620,10 +4806,39 @@ proto.grpcpb.WitnessResponse.serializeBinaryToWriter = function(message, writer)
       prototype_type_pb.coin.serializeBinaryToWriter
     );
   }
+  f = message.getTopNAcquireFreeToken();
+  if (f !== 0) {
+    writer.writeUint32(
+      10,
+      f
+    );
+  }
+  f = message.getTicketFlushInterval();
+  if (f !== 0) {
+    writer.writeUint64(
+      11,
+      f
+    );
+  }
+  f = message.getPerTicketPrice();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPerTicketWeight();
+  if (f !== 0) {
+    writer.writeUint64(
+      13,
+      f
+    );
+  }
   f = message.getVoterListList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      10,
+      14,
       f,
       prototype_type_pb.account_name.serializeBinaryToWriter
     );
@@ -4844,18 +5059,93 @@ proto.grpcpb.WitnessResponse.prototype.hasAccountCreateFee = function() {
 
 
 /**
- * repeated prototype.account_name voter_list = 10;
+ * optional uint32 top_n_acquire_free_token = 10;
+ * @return {number}
+ */
+proto.grpcpb.WitnessResponse.prototype.getTopNAcquireFreeToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.WitnessResponse.prototype.setTopNAcquireFreeToken = function(value) {
+  jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional uint64 ticket_flush_interval = 11;
+ * @return {number}
+ */
+proto.grpcpb.WitnessResponse.prototype.getTicketFlushInterval = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.WitnessResponse.prototype.setTicketFlushInterval = function(value) {
+  jspb.Message.setProto3IntField(this, 11, value);
+};
+
+
+/**
+ * optional prototype.vest per_ticket_price = 12;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.WitnessResponse.prototype.getPerTicketPrice = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 12));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.WitnessResponse.prototype.setPerTicketPrice = function(value) {
+  jspb.Message.setWrapperField(this, 12, value);
+};
+
+
+proto.grpcpb.WitnessResponse.prototype.clearPerTicketPrice = function() {
+  this.setPerTicketPrice(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.WitnessResponse.prototype.hasPerTicketPrice = function() {
+  return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional uint64 per_ticket_weight = 13;
+ * @return {number}
+ */
+proto.grpcpb.WitnessResponse.prototype.getPerTicketWeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.WitnessResponse.prototype.setPerTicketWeight = function(value) {
+  jspb.Message.setProto3IntField(this, 13, value);
+};
+
+
+/**
+ * repeated prototype.account_name voter_list = 14;
  * @return {!Array<!proto.prototype.account_name>}
  */
 proto.grpcpb.WitnessResponse.prototype.getVoterListList = function() {
   return /** @type{!Array<!proto.prototype.account_name>} */ (
-    jspb.Message.getRepeatedWrapperField(this, prototype_type_pb.account_name, 10));
+    jspb.Message.getRepeatedWrapperField(this, prototype_type_pb.account_name, 14));
 };
 
 
 /** @param {!Array<!proto.prototype.account_name>} value */
 proto.grpcpb.WitnessResponse.prototype.setVoterListList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 10, value);
+  jspb.Message.setRepeatedWrapperField(this, 14, value);
 };
 
 
@@ -4865,7 +5155,7 @@ proto.grpcpb.WitnessResponse.prototype.setVoterListList = function(value) {
  * @return {!proto.prototype.account_name}
  */
 proto.grpcpb.WitnessResponse.prototype.addVoterList = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.prototype.account_name, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 14, opt_value, proto.prototype.account_name, opt_index);
 };
 
 
@@ -5303,7 +5593,8 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     dappRewards: (f = msg.getDappRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
     cashoutInterval: jspb.Message.getFieldWithDefault(msg, 24, 0),
     globalRewards: (f = msg.getGlobalRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
-    globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, "")
+    globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, ""),
+    ticket: jspb.Message.getFieldWithDefault(msg, 27, 0)
   };
 
   if (includeInstance) {
@@ -5431,6 +5722,10 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 26:
       var value = /** @type {string} */ (reader.readString());
       msg.setGlobalWeightedVp(value);
+      break;
+    case 27:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTicket(value);
       break;
     default:
       reader.skipField();
@@ -5613,6 +5908,13 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       26,
+      f
+    );
+  }
+  f = message.getTicket();
+  if (f !== 0) {
+    writer.writeUint32(
+      27,
       f
     );
   }
@@ -6066,6 +6368,21 @@ proto.grpcpb.PostResponse.prototype.getGlobalWeightedVp = function() {
 /** @param {string} value */
 proto.grpcpb.PostResponse.prototype.setGlobalWeightedVp = function(value) {
   jspb.Message.setProto3StringField(this, 26, value);
+};
+
+
+/**
+ * optional uint32 ticket = 27;
+ * @return {number}
+ */
+proto.grpcpb.PostResponse.prototype.getTicket = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 27, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.PostResponse.prototype.setTicket = function(value) {
+  jspb.Message.setProto3IntField(this, 27, value);
 };
 
 
@@ -7385,6 +7702,148 @@ proto.grpcpb.GetChainStateResponse.prototype.clearState = function() {
  */
 proto.grpcpb.GetChainStateResponse.prototype.hasState = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetNodeNeighboursResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetNodeNeighboursResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetNodeNeighboursResponse.displayName = 'proto.grpcpb.GetNodeNeighboursResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetNodeNeighboursResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetNodeNeighboursResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetNodeNeighboursResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetNodeNeighboursResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    peerlist: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetNodeNeighboursResponse}
+ */
+proto.grpcpb.GetNodeNeighboursResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetNodeNeighboursResponse;
+  return proto.grpcpb.GetNodeNeighboursResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetNodeNeighboursResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetNodeNeighboursResponse}
+ */
+proto.grpcpb.GetNodeNeighboursResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPeerlist(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetNodeNeighboursResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetNodeNeighboursResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetNodeNeighboursResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetNodeNeighboursResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPeerlist();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string peerlist = 1;
+ * @return {string}
+ */
+proto.grpcpb.GetNodeNeighboursResponse.prototype.getPeerlist = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetNodeNeighboursResponse.prototype.setPeerlist = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -14142,7 +14601,9 @@ proto.grpcpb.GetContractInfoResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     exist: jspb.Message.getFieldWithDefault(msg, 1, false),
     abi: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    code: msg.getCode_asB64()
+    code: msg.getCode_asB64(),
+    url: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    describe: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -14191,6 +14652,14 @@ proto.grpcpb.GetContractInfoResponse.deserializeBinaryFromReader = function(msg,
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setCode(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUrl(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescribe(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -14238,6 +14707,20 @@ proto.grpcpb.GetContractInfoResponse.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeBytes(
       3,
+      f
+    );
+  }
+  f = message.getUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getDescribe();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -14312,6 +14795,36 @@ proto.grpcpb.GetContractInfoResponse.prototype.getCode_asU8 = function() {
 /** @param {!(string|Uint8Array)} value */
 proto.grpcpb.GetContractInfoResponse.prototype.setCode = function(value) {
   jspb.Message.setProto3BytesField(this, 3, value);
+};
+
+
+/**
+ * optional string url = 4;
+ * @return {string}
+ */
+proto.grpcpb.GetContractInfoResponse.prototype.getUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetContractInfoResponse.prototype.setUrl = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string describe = 5;
+ * @return {string}
+ */
+proto.grpcpb.GetContractInfoResponse.prototype.getDescribe = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetContractInfoResponse.prototype.setDescribe = function(value) {
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -17035,6 +17548,324 @@ proto.grpcpb.GetPostListByVestResponse.prototype.addPostList = function(opt_valu
 
 proto.grpcpb.GetPostListByVestResponse.prototype.clearPostListList = function() {
   this.setPostListList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.EsimateRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.EsimateRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.EsimateRequest.displayName = 'proto.grpcpb.EsimateRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.EsimateRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.EsimateRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.EsimateRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.EsimateRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    transaction: (f = msg.getTransaction()) && prototype_transaction_pb.signed_transaction.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.EsimateRequest}
+ */
+proto.grpcpb.EsimateRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.EsimateRequest;
+  return proto.grpcpb.EsimateRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.EsimateRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.EsimateRequest}
+ */
+proto.grpcpb.EsimateRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_transaction_pb.signed_transaction;
+      reader.readMessage(value,prototype_transaction_pb.signed_transaction.deserializeBinaryFromReader);
+      msg.setTransaction(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.EsimateRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.EsimateRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.EsimateRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.EsimateRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTransaction();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      prototype_transaction_pb.signed_transaction.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional prototype.signed_transaction transaction = 1;
+ * @return {?proto.prototype.signed_transaction}
+ */
+proto.grpcpb.EsimateRequest.prototype.getTransaction = function() {
+  return /** @type{?proto.prototype.signed_transaction} */ (
+    jspb.Message.getWrapperField(this, prototype_transaction_pb.signed_transaction, 1));
+};
+
+
+/** @param {?proto.prototype.signed_transaction|undefined} value */
+proto.grpcpb.EsimateRequest.prototype.setTransaction = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.EsimateRequest.prototype.clearTransaction = function() {
+  this.setTransaction(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.EsimateRequest.prototype.hasTransaction = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.EsimateResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.EsimateResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.EsimateResponse.displayName = 'proto.grpcpb.EsimateResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.EsimateResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.EsimateResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.EsimateResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.EsimateResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    invoice: (f = msg.getInvoice()) && prototype_transaction_pb.transaction_receipt_with_info.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.EsimateResponse}
+ */
+proto.grpcpb.EsimateResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.EsimateResponse;
+  return proto.grpcpb.EsimateResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.EsimateResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.EsimateResponse}
+ */
+proto.grpcpb.EsimateResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_transaction_pb.transaction_receipt_with_info;
+      reader.readMessage(value,prototype_transaction_pb.transaction_receipt_with_info.deserializeBinaryFromReader);
+      msg.setInvoice(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.EsimateResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.EsimateResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.EsimateResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.EsimateResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getInvoice();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      prototype_transaction_pb.transaction_receipt_with_info.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional prototype.transaction_receipt_with_info invoice = 1;
+ * @return {?proto.prototype.transaction_receipt_with_info}
+ */
+proto.grpcpb.EsimateResponse.prototype.getInvoice = function() {
+  return /** @type{?proto.prototype.transaction_receipt_with_info} */ (
+    jspb.Message.getWrapperField(this, prototype_transaction_pb.transaction_receipt_with_info, 1));
+};
+
+
+/** @param {?proto.prototype.transaction_receipt_with_info|undefined} value */
+proto.grpcpb.EsimateResponse.prototype.setInvoice = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.EsimateResponse.prototype.clearInvoice = function() {
+  this.setInvoice(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.EsimateResponse.prototype.hasInvoice = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 

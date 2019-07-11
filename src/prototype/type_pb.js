@@ -17,6 +17,7 @@ goog.exportSymbol('proto.prototype.chain_id', null, global);
 goog.exportSymbol('proto.prototype.chain_properties', null, global);
 goog.exportSymbol('proto.prototype.coin', null, global);
 goog.exportSymbol('proto.prototype.dynamic_properties', null, global);
+goog.exportSymbol('proto.prototype.gift_ticket_key_type', null, global);
 goog.exportSymbol('proto.prototype.private_key_type', null, global);
 goog.exportSymbol('proto.prototype.public_key_type', null, global);
 goog.exportSymbol('proto.prototype.sha256', null, global);
@@ -1408,6 +1409,229 @@ proto.prototype.sha256.prototype.setHash = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.prototype.gift_ticket_key_type = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.prototype.gift_ticket_key_type, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.prototype.gift_ticket_key_type.displayName = 'proto.prototype.gift_ticket_key_type';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.prototype.gift_ticket_key_type.prototype.toObject = function(opt_includeInstance) {
+  return proto.prototype.gift_ticket_key_type.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.prototype.gift_ticket_key_type} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.prototype.gift_ticket_key_type.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    from: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    to: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    createBlock: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.prototype.gift_ticket_key_type}
+ */
+proto.prototype.gift_ticket_key_type.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.prototype.gift_ticket_key_type;
+  return proto.prototype.gift_ticket_key_type.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.prototype.gift_ticket_key_type} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.prototype.gift_ticket_key_type}
+ */
+proto.prototype.gift_ticket_key_type.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setType(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFrom(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTo(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCreateBlock(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.prototype.gift_ticket_key_type.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.prototype.gift_ticket_key_type.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.prototype.gift_ticket_key_type} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.prototype.gift_ticket_key_type.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getType();
+  if (f !== 0) {
+    writer.writeUint32(
+      1,
+      f
+    );
+  }
+  f = message.getFrom();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTo();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getCreateBlock();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint32 type = 1;
+ * @return {number}
+ */
+proto.prototype.gift_ticket_key_type.prototype.getType = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.gift_ticket_key_type.prototype.setType = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional string from = 2;
+ * @return {string}
+ */
+proto.prototype.gift_ticket_key_type.prototype.getFrom = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.prototype.gift_ticket_key_type.prototype.setFrom = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string to = 3;
+ * @return {string}
+ */
+proto.prototype.gift_ticket_key_type.prototype.getTo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.prototype.gift_ticket_key_type.prototype.setTo = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 create_block = 4;
+ * @return {number}
+ */
+proto.prototype.gift_ticket_key_type.prototype.getCreateBlock = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.gift_ticket_key_type.prototype.setCreateBlock = function(value) {
+  jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.prototype.chain_properties = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -1447,7 +1671,11 @@ proto.prototype.chain_properties.toObject = function(includeInstance, msg) {
     accountCreationFee: (f = msg.getAccountCreationFee()) && proto.prototype.coin.toObject(includeInstance, f),
     maximumBlockSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     staminaFree: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    tpsExpected: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    epochDuration: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    perTicketPrice: (f = msg.getPerTicketPrice()) && proto.prototype.vest.toObject(includeInstance, f),
+    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -1500,6 +1728,23 @@ proto.prototype.chain_properties.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTpsExpected(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTopNAcquireFreeToken(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setEpochDuration(value);
+      break;
+    case 7:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setPerTicketPrice(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setPerTicketWeight(value);
       break;
     default:
       reader.skipField();
@@ -1556,6 +1801,35 @@ proto.prototype.chain_properties.serializeBinaryToWriter = function(message, wri
   if (f !== 0) {
     writer.writeUint64(
       4,
+      f
+    );
+  }
+  f = message.getTopNAcquireFreeToken();
+  if (f !== 0) {
+    writer.writeUint32(
+      5,
+      f
+    );
+  }
+  f = message.getEpochDuration();
+  if (f !== 0) {
+    writer.writeUint64(
+      6,
+      f
+    );
+  }
+  f = message.getPerTicketPrice();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPerTicketWeight();
+  if (f !== 0) {
+    writer.writeUint64(
+      8,
       f
     );
   }
@@ -1634,6 +1908,81 @@ proto.prototype.chain_properties.prototype.getTpsExpected = function() {
 /** @param {number} value */
 proto.prototype.chain_properties.prototype.setTpsExpected = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional uint32 top_n_acquire_free_token = 5;
+ * @return {number}
+ */
+proto.prototype.chain_properties.prototype.getTopNAcquireFreeToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.chain_properties.prototype.setTopNAcquireFreeToken = function(value) {
+  jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional uint64 epoch_duration = 6;
+ * @return {number}
+ */
+proto.prototype.chain_properties.prototype.getEpochDuration = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.chain_properties.prototype.setEpochDuration = function(value) {
+  jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional vest per_ticket_price = 7;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.chain_properties.prototype.getPerTicketPrice = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 7));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.chain_properties.prototype.setPerTicketPrice = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.prototype.chain_properties.prototype.clearPerTicketPrice = function() {
+  this.setPerTicketPrice(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.chain_properties.prototype.hasPerTicketPrice = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional uint64 per_ticket_weight = 8;
+ * @return {number}
+ */
+proto.prototype.chain_properties.prototype.getPerTicketWeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.chain_properties.prototype.setPerTicketWeight = function(value) {
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
@@ -1717,7 +2066,16 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     avgTpsUpdateBlock: jspb.Message.getFieldWithDefault(msg, 34, 0),
     avgTpsInWindow: jspb.Message.getFieldWithDefault(msg, 35, 0),
     oneDayStamina: jspb.Message.getFieldWithDefault(msg, 36, 0),
-    accountCreateFee: (f = msg.getAccountCreateFee()) && proto.prototype.coin.toObject(includeInstance, f)
+    accountCreateFee: (f = msg.getAccountCreateFee()) && proto.prototype.coin.toObject(includeInstance, f),
+    reputationAdmin: (f = msg.getReputationAdmin()) && proto.prototype.account_name.toObject(includeInstance, f),
+    currentEpochStartBlock: jspb.Message.getFieldWithDefault(msg, 39, 0),
+    epochDuration: jspb.Message.getFieldWithDefault(msg, 40, 0),
+    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 41, 0),
+    perTicketPrice: (f = msg.getPerTicketPrice()) && proto.prototype.vest.toObject(includeInstance, f),
+    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 43, 0),
+    ticketsIncome: (f = msg.getTicketsIncome()) && proto.prototype.vest.toObject(includeInstance, f),
+    chargedTicketsNum: jspb.Message.getFieldWithDefault(msg, 45, 0),
+    copyrightAdmin: (f = msg.getCopyrightAdmin()) && proto.prototype.account_name.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1905,6 +2263,46 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       var value = new proto.prototype.coin;
       reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
       msg.setAccountCreateFee(value);
+      break;
+    case 38:
+      var value = new proto.prototype.account_name;
+      reader.readMessage(value,proto.prototype.account_name.deserializeBinaryFromReader);
+      msg.setReputationAdmin(value);
+      break;
+    case 39:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCurrentEpochStartBlock(value);
+      break;
+    case 40:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setEpochDuration(value);
+      break;
+    case 41:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTopNAcquireFreeToken(value);
+      break;
+    case 42:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setPerTicketPrice(value);
+      break;
+    case 43:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setPerTicketWeight(value);
+      break;
+    case 44:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setTicketsIncome(value);
+      break;
+    case 45:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setChargedTicketsNum(value);
+      break;
+    case 46:
+      var value = new proto.prototype.account_name;
+      reader.readMessage(value,proto.prototype.account_name.deserializeBinaryFromReader);
+      msg.setCopyrightAdmin(value);
       break;
     default:
       reader.skipField();
@@ -2187,6 +2585,73 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       37,
       f,
       proto.prototype.coin.serializeBinaryToWriter
+    );
+  }
+  f = message.getReputationAdmin();
+  if (f != null) {
+    writer.writeMessage(
+      38,
+      f,
+      proto.prototype.account_name.serializeBinaryToWriter
+    );
+  }
+  f = message.getCurrentEpochStartBlock();
+  if (f !== 0) {
+    writer.writeUint64(
+      39,
+      f
+    );
+  }
+  f = message.getEpochDuration();
+  if (f !== 0) {
+    writer.writeUint64(
+      40,
+      f
+    );
+  }
+  f = message.getTopNAcquireFreeToken();
+  if (f !== 0) {
+    writer.writeUint32(
+      41,
+      f
+    );
+  }
+  f = message.getPerTicketPrice();
+  if (f != null) {
+    writer.writeMessage(
+      42,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPerTicketWeight();
+  if (f !== 0) {
+    writer.writeUint64(
+      43,
+      f
+    );
+  }
+  f = message.getTicketsIncome();
+  if (f != null) {
+    writer.writeMessage(
+      44,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getChargedTicketsNum();
+  if (f !== 0) {
+    writer.writeUint64(
+      45,
+      f
+    );
+  }
+  f = message.getCopyrightAdmin();
+  if (f != null) {
+    writer.writeMessage(
+      46,
+      f,
+      proto.prototype.account_name.serializeBinaryToWriter
     );
   }
 };
@@ -2941,6 +3406,201 @@ proto.prototype.dynamic_properties.prototype.clearAccountCreateFee = function() 
  */
 proto.prototype.dynamic_properties.prototype.hasAccountCreateFee = function() {
   return jspb.Message.getField(this, 37) != null;
+};
+
+
+/**
+ * optional account_name reputation_admin = 38;
+ * @return {?proto.prototype.account_name}
+ */
+proto.prototype.dynamic_properties.prototype.getReputationAdmin = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.account_name, 38));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.prototype.dynamic_properties.prototype.setReputationAdmin = function(value) {
+  jspb.Message.setWrapperField(this, 38, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearReputationAdmin = function() {
+  this.setReputationAdmin(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasReputationAdmin = function() {
+  return jspb.Message.getField(this, 38) != null;
+};
+
+
+/**
+ * optional uint64 current_epoch_start_block = 39;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getCurrentEpochStartBlock = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 39, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setCurrentEpochStartBlock = function(value) {
+  jspb.Message.setProto3IntField(this, 39, value);
+};
+
+
+/**
+ * optional uint64 epoch_duration = 40;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getEpochDuration = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 40, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setEpochDuration = function(value) {
+  jspb.Message.setProto3IntField(this, 40, value);
+};
+
+
+/**
+ * optional uint32 top_n_acquire_free_token = 41;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getTopNAcquireFreeToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 41, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setTopNAcquireFreeToken = function(value) {
+  jspb.Message.setProto3IntField(this, 41, value);
+};
+
+
+/**
+ * optional vest per_ticket_price = 42;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getPerTicketPrice = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 42));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setPerTicketPrice = function(value) {
+  jspb.Message.setWrapperField(this, 42, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearPerTicketPrice = function() {
+  this.setPerTicketPrice(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasPerTicketPrice = function() {
+  return jspb.Message.getField(this, 42) != null;
+};
+
+
+/**
+ * optional uint64 per_ticket_weight = 43;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getPerTicketWeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 43, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setPerTicketWeight = function(value) {
+  jspb.Message.setProto3IntField(this, 43, value);
+};
+
+
+/**
+ * optional vest tickets_income = 44;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getTicketsIncome = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 44));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setTicketsIncome = function(value) {
+  jspb.Message.setWrapperField(this, 44, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearTicketsIncome = function() {
+  this.setTicketsIncome(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasTicketsIncome = function() {
+  return jspb.Message.getField(this, 44) != null;
+};
+
+
+/**
+ * optional uint64 charged_tickets_num = 45;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getChargedTicketsNum = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 45, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setChargedTicketsNum = function(value) {
+  jspb.Message.setProto3IntField(this, 45, value);
+};
+
+
+/**
+ * optional account_name copyright_admin = 46;
+ * @return {?proto.prototype.account_name}
+ */
+proto.prototype.dynamic_properties.prototype.getCopyrightAdmin = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.account_name, 46));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.prototype.dynamic_properties.prototype.setCopyrightAdmin = function(value) {
+  jspb.Message.setWrapperField(this, 46, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearCopyrightAdmin = function() {
+  this.setCopyrightAdmin(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasCopyrightAdmin = function() {
+  return jspb.Message.getField(this, 46) != null;
 };
 
 

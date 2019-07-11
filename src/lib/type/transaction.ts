@@ -15,7 +15,9 @@ import {
     convert_vesting_operation,
     stake_operation, un_stake_operation,
     bp_update_operation,
-    account_update_operation
+    account_update_operation,
+    acquire_ticket_operation,
+    vote_by_ticket_operation
 } from "../../prototype/operation_pb";
 
 // @ts-ignore
@@ -59,6 +61,10 @@ transaction.prototype.addOperation = function(op: any){
         operation.setOp19(op)
     } else if (op instanceof account_update_operation) {
         operation.setOp20(op)
+    } else if (op instanceof acquire_ticket_operation) {
+        operation.setOp21(op)
+    } else if (op instanceof vote_by_ticket_operation) {
+       operation.setOp22(op)
     } else {
         console.error("unknown operation when add operation, update sdk is necessary")
     }
@@ -102,6 +108,8 @@ const sender = function (op) {
     if (op.hasOp18()) return op.getOp18().getCreditor().getValue();
     if (op.hasOp19()) return op.getOp19().getOwner().getValue();
     if (op.hasOp20()) return op.getOp20().getFrom().getValue();
+    if (op.hasOp21()) return op.getOp21().getAccount().getValue();
+    if (op.hasOp22()) return op.getOp22().getAccount().getValue();
     return ''
 };
 
@@ -151,6 +159,8 @@ const getActionName = function (op) {
     if (op.hasOp18()) return "Unstake";
     if (op.hasOp19()) return "Bp Update";
     if (op.hasOp20()) return "Transfer To Stake Vesting";
+    if (op.hasOp21()) return "Acquire Ticket";
+    if (op.hasOp22()) return "Vote by Ticket";
     return '';
 };
 
@@ -189,6 +199,8 @@ const getActionObject = function (op) {
     if (op.hasOp18()) return op.getOp18().toObject();
     if (op.hasOp19()) return op.getOp19().toObject();
     if (op.hasOp20()) return op.getOp20().toObject();
+    if (op.hasOp21()) return op.getOp21().toObject();
+    if (op.hasOp22()) return op.getOp22().toObject();
     return null
 }
 

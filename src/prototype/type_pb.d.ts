@@ -191,6 +191,38 @@ export namespace sha256 {
   }
 }
 
+export class gift_ticket_key_type extends jspb.Message {
+  getType(): number;
+  setType(value: number): void;
+
+  getFrom(): string;
+  setFrom(value: string): void;
+
+  getTo(): string;
+  setTo(value: string): void;
+
+  getCreateBlock(): number;
+  setCreateBlock(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): gift_ticket_key_type.AsObject;
+  static toObject(includeInstance: boolean, msg: gift_ticket_key_type): gift_ticket_key_type.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: gift_ticket_key_type, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): gift_ticket_key_type;
+  static deserializeBinaryFromReader(message: gift_ticket_key_type, reader: jspb.BinaryReader): gift_ticket_key_type;
+}
+
+export namespace gift_ticket_key_type {
+  export type AsObject = {
+    type: number,
+    from: string,
+    to: string,
+    createBlock: number,
+  }
+}
+
 export class chain_properties extends jspb.Message {
   hasAccountCreationFee(): boolean;
   clearAccountCreationFee(): void;
@@ -205,6 +237,20 @@ export class chain_properties extends jspb.Message {
 
   getTpsExpected(): number;
   setTpsExpected(value: number): void;
+
+  getTopNAcquireFreeToken(): number;
+  setTopNAcquireFreeToken(value: number): void;
+
+  getEpochDuration(): number;
+  setEpochDuration(value: number): void;
+
+  hasPerTicketPrice(): boolean;
+  clearPerTicketPrice(): void;
+  getPerTicketPrice(): vest | undefined;
+  setPerTicketPrice(value?: vest): void;
+
+  getPerTicketWeight(): number;
+  setPerTicketWeight(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): chain_properties.AsObject;
@@ -222,6 +268,10 @@ export namespace chain_properties {
     maximumBlockSize: number,
     staminaFree: number,
     tpsExpected: number,
+    topNAcquireFreeToken: number,
+    epochDuration: number,
+    perTicketPrice?: vest.AsObject,
+    perTicketWeight: number,
   }
 }
 
@@ -360,6 +410,41 @@ export class dynamic_properties extends jspb.Message {
   getAccountCreateFee(): coin | undefined;
   setAccountCreateFee(value?: coin): void;
 
+  hasReputationAdmin(): boolean;
+  clearReputationAdmin(): void;
+  getReputationAdmin(): account_name | undefined;
+  setReputationAdmin(value?: account_name): void;
+
+  getCurrentEpochStartBlock(): number;
+  setCurrentEpochStartBlock(value: number): void;
+
+  getEpochDuration(): number;
+  setEpochDuration(value: number): void;
+
+  getTopNAcquireFreeToken(): number;
+  setTopNAcquireFreeToken(value: number): void;
+
+  hasPerTicketPrice(): boolean;
+  clearPerTicketPrice(): void;
+  getPerTicketPrice(): vest | undefined;
+  setPerTicketPrice(value?: vest): void;
+
+  getPerTicketWeight(): number;
+  setPerTicketWeight(value: number): void;
+
+  hasTicketsIncome(): boolean;
+  clearTicketsIncome(): void;
+  getTicketsIncome(): vest | undefined;
+  setTicketsIncome(value?: vest): void;
+
+  getChargedTicketsNum(): number;
+  setChargedTicketsNum(value: number): void;
+
+  hasCopyrightAdmin(): boolean;
+  clearCopyrightAdmin(): void;
+  getCopyrightAdmin(): account_name | undefined;
+  setCopyrightAdmin(value?: account_name): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): dynamic_properties.AsObject;
   static toObject(includeInstance: boolean, msg: dynamic_properties): dynamic_properties.AsObject;
@@ -406,6 +491,15 @@ export namespace dynamic_properties {
     avgTpsInWindow: number,
     oneDayStamina: number,
     accountCreateFee?: coin.AsObject,
+    reputationAdmin?: account_name.AsObject,
+    currentEpochStartBlock: number,
+    epochDuration: number,
+    topNAcquireFreeToken: number,
+    perTicketPrice?: vest.AsObject,
+    perTicketWeight: number,
+    ticketsIncome?: vest.AsObject,
+    chargedTicketsNum: number,
+    copyrightAdmin?: account_name.AsObject,
   }
 }
 

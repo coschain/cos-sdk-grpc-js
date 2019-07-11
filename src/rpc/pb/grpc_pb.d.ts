@@ -316,6 +316,24 @@ export class AccountInfo extends jspb.Message {
   getBpVoteCount(): number;
   setBpVoteCount(value: number): void;
 
+  getReputation(): number;
+  setReputation(value: number): void;
+
+  getReputationMemo(): string;
+  setReputationMemo(value: string): void;
+
+  getChargedTicket(): number;
+  setChargedTicket(value: number): void;
+
+  getFreeTicket(): number;
+  setFreeTicket(value: number): void;
+
+  getFreeze(): number;
+  setFreeze(value: number): void;
+
+  getFreezeMemo(): string;
+  setFreezeMemo(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -347,6 +365,12 @@ export namespace AccountInfo {
     withdrawEachTime?: prototype_type_pb.vest.AsObject,
     nextWithdrawTime?: prototype_type_pb.time_point_sec.AsObject,
     bpVoteCount: number,
+    reputation: number,
+    reputationMemo: string,
+    chargedTicket: number,
+    freeTicket: number,
+    freeze: number,
+    freezeMemo: string,
   }
 }
 
@@ -638,6 +662,20 @@ export class WitnessResponse extends jspb.Message {
   getAccountCreateFee(): prototype_type_pb.coin | undefined;
   setAccountCreateFee(value?: prototype_type_pb.coin): void;
 
+  getTopNAcquireFreeToken(): number;
+  setTopNAcquireFreeToken(value: number): void;
+
+  getTicketFlushInterval(): number;
+  setTicketFlushInterval(value: number): void;
+
+  hasPerTicketPrice(): boolean;
+  clearPerTicketPrice(): void;
+  getPerTicketPrice(): prototype_type_pb.vest | undefined;
+  setPerTicketPrice(value?: prototype_type_pb.vest): void;
+
+  getPerTicketWeight(): number;
+  setPerTicketWeight(value: number): void;
+
   clearVoterListList(): void;
   getVoterListList(): Array<prototype_type_pb.account_name>;
   setVoterListList(value: Array<prototype_type_pb.account_name>): void;
@@ -664,6 +702,10 @@ export namespace WitnessResponse {
     active: boolean,
     tpsExpected: number,
     accountCreateFee?: prototype_type_pb.coin.AsObject,
+    topNAcquireFreeToken: number,
+    ticketFlushInterval: number,
+    perTicketPrice?: prototype_type_pb.vest.AsObject,
+    perTicketWeight: number,
     voterListList: Array<prototype_type_pb.account_name.AsObject>,
   }
 }
@@ -798,6 +840,9 @@ export class PostResponse extends jspb.Message {
   getGlobalWeightedVp(): string;
   setGlobalWeightedVp(value: string): void;
 
+  getTicket(): number;
+  setTicket(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
   static toObject(includeInstance: boolean, msg: PostResponse): PostResponse.AsObject;
@@ -831,6 +876,7 @@ export namespace PostResponse {
     cashoutInterval: number,
     globalRewards?: prototype_type_pb.vest.AsObject,
     globalWeightedVp: string,
+    ticket: number,
   }
 }
 
@@ -1011,6 +1057,26 @@ export class GetChainStateResponse extends jspb.Message {
 export namespace GetChainStateResponse {
   export type AsObject = {
     state?: ChainState.AsObject,
+  }
+}
+
+export class GetNodeNeighboursResponse extends jspb.Message {
+  getPeerlist(): string;
+  setPeerlist(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetNodeNeighboursResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetNodeNeighboursResponse): GetNodeNeighboursResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetNodeNeighboursResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetNodeNeighboursResponse;
+  static deserializeBinaryFromReader(message: GetNodeNeighboursResponse, reader: jspb.BinaryReader): GetNodeNeighboursResponse;
+}
+
+export namespace GetNodeNeighboursResponse {
+  export type AsObject = {
+    peerlist: string,
   }
 }
 
@@ -1950,6 +2016,12 @@ export class GetContractInfoResponse extends jspb.Message {
   getCode_asB64(): string;
   setCode(value: Uint8Array | string): void;
 
+  getUrl(): string;
+  setUrl(value: string): void;
+
+  getDescribe(): string;
+  setDescribe(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetContractInfoResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetContractInfoResponse): GetContractInfoResponse.AsObject;
@@ -1965,6 +2037,8 @@ export namespace GetContractInfoResponse {
     exist: boolean,
     abi: string,
     code: Uint8Array | string,
+    url: string,
+    describe: string,
   }
 }
 
@@ -2341,6 +2415,50 @@ export class GetPostListByVestResponse extends jspb.Message {
 export namespace GetPostListByVestResponse {
   export type AsObject = {
     postListList: Array<PostResponse.AsObject>,
+  }
+}
+
+export class EsimateRequest extends jspb.Message {
+  hasTransaction(): boolean;
+  clearTransaction(): void;
+  getTransaction(): prototype_transaction_pb.signed_transaction | undefined;
+  setTransaction(value?: prototype_transaction_pb.signed_transaction): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EsimateRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EsimateRequest): EsimateRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: EsimateRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EsimateRequest;
+  static deserializeBinaryFromReader(message: EsimateRequest, reader: jspb.BinaryReader): EsimateRequest;
+}
+
+export namespace EsimateRequest {
+  export type AsObject = {
+    transaction?: prototype_transaction_pb.signed_transaction.AsObject,
+  }
+}
+
+export class EsimateResponse extends jspb.Message {
+  hasInvoice(): boolean;
+  clearInvoice(): void;
+  getInvoice(): prototype_transaction_pb.transaction_receipt_with_info | undefined;
+  setInvoice(value?: prototype_transaction_pb.transaction_receipt_with_info): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EsimateResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: EsimateResponse): EsimateResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: EsimateResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EsimateResponse;
+  static deserializeBinaryFromReader(message: EsimateResponse, reader: jspb.BinaryReader): EsimateResponse;
+}
+
+export namespace EsimateResponse {
+  export type AsObject = {
+    invoice?: prototype_transaction_pb.transaction_receipt_with_info.AsObject,
   }
 }
 

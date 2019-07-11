@@ -51,7 +51,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.prototype.operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]];
+proto.prototype.operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]];
 
 /**
  * @enum {number}
@@ -77,7 +77,9 @@ proto.prototype.operation.OpCase = {
   OP17: 17,
   OP18: 18,
   OP19: 19,
-  OP20: 20
+  OP20: 20,
+  OP21: 21,
+  OP22: 22
 };
 
 /**
@@ -135,7 +137,9 @@ proto.prototype.operation.toObject = function(includeInstance, msg) {
     op17: (f = msg.getOp17()) && prototype_operation_pb.stake_operation.toObject(includeInstance, f),
     op18: (f = msg.getOp18()) && prototype_operation_pb.un_stake_operation.toObject(includeInstance, f),
     op19: (f = msg.getOp19()) && prototype_operation_pb.bp_update_operation.toObject(includeInstance, f),
-    op20: (f = msg.getOp20()) && prototype_operation_pb.account_update_operation.toObject(includeInstance, f)
+    op20: (f = msg.getOp20()) && prototype_operation_pb.account_update_operation.toObject(includeInstance, f),
+    op21: (f = msg.getOp21()) && prototype_operation_pb.acquire_ticket_operation.toObject(includeInstance, f),
+    op22: (f = msg.getOp22()) && prototype_operation_pb.vote_by_ticket_operation.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -271,6 +275,16 @@ proto.prototype.operation.deserializeBinaryFromReader = function(msg, reader) {
       var value = new prototype_operation_pb.account_update_operation;
       reader.readMessage(value,prototype_operation_pb.account_update_operation.deserializeBinaryFromReader);
       msg.setOp20(value);
+      break;
+    case 21:
+      var value = new prototype_operation_pb.acquire_ticket_operation;
+      reader.readMessage(value,prototype_operation_pb.acquire_ticket_operation.deserializeBinaryFromReader);
+      msg.setOp21(value);
+      break;
+    case 22:
+      var value = new prototype_operation_pb.vote_by_ticket_operation;
+      reader.readMessage(value,prototype_operation_pb.vote_by_ticket_operation.deserializeBinaryFromReader);
+      msg.setOp22(value);
       break;
     default:
       reader.skipField();
@@ -459,6 +473,22 @@ proto.prototype.operation.serializeBinaryToWriter = function(message, writer) {
       20,
       f,
       prototype_operation_pb.account_update_operation.serializeBinaryToWriter
+    );
+  }
+  f = message.getOp21();
+  if (f != null) {
+    writer.writeMessage(
+      21,
+      f,
+      prototype_operation_pb.acquire_ticket_operation.serializeBinaryToWriter
+    );
+  }
+  f = message.getOp22();
+  if (f != null) {
+    writer.writeMessage(
+      22,
+      f,
+      prototype_operation_pb.vote_by_ticket_operation.serializeBinaryToWriter
     );
   }
 };
@@ -1061,6 +1091,66 @@ proto.prototype.operation.prototype.clearOp20 = function() {
  */
 proto.prototype.operation.prototype.hasOp20 = function() {
   return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional acquire_ticket_operation op21 = 21;
+ * @return {?proto.prototype.acquire_ticket_operation}
+ */
+proto.prototype.operation.prototype.getOp21 = function() {
+  return /** @type{?proto.prototype.acquire_ticket_operation} */ (
+    jspb.Message.getWrapperField(this, prototype_operation_pb.acquire_ticket_operation, 21));
+};
+
+
+/** @param {?proto.prototype.acquire_ticket_operation|undefined} value */
+proto.prototype.operation.prototype.setOp21 = function(value) {
+  jspb.Message.setOneofWrapperField(this, 21, proto.prototype.operation.oneofGroups_[0], value);
+};
+
+
+proto.prototype.operation.prototype.clearOp21 = function() {
+  this.setOp21(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.operation.prototype.hasOp21 = function() {
+  return jspb.Message.getField(this, 21) != null;
+};
+
+
+/**
+ * optional vote_by_ticket_operation op22 = 22;
+ * @return {?proto.prototype.vote_by_ticket_operation}
+ */
+proto.prototype.operation.prototype.getOp22 = function() {
+  return /** @type{?proto.prototype.vote_by_ticket_operation} */ (
+    jspb.Message.getWrapperField(this, prototype_operation_pb.vote_by_ticket_operation, 22));
+};
+
+
+/** @param {?proto.prototype.vote_by_ticket_operation|undefined} value */
+proto.prototype.operation.prototype.setOp22 = function(value) {
+  jspb.Message.setOneofWrapperField(this, 22, proto.prototype.operation.oneofGroups_[0], value);
+};
+
+
+proto.prototype.operation.prototype.clearOp22 = function() {
+  this.setOp22(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.operation.prototype.hasOp22 = function() {
+  return jspb.Message.getField(this, 22) != null;
 };
 
 

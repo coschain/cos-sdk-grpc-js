@@ -283,6 +283,24 @@ type ApiServiceGetPostListByVest = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetPostListByVestResponse;
 };
 
+type ApiServiceEstimateStamina = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.EsimateRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.EsimateResponse;
+};
+
+type ApiServiceGetNodeNeighbours = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.NonParamsRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetNodeNeighboursResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -316,6 +334,8 @@ export class ApiService {
   static readonly GetContractListByTime: ApiServiceGetContractListByTime;
   static readonly GetWitnessListByVoteCount: ApiServiceGetWitnessListByVoteCount;
   static readonly GetPostListByVest: ApiServiceGetPostListByVest;
+  static readonly EstimateStamina: ApiServiceEstimateStamina;
+  static readonly GetNodeNeighbours: ApiServiceGetNodeNeighbours;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -628,6 +648,24 @@ export class ApiServiceClient {
   getPostListByVest(
     requestMessage: rpc_pb_grpc_pb.GetPostListByVestRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetPostListByVestResponse|null) => void
+  ): UnaryResponse;
+  estimateStamina(
+    requestMessage: rpc_pb_grpc_pb.EsimateRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.EsimateResponse|null) => void
+  ): UnaryResponse;
+  estimateStamina(
+    requestMessage: rpc_pb_grpc_pb.EsimateRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.EsimateResponse|null) => void
+  ): UnaryResponse;
+  getNodeNeighbours(
+    requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetNodeNeighboursResponse|null) => void
+  ): UnaryResponse;
+  getNodeNeighbours(
+    requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetNodeNeighboursResponse|null) => void
   ): UnaryResponse;
 }
 

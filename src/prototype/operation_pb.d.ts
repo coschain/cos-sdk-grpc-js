@@ -233,6 +233,20 @@ export class bp_update_operation extends jspb.Message {
   getAccountCreationFee(): prototype_type_pb.coin | undefined;
   setAccountCreationFee(value?: prototype_type_pb.coin): void;
 
+  getTopNAcquireFreeToken(): number;
+  setTopNAcquireFreeToken(value: number): void;
+
+  getEpochDuration(): number;
+  setEpochDuration(value: number): void;
+
+  hasPerTicketPrice(): boolean;
+  clearPerTicketPrice(): void;
+  getPerTicketPrice(): prototype_type_pb.vest | undefined;
+  setPerTicketPrice(value?: prototype_type_pb.vest): void;
+
+  getPerTicketWeight(): number;
+  setPerTicketWeight(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): bp_update_operation.AsObject;
   static toObject(includeInstance: boolean, msg: bp_update_operation): bp_update_operation.AsObject;
@@ -249,6 +263,10 @@ export namespace bp_update_operation {
     proposedStaminaFree: number,
     tpsExpected: number,
     accountCreationFee?: prototype_type_pb.coin.AsObject,
+    topNAcquireFreeToken: number,
+    epochDuration: number,
+    perTicketPrice?: prototype_type_pb.vest.AsObject,
+    perTicketWeight: number,
   }
 }
 
@@ -360,6 +378,12 @@ export class contract_deploy_operation extends jspb.Message {
   getUpgradeable(): boolean;
   setUpgradeable(value: boolean): void;
 
+  getUrl(): string;
+  setUrl(value: string): void;
+
+  getDescribe(): string;
+  setDescribe(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): contract_deploy_operation.AsObject;
   static toObject(includeInstance: boolean, msg: contract_deploy_operation): contract_deploy_operation.AsObject;
@@ -377,6 +401,8 @@ export namespace contract_deploy_operation {
     abi: Uint8Array | string,
     code: Uint8Array | string,
     upgradeable: boolean,
+    url: string,
+    describe: string,
   }
 }
 
@@ -765,6 +791,62 @@ export namespace un_stake_operation {
     creditor?: prototype_type_pb.account_name.AsObject,
     debtor?: prototype_type_pb.account_name.AsObject,
     amount?: prototype_type_pb.coin.AsObject,
+  }
+}
+
+export class acquire_ticket_operation extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): prototype_type_pb.account_name | undefined;
+  setAccount(value?: prototype_type_pb.account_name): void;
+
+  getCount(): number;
+  setCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): acquire_ticket_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: acquire_ticket_operation): acquire_ticket_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: acquire_ticket_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): acquire_ticket_operation;
+  static deserializeBinaryFromReader(message: acquire_ticket_operation, reader: jspb.BinaryReader): acquire_ticket_operation;
+}
+
+export namespace acquire_ticket_operation {
+  export type AsObject = {
+    account?: prototype_type_pb.account_name.AsObject,
+    count: number,
+  }
+}
+
+export class vote_by_ticket_operation extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): prototype_type_pb.account_name | undefined;
+  setAccount(value?: prototype_type_pb.account_name): void;
+
+  getIdx(): string;
+  setIdx(value: string): void;
+
+  getCount(): number;
+  setCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): vote_by_ticket_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: vote_by_ticket_operation): vote_by_ticket_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: vote_by_ticket_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): vote_by_ticket_operation;
+  static deserializeBinaryFromReader(message: vote_by_ticket_operation, reader: jspb.BinaryReader): vote_by_ticket_operation;
+}
+
+export namespace vote_by_ticket_operation {
+  export type AsObject = {
+    account?: prototype_type_pb.account_name.AsObject,
+    idx: string,
+    count: number,
   }
 }
 
