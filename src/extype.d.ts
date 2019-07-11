@@ -8,3 +8,4 @@ export { coin } from './lib/type/coin';
 export { vest } from './lib/type/vest';
 export { time_point_sec } from './lib/type/time_point_sec';
 export { public_key_type } from './lib/type/public_key_type';
+export { chain_id } from './lib/type/chain_id';
