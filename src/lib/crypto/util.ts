@@ -14,6 +14,7 @@ export function int2bytes(int) {
         byteArray [ index ] = byte;
         int = (int - byte) / 256 ;
     }
+    byteArray.reverse();
     return byteArray;
 }
 
