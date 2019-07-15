@@ -5594,7 +5594,9 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     cashoutInterval: jspb.Message.getFieldWithDefault(msg, 24, 0),
     globalRewards: (f = msg.getGlobalRewards()) && prototype_type_pb.vest.toObject(includeInstance, f),
     globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, ""),
-    ticket: jspb.Message.getFieldWithDefault(msg, 27, 0)
+    ticket: jspb.Message.getFieldWithDefault(msg, 27, 0),
+    copyright: jspb.Message.getFieldWithDefault(msg, 28, 0),
+    copyrightMemo: jspb.Message.getFieldWithDefault(msg, 29, "")
   };
 
   if (includeInstance) {
@@ -5726,6 +5728,14 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 27:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setTicket(value);
+      break;
+    case 28:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCopyright(value);
+      break;
+    case 29:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCopyrightMemo(value);
       break;
     default:
       reader.skipField();
@@ -5915,6 +5925,20 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint32(
       27,
+      f
+    );
+  }
+  f = message.getCopyright();
+  if (f !== 0) {
+    writer.writeUint32(
+      28,
+      f
+    );
+  }
+  f = message.getCopyrightMemo();
+  if (f.length > 0) {
+    writer.writeString(
+      29,
       f
     );
   }
@@ -6383,6 +6407,36 @@ proto.grpcpb.PostResponse.prototype.getTicket = function() {
 /** @param {number} value */
 proto.grpcpb.PostResponse.prototype.setTicket = function(value) {
   jspb.Message.setProto3IntField(this, 27, value);
+};
+
+
+/**
+ * optional uint32 copyright = 28;
+ * @return {number}
+ */
+proto.grpcpb.PostResponse.prototype.getCopyright = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 28, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.PostResponse.prototype.setCopyright = function(value) {
+  jspb.Message.setProto3IntField(this, 28, value);
+};
+
+
+/**
+ * optional string copyright_memo = 29;
+ * @return {string}
+ */
+proto.grpcpb.PostResponse.prototype.getCopyrightMemo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 29, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.PostResponse.prototype.setCopyrightMemo = function(value) {
+  jspb.Message.setProto3StringField(this, 29, value);
 };
 
 

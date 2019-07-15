@@ -843,6 +843,12 @@ export class PostResponse extends jspb.Message {
   getTicket(): number;
   setTicket(value: number): void;
 
+  getCopyright(): number;
+  setCopyright(value: number): void;
+
+  getCopyrightMemo(): string;
+  setCopyrightMemo(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
   static toObject(includeInstance: boolean, msg: PostResponse): PostResponse.AsObject;
@@ -877,6 +883,8 @@ export namespace PostResponse {
     globalRewards?: prototype_type_pb.vest.AsObject,
     globalWeightedVp: string,
     ticket: number,
+    copyright: number,
+    copyrightMemo: string,
   }
 }
 
