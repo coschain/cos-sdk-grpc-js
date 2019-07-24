@@ -398,3 +398,31 @@ export namespace stake_record {
   }
 }
 
+export class stake_record_reverse extends jspb.Message {
+  hasTo(): boolean;
+  clearTo(): void;
+  getTo(): prototype_type_pb.account_name | undefined;
+  setTo(value?: prototype_type_pb.account_name): void;
+
+  hasFrom(): boolean;
+  clearFrom(): void;
+  getFrom(): prototype_type_pb.account_name | undefined;
+  setFrom(value?: prototype_type_pb.account_name): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): stake_record_reverse.AsObject;
+  static toObject(includeInstance: boolean, msg: stake_record_reverse): stake_record_reverse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: stake_record_reverse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): stake_record_reverse;
+  static deserializeBinaryFromReader(message: stake_record_reverse, reader: jspb.BinaryReader): stake_record_reverse;
+}
+
+export namespace stake_record_reverse {
+  export type AsObject = {
+    to?: prototype_type_pb.account_name.AsObject,
+    from?: prototype_type_pb.account_name.AsObject,
+  }
+}
+

@@ -241,8 +241,8 @@ export class bp_update_operation extends jspb.Message {
 
   hasPerTicketPrice(): boolean;
   clearPerTicketPrice(): void;
-  getPerTicketPrice(): prototype_type_pb.vest | undefined;
-  setPerTicketPrice(value?: prototype_type_pb.vest): void;
+  getPerTicketPrice(): prototype_type_pb.coin | undefined;
+  setPerTicketPrice(value?: prototype_type_pb.coin): void;
 
   getPerTicketWeight(): number;
   setPerTicketWeight(value: number): void;
@@ -265,7 +265,7 @@ export namespace bp_update_operation {
     accountCreationFee?: prototype_type_pb.coin.AsObject,
     topNAcquireFreeToken: number,
     epochDuration: number,
-    perTicketPrice?: prototype_type_pb.vest.AsObject,
+    perTicketPrice?: prototype_type_pb.coin.AsObject,
     perTicketWeight: number,
   }
 }

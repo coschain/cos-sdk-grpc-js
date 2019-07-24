@@ -1674,7 +1674,7 @@ proto.prototype.chain_properties.toObject = function(includeInstance, msg) {
     tpsExpected: jspb.Message.getFieldWithDefault(msg, 4, 0),
     topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 5, 0),
     epochDuration: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    perTicketPrice: (f = msg.getPerTicketPrice()) && proto.prototype.vest.toObject(includeInstance, f),
+    perTicketPrice: (f = msg.getPerTicketPrice()) && proto.prototype.coin.toObject(includeInstance, f),
     perTicketWeight: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
@@ -1738,8 +1738,8 @@ proto.prototype.chain_properties.deserializeBinaryFromReader = function(msg, rea
       msg.setEpochDuration(value);
       break;
     case 7:
-      var value = new proto.prototype.vest;
-      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      var value = new proto.prototype.coin;
+      reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
       msg.setPerTicketPrice(value);
       break;
     case 8:
@@ -1823,7 +1823,7 @@ proto.prototype.chain_properties.serializeBinaryToWriter = function(message, wri
     writer.writeMessage(
       7,
       f,
-      proto.prototype.vest.serializeBinaryToWriter
+      proto.prototype.coin.serializeBinaryToWriter
     );
   }
   f = message.getPerTicketWeight();
@@ -1942,16 +1942,16 @@ proto.prototype.chain_properties.prototype.setEpochDuration = function(value) {
 
 
 /**
- * optional vest per_ticket_price = 7;
- * @return {?proto.prototype.vest}
+ * optional coin per_ticket_price = 7;
+ * @return {?proto.prototype.coin}
  */
 proto.prototype.chain_properties.prototype.getPerTicketPrice = function() {
-  return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 7));
+  return /** @type{?proto.prototype.coin} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.coin, 7));
 };
 
 
-/** @param {?proto.prototype.vest|undefined} value */
+/** @param {?proto.prototype.coin|undefined} value */
 proto.prototype.chain_properties.prototype.setPerTicketPrice = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };
@@ -2071,7 +2071,7 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     currentEpochStartBlock: jspb.Message.getFieldWithDefault(msg, 39, 0),
     epochDuration: jspb.Message.getFieldWithDefault(msg, 40, 0),
     topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 41, 0),
-    perTicketPrice: (f = msg.getPerTicketPrice()) && proto.prototype.vest.toObject(includeInstance, f),
+    perTicketPrice: (f = msg.getPerTicketPrice()) && proto.prototype.coin.toObject(includeInstance, f),
     perTicketWeight: jspb.Message.getFieldWithDefault(msg, 43, 0),
     ticketsIncome: (f = msg.getTicketsIncome()) && proto.prototype.vest.toObject(includeInstance, f),
     chargedTicketsNum: jspb.Message.getFieldWithDefault(msg, 45, 0),
@@ -2282,8 +2282,8 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       msg.setTopNAcquireFreeToken(value);
       break;
     case 42:
-      var value = new proto.prototype.vest;
-      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      var value = new proto.prototype.coin;
+      reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
       msg.setPerTicketPrice(value);
       break;
     case 43:
@@ -2621,7 +2621,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
     writer.writeMessage(
       42,
       f,
-      proto.prototype.vest.serializeBinaryToWriter
+      proto.prototype.coin.serializeBinaryToWriter
     );
   }
   f = message.getPerTicketWeight();
@@ -3485,16 +3485,16 @@ proto.prototype.dynamic_properties.prototype.setTopNAcquireFreeToken = function(
 
 
 /**
- * optional vest per_ticket_price = 42;
- * @return {?proto.prototype.vest}
+ * optional coin per_ticket_price = 42;
+ * @return {?proto.prototype.coin}
  */
 proto.prototype.dynamic_properties.prototype.getPerTicketPrice = function() {
-  return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 42));
+  return /** @type{?proto.prototype.coin} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.coin, 42));
 };
 
 
-/** @param {?proto.prototype.vest|undefined} value */
+/** @param {?proto.prototype.coin|undefined} value */
 proto.prototype.dynamic_properties.prototype.setPerTicketPrice = function(value) {
   jspb.Message.setWrapperField(this, 42, value);
 };

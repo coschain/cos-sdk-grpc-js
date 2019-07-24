@@ -246,8 +246,8 @@ export class chain_properties extends jspb.Message {
 
   hasPerTicketPrice(): boolean;
   clearPerTicketPrice(): void;
-  getPerTicketPrice(): vest | undefined;
-  setPerTicketPrice(value?: vest): void;
+  getPerTicketPrice(): coin | undefined;
+  setPerTicketPrice(value?: coin): void;
 
   getPerTicketWeight(): number;
   setPerTicketWeight(value: number): void;
@@ -270,7 +270,7 @@ export namespace chain_properties {
     tpsExpected: number,
     topNAcquireFreeToken: number,
     epochDuration: number,
-    perTicketPrice?: vest.AsObject,
+    perTicketPrice?: coin.AsObject,
     perTicketWeight: number,
   }
 }
@@ -426,8 +426,8 @@ export class dynamic_properties extends jspb.Message {
 
   hasPerTicketPrice(): boolean;
   clearPerTicketPrice(): void;
-  getPerTicketPrice(): vest | undefined;
-  setPerTicketPrice(value?: vest): void;
+  getPerTicketPrice(): coin | undefined;
+  setPerTicketPrice(value?: coin): void;
 
   getPerTicketWeight(): number;
   setPerTicketWeight(value: number): void;
@@ -495,7 +495,7 @@ export namespace dynamic_properties {
     currentEpochStartBlock: number,
     epochDuration: number,
     topNAcquireFreeToken: number,
-    perTicketPrice?: vest.AsObject,
+    perTicketPrice?: coin.AsObject,
     perTicketWeight: number,
     ticketsIncome?: vest.AsObject,
     chargedTicketsNum: number,

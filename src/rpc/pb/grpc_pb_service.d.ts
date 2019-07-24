@@ -301,6 +301,42 @@ type ApiServiceGetNodeNeighbours = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetNodeNeighboursResponse;
 };
 
+type ApiServiceGetMyStakers = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetMyStakerListByNameRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetMyStakerListByNameResponse;
+};
+
+type ApiServiceGetMyStakes = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetMyStakeListByNameRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetMyStakeListByNameResponse;
+};
+
+type ApiServiceGetNodeRunningVersion = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.NonParamsRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetNodeRunningVersionResponse;
+};
+
+type ApiServiceGetAccountListByVest = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetAccountListByVestRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetAccountListResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -336,6 +372,10 @@ export class ApiService {
   static readonly GetPostListByVest: ApiServiceGetPostListByVest;
   static readonly EstimateStamina: ApiServiceEstimateStamina;
   static readonly GetNodeNeighbours: ApiServiceGetNodeNeighbours;
+  static readonly GetMyStakers: ApiServiceGetMyStakers;
+  static readonly GetMyStakes: ApiServiceGetMyStakes;
+  static readonly GetNodeRunningVersion: ApiServiceGetNodeRunningVersion;
+  static readonly GetAccountListByVest: ApiServiceGetAccountListByVest;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -666,6 +706,42 @@ export class ApiServiceClient {
   getNodeNeighbours(
     requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetNodeNeighboursResponse|null) => void
+  ): UnaryResponse;
+  getMyStakers(
+    requestMessage: rpc_pb_grpc_pb.GetMyStakerListByNameRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetMyStakerListByNameResponse|null) => void
+  ): UnaryResponse;
+  getMyStakers(
+    requestMessage: rpc_pb_grpc_pb.GetMyStakerListByNameRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetMyStakerListByNameResponse|null) => void
+  ): UnaryResponse;
+  getMyStakes(
+    requestMessage: rpc_pb_grpc_pb.GetMyStakeListByNameRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetMyStakeListByNameResponse|null) => void
+  ): UnaryResponse;
+  getMyStakes(
+    requestMessage: rpc_pb_grpc_pb.GetMyStakeListByNameRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetMyStakeListByNameResponse|null) => void
+  ): UnaryResponse;
+  getNodeRunningVersion(
+    requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetNodeRunningVersionResponse|null) => void
+  ): UnaryResponse;
+  getNodeRunningVersion(
+    requestMessage: rpc_pb_grpc_pb.NonParamsRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetNodeRunningVersionResponse|null) => void
+  ): UnaryResponse;
+  getAccountListByVest(
+    requestMessage: rpc_pb_grpc_pb.GetAccountListByVestRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAccountListResponse|null) => void
+  ): UnaryResponse;
+  getAccountListByVest(
+    requestMessage: rpc_pb_grpc_pb.GetAccountListByVestRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAccountListResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -1618,7 +1618,7 @@ proto.prototype.bp_update_operation.toObject = function(includeInstance, msg) {
     accountCreationFee: (f = msg.getAccountCreationFee()) && prototype_type_pb.coin.toObject(includeInstance, f),
     topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 5, 0),
     epochDuration: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    perTicketPrice: (f = msg.getPerTicketPrice()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    perTicketPrice: (f = msg.getPerTicketPrice()) && prototype_type_pb.coin.toObject(includeInstance, f),
     perTicketWeight: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
@@ -1683,8 +1683,8 @@ proto.prototype.bp_update_operation.deserializeBinaryFromReader = function(msg, 
       msg.setEpochDuration(value);
       break;
     case 7:
-      var value = new prototype_type_pb.vest;
-      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      var value = new prototype_type_pb.coin;
+      reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
       msg.setPerTicketPrice(value);
       break;
     case 8:
@@ -1769,7 +1769,7 @@ proto.prototype.bp_update_operation.serializeBinaryToWriter = function(message, 
     writer.writeMessage(
       7,
       f,
-      prototype_type_pb.vest.serializeBinaryToWriter
+      prototype_type_pb.coin.serializeBinaryToWriter
     );
   }
   f = message.getPerTicketWeight();
@@ -1903,16 +1903,16 @@ proto.prototype.bp_update_operation.prototype.setEpochDuration = function(value)
 
 
 /**
- * optional vest per_ticket_price = 7;
- * @return {?proto.prototype.vest}
+ * optional coin per_ticket_price = 7;
+ * @return {?proto.prototype.coin}
  */
 proto.prototype.bp_update_operation.prototype.getPerTicketPrice = function() {
-  return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 7));
+  return /** @type{?proto.prototype.coin} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 7));
 };
 
 
-/** @param {?proto.prototype.vest|undefined} value */
+/** @param {?proto.prototype.coin|undefined} value */
 proto.prototype.bp_update_operation.prototype.setPerTicketPrice = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };

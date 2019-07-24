@@ -670,8 +670,8 @@ export class WitnessResponse extends jspb.Message {
 
   hasPerTicketPrice(): boolean;
   clearPerTicketPrice(): void;
-  getPerTicketPrice(): prototype_type_pb.vest | undefined;
-  setPerTicketPrice(value?: prototype_type_pb.vest): void;
+  getPerTicketPrice(): prototype_type_pb.coin | undefined;
+  setPerTicketPrice(value?: prototype_type_pb.coin): void;
 
   getPerTicketWeight(): number;
   setPerTicketWeight(value: number): void;
@@ -704,7 +704,7 @@ export namespace WitnessResponse {
     accountCreateFee?: prototype_type_pb.coin.AsObject,
     topNAcquireFreeToken: number,
     ticketFlushInterval: number,
-    perTicketPrice?: prototype_type_pb.vest.AsObject,
+    perTicketPrice?: prototype_type_pb.coin.AsObject,
     perTicketWeight: number,
     voterListList: Array<prototype_type_pb.account_name.AsObject>,
   }
@@ -1085,6 +1085,26 @@ export class GetNodeNeighboursResponse extends jspb.Message {
 export namespace GetNodeNeighboursResponse {
   export type AsObject = {
     peerlist: string,
+  }
+}
+
+export class GetNodeRunningVersionResponse extends jspb.Message {
+  getNodeversion(): string;
+  setNodeversion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetNodeRunningVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetNodeRunningVersionResponse): GetNodeRunningVersionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetNodeRunningVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetNodeRunningVersionResponse;
+  static deserializeBinaryFromReader(message: GetNodeRunningVersionResponse, reader: jspb.BinaryReader): GetNodeRunningVersionResponse;
+}
+
+export namespace GetNodeRunningVersionResponse {
+  export type AsObject = {
+    nodeversion: string,
   }
 }
 
@@ -2467,6 +2487,186 @@ export class EsimateResponse extends jspb.Message {
 export namespace EsimateResponse {
   export type AsObject = {
     invoice?: prototype_transaction_pb.transaction_receipt_with_info.AsObject,
+  }
+}
+
+export class StakeInfo extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): prototype_type_pb.account_name | undefined;
+  setAccount(value?: prototype_type_pb.account_name): void;
+
+  hasStakeAmount(): boolean;
+  clearStakeAmount(): void;
+  getStakeAmount(): prototype_type_pb.vest | undefined;
+  setStakeAmount(value?: prototype_type_pb.vest): void;
+
+  hasStakeTime(): boolean;
+  clearStakeTime(): void;
+  getStakeTime(): prototype_type_pb.time_point_sec | undefined;
+  setStakeTime(value?: prototype_type_pb.time_point_sec): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StakeInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: StakeInfo): StakeInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StakeInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StakeInfo;
+  static deserializeBinaryFromReader(message: StakeInfo, reader: jspb.BinaryReader): StakeInfo;
+}
+
+export namespace StakeInfo {
+  export type AsObject = {
+    account?: prototype_type_pb.account_name.AsObject,
+    stakeAmount?: prototype_type_pb.vest.AsObject,
+    stakeTime?: prototype_type_pb.time_point_sec.AsObject,
+  }
+}
+
+export class GetMyStakerListByNameRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_multi_id_pb.stake_record_reverse | undefined;
+  setStart(value?: prototype_multi_id_pb.stake_record_reverse): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_multi_id_pb.stake_record_reverse | undefined;
+  setEnd(value?: prototype_multi_id_pb.stake_record_reverse): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMyStakerListByNameRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMyStakerListByNameRequest): GetMyStakerListByNameRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMyStakerListByNameRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMyStakerListByNameRequest;
+  static deserializeBinaryFromReader(message: GetMyStakerListByNameRequest, reader: jspb.BinaryReader): GetMyStakerListByNameRequest;
+}
+
+export namespace GetMyStakerListByNameRequest {
+  export type AsObject = {
+    start?: prototype_multi_id_pb.stake_record_reverse.AsObject,
+    end?: prototype_multi_id_pb.stake_record_reverse.AsObject,
+    limit: number,
+  }
+}
+
+export class GetMyStakerListByNameResponse extends jspb.Message {
+  clearMyStakerListList(): void;
+  getMyStakerListList(): Array<StakeInfo>;
+  setMyStakerListList(value: Array<StakeInfo>): void;
+  addMyStakerList(value?: StakeInfo, index?: number): StakeInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMyStakerListByNameResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMyStakerListByNameResponse): GetMyStakerListByNameResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMyStakerListByNameResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMyStakerListByNameResponse;
+  static deserializeBinaryFromReader(message: GetMyStakerListByNameResponse, reader: jspb.BinaryReader): GetMyStakerListByNameResponse;
+}
+
+export namespace GetMyStakerListByNameResponse {
+  export type AsObject = {
+    myStakerListList: Array<StakeInfo.AsObject>,
+  }
+}
+
+export class GetMyStakeListByNameRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_multi_id_pb.stake_record | undefined;
+  setStart(value?: prototype_multi_id_pb.stake_record): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_multi_id_pb.stake_record | undefined;
+  setEnd(value?: prototype_multi_id_pb.stake_record): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMyStakeListByNameRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMyStakeListByNameRequest): GetMyStakeListByNameRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMyStakeListByNameRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMyStakeListByNameRequest;
+  static deserializeBinaryFromReader(message: GetMyStakeListByNameRequest, reader: jspb.BinaryReader): GetMyStakeListByNameRequest;
+}
+
+export namespace GetMyStakeListByNameRequest {
+  export type AsObject = {
+    start?: prototype_multi_id_pb.stake_record.AsObject,
+    end?: prototype_multi_id_pb.stake_record.AsObject,
+    limit: number,
+  }
+}
+
+export class GetMyStakeListByNameResponse extends jspb.Message {
+  clearMyStakeListList(): void;
+  getMyStakeListList(): Array<StakeInfo>;
+  setMyStakeListList(value: Array<StakeInfo>): void;
+  addMyStakeList(value?: StakeInfo, index?: number): StakeInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMyStakeListByNameResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMyStakeListByNameResponse): GetMyStakeListByNameResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMyStakeListByNameResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMyStakeListByNameResponse;
+  static deserializeBinaryFromReader(message: GetMyStakeListByNameResponse, reader: jspb.BinaryReader): GetMyStakeListByNameResponse;
+}
+
+export namespace GetMyStakeListByNameResponse {
+  export type AsObject = {
+    myStakeListList: Array<StakeInfo.AsObject>,
+  }
+}
+
+export class GetAccountListByVestRequest extends jspb.Message {
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): prototype_type_pb.vest | undefined;
+  setStart(value?: prototype_type_pb.vest): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): prototype_type_pb.vest | undefined;
+  setEnd(value?: prototype_type_pb.vest): void;
+
+  hasLastAccount(): boolean;
+  clearLastAccount(): void;
+  getLastAccount(): AccountInfo | undefined;
+  setLastAccount(value?: AccountInfo): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAccountListByVestRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAccountListByVestRequest): GetAccountListByVestRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAccountListByVestRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAccountListByVestRequest;
+  static deserializeBinaryFromReader(message: GetAccountListByVestRequest, reader: jspb.BinaryReader): GetAccountListByVestRequest;
+}
+
+export namespace GetAccountListByVestRequest {
+  export type AsObject = {
+    start?: prototype_type_pb.vest.AsObject,
+    end?: prototype_type_pb.vest.AsObject,
+    lastAccount?: AccountInfo.AsObject,
+    limit: number,
   }
 }
 
