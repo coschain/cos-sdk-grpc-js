@@ -121,7 +121,7 @@ proto.prototype.operation.toObject = function(includeInstance, msg) {
     op1: (f = msg.getOp1()) && prototype_operation_pb.account_create_operation.toObject(includeInstance, f),
     op2: (f = msg.getOp2()) && prototype_operation_pb.transfer_operation.toObject(includeInstance, f),
     op3: (f = msg.getOp3()) && prototype_operation_pb.bp_register_operation.toObject(includeInstance, f),
-    op4: (f = msg.getOp4()) && prototype_operation_pb.bp_unregister_operation.toObject(includeInstance, f),
+    op4: (f = msg.getOp4()) && prototype_operation_pb.bp_enable_operation.toObject(includeInstance, f),
     op5: (f = msg.getOp5()) && prototype_operation_pb.bp_vote_operation.toObject(includeInstance, f),
     op6: (f = msg.getOp6()) && prototype_operation_pb.post_operation.toObject(includeInstance, f),
     op7: (f = msg.getOp7()) && prototype_operation_pb.reply_operation.toObject(includeInstance, f),
@@ -192,8 +192,8 @@ proto.prototype.operation.deserializeBinaryFromReader = function(msg, reader) {
       msg.setOp3(value);
       break;
     case 4:
-      var value = new prototype_operation_pb.bp_unregister_operation;
-      reader.readMessage(value,prototype_operation_pb.bp_unregister_operation.deserializeBinaryFromReader);
+      var value = new prototype_operation_pb.bp_enable_operation;
+      reader.readMessage(value,prototype_operation_pb.bp_enable_operation.deserializeBinaryFromReader);
       msg.setOp4(value);
       break;
     case 5:
@@ -344,7 +344,7 @@ proto.prototype.operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      prototype_operation_pb.bp_unregister_operation.serializeBinaryToWriter
+      prototype_operation_pb.bp_enable_operation.serializeBinaryToWriter
     );
   }
   f = message.getOp5();
@@ -585,16 +585,16 @@ proto.prototype.operation.prototype.hasOp3 = function() {
 
 
 /**
- * optional bp_unregister_operation op4 = 4;
- * @return {?proto.prototype.bp_unregister_operation}
+ * optional bp_enable_operation op4 = 4;
+ * @return {?proto.prototype.bp_enable_operation}
  */
 proto.prototype.operation.prototype.getOp4 = function() {
-  return /** @type{?proto.prototype.bp_unregister_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.bp_unregister_operation, 4));
+  return /** @type{?proto.prototype.bp_enable_operation} */ (
+    jspb.Message.getWrapperField(this, prototype_operation_pb.bp_enable_operation, 4));
 };
 
 
-/** @param {?proto.prototype.bp_unregister_operation|undefined} value */
+/** @param {?proto.prototype.bp_enable_operation|undefined} value */
 proto.prototype.operation.prototype.setOp4 = function(value) {
   jspb.Message.setOneofWrapperField(this, 4, proto.prototype.operation.oneofGroups_[0], value);
 };
@@ -2746,7 +2746,7 @@ proto.prototype.block_header.toObject = function(includeInstance, msg) {
   var f, obj = {
     previous: (f = msg.getPrevious()) && prototype_type_pb.sha256.toObject(includeInstance, f),
     timestamp: (f = msg.getTimestamp()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
-    witness: (f = msg.getWitness()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    blockProducer: (f = msg.getBlockProducer()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     transactionMerkleRoot: (f = msg.getTransactionMerkleRoot()) && prototype_type_pb.sha256.toObject(includeInstance, f),
     prevApplyHash: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
@@ -2798,7 +2798,7 @@ proto.prototype.block_header.deserializeBinaryFromReader = function(msg, reader)
     case 3:
       var value = new prototype_type_pb.account_name;
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setWitness(value);
+      msg.setBlockProducer(value);
       break;
     case 4:
       var value = new prototype_type_pb.sha256;
@@ -2854,7 +2854,7 @@ proto.prototype.block_header.serializeBinaryToWriter = function(message, writer)
       prototype_type_pb.time_point_sec.serializeBinaryToWriter
     );
   }
-  f = message.getWitness();
+  f = message.getBlockProducer();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -2941,23 +2941,23 @@ proto.prototype.block_header.prototype.hasTimestamp = function() {
 
 
 /**
- * optional account_name witness = 3;
+ * optional account_name block_producer = 3;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.block_header.prototype.getWitness = function() {
+proto.prototype.block_header.prototype.getBlockProducer = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 3));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.block_header.prototype.setWitness = function(value) {
+proto.prototype.block_header.prototype.setBlockProducer = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
 
-proto.prototype.block_header.prototype.clearWitness = function() {
-  this.setWitness(undefined);
+proto.prototype.block_header.prototype.clearBlockProducer = function() {
+  this.setBlockProducer(undefined);
 };
 
 
@@ -2965,7 +2965,7 @@ proto.prototype.block_header.prototype.clearWitness = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.block_header.prototype.hasWitness = function() {
+proto.prototype.block_header.prototype.hasBlockProducer = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -3063,7 +3063,7 @@ proto.prototype.signed_block_header.prototype.toObject = function(opt_includeIns
 proto.prototype.signed_block_header.toObject = function(includeInstance, msg) {
   var f, obj = {
     header: (f = msg.getHeader()) && proto.prototype.block_header.toObject(includeInstance, f),
-    witnessSignature: (f = msg.getWitnessSignature()) && prototype_type_pb.signature_type.toObject(includeInstance, f)
+    blockProducerSignature: (f = msg.getBlockProducerSignature()) && prototype_type_pb.signature_type.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3108,7 +3108,7 @@ proto.prototype.signed_block_header.deserializeBinaryFromReader = function(msg, 
     case 2:
       var value = new prototype_type_pb.signature_type;
       reader.readMessage(value,prototype_type_pb.signature_type.deserializeBinaryFromReader);
-      msg.setWitnessSignature(value);
+      msg.setBlockProducerSignature(value);
       break;
     default:
       reader.skipField();
@@ -3147,7 +3147,7 @@ proto.prototype.signed_block_header.serializeBinaryToWriter = function(message, 
       proto.prototype.block_header.serializeBinaryToWriter
     );
   }
-  f = message.getWitnessSignature();
+  f = message.getBlockProducerSignature();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -3189,23 +3189,23 @@ proto.prototype.signed_block_header.prototype.hasHeader = function() {
 
 
 /**
- * optional signature_type witness_signature = 2;
+ * optional signature_type block_producer_signature = 2;
  * @return {?proto.prototype.signature_type}
  */
-proto.prototype.signed_block_header.prototype.getWitnessSignature = function() {
+proto.prototype.signed_block_header.prototype.getBlockProducerSignature = function() {
   return /** @type{?proto.prototype.signature_type} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.signature_type, 2));
 };
 
 
 /** @param {?proto.prototype.signature_type|undefined} value */
-proto.prototype.signed_block_header.prototype.setWitnessSignature = function(value) {
+proto.prototype.signed_block_header.prototype.setBlockProducerSignature = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.prototype.signed_block_header.prototype.clearWitnessSignature = function() {
-  this.setWitnessSignature(undefined);
+proto.prototype.signed_block_header.prototype.clearBlockProducerSignature = function() {
+  this.setBlockProducerSignature(undefined);
 };
 
 
@@ -3213,7 +3213,7 @@ proto.prototype.signed_block_header.prototype.clearWitnessSignature = function()
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.signed_block_header.prototype.hasWitnessSignature = function() {
+proto.prototype.signed_block_header.prototype.hasBlockProducerSignature = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

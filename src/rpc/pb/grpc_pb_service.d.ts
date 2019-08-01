@@ -67,13 +67,13 @@ type ApiServiceGetFollowCountByName = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetFollowCountByNameResponse;
 };
 
-type ApiServiceGetWitnessList = {
+type ApiServiceGetBlockProducerList = {
   readonly methodName: string;
   readonly service: typeof ApiService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof rpc_pb_grpc_pb.GetWitnessListRequest;
-  readonly responseType: typeof rpc_pb_grpc_pb.GetWitnessListResponse;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetBlockProducerListRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetBlockProducerListResponse;
 };
 
 type ApiServiceGetPostListByCreated = {
@@ -265,13 +265,13 @@ type ApiServiceGetContractListByTime = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetContractListResponse;
 };
 
-type ApiServiceGetWitnessListByVoteCount = {
+type ApiServiceGetBlockProducerListByVoteCount = {
   readonly methodName: string;
   readonly service: typeof ApiService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof rpc_pb_grpc_pb.GetWitnessListByVoteCountRequest;
-  readonly responseType: typeof rpc_pb_grpc_pb.GetWitnessListResponse;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetBlockProducerListByVoteCountRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetBlockProducerListResponse;
 };
 
 type ApiServiceGetPostListByVest = {
@@ -346,7 +346,7 @@ export class ApiService {
   static readonly GetFollowerListByName: ApiServiceGetFollowerListByName;
   static readonly GetFollowingListByName: ApiServiceGetFollowingListByName;
   static readonly GetFollowCountByName: ApiServiceGetFollowCountByName;
-  static readonly GetWitnessList: ApiServiceGetWitnessList;
+  static readonly GetBlockProducerList: ApiServiceGetBlockProducerList;
   static readonly GetPostListByCreated: ApiServiceGetPostListByCreated;
   static readonly GetReplyListByPostId: ApiServiceGetReplyListByPostId;
   static readonly GetBlockTransactionsByNum: ApiServiceGetBlockTransactionsByNum;
@@ -368,7 +368,7 @@ export class ApiService {
   static readonly GetAccountListByCreTime: ApiServiceGetAccountListByCreTime;
   static readonly GetDailyStats: ApiServiceGetDailyStats;
   static readonly GetContractListByTime: ApiServiceGetContractListByTime;
-  static readonly GetWitnessListByVoteCount: ApiServiceGetWitnessListByVoteCount;
+  static readonly GetBlockProducerListByVoteCount: ApiServiceGetBlockProducerListByVoteCount;
   static readonly GetPostListByVest: ApiServiceGetPostListByVest;
   static readonly EstimateStamina: ApiServiceEstimateStamina;
   static readonly GetNodeNeighbours: ApiServiceGetNodeNeighbours;
@@ -473,14 +473,14 @@ export class ApiServiceClient {
     requestMessage: rpc_pb_grpc_pb.GetFollowCountByNameRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetFollowCountByNameResponse|null) => void
   ): UnaryResponse;
-  getWitnessList(
-    requestMessage: rpc_pb_grpc_pb.GetWitnessListRequest,
+  getBlockProducerList(
+    requestMessage: rpc_pb_grpc_pb.GetBlockProducerListRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetWitnessListResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockProducerListResponse|null) => void
   ): UnaryResponse;
-  getWitnessList(
-    requestMessage: rpc_pb_grpc_pb.GetWitnessListRequest,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetWitnessListResponse|null) => void
+  getBlockProducerList(
+    requestMessage: rpc_pb_grpc_pb.GetBlockProducerListRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockProducerListResponse|null) => void
   ): UnaryResponse;
   getPostListByCreated(
     requestMessage: rpc_pb_grpc_pb.GetPostListByCreatedRequest,
@@ -671,14 +671,14 @@ export class ApiServiceClient {
     requestMessage: rpc_pb_grpc_pb.GetContractListByTimeRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetContractListResponse|null) => void
   ): UnaryResponse;
-  getWitnessListByVoteCount(
-    requestMessage: rpc_pb_grpc_pb.GetWitnessListByVoteCountRequest,
+  getBlockProducerListByVoteCount(
+    requestMessage: rpc_pb_grpc_pb.GetBlockProducerListByVoteCountRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetWitnessListResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockProducerListResponse|null) => void
   ): UnaryResponse;
-  getWitnessListByVoteCount(
-    requestMessage: rpc_pb_grpc_pb.GetWitnessListByVoteCountRequest,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetWitnessListResponse|null) => void
+  getBlockProducerListByVoteCount(
+    requestMessage: rpc_pb_grpc_pb.GetBlockProducerListByVoteCountRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockProducerListResponse|null) => void
   ): UnaryResponse;
   getPostListByVest(
     requestMessage: rpc_pb_grpc_pb.GetPostListByVestRequest,

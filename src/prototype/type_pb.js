@@ -2038,7 +2038,7 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     maximumBlockSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
     totalCos: (f = msg.getTotalCos()) && proto.prototype.coin.toObject(includeInstance, f),
     time: (f = msg.getTime()) && proto.prototype.time_point_sec.toObject(includeInstance, f),
-    currentWitness: (f = msg.getCurrentWitness()) && proto.prototype.account_name.toObject(includeInstance, f),
+    currentBlockProducer: (f = msg.getCurrentBlockProducer()) && proto.prototype.account_name.toObject(includeInstance, f),
     tps: jspb.Message.getFieldWithDefault(msg, 9, 0),
     totalVest: (f = msg.getTotalVest()) && proto.prototype.vest.toObject(includeInstance, f),
     currentSupply: (f = msg.getCurrentSupply()) && proto.prototype.coin.toObject(includeInstance, f),
@@ -2060,7 +2060,7 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     replyWeightedVps: jspb.Message.getFieldWithDefault(msg, 28, ""),
     replyDappRewards: (f = msg.getReplyDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
     stakeVest: (f = msg.getStakeVest()) && proto.prototype.vest.toObject(includeInstance, f),
-    witnessBootCompleted: jspb.Message.getFieldWithDefault(msg, 31, false),
+    blockProducerBootCompleted: jspb.Message.getFieldWithDefault(msg, 31, false),
     staminaFree: jspb.Message.getFieldWithDefault(msg, 32, 0),
     tpsExpected: jspb.Message.getFieldWithDefault(msg, 33, 0),
     avgTpsUpdateBlock: jspb.Message.getFieldWithDefault(msg, 34, 0),
@@ -2138,7 +2138,7 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
     case 7:
       var value = new proto.prototype.account_name;
       reader.readMessage(value,proto.prototype.account_name.deserializeBinaryFromReader);
-      msg.setCurrentWitness(value);
+      msg.setCurrentBlockProducer(value);
       break;
     case 9:
       var value = /** @type {number} */ (reader.readUint32());
@@ -2237,7 +2237,7 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
       break;
     case 31:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setWitnessBootCompleted(value);
+      msg.setBlockProducerBootCompleted(value);
       break;
     case 32:
       var value = /** @type {number} */ (reader.readUint64());
@@ -2371,7 +2371,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       proto.prototype.time_point_sec.serializeBinaryToWriter
     );
   }
-  f = message.getCurrentWitness();
+  f = message.getCurrentBlockProducer();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -2537,7 +2537,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       proto.prototype.vest.serializeBinaryToWriter
     );
   }
-  f = message.getWitnessBootCompleted();
+  f = message.getBlockProducerBootCompleted();
   if (f) {
     writer.writeBool(
       31,
@@ -2778,23 +2778,23 @@ proto.prototype.dynamic_properties.prototype.hasTime = function() {
 
 
 /**
- * optional account_name current_witness = 7;
+ * optional account_name current_block_producer = 7;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.dynamic_properties.prototype.getCurrentWitness = function() {
+proto.prototype.dynamic_properties.prototype.getCurrentBlockProducer = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, proto.prototype.account_name, 7));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.dynamic_properties.prototype.setCurrentWitness = function(value) {
+proto.prototype.dynamic_properties.prototype.setCurrentBlockProducer = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };
 
 
-proto.prototype.dynamic_properties.prototype.clearCurrentWitness = function() {
-  this.setCurrentWitness(undefined);
+proto.prototype.dynamic_properties.prototype.clearCurrentBlockProducer = function() {
+  this.setCurrentBlockProducer(undefined);
 };
 
 
@@ -2802,7 +2802,7 @@ proto.prototype.dynamic_properties.prototype.clearCurrentWitness = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.dynamic_properties.prototype.hasCurrentWitness = function() {
+proto.prototype.dynamic_properties.prototype.hasCurrentBlockProducer = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
@@ -3288,18 +3288,18 @@ proto.prototype.dynamic_properties.prototype.hasStakeVest = function() {
 
 
 /**
- * optional bool witness_boot_completed = 31;
+ * optional bool block_producer_boot_completed = 31;
  * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
  * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
-proto.prototype.dynamic_properties.prototype.getWitnessBootCompleted = function() {
+proto.prototype.dynamic_properties.prototype.getBlockProducerBootCompleted = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 31, false));
 };
 
 
 /** @param {boolean} value */
-proto.prototype.dynamic_properties.prototype.setWitnessBootCompleted = function(value) {
+proto.prototype.dynamic_properties.prototype.setBlockProducerBootCompleted = function(value) {
   jspb.Message.setProto3BooleanField(this, 31, value);
 };
 

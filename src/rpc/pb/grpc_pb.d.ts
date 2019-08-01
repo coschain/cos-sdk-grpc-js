@@ -264,10 +264,10 @@ export class AccountInfo extends jspb.Message {
   getCreatedTime(): prototype_type_pb.time_point_sec | undefined;
   setCreatedTime(value?: prototype_type_pb.time_point_sec): void;
 
-  hasWitness(): boolean;
-  clearWitness(): void;
-  getWitness(): WitnessResponse | undefined;
-  setWitness(value?: WitnessResponse): void;
+  hasBlockProducer(): boolean;
+  clearBlockProducer(): void;
+  getBlockProducer(): BlockProducerResponse | undefined;
+  setBlockProducer(value?: BlockProducerResponse): void;
 
   getPostCount(): number;
   setPostCount(value: number): void;
@@ -351,7 +351,7 @@ export namespace AccountInfo {
     vest?: prototype_type_pb.vest.AsObject,
     publicKey?: prototype_type_pb.public_key_type.AsObject,
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
-    witness?: WitnessResponse.AsObject,
+    blockProducer?: BlockProducerResponse.AsObject,
     postCount: number,
     followerCount: number,
     followingCount: number,
@@ -624,7 +624,7 @@ export namespace GetFollowCountByNameResponse {
   }
 }
 
-export class WitnessResponse extends jspb.Message {
+export class BlockProducerResponse extends jspb.Message {
   hasOwner(): boolean;
   clearOwner(): void;
   getOwner(): prototype_type_pb.account_name | undefined;
@@ -680,16 +680,16 @@ export class WitnessResponse extends jspb.Message {
   setVoterCount(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): WitnessResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: WitnessResponse): WitnessResponse.AsObject;
+  toObject(includeInstance?: boolean): BlockProducerResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: BlockProducerResponse): BlockProducerResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: WitnessResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): WitnessResponse;
-  static deserializeBinaryFromReader(message: WitnessResponse, reader: jspb.BinaryReader): WitnessResponse;
+  static serializeBinaryToWriter(message: BlockProducerResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BlockProducerResponse;
+  static deserializeBinaryFromReader(message: BlockProducerResponse, reader: jspb.BinaryReader): BlockProducerResponse;
 }
 
-export namespace WitnessResponse {
+export namespace BlockProducerResponse {
   export type AsObject = {
     owner?: prototype_type_pb.account_name.AsObject,
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
@@ -708,7 +708,7 @@ export namespace WitnessResponse {
   }
 }
 
-export class GetWitnessListRequest extends jspb.Message {
+export class GetBlockProducerListRequest extends jspb.Message {
   hasStart(): boolean;
   clearStart(): void;
   getStart(): prototype_type_pb.account_name | undefined;
@@ -718,41 +718,41 @@ export class GetWitnessListRequest extends jspb.Message {
   setLimit(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetWitnessListRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetWitnessListRequest): GetWitnessListRequest.AsObject;
+  toObject(includeInstance?: boolean): GetBlockProducerListRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockProducerListRequest): GetBlockProducerListRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetWitnessListRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetWitnessListRequest;
-  static deserializeBinaryFromReader(message: GetWitnessListRequest, reader: jspb.BinaryReader): GetWitnessListRequest;
+  static serializeBinaryToWriter(message: GetBlockProducerListRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockProducerListRequest;
+  static deserializeBinaryFromReader(message: GetBlockProducerListRequest, reader: jspb.BinaryReader): GetBlockProducerListRequest;
 }
 
-export namespace GetWitnessListRequest {
+export namespace GetBlockProducerListRequest {
   export type AsObject = {
     start?: prototype_type_pb.account_name.AsObject,
     limit: number,
   }
 }
 
-export class GetWitnessListResponse extends jspb.Message {
-  clearWitnessListList(): void;
-  getWitnessListList(): Array<WitnessResponse>;
-  setWitnessListList(value: Array<WitnessResponse>): void;
-  addWitnessList(value?: WitnessResponse, index?: number): WitnessResponse;
+export class GetBlockProducerListResponse extends jspb.Message {
+  clearBlockProducerListList(): void;
+  getBlockProducerListList(): Array<BlockProducerResponse>;
+  setBlockProducerListList(value: Array<BlockProducerResponse>): void;
+  addBlockProducerList(value?: BlockProducerResponse, index?: number): BlockProducerResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetWitnessListResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetWitnessListResponse): GetWitnessListResponse.AsObject;
+  toObject(includeInstance?: boolean): GetBlockProducerListResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockProducerListResponse): GetBlockProducerListResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetWitnessListResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetWitnessListResponse;
-  static deserializeBinaryFromReader(message: GetWitnessListResponse, reader: jspb.BinaryReader): GetWitnessListResponse;
+  static serializeBinaryToWriter(message: GetBlockProducerListResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockProducerListResponse;
+  static deserializeBinaryFromReader(message: GetBlockProducerListResponse, reader: jspb.BinaryReader): GetBlockProducerListResponse;
 }
 
-export namespace GetWitnessListResponse {
+export namespace GetBlockProducerListResponse {
   export type AsObject = {
-    witnessListList: Array<WitnessResponse.AsObject>,
+    blockProducerListList: Array<BlockProducerResponse.AsObject>,
   }
 }
 
@@ -1276,10 +1276,10 @@ export class BlockInfo extends jspb.Message {
   getTrxCount(): number;
   setTrxCount(value: number): void;
 
-  hasWitness(): boolean;
-  clearWitness(): void;
-  getWitness(): prototype_type_pb.account_name | undefined;
-  setWitness(value?: prototype_type_pb.account_name): void;
+  hasBlockProducer(): boolean;
+  clearBlockProducer(): void;
+  getBlockProducer(): prototype_type_pb.account_name | undefined;
+  setBlockProducer(value?: prototype_type_pb.account_name): void;
 
   hasBlockId(): boolean;
   clearBlockId(): void;
@@ -1309,7 +1309,7 @@ export namespace BlockInfo {
     timestamp?: prototype_type_pb.time_point_sec.AsObject,
     blockHeight: string,
     trxCount: number,
-    witness?: prototype_type_pb.account_name.AsObject,
+    blockProducer?: prototype_type_pb.account_name.AsObject,
     blockId?: prototype_type_pb.sha256.AsObject,
     preId?: prototype_type_pb.sha256.AsObject,
     blockSize: number,
@@ -2346,7 +2346,7 @@ export namespace GetContractListResponse {
   }
 }
 
-export class GetWitnessListByVoteCountRequest extends jspb.Message {
+export class GetBlockProducerListByVoteCountRequest extends jspb.Message {
   hasStart(): boolean;
   clearStart(): void;
   getStart(): prototype_type_pb.vest | undefined;
@@ -2357,29 +2357,29 @@ export class GetWitnessListByVoteCountRequest extends jspb.Message {
   getEnd(): prototype_type_pb.vest | undefined;
   setEnd(value?: prototype_type_pb.vest): void;
 
-  hasLastWitness(): boolean;
-  clearLastWitness(): void;
-  getLastWitness(): WitnessResponse | undefined;
-  setLastWitness(value?: WitnessResponse): void;
+  hasLastBlockProducer(): boolean;
+  clearLastBlockProducer(): void;
+  getLastBlockProducer(): BlockProducerResponse | undefined;
+  setLastBlockProducer(value?: BlockProducerResponse): void;
 
   getLimit(): number;
   setLimit(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetWitnessListByVoteCountRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetWitnessListByVoteCountRequest): GetWitnessListByVoteCountRequest.AsObject;
+  toObject(includeInstance?: boolean): GetBlockProducerListByVoteCountRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockProducerListByVoteCountRequest): GetBlockProducerListByVoteCountRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetWitnessListByVoteCountRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetWitnessListByVoteCountRequest;
-  static deserializeBinaryFromReader(message: GetWitnessListByVoteCountRequest, reader: jspb.BinaryReader): GetWitnessListByVoteCountRequest;
+  static serializeBinaryToWriter(message: GetBlockProducerListByVoteCountRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockProducerListByVoteCountRequest;
+  static deserializeBinaryFromReader(message: GetBlockProducerListByVoteCountRequest, reader: jspb.BinaryReader): GetBlockProducerListByVoteCountRequest;
 }
 
-export namespace GetWitnessListByVoteCountRequest {
+export namespace GetBlockProducerListByVoteCountRequest {
   export type AsObject = {
     start?: prototype_type_pb.vest.AsObject,
     end?: prototype_type_pb.vest.AsObject,
-    lastWitness?: WitnessResponse.AsObject,
+    lastBlockProducer?: BlockProducerResponse.AsObject,
     limit: number,
   }
 }

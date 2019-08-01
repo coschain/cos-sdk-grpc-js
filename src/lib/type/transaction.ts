@@ -2,7 +2,7 @@ import {operation as Operation, transaction } from "../../prototype/transaction_
 import {
     account_create_operation,
     bp_register_operation,
-    bp_unregister_operation,
+    bp_enable_operation,
     bp_vote_operation,
     transfer_operation,
     post_operation,
@@ -29,7 +29,7 @@ transaction.prototype.addOperation = function(op: any){
         operation.setOp2(op);
     } else if (op instanceof bp_register_operation) {
         operation.setOp3(op);
-    } else if (op instanceof bp_unregister_operation) {
+    } else if (op instanceof bp_enable_operation) {
         operation.setOp4(op);
     } else if (op instanceof bp_vote_operation) {
         operation.setOp5(op);
@@ -133,7 +133,7 @@ const getActionName = function (op) {
     // @ts-ignore
     if (op.hasOp3()) return "Bp Register";
     // @ts-ignore
-    if (op.hasOp4()) return "Bp Unregister";
+    if (op.hasOp4()) return "Bp Enable";
     // @ts-ignore
     if (op.hasOp5()) return "Bp Vote";
     // @ts-ignore

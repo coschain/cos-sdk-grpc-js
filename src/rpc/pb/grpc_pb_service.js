@@ -73,13 +73,13 @@ ApiService.GetFollowCountByName = {
   responseType: rpc_pb_grpc_pb.GetFollowCountByNameResponse
 };
 
-ApiService.GetWitnessList = {
-  methodName: "GetWitnessList",
+ApiService.GetBlockProducerList = {
+  methodName: "GetBlockProducerList",
   service: ApiService,
   requestStream: false,
   responseStream: false,
-  requestType: rpc_pb_grpc_pb.GetWitnessListRequest,
-  responseType: rpc_pb_grpc_pb.GetWitnessListResponse
+  requestType: rpc_pb_grpc_pb.GetBlockProducerListRequest,
+  responseType: rpc_pb_grpc_pb.GetBlockProducerListResponse
 };
 
 ApiService.GetPostListByCreated = {
@@ -271,13 +271,13 @@ ApiService.GetContractListByTime = {
   responseType: rpc_pb_grpc_pb.GetContractListResponse
 };
 
-ApiService.GetWitnessListByVoteCount = {
-  methodName: "GetWitnessListByVoteCount",
+ApiService.GetBlockProducerListByVoteCount = {
+  methodName: "GetBlockProducerListByVoteCount",
   service: ApiService,
   requestStream: false,
   responseStream: false,
-  requestType: rpc_pb_grpc_pb.GetWitnessListByVoteCountRequest,
-  responseType: rpc_pb_grpc_pb.GetWitnessListResponse
+  requestType: rpc_pb_grpc_pb.GetBlockProducerListByVoteCountRequest,
+  responseType: rpc_pb_grpc_pb.GetBlockProducerListResponse
 };
 
 ApiService.GetPostListByVest = {
@@ -567,11 +567,11 @@ ApiServiceClient.prototype.getFollowCountByName = function getFollowCountByName(
   };
 };
 
-ApiServiceClient.prototype.getWitnessList = function getWitnessList(requestMessage, metadata, callback) {
+ApiServiceClient.prototype.getBlockProducerList = function getBlockProducerList(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ApiService.GetWitnessList, {
+  var client = grpc.unary(ApiService.GetBlockProducerList, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1249,11 +1249,11 @@ ApiServiceClient.prototype.getContractListByTime = function getContractListByTim
   };
 };
 
-ApiServiceClient.prototype.getWitnessListByVoteCount = function getWitnessListByVoteCount(requestMessage, metadata, callback) {
+ApiServiceClient.prototype.getBlockProducerListByVoteCount = function getBlockProducerListByVoteCount(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ApiService.GetWitnessListByVoteCount, {
+  var client = grpc.unary(ApiService.GetBlockProducerListByVoteCount, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

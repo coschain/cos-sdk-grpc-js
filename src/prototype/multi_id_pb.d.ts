@@ -186,10 +186,10 @@ export class bp_voter_id extends jspb.Message {
   getVoter(): prototype_type_pb.account_name | undefined;
   setVoter(value?: prototype_type_pb.account_name): void;
 
-  hasWitness(): boolean;
-  clearWitness(): void;
-  getWitness(): prototype_type_pb.account_name | undefined;
-  setWitness(value?: prototype_type_pb.account_name): void;
+  hasBlockProducer(): boolean;
+  clearBlockProducer(): void;
+  getBlockProducer(): prototype_type_pb.account_name | undefined;
+  setBlockProducer(value?: prototype_type_pb.account_name): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): bp_voter_id.AsObject;
@@ -204,35 +204,35 @@ export class bp_voter_id extends jspb.Message {
 export namespace bp_voter_id {
   export type AsObject = {
     voter?: prototype_type_pb.account_name.AsObject,
-    witness?: prototype_type_pb.account_name.AsObject,
+    blockProducer?: prototype_type_pb.account_name.AsObject,
   }
 }
 
-export class bp_witness_id extends jspb.Message {
+export class bp_block_producer_id extends jspb.Message {
   hasVoter(): boolean;
   clearVoter(): void;
   getVoter(): prototype_type_pb.account_name | undefined;
   setVoter(value?: prototype_type_pb.account_name): void;
 
-  hasWitness(): boolean;
-  clearWitness(): void;
-  getWitness(): prototype_type_pb.account_name | undefined;
-  setWitness(value?: prototype_type_pb.account_name): void;
+  hasBlockProducer(): boolean;
+  clearBlockProducer(): void;
+  getBlockProducer(): prototype_type_pb.account_name | undefined;
+  setBlockProducer(value?: prototype_type_pb.account_name): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): bp_witness_id.AsObject;
-  static toObject(includeInstance: boolean, msg: bp_witness_id): bp_witness_id.AsObject;
+  toObject(includeInstance?: boolean): bp_block_producer_id.AsObject;
+  static toObject(includeInstance: boolean, msg: bp_block_producer_id): bp_block_producer_id.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: bp_witness_id, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): bp_witness_id;
-  static deserializeBinaryFromReader(message: bp_witness_id, reader: jspb.BinaryReader): bp_witness_id;
+  static serializeBinaryToWriter(message: bp_block_producer_id, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): bp_block_producer_id;
+  static deserializeBinaryFromReader(message: bp_block_producer_id, reader: jspb.BinaryReader): bp_block_producer_id;
 }
 
-export namespace bp_witness_id {
+export namespace bp_block_producer_id {
   export type AsObject = {
     voter?: prototype_type_pb.account_name.AsObject,
-    witness?: prototype_type_pb.account_name.AsObject,
+    blockProducer?: prototype_type_pb.account_name.AsObject,
   }
 }
 

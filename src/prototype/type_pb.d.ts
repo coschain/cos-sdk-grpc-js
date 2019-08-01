@@ -297,10 +297,10 @@ export class dynamic_properties extends jspb.Message {
   getTime(): time_point_sec | undefined;
   setTime(value?: time_point_sec): void;
 
-  hasCurrentWitness(): boolean;
-  clearCurrentWitness(): void;
-  getCurrentWitness(): account_name | undefined;
-  setCurrentWitness(value?: account_name): void;
+  hasCurrentBlockProducer(): boolean;
+  clearCurrentBlockProducer(): void;
+  getCurrentBlockProducer(): account_name | undefined;
+  setCurrentBlockProducer(value?: account_name): void;
 
   getTps(): number;
   setTps(value: number): void;
@@ -387,8 +387,8 @@ export class dynamic_properties extends jspb.Message {
   getStakeVest(): vest | undefined;
   setStakeVest(value?: vest): void;
 
-  getWitnessBootCompleted(): boolean;
-  setWitnessBootCompleted(value: boolean): void;
+  getBlockProducerBootCompleted(): boolean;
+  setBlockProducerBootCompleted(value: boolean): void;
 
   getStaminaFree(): number;
   setStaminaFree(value: number): void;
@@ -462,7 +462,7 @@ export namespace dynamic_properties {
     maximumBlockSize: number,
     totalCos?: coin.AsObject,
     time?: time_point_sec.AsObject,
-    currentWitness?: account_name.AsObject,
+    currentBlockProducer?: account_name.AsObject,
     tps: number,
     totalVest?: vest.AsObject,
     currentSupply?: coin.AsObject,
@@ -484,7 +484,7 @@ export namespace dynamic_properties {
     replyWeightedVps: string,
     replyDappRewards?: vest.AsObject,
     stakeVest?: vest.AsObject,
-    witnessBootCompleted: boolean,
+    blockProducerBootCompleted: boolean,
     staminaFree: number,
     tpsExpected: number,
     avgTpsUpdateBlock: number,

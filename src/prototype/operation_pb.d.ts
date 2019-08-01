@@ -270,25 +270,29 @@ export namespace bp_update_operation {
   }
 }
 
-export class bp_unregister_operation extends jspb.Message {
+export class bp_enable_operation extends jspb.Message {
   hasOwner(): boolean;
   clearOwner(): void;
   getOwner(): prototype_type_pb.account_name | undefined;
   setOwner(value?: prototype_type_pb.account_name): void;
 
+  getCancel(): boolean;
+  setCancel(value: boolean): void;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): bp_unregister_operation.AsObject;
-  static toObject(includeInstance: boolean, msg: bp_unregister_operation): bp_unregister_operation.AsObject;
+  toObject(includeInstance?: boolean): bp_enable_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: bp_enable_operation): bp_enable_operation.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: bp_unregister_operation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): bp_unregister_operation;
-  static deserializeBinaryFromReader(message: bp_unregister_operation, reader: jspb.BinaryReader): bp_unregister_operation;
+  static serializeBinaryToWriter(message: bp_enable_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): bp_enable_operation;
+  static deserializeBinaryFromReader(message: bp_enable_operation, reader: jspb.BinaryReader): bp_enable_operation;
 }
 
-export namespace bp_unregister_operation {
+export namespace bp_enable_operation {
   export type AsObject = {
     owner?: prototype_type_pb.account_name.AsObject,
+    cancel: boolean,
   }
 }
 
@@ -298,10 +302,10 @@ export class bp_vote_operation extends jspb.Message {
   getVoter(): prototype_type_pb.account_name | undefined;
   setVoter(value?: prototype_type_pb.account_name): void;
 
-  hasWitness(): boolean;
-  clearWitness(): void;
-  getWitness(): prototype_type_pb.account_name | undefined;
-  setWitness(value?: prototype_type_pb.account_name): void;
+  hasBlockProducer(): boolean;
+  clearBlockProducer(): void;
+  getBlockProducer(): prototype_type_pb.account_name | undefined;
+  setBlockProducer(value?: prototype_type_pb.account_name): void;
 
   getCancel(): boolean;
   setCancel(value: boolean): void;
@@ -319,7 +323,7 @@ export class bp_vote_operation extends jspb.Message {
 export namespace bp_vote_operation {
   export type AsObject = {
     voter?: prototype_type_pb.account_name.AsObject,
-    witness?: prototype_type_pb.account_name.AsObject,
+    blockProducer?: prototype_type_pb.account_name.AsObject,
     cancel: boolean,
   }
 }

@@ -1,7 +1,7 @@
 export * from './prototype/operation_pb';
 export { account_create_operation } from './lib/type/account_create_operation';
 export { bp_register_operation } from './lib/type/bp_register_operation';
-export { bp_unregister_operation } from './lib/type/bp_unregister_operation';
+export { bp_enable_operation } from './lib/type/bp_enable_operation';
 export { bp_vote_operation } from './lib/type/bp_vote_operation';
 export { claim_all_operation } from './lib/type/claim_all_operation';
 export { claim_operation } from './lib/type/claim_operation';

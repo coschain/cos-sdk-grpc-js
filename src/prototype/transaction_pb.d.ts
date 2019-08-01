@@ -23,8 +23,8 @@ export class operation extends jspb.Message {
 
   hasOp4(): boolean;
   clearOp4(): void;
-  getOp4(): prototype_operation_pb.bp_unregister_operation | undefined;
-  setOp4(value?: prototype_operation_pb.bp_unregister_operation): void;
+  getOp4(): prototype_operation_pb.bp_enable_operation | undefined;
+  setOp4(value?: prototype_operation_pb.bp_enable_operation): void;
 
   hasOp5(): boolean;
   clearOp5(): void;
@@ -132,7 +132,7 @@ export namespace operation {
     op1?: prototype_operation_pb.account_create_operation.AsObject,
     op2?: prototype_operation_pb.transfer_operation.AsObject,
     op3?: prototype_operation_pb.bp_register_operation.AsObject,
-    op4?: prototype_operation_pb.bp_unregister_operation.AsObject,
+    op4?: prototype_operation_pb.bp_enable_operation.AsObject,
     op5?: prototype_operation_pb.bp_vote_operation.AsObject,
     op6?: prototype_operation_pb.post_operation.AsObject,
     op7?: prototype_operation_pb.reply_operation.AsObject,
@@ -405,10 +405,10 @@ export class block_header extends jspb.Message {
   getTimestamp(): prototype_type_pb.time_point_sec | undefined;
   setTimestamp(value?: prototype_type_pb.time_point_sec): void;
 
-  hasWitness(): boolean;
-  clearWitness(): void;
-  getWitness(): prototype_type_pb.account_name | undefined;
-  setWitness(value?: prototype_type_pb.account_name): void;
+  hasBlockProducer(): boolean;
+  clearBlockProducer(): void;
+  getBlockProducer(): prototype_type_pb.account_name | undefined;
+  setBlockProducer(value?: prototype_type_pb.account_name): void;
 
   hasTransactionMerkleRoot(): boolean;
   clearTransactionMerkleRoot(): void;
@@ -432,7 +432,7 @@ export namespace block_header {
   export type AsObject = {
     previous?: prototype_type_pb.sha256.AsObject,
     timestamp?: prototype_type_pb.time_point_sec.AsObject,
-    witness?: prototype_type_pb.account_name.AsObject,
+    blockProducer?: prototype_type_pb.account_name.AsObject,
     transactionMerkleRoot?: prototype_type_pb.sha256.AsObject,
     prevApplyHash: number,
   }
@@ -444,10 +444,10 @@ export class signed_block_header extends jspb.Message {
   getHeader(): block_header | undefined;
   setHeader(value?: block_header): void;
 
-  hasWitnessSignature(): boolean;
-  clearWitnessSignature(): void;
-  getWitnessSignature(): prototype_type_pb.signature_type | undefined;
-  setWitnessSignature(value?: prototype_type_pb.signature_type): void;
+  hasBlockProducerSignature(): boolean;
+  clearBlockProducerSignature(): void;
+  getBlockProducerSignature(): prototype_type_pb.signature_type | undefined;
+  setBlockProducerSignature(value?: prototype_type_pb.signature_type): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): signed_block_header.AsObject;
@@ -462,7 +462,7 @@ export class signed_block_header extends jspb.Message {
 export namespace signed_block_header {
   export type AsObject = {
     header?: block_header.AsObject,
-    witnessSignature?: prototype_type_pb.signature_type.AsObject,
+    blockProducerSignature?: prototype_type_pb.signature_type.AsObject,
   }
 }
 
