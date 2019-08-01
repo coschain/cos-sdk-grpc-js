@@ -305,10 +305,10 @@ export class dynamic_properties extends jspb.Message {
   getTps(): number;
   setTps(value: number): void;
 
-  hasTotalVestingShares(): boolean;
-  clearTotalVestingShares(): void;
-  getTotalVestingShares(): vest | undefined;
-  setTotalVestingShares(value?: vest): void;
+  hasTotalVest(): boolean;
+  clearTotalVest(): void;
+  getTotalVest(): vest | undefined;
+  setTotalVest(value?: vest): void;
 
   hasCurrentSupply(): boolean;
   clearCurrentSupply(): void;
@@ -382,10 +382,10 @@ export class dynamic_properties extends jspb.Message {
   getReplyDappRewards(): vest | undefined;
   setReplyDappRewards(value?: vest): void;
 
-  hasStakeVestingShares(): boolean;
-  clearStakeVestingShares(): void;
-  getStakeVestingShares(): vest | undefined;
-  setStakeVestingShares(value?: vest): void;
+  hasStakeVest(): boolean;
+  clearStakeVest(): void;
+  getStakeVest(): vest | undefined;
+  setStakeVest(value?: vest): void;
 
   getWitnessBootCompleted(): boolean;
   setWitnessBootCompleted(value: boolean): void;
@@ -464,7 +464,7 @@ export namespace dynamic_properties {
     time?: time_point_sec.AsObject,
     currentWitness?: account_name.AsObject,
     tps: number,
-    totalVestingShares?: vest.AsObject,
+    totalVest?: vest.AsObject,
     currentSupply?: coin.AsObject,
     postWeightedVps: string,
     postRewards?: vest.AsObject,
@@ -483,7 +483,7 @@ export namespace dynamic_properties {
     replyRewards?: vest.AsObject,
     replyWeightedVps: string,
     replyDappRewards?: vest.AsObject,
-    stakeVestingShares?: vest.AsObject,
+    stakeVest?: vest.AsObject,
     witnessBootCompleted: boolean,
     staminaFree: number,
     tpsExpected: number,

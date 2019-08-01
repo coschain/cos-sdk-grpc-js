@@ -20,10 +20,10 @@ export class account_create_operation extends jspb.Message {
   getNewAccountName(): prototype_type_pb.account_name | undefined;
   setNewAccountName(value?: prototype_type_pb.account_name): void;
 
-  hasOwner(): boolean;
-  clearOwner(): void;
-  getOwner(): prototype_type_pb.public_key_type | undefined;
-  setOwner(value?: prototype_type_pb.public_key_type): void;
+  hasPubKey(): boolean;
+  clearPubKey(): void;
+  getPubKey(): prototype_type_pb.public_key_type | undefined;
+  setPubKey(value?: prototype_type_pb.public_key_type): void;
 
   getJsonMetadata(): string;
   setJsonMetadata(value: string): void;
@@ -43,7 +43,7 @@ export namespace account_create_operation {
     fee?: prototype_type_pb.coin.AsObject,
     creator?: prototype_type_pb.account_name.AsObject,
     newAccountName?: prototype_type_pb.account_name.AsObject,
-    owner?: prototype_type_pb.public_key_type.AsObject,
+    pubKey?: prototype_type_pb.public_key_type.AsObject,
     jsonMetadata: string,
   }
 }
@@ -54,10 +54,10 @@ export class account_update_operation extends jspb.Message {
   getOwner(): prototype_type_pb.account_name | undefined;
   setOwner(value?: prototype_type_pb.account_name): void;
 
-  hasPubkey(): boolean;
-  clearPubkey(): void;
-  getPubkey(): prototype_type_pb.public_key_type | undefined;
-  setPubkey(value?: prototype_type_pb.public_key_type): void;
+  hasPubKey(): boolean;
+  clearPubKey(): void;
+  getPubKey(): prototype_type_pb.public_key_type | undefined;
+  setPubKey(value?: prototype_type_pb.public_key_type): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): account_update_operation.AsObject;
@@ -72,7 +72,7 @@ export class account_update_operation extends jspb.Message {
 export namespace account_update_operation {
   export type AsObject = {
     owner?: prototype_type_pb.account_name.AsObject,
-    pubkey?: prototype_type_pb.public_key_type.AsObject,
+    pubKey?: prototype_type_pb.public_key_type.AsObject,
   }
 }
 
@@ -114,7 +114,7 @@ export namespace transfer_operation {
   }
 }
 
-export class transfer_to_vesting_operation extends jspb.Message {
+export class transfer_to_vest_operation extends jspb.Message {
   hasFrom(): boolean;
   clearFrom(): void;
   getFrom(): prototype_type_pb.account_name | undefined;
@@ -131,16 +131,16 @@ export class transfer_to_vesting_operation extends jspb.Message {
   setAmount(value?: prototype_type_pb.coin): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): transfer_to_vesting_operation.AsObject;
-  static toObject(includeInstance: boolean, msg: transfer_to_vesting_operation): transfer_to_vesting_operation.AsObject;
+  toObject(includeInstance?: boolean): transfer_to_vest_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: transfer_to_vest_operation): transfer_to_vest_operation.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: transfer_to_vesting_operation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): transfer_to_vesting_operation;
-  static deserializeBinaryFromReader(message: transfer_to_vesting_operation, reader: jspb.BinaryReader): transfer_to_vesting_operation;
+  static serializeBinaryToWriter(message: transfer_to_vest_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): transfer_to_vest_operation;
+  static deserializeBinaryFromReader(message: transfer_to_vest_operation, reader: jspb.BinaryReader): transfer_to_vest_operation;
 }
 
-export namespace transfer_to_vesting_operation {
+export namespace transfer_to_vest_operation {
   export type AsObject = {
     from?: prototype_type_pb.account_name.AsObject,
     to?: prototype_type_pb.account_name.AsObject,
@@ -698,7 +698,7 @@ export namespace report_operation {
   }
 }
 
-export class convert_vesting_operation extends jspb.Message {
+export class convert_vest_operation extends jspb.Message {
   hasFrom(): boolean;
   clearFrom(): void;
   getFrom(): prototype_type_pb.account_name | undefined;
@@ -710,16 +710,16 @@ export class convert_vesting_operation extends jspb.Message {
   setAmount(value?: prototype_type_pb.vest): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): convert_vesting_operation.AsObject;
-  static toObject(includeInstance: boolean, msg: convert_vesting_operation): convert_vesting_operation.AsObject;
+  toObject(includeInstance?: boolean): convert_vest_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: convert_vest_operation): convert_vest_operation.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: convert_vesting_operation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): convert_vesting_operation;
-  static deserializeBinaryFromReader(message: convert_vesting_operation, reader: jspb.BinaryReader): convert_vesting_operation;
+  static serializeBinaryToWriter(message: convert_vest_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): convert_vest_operation;
+  static deserializeBinaryFromReader(message: convert_vest_operation, reader: jspb.BinaryReader): convert_vest_operation;
 }
 
-export namespace convert_vesting_operation {
+export namespace convert_vest_operation {
   export type AsObject = {
     from?: prototype_type_pb.account_name.AsObject,
     amount?: prototype_type_pb.vest.AsObject,

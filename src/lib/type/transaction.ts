@@ -9,10 +9,10 @@ import {
     reply_operation,
     follow_operation,
     vote_operation,
-    transfer_to_vesting_operation,
+    transfer_to_vest_operation,
     claim_operation,
     claim_all_operation, contract_deploy_operation, contract_apply_operation,
-    convert_vesting_operation,
+    convert_vest_operation,
     stake_operation, un_stake_operation,
     bp_update_operation,
     account_update_operation,
@@ -41,7 +41,7 @@ transaction.prototype.addOperation = function(op: any){
         operation.setOp8(op);
     } else if (op instanceof vote_operation) {
         operation.setOp9(op);
-    } else if (op instanceof transfer_to_vesting_operation) {
+    } else if (op instanceof transfer_to_vest_operation) {
         operation.setOp10(op);
     } else if (op instanceof claim_operation) {
         operation.setOp11(op);
@@ -51,7 +51,7 @@ transaction.prototype.addOperation = function(op: any){
         operation.setOp13(op);
     } else if (op instanceof contract_apply_operation) {
         operation.setOp14(op);
-    } else if (op instanceof convert_vesting_operation) {
+    } else if (op instanceof convert_vest_operation) {
         operation.setOp16(op)
     } else if (op instanceof stake_operation) {
         operation.setOp17(op)

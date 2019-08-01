@@ -2040,7 +2040,7 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     time: (f = msg.getTime()) && proto.prototype.time_point_sec.toObject(includeInstance, f),
     currentWitness: (f = msg.getCurrentWitness()) && proto.prototype.account_name.toObject(includeInstance, f),
     tps: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    totalVestingShares: (f = msg.getTotalVestingShares()) && proto.prototype.vest.toObject(includeInstance, f),
+    totalVest: (f = msg.getTotalVest()) && proto.prototype.vest.toObject(includeInstance, f),
     currentSupply: (f = msg.getCurrentSupply()) && proto.prototype.coin.toObject(includeInstance, f),
     postWeightedVps: jspb.Message.getFieldWithDefault(msg, 13, ""),
     postRewards: (f = msg.getPostRewards()) && proto.prototype.vest.toObject(includeInstance, f),
@@ -2059,7 +2059,7 @@ proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
     replyRewards: (f = msg.getReplyRewards()) && proto.prototype.vest.toObject(includeInstance, f),
     replyWeightedVps: jspb.Message.getFieldWithDefault(msg, 28, ""),
     replyDappRewards: (f = msg.getReplyDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
-    stakeVestingShares: (f = msg.getStakeVestingShares()) && proto.prototype.vest.toObject(includeInstance, f),
+    stakeVest: (f = msg.getStakeVest()) && proto.prototype.vest.toObject(includeInstance, f),
     witnessBootCompleted: jspb.Message.getFieldWithDefault(msg, 31, false),
     staminaFree: jspb.Message.getFieldWithDefault(msg, 32, 0),
     tpsExpected: jspb.Message.getFieldWithDefault(msg, 33, 0),
@@ -2147,7 +2147,7 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
     case 10:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setTotalVestingShares(value);
+      msg.setTotalVest(value);
       break;
     case 11:
       var value = new proto.prototype.coin;
@@ -2233,7 +2233,7 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
     case 30:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setStakeVestingShares(value);
+      msg.setStakeVest(value);
       break;
     case 31:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -2386,7 +2386,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getTotalVestingShares();
+  f = message.getTotalVest();
   if (f != null) {
     writer.writeMessage(
       10,
@@ -2529,7 +2529,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       proto.prototype.vest.serializeBinaryToWriter
     );
   }
-  f = message.getStakeVestingShares();
+  f = message.getStakeVest();
   if (f != null) {
     writer.writeMessage(
       30,
@@ -2823,23 +2823,23 @@ proto.prototype.dynamic_properties.prototype.setTps = function(value) {
 
 
 /**
- * optional vest total_vesting_shares = 10;
+ * optional vest total_vest = 10;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.dynamic_properties.prototype.getTotalVestingShares = function() {
+proto.prototype.dynamic_properties.prototype.getTotalVest = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, proto.prototype.vest, 10));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setTotalVestingShares = function(value) {
+proto.prototype.dynamic_properties.prototype.setTotalVest = function(value) {
   jspb.Message.setWrapperField(this, 10, value);
 };
 
 
-proto.prototype.dynamic_properties.prototype.clearTotalVestingShares = function() {
-  this.setTotalVestingShares(undefined);
+proto.prototype.dynamic_properties.prototype.clearTotalVest = function() {
+  this.setTotalVest(undefined);
 };
 
 
@@ -2847,7 +2847,7 @@ proto.prototype.dynamic_properties.prototype.clearTotalVestingShares = function(
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.dynamic_properties.prototype.hasTotalVestingShares = function() {
+proto.prototype.dynamic_properties.prototype.hasTotalVest = function() {
   return jspb.Message.getField(this, 10) != null;
 };
 
@@ -3258,23 +3258,23 @@ proto.prototype.dynamic_properties.prototype.hasReplyDappRewards = function() {
 
 
 /**
- * optional vest stake_vesting_shares = 30;
+ * optional vest stake_vest = 30;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.dynamic_properties.prototype.getStakeVestingShares = function() {
+proto.prototype.dynamic_properties.prototype.getStakeVest = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, proto.prototype.vest, 30));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setStakeVestingShares = function(value) {
+proto.prototype.dynamic_properties.prototype.setStakeVest = function(value) {
   jspb.Message.setWrapperField(this, 30, value);
 };
 
 
-proto.prototype.dynamic_properties.prototype.clearStakeVestingShares = function() {
-  this.setStakeVestingShares(undefined);
+proto.prototype.dynamic_properties.prototype.clearStakeVest = function() {
+  this.setStakeVest(undefined);
 };
 
 
@@ -3282,7 +3282,7 @@ proto.prototype.dynamic_properties.prototype.clearStakeVestingShares = function(
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.dynamic_properties.prototype.hasStakeVestingShares = function() {
+proto.prototype.dynamic_properties.prototype.hasStakeVest = function() {
   return jspb.Message.getField(this, 30) != null;
 };
 

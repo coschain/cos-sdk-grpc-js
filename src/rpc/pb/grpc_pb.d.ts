@@ -638,10 +638,10 @@ export class WitnessResponse extends jspb.Message {
   getUrl(): string;
   setUrl(value: string): void;
 
-  hasVoteCount(): boolean;
-  clearVoteCount(): void;
-  getVoteCount(): prototype_type_pb.vest | undefined;
-  setVoteCount(value?: prototype_type_pb.vest): void;
+  hasVoteVest(): boolean;
+  clearVoteVest(): void;
+  getVoteVest(): prototype_type_pb.vest | undefined;
+  setVoteVest(value?: prototype_type_pb.vest): void;
 
   hasSigningKey(): boolean;
   clearSigningKey(): void;
@@ -676,10 +676,8 @@ export class WitnessResponse extends jspb.Message {
   getPerTicketWeight(): number;
   setPerTicketWeight(value: number): void;
 
-  clearVoterListList(): void;
-  getVoterListList(): Array<prototype_type_pb.account_name>;
-  setVoterListList(value: Array<prototype_type_pb.account_name>): void;
-  addVoterList(value?: prototype_type_pb.account_name, index?: number): prototype_type_pb.account_name;
+  getVoterCount(): number;
+  setVoterCount(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WitnessResponse.AsObject;
@@ -696,7 +694,7 @@ export namespace WitnessResponse {
     owner?: prototype_type_pb.account_name.AsObject,
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
     url: string,
-    voteCount?: prototype_type_pb.vest.AsObject,
+    voteVest?: prototype_type_pb.vest.AsObject,
     signingKey?: prototype_type_pb.public_key_type.AsObject,
     proposedStaminaFree: number,
     active: boolean,
@@ -706,7 +704,7 @@ export namespace WitnessResponse {
     ticketFlushInterval: number,
     perTicketPrice?: prototype_type_pb.coin.AsObject,
     perTicketWeight: number,
-    voterListList: Array<prototype_type_pb.account_name.AsObject>,
+    voterCount: number,
   }
 }
 

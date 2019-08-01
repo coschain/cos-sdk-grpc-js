@@ -127,13 +127,13 @@ proto.prototype.operation.toObject = function(includeInstance, msg) {
     op7: (f = msg.getOp7()) && prototype_operation_pb.reply_operation.toObject(includeInstance, f),
     op8: (f = msg.getOp8()) && prototype_operation_pb.follow_operation.toObject(includeInstance, f),
     op9: (f = msg.getOp9()) && prototype_operation_pb.vote_operation.toObject(includeInstance, f),
-    op10: (f = msg.getOp10()) && prototype_operation_pb.transfer_to_vesting_operation.toObject(includeInstance, f),
+    op10: (f = msg.getOp10()) && prototype_operation_pb.transfer_to_vest_operation.toObject(includeInstance, f),
     op11: (f = msg.getOp11()) && prototype_operation_pb.claim_operation.toObject(includeInstance, f),
     op12: (f = msg.getOp12()) && prototype_operation_pb.claim_all_operation.toObject(includeInstance, f),
     op13: (f = msg.getOp13()) && prototype_operation_pb.contract_deploy_operation.toObject(includeInstance, f),
     op14: (f = msg.getOp14()) && prototype_operation_pb.contract_apply_operation.toObject(includeInstance, f),
     op15: (f = msg.getOp15()) && prototype_operation_pb.report_operation.toObject(includeInstance, f),
-    op16: (f = msg.getOp16()) && prototype_operation_pb.convert_vesting_operation.toObject(includeInstance, f),
+    op16: (f = msg.getOp16()) && prototype_operation_pb.convert_vest_operation.toObject(includeInstance, f),
     op17: (f = msg.getOp17()) && prototype_operation_pb.stake_operation.toObject(includeInstance, f),
     op18: (f = msg.getOp18()) && prototype_operation_pb.un_stake_operation.toObject(includeInstance, f),
     op19: (f = msg.getOp19()) && prototype_operation_pb.bp_update_operation.toObject(includeInstance, f),
@@ -222,8 +222,8 @@ proto.prototype.operation.deserializeBinaryFromReader = function(msg, reader) {
       msg.setOp9(value);
       break;
     case 10:
-      var value = new prototype_operation_pb.transfer_to_vesting_operation;
-      reader.readMessage(value,prototype_operation_pb.transfer_to_vesting_operation.deserializeBinaryFromReader);
+      var value = new prototype_operation_pb.transfer_to_vest_operation;
+      reader.readMessage(value,prototype_operation_pb.transfer_to_vest_operation.deserializeBinaryFromReader);
       msg.setOp10(value);
       break;
     case 11:
@@ -252,8 +252,8 @@ proto.prototype.operation.deserializeBinaryFromReader = function(msg, reader) {
       msg.setOp15(value);
       break;
     case 16:
-      var value = new prototype_operation_pb.convert_vesting_operation;
-      reader.readMessage(value,prototype_operation_pb.convert_vesting_operation.deserializeBinaryFromReader);
+      var value = new prototype_operation_pb.convert_vest_operation;
+      reader.readMessage(value,prototype_operation_pb.convert_vest_operation.deserializeBinaryFromReader);
       msg.setOp16(value);
       break;
     case 17:
@@ -392,7 +392,7 @@ proto.prototype.operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       10,
       f,
-      prototype_operation_pb.transfer_to_vesting_operation.serializeBinaryToWriter
+      prototype_operation_pb.transfer_to_vest_operation.serializeBinaryToWriter
     );
   }
   f = message.getOp11();
@@ -440,7 +440,7 @@ proto.prototype.operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       16,
       f,
-      prototype_operation_pb.convert_vesting_operation.serializeBinaryToWriter
+      prototype_operation_pb.convert_vest_operation.serializeBinaryToWriter
     );
   }
   f = message.getOp17();
@@ -765,16 +765,16 @@ proto.prototype.operation.prototype.hasOp9 = function() {
 
 
 /**
- * optional transfer_to_vesting_operation op10 = 10;
- * @return {?proto.prototype.transfer_to_vesting_operation}
+ * optional transfer_to_vest_operation op10 = 10;
+ * @return {?proto.prototype.transfer_to_vest_operation}
  */
 proto.prototype.operation.prototype.getOp10 = function() {
-  return /** @type{?proto.prototype.transfer_to_vesting_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.transfer_to_vesting_operation, 10));
+  return /** @type{?proto.prototype.transfer_to_vest_operation} */ (
+    jspb.Message.getWrapperField(this, prototype_operation_pb.transfer_to_vest_operation, 10));
 };
 
 
-/** @param {?proto.prototype.transfer_to_vesting_operation|undefined} value */
+/** @param {?proto.prototype.transfer_to_vest_operation|undefined} value */
 proto.prototype.operation.prototype.setOp10 = function(value) {
   jspb.Message.setOneofWrapperField(this, 10, proto.prototype.operation.oneofGroups_[0], value);
 };
@@ -945,16 +945,16 @@ proto.prototype.operation.prototype.hasOp15 = function() {
 
 
 /**
- * optional convert_vesting_operation op16 = 16;
- * @return {?proto.prototype.convert_vesting_operation}
+ * optional convert_vest_operation op16 = 16;
+ * @return {?proto.prototype.convert_vest_operation}
  */
 proto.prototype.operation.prototype.getOp16 = function() {
-  return /** @type{?proto.prototype.convert_vesting_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.convert_vesting_operation, 16));
+  return /** @type{?proto.prototype.convert_vest_operation} */ (
+    jspb.Message.getWrapperField(this, prototype_operation_pb.convert_vest_operation, 16));
 };
 
 
-/** @param {?proto.prototype.convert_vesting_operation|undefined} value */
+/** @param {?proto.prototype.convert_vest_operation|undefined} value */
 proto.prototype.operation.prototype.setOp16 = function(value) {
   jspb.Message.setOneofWrapperField(this, 16, proto.prototype.operation.oneofGroups_[0], value);
 };

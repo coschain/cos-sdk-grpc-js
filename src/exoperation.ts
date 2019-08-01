@@ -26,7 +26,7 @@ export {reply_operation} from './lib/type/reply_operation'
 
 export {transfer_operation} from './lib/type/transfer_operation'
 
-export {transfer_to_vesting_operation} from './lib/type/transfer_to_vesting_operation'
+export {transfer_to_vest_operation} from './lib/type/transfer_to_vest_operation'
 
 export {vote_operation} from './lib/type/vote_operation'
 

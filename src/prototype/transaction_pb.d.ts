@@ -53,8 +53,8 @@ export class operation extends jspb.Message {
 
   hasOp10(): boolean;
   clearOp10(): void;
-  getOp10(): prototype_operation_pb.transfer_to_vesting_operation | undefined;
-  setOp10(value?: prototype_operation_pb.transfer_to_vesting_operation): void;
+  getOp10(): prototype_operation_pb.transfer_to_vest_operation | undefined;
+  setOp10(value?: prototype_operation_pb.transfer_to_vest_operation): void;
 
   hasOp11(): boolean;
   clearOp11(): void;
@@ -83,8 +83,8 @@ export class operation extends jspb.Message {
 
   hasOp16(): boolean;
   clearOp16(): void;
-  getOp16(): prototype_operation_pb.convert_vesting_operation | undefined;
-  setOp16(value?: prototype_operation_pb.convert_vesting_operation): void;
+  getOp16(): prototype_operation_pb.convert_vest_operation | undefined;
+  setOp16(value?: prototype_operation_pb.convert_vest_operation): void;
 
   hasOp17(): boolean;
   clearOp17(): void;
@@ -138,13 +138,13 @@ export namespace operation {
     op7?: prototype_operation_pb.reply_operation.AsObject,
     op8?: prototype_operation_pb.follow_operation.AsObject,
     op9?: prototype_operation_pb.vote_operation.AsObject,
-    op10?: prototype_operation_pb.transfer_to_vesting_operation.AsObject,
+    op10?: prototype_operation_pb.transfer_to_vest_operation.AsObject,
     op11?: prototype_operation_pb.claim_operation.AsObject,
     op12?: prototype_operation_pb.claim_all_operation.AsObject,
     op13?: prototype_operation_pb.contract_deploy_operation.AsObject,
     op14?: prototype_operation_pb.contract_apply_operation.AsObject,
     op15?: prototype_operation_pb.report_operation.AsObject,
-    op16?: prototype_operation_pb.convert_vesting_operation.AsObject,
+    op16?: prototype_operation_pb.convert_vest_operation.AsObject,
     op17?: prototype_operation_pb.stake_operation.AsObject,
     op18?: prototype_operation_pb.un_stake_operation.AsObject,
     op19?: prototype_operation_pb.bp_update_operation.AsObject,

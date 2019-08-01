@@ -23,7 +23,7 @@ goog.exportSymbol('proto.prototype.claim_all_operation', null, global);
 goog.exportSymbol('proto.prototype.claim_operation', null, global);
 goog.exportSymbol('proto.prototype.contract_apply_operation', null, global);
 goog.exportSymbol('proto.prototype.contract_deploy_operation', null, global);
-goog.exportSymbol('proto.prototype.convert_vesting_operation', null, global);
+goog.exportSymbol('proto.prototype.convert_vest_operation', null, global);
 goog.exportSymbol('proto.prototype.follow_operation', null, global);
 goog.exportSymbol('proto.prototype.internal_contract_apply_operation', null, global);
 goog.exportSymbol('proto.prototype.post_operation', null, global);
@@ -32,7 +32,7 @@ goog.exportSymbol('proto.prototype.report_operation', null, global);
 goog.exportSymbol('proto.prototype.report_operation.tag', null, global);
 goog.exportSymbol('proto.prototype.stake_operation', null, global);
 goog.exportSymbol('proto.prototype.transfer_operation', null, global);
-goog.exportSymbol('proto.prototype.transfer_to_vesting_operation', null, global);
+goog.exportSymbol('proto.prototype.transfer_to_vest_operation', null, global);
 goog.exportSymbol('proto.prototype.un_stake_operation', null, global);
 goog.exportSymbol('proto.prototype.vote_by_ticket_operation', null, global);
 goog.exportSymbol('proto.prototype.vote_operation', null, global);
@@ -86,7 +86,7 @@ proto.prototype.account_create_operation.toObject = function(includeInstance, ms
     fee: (f = msg.getFee()) && prototype_type_pb.coin.toObject(includeInstance, f),
     creator: (f = msg.getCreator()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     newAccountName: (f = msg.getNewAccountName()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    owner: (f = msg.getOwner()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
+    pubKey: (f = msg.getPubKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
     jsonMetadata: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
@@ -142,7 +142,7 @@ proto.prototype.account_create_operation.deserializeBinaryFromReader = function(
     case 4:
       var value = new prototype_type_pb.public_key_type;
       reader.readMessage(value,prototype_type_pb.public_key_type.deserializeBinaryFromReader);
-      msg.setOwner(value);
+      msg.setPubKey(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
@@ -201,7 +201,7 @@ proto.prototype.account_create_operation.serializeBinaryToWriter = function(mess
       prototype_type_pb.account_name.serializeBinaryToWriter
     );
   }
-  f = message.getOwner();
+  f = message.getPubKey();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -310,23 +310,23 @@ proto.prototype.account_create_operation.prototype.hasNewAccountName = function(
 
 
 /**
- * optional public_key_type owner = 4;
+ * optional public_key_type pub_key = 4;
  * @return {?proto.prototype.public_key_type}
  */
-proto.prototype.account_create_operation.prototype.getOwner = function() {
+proto.prototype.account_create_operation.prototype.getPubKey = function() {
   return /** @type{?proto.prototype.public_key_type} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.public_key_type, 4));
 };
 
 
 /** @param {?proto.prototype.public_key_type|undefined} value */
-proto.prototype.account_create_operation.prototype.setOwner = function(value) {
+proto.prototype.account_create_operation.prototype.setPubKey = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
 
-proto.prototype.account_create_operation.prototype.clearOwner = function() {
-  this.setOwner(undefined);
+proto.prototype.account_create_operation.prototype.clearPubKey = function() {
+  this.setPubKey(undefined);
 };
 
 
@@ -334,7 +334,7 @@ proto.prototype.account_create_operation.prototype.clearOwner = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.account_create_operation.prototype.hasOwner = function() {
+proto.prototype.account_create_operation.prototype.hasPubKey = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -402,7 +402,7 @@ proto.prototype.account_update_operation.prototype.toObject = function(opt_inclu
 proto.prototype.account_update_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    pubkey: (f = msg.getPubkey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f)
+    pubKey: (f = msg.getPubKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -447,7 +447,7 @@ proto.prototype.account_update_operation.deserializeBinaryFromReader = function(
     case 2:
       var value = new prototype_type_pb.public_key_type;
       reader.readMessage(value,prototype_type_pb.public_key_type.deserializeBinaryFromReader);
-      msg.setPubkey(value);
+      msg.setPubKey(value);
       break;
     default:
       reader.skipField();
@@ -486,7 +486,7 @@ proto.prototype.account_update_operation.serializeBinaryToWriter = function(mess
       prototype_type_pb.account_name.serializeBinaryToWriter
     );
   }
-  f = message.getPubkey();
+  f = message.getPubKey();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -528,23 +528,23 @@ proto.prototype.account_update_operation.prototype.hasOwner = function() {
 
 
 /**
- * optional public_key_type pubkey = 2;
+ * optional public_key_type pub_key = 2;
  * @return {?proto.prototype.public_key_type}
  */
-proto.prototype.account_update_operation.prototype.getPubkey = function() {
+proto.prototype.account_update_operation.prototype.getPubKey = function() {
   return /** @type{?proto.prototype.public_key_type} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.public_key_type, 2));
 };
 
 
 /** @param {?proto.prototype.public_key_type|undefined} value */
-proto.prototype.account_update_operation.prototype.setPubkey = function(value) {
+proto.prototype.account_update_operation.prototype.setPubKey = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.prototype.account_update_operation.prototype.clearPubkey = function() {
-  this.setPubkey(undefined);
+proto.prototype.account_update_operation.prototype.clearPubKey = function() {
+  this.setPubKey(undefined);
 };
 
 
@@ -552,7 +552,7 @@ proto.prototype.account_update_operation.prototype.clearPubkey = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.account_update_operation.prototype.hasPubkey = function() {
+proto.prototype.account_update_operation.prototype.hasPubKey = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -842,12 +842,12 @@ proto.prototype.transfer_operation.prototype.setMemo = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.prototype.transfer_to_vesting_operation = function(opt_data) {
+proto.prototype.transfer_to_vest_operation = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.prototype.transfer_to_vesting_operation, jspb.Message);
+goog.inherits(proto.prototype.transfer_to_vest_operation, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.prototype.transfer_to_vesting_operation.displayName = 'proto.prototype.transfer_to_vesting_operation';
+  proto.prototype.transfer_to_vest_operation.displayName = 'proto.prototype.transfer_to_vest_operation';
 }
 
 
@@ -862,8 +862,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.prototype.transfer_to_vesting_operation.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.transfer_to_vesting_operation.toObject(opt_includeInstance, this);
+proto.prototype.transfer_to_vest_operation.prototype.toObject = function(opt_includeInstance) {
+  return proto.prototype.transfer_to_vest_operation.toObject(opt_includeInstance, this);
 };
 
 
@@ -872,11 +872,11 @@ proto.prototype.transfer_to_vesting_operation.prototype.toObject = function(opt_
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.prototype.transfer_to_vesting_operation} msg The msg instance to transform.
+ * @param {!proto.prototype.transfer_to_vest_operation} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.prototype.transfer_to_vesting_operation.toObject = function(includeInstance, msg) {
+proto.prototype.transfer_to_vest_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
     from: (f = msg.getFrom()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     to: (f = msg.getTo()) && prototype_type_pb.account_name.toObject(includeInstance, f),
@@ -894,23 +894,23 @@ proto.prototype.transfer_to_vesting_operation.toObject = function(includeInstanc
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.transfer_to_vesting_operation}
+ * @return {!proto.prototype.transfer_to_vest_operation}
  */
-proto.prototype.transfer_to_vesting_operation.deserializeBinary = function(bytes) {
+proto.prototype.transfer_to_vest_operation.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.transfer_to_vesting_operation;
-  return proto.prototype.transfer_to_vesting_operation.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.prototype.transfer_to_vest_operation;
+  return proto.prototype.transfer_to_vest_operation.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.prototype.transfer_to_vesting_operation} msg The message object to deserialize into.
+ * @param {!proto.prototype.transfer_to_vest_operation} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.transfer_to_vesting_operation}
+ * @return {!proto.prototype.transfer_to_vest_operation}
  */
-proto.prototype.transfer_to_vesting_operation.deserializeBinaryFromReader = function(msg, reader) {
+proto.prototype.transfer_to_vest_operation.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -945,9 +945,9 @@ proto.prototype.transfer_to_vesting_operation.deserializeBinaryFromReader = func
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.prototype.transfer_to_vesting_operation.prototype.serializeBinary = function() {
+proto.prototype.transfer_to_vest_operation.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.prototype.transfer_to_vesting_operation.serializeBinaryToWriter(this, writer);
+  proto.prototype.transfer_to_vest_operation.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -955,11 +955,11 @@ proto.prototype.transfer_to_vesting_operation.prototype.serializeBinary = functi
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.transfer_to_vesting_operation} message
+ * @param {!proto.prototype.transfer_to_vest_operation} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.prototype.transfer_to_vesting_operation.serializeBinaryToWriter = function(message, writer) {
+proto.prototype.transfer_to_vest_operation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getFrom();
   if (f != null) {
@@ -992,19 +992,19 @@ proto.prototype.transfer_to_vesting_operation.serializeBinaryToWriter = function
  * optional account_name from = 1;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.transfer_to_vesting_operation.prototype.getFrom = function() {
+proto.prototype.transfer_to_vest_operation.prototype.getFrom = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.transfer_to_vesting_operation.prototype.setFrom = function(value) {
+proto.prototype.transfer_to_vest_operation.prototype.setFrom = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.prototype.transfer_to_vesting_operation.prototype.clearFrom = function() {
+proto.prototype.transfer_to_vest_operation.prototype.clearFrom = function() {
   this.setFrom(undefined);
 };
 
@@ -1013,7 +1013,7 @@ proto.prototype.transfer_to_vesting_operation.prototype.clearFrom = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.transfer_to_vesting_operation.prototype.hasFrom = function() {
+proto.prototype.transfer_to_vest_operation.prototype.hasFrom = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1022,19 +1022,19 @@ proto.prototype.transfer_to_vesting_operation.prototype.hasFrom = function() {
  * optional account_name to = 2;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.transfer_to_vesting_operation.prototype.getTo = function() {
+proto.prototype.transfer_to_vest_operation.prototype.getTo = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 2));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.transfer_to_vesting_operation.prototype.setTo = function(value) {
+proto.prototype.transfer_to_vest_operation.prototype.setTo = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.prototype.transfer_to_vesting_operation.prototype.clearTo = function() {
+proto.prototype.transfer_to_vest_operation.prototype.clearTo = function() {
   this.setTo(undefined);
 };
 
@@ -1043,7 +1043,7 @@ proto.prototype.transfer_to_vesting_operation.prototype.clearTo = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.transfer_to_vesting_operation.prototype.hasTo = function() {
+proto.prototype.transfer_to_vest_operation.prototype.hasTo = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -1052,19 +1052,19 @@ proto.prototype.transfer_to_vesting_operation.prototype.hasTo = function() {
  * optional coin amount = 3;
  * @return {?proto.prototype.coin}
  */
-proto.prototype.transfer_to_vesting_operation.prototype.getAmount = function() {
+proto.prototype.transfer_to_vest_operation.prototype.getAmount = function() {
   return /** @type{?proto.prototype.coin} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.coin, 3));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
-proto.prototype.transfer_to_vesting_operation.prototype.setAmount = function(value) {
+proto.prototype.transfer_to_vest_operation.prototype.setAmount = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
 
-proto.prototype.transfer_to_vesting_operation.prototype.clearAmount = function() {
+proto.prototype.transfer_to_vest_operation.prototype.clearAmount = function() {
   this.setAmount(undefined);
 };
 
@@ -1073,7 +1073,7 @@ proto.prototype.transfer_to_vesting_operation.prototype.clearAmount = function()
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.transfer_to_vesting_operation.prototype.hasAmount = function() {
+proto.prototype.transfer_to_vest_operation.prototype.hasAmount = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -5007,12 +5007,12 @@ proto.prototype.report_operation.prototype.setIsApproved = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.prototype.convert_vesting_operation = function(opt_data) {
+proto.prototype.convert_vest_operation = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.prototype.convert_vesting_operation, jspb.Message);
+goog.inherits(proto.prototype.convert_vest_operation, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.prototype.convert_vesting_operation.displayName = 'proto.prototype.convert_vesting_operation';
+  proto.prototype.convert_vest_operation.displayName = 'proto.prototype.convert_vest_operation';
 }
 
 
@@ -5027,8 +5027,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.prototype.convert_vesting_operation.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.convert_vesting_operation.toObject(opt_includeInstance, this);
+proto.prototype.convert_vest_operation.prototype.toObject = function(opt_includeInstance) {
+  return proto.prototype.convert_vest_operation.toObject(opt_includeInstance, this);
 };
 
 
@@ -5037,11 +5037,11 @@ proto.prototype.convert_vesting_operation.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.prototype.convert_vesting_operation} msg The msg instance to transform.
+ * @param {!proto.prototype.convert_vest_operation} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.prototype.convert_vesting_operation.toObject = function(includeInstance, msg) {
+proto.prototype.convert_vest_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
     from: (f = msg.getFrom()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     amount: (f = msg.getAmount()) && prototype_type_pb.vest.toObject(includeInstance, f)
@@ -5058,23 +5058,23 @@ proto.prototype.convert_vesting_operation.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.convert_vesting_operation}
+ * @return {!proto.prototype.convert_vest_operation}
  */
-proto.prototype.convert_vesting_operation.deserializeBinary = function(bytes) {
+proto.prototype.convert_vest_operation.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.convert_vesting_operation;
-  return proto.prototype.convert_vesting_operation.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.prototype.convert_vest_operation;
+  return proto.prototype.convert_vest_operation.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.prototype.convert_vesting_operation} msg The message object to deserialize into.
+ * @param {!proto.prototype.convert_vest_operation} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.convert_vesting_operation}
+ * @return {!proto.prototype.convert_vest_operation}
  */
-proto.prototype.convert_vesting_operation.deserializeBinaryFromReader = function(msg, reader) {
+proto.prototype.convert_vest_operation.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5104,9 +5104,9 @@ proto.prototype.convert_vesting_operation.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.prototype.convert_vesting_operation.prototype.serializeBinary = function() {
+proto.prototype.convert_vest_operation.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.prototype.convert_vesting_operation.serializeBinaryToWriter(this, writer);
+  proto.prototype.convert_vest_operation.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5114,11 +5114,11 @@ proto.prototype.convert_vesting_operation.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.convert_vesting_operation} message
+ * @param {!proto.prototype.convert_vest_operation} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.prototype.convert_vesting_operation.serializeBinaryToWriter = function(message, writer) {
+proto.prototype.convert_vest_operation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getFrom();
   if (f != null) {
@@ -5143,19 +5143,19 @@ proto.prototype.convert_vesting_operation.serializeBinaryToWriter = function(mes
  * optional account_name from = 1;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.convert_vesting_operation.prototype.getFrom = function() {
+proto.prototype.convert_vest_operation.prototype.getFrom = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.convert_vesting_operation.prototype.setFrom = function(value) {
+proto.prototype.convert_vest_operation.prototype.setFrom = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.prototype.convert_vesting_operation.prototype.clearFrom = function() {
+proto.prototype.convert_vest_operation.prototype.clearFrom = function() {
   this.setFrom(undefined);
 };
 
@@ -5164,7 +5164,7 @@ proto.prototype.convert_vesting_operation.prototype.clearFrom = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.convert_vesting_operation.prototype.hasFrom = function() {
+proto.prototype.convert_vest_operation.prototype.hasFrom = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -5173,19 +5173,19 @@ proto.prototype.convert_vesting_operation.prototype.hasFrom = function() {
  * optional vest amount = 2;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.convert_vesting_operation.prototype.getAmount = function() {
+proto.prototype.convert_vest_operation.prototype.getAmount = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.vest, 2));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.convert_vesting_operation.prototype.setAmount = function(value) {
+proto.prototype.convert_vest_operation.prototype.setAmount = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.prototype.convert_vesting_operation.prototype.clearAmount = function() {
+proto.prototype.convert_vest_operation.prototype.clearAmount = function() {
   this.setAmount(undefined);
 };
 
@@ -5194,7 +5194,7 @@ proto.prototype.convert_vesting_operation.prototype.clearAmount = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.convert_vesting_operation.prototype.hasAmount = function() {
+proto.prototype.convert_vest_operation.prototype.hasAmount = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
