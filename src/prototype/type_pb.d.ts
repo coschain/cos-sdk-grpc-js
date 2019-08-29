@@ -229,9 +229,6 @@ export class chain_properties extends jspb.Message {
   getAccountCreationFee(): coin | undefined;
   setAccountCreationFee(value?: coin): void;
 
-  getMaximumBlockSize(): number;
-  setMaximumBlockSize(value: number): void;
-
   getStaminaFree(): number;
   setStaminaFree(value: number): void;
 
@@ -265,7 +262,6 @@ export class chain_properties extends jspb.Message {
 export namespace chain_properties {
   export type AsObject = {
     accountCreationFee?: coin.AsObject,
-    maximumBlockSize: number,
     staminaFree: number,
     tpsExpected: number,
     topNAcquireFreeToken: number,
@@ -283,9 +279,6 @@ export class dynamic_properties extends jspb.Message {
 
   getHeadBlockNumber(): number;
   setHeadBlockNumber(value: number): void;
-
-  getMaximumBlockSize(): number;
-  setMaximumBlockSize(value: number): void;
 
   hasTotalCos(): boolean;
   clearTotalCos(): void;
@@ -310,19 +303,6 @@ export class dynamic_properties extends jspb.Message {
   getTotalVest(): vest | undefined;
   setTotalVest(value?: vest): void;
 
-  hasCurrentSupply(): boolean;
-  clearCurrentSupply(): void;
-  getCurrentSupply(): coin | undefined;
-  setCurrentSupply(value?: coin): void;
-
-  getPostWeightedVps(): string;
-  setPostWeightedVps(value: string): void;
-
-  hasPostRewards(): boolean;
-  clearPostRewards(): void;
-  getPostRewards(): vest | undefined;
-  setPostRewards(value?: vest): void;
-
   getTotalTrxCnt(): number;
   setTotalTrxCnt(value: number): void;
 
@@ -338,14 +318,6 @@ export class dynamic_properties extends jspb.Message {
   getMaxTpsBlockNum(): string;
   setMaxTpsBlockNum(value: string): void;
 
-  getHeadBlockPrefix(): number;
-  setHeadBlockPrefix(value: number): void;
-
-  hasReportRewards(): boolean;
-  clearReportRewards(): void;
-  getReportRewards(): vest | undefined;
-  setReportRewards(value?: vest): void;
-
   getIthYear(): number;
   setIthYear(value: number): void;
 
@@ -359,28 +331,57 @@ export class dynamic_properties extends jspb.Message {
   getAnnualMinted(): vest | undefined;
   setAnnualMinted(value?: vest): void;
 
-  hasPostDappRewards(): boolean;
-  clearPostDappRewards(): void;
-  getPostDappRewards(): vest | undefined;
-  setPostDappRewards(value?: vest): void;
+  hasPoolPostRewards(): boolean;
+  clearPoolPostRewards(): void;
+  getPoolPostRewards(): vest | undefined;
+  setPoolPostRewards(value?: vest): void;
 
-  hasVoterRewards(): boolean;
-  clearVoterRewards(): void;
-  getVoterRewards(): vest | undefined;
-  setVoterRewards(value?: vest): void;
+  hasPoolReplyRewards(): boolean;
+  clearPoolReplyRewards(): void;
+  getPoolReplyRewards(): vest | undefined;
+  setPoolReplyRewards(value?: vest): void;
 
-  hasReplyRewards(): boolean;
-  clearReplyRewards(): void;
-  getReplyRewards(): vest | undefined;
-  setReplyRewards(value?: vest): void;
+  hasPoolVoteRewards(): boolean;
+  clearPoolVoteRewards(): void;
+  getPoolVoteRewards(): vest | undefined;
+  setPoolVoteRewards(value?: vest): void;
 
-  getReplyWeightedVps(): string;
-  setReplyWeightedVps(value: string): void;
+  hasPoolDappRewards(): boolean;
+  clearPoolDappRewards(): void;
+  getPoolDappRewards(): vest | undefined;
+  setPoolDappRewards(value?: vest): void;
 
-  hasReplyDappRewards(): boolean;
-  clearReplyDappRewards(): void;
-  getReplyDappRewards(): vest | undefined;
-  setReplyDappRewards(value?: vest): void;
+  getWeightedVpsPost(): string;
+  setWeightedVpsPost(value: string): void;
+
+  getWeightedVpsReply(): string;
+  setWeightedVpsReply(value: string): void;
+
+  getWeightedVpsVote(): string;
+  setWeightedVpsVote(value: string): void;
+
+  getWeightedVpsDapp(): string;
+  setWeightedVpsDapp(value: string): void;
+
+  hasClaimedPostRewards(): boolean;
+  clearClaimedPostRewards(): void;
+  getClaimedPostRewards(): vest | undefined;
+  setClaimedPostRewards(value?: vest): void;
+
+  hasClaimedReplyRewards(): boolean;
+  clearClaimedReplyRewards(): void;
+  getClaimedReplyRewards(): vest | undefined;
+  setClaimedReplyRewards(value?: vest): void;
+
+  hasClaimedVoteRewards(): boolean;
+  clearClaimedVoteRewards(): void;
+  getClaimedVoteRewards(): vest | undefined;
+  setClaimedVoteRewards(value?: vest): void;
+
+  hasClaimedDappRewards(): boolean;
+  clearClaimedDappRewards(): void;
+  getClaimedDappRewards(): vest | undefined;
+  setClaimedDappRewards(value?: vest): void;
 
   hasStakeVest(): boolean;
   clearStakeVest(): void;
@@ -445,6 +446,11 @@ export class dynamic_properties extends jspb.Message {
   getCopyrightAdmin(): account_name | undefined;
   setCopyrightAdmin(value?: account_name): void;
 
+  hasTicketsBpBonus(): boolean;
+  clearTicketsBpBonus(): void;
+  getTicketsBpBonus(): vest | undefined;
+  setTicketsBpBonus(value?: vest): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): dynamic_properties.AsObject;
   static toObject(includeInstance: boolean, msg: dynamic_properties): dynamic_properties.AsObject;
@@ -459,30 +465,31 @@ export namespace dynamic_properties {
   export type AsObject = {
     headBlockId?: sha256.AsObject,
     headBlockNumber: number,
-    maximumBlockSize: number,
     totalCos?: coin.AsObject,
     time?: time_point_sec.AsObject,
     currentBlockProducer?: account_name.AsObject,
     tps: number,
     totalVest?: vest.AsObject,
-    currentSupply?: coin.AsObject,
-    postWeightedVps: string,
-    postRewards?: vest.AsObject,
     totalTrxCnt: number,
     totalPostCnt: number,
     totalUserCnt: number,
     maxTps: number,
     maxTpsBlockNum: string,
-    headBlockPrefix: number,
-    reportRewards?: vest.AsObject,
     ithYear: number,
     annualBudget?: vest.AsObject,
     annualMinted?: vest.AsObject,
-    postDappRewards?: vest.AsObject,
-    voterRewards?: vest.AsObject,
-    replyRewards?: vest.AsObject,
-    replyWeightedVps: string,
-    replyDappRewards?: vest.AsObject,
+    poolPostRewards?: vest.AsObject,
+    poolReplyRewards?: vest.AsObject,
+    poolVoteRewards?: vest.AsObject,
+    poolDappRewards?: vest.AsObject,
+    weightedVpsPost: string,
+    weightedVpsReply: string,
+    weightedVpsVote: string,
+    weightedVpsDapp: string,
+    claimedPostRewards?: vest.AsObject,
+    claimedReplyRewards?: vest.AsObject,
+    claimedVoteRewards?: vest.AsObject,
+    claimedDappRewards?: vest.AsObject,
     stakeVest?: vest.AsObject,
     blockProducerBootCompleted: boolean,
     staminaFree: number,
@@ -500,6 +507,7 @@ export namespace dynamic_properties {
     ticketsIncome?: vest.AsObject,
     chargedTicketsNum: number,
     copyrightAdmin?: account_name.AsObject,
+    ticketsBpBonus?: vest.AsObject,
   }
 }
 

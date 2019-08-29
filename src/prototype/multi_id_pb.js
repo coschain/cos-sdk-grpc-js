@@ -13,7 +13,7 @@ var global = Function('return this')();
 
 var prototype_type_pb = require('../prototype/type_pb.js');
 goog.exportSymbol('proto.prototype.bp_block_producer_id', null, global);
-goog.exportSymbol('proto.prototype.bp_voter_id', null, global);
+goog.exportSymbol('proto.prototype.bp_vest_id', null, global);
 goog.exportSymbol('proto.prototype.contract_id', null, global);
 goog.exportSymbol('proto.prototype.follower_created_order', null, global);
 goog.exportSymbol('proto.prototype.follower_relation', null, global);
@@ -1310,12 +1310,12 @@ proto.prototype.voter_id.prototype.setPostId = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.prototype.bp_voter_id = function(opt_data) {
+proto.prototype.bp_vest_id = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.prototype.bp_voter_id, jspb.Message);
+goog.inherits(proto.prototype.bp_vest_id, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.prototype.bp_voter_id.displayName = 'proto.prototype.bp_voter_id';
+  proto.prototype.bp_vest_id.displayName = 'proto.prototype.bp_vest_id';
 }
 
 
@@ -1330,8 +1330,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.prototype.bp_voter_id.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.bp_voter_id.toObject(opt_includeInstance, this);
+proto.prototype.bp_vest_id.prototype.toObject = function(opt_includeInstance) {
+  return proto.prototype.bp_vest_id.toObject(opt_includeInstance, this);
 };
 
 
@@ -1340,14 +1340,14 @@ proto.prototype.bp_voter_id.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.prototype.bp_voter_id} msg The msg instance to transform.
+ * @param {!proto.prototype.bp_vest_id} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.prototype.bp_voter_id.toObject = function(includeInstance, msg) {
+proto.prototype.bp_vest_id.toObject = function(includeInstance, msg) {
   var f, obj = {
-    voter: (f = msg.getVoter()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    blockProducer: (f = msg.getBlockProducer()) && prototype_type_pb.account_name.toObject(includeInstance, f)
+    active: jspb.Message.getFieldWithDefault(msg, 1, false),
+    voteVest: (f = msg.getVoteVest()) && prototype_type_pb.vest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1361,23 +1361,23 @@ proto.prototype.bp_voter_id.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.bp_voter_id}
+ * @return {!proto.prototype.bp_vest_id}
  */
-proto.prototype.bp_voter_id.deserializeBinary = function(bytes) {
+proto.prototype.bp_vest_id.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.bp_voter_id;
-  return proto.prototype.bp_voter_id.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.prototype.bp_vest_id;
+  return proto.prototype.bp_vest_id.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.prototype.bp_voter_id} msg The message object to deserialize into.
+ * @param {!proto.prototype.bp_vest_id} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.bp_voter_id}
+ * @return {!proto.prototype.bp_vest_id}
  */
-proto.prototype.bp_voter_id.deserializeBinaryFromReader = function(msg, reader) {
+proto.prototype.bp_vest_id.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1385,14 +1385,13 @@ proto.prototype.bp_voter_id.deserializeBinaryFromReader = function(msg, reader) 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setVoter(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActive(value);
       break;
     case 2:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setBlockProducer(value);
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setVoteVest(value);
       break;
     default:
       reader.skipField();
@@ -1407,9 +1406,9 @@ proto.prototype.bp_voter_id.deserializeBinaryFromReader = function(msg, reader) 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.prototype.bp_voter_id.prototype.serializeBinary = function() {
+proto.prototype.bp_vest_id.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.prototype.bp_voter_id.serializeBinaryToWriter(this, writer);
+  proto.prototype.bp_vest_id.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1417,79 +1416,65 @@ proto.prototype.bp_voter_id.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.bp_voter_id} message
+ * @param {!proto.prototype.bp_vest_id} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.prototype.bp_voter_id.serializeBinaryToWriter = function(message, writer) {
+proto.prototype.bp_vest_id.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getVoter();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getActive();
+  if (f) {
+    writer.writeBool(
       1,
-      f,
-      prototype_type_pb.account_name.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getBlockProducer();
+  f = message.getVoteVest();
   if (f != null) {
     writer.writeMessage(
       2,
       f,
-      prototype_type_pb.account_name.serializeBinaryToWriter
+      prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional account_name voter = 1;
- * @return {?proto.prototype.account_name}
+ * optional bool active = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
  */
-proto.prototype.bp_voter_id.prototype.getVoter = function() {
-  return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
+proto.prototype.bp_vest_id.prototype.getActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
 };
 
 
-/** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.bp_voter_id.prototype.setVoter = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.prototype.bp_voter_id.prototype.clearVoter = function() {
-  this.setVoter(undefined);
+/** @param {boolean} value */
+proto.prototype.bp_vest_id.prototype.setActive = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * optional vest vote_vest = 2;
+ * @return {?proto.prototype.vest}
  */
-proto.prototype.bp_voter_id.prototype.hasVoter = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.prototype.bp_vest_id.prototype.getVoteVest = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 2));
 };
 
 
-/**
- * optional account_name block_producer = 2;
- * @return {?proto.prototype.account_name}
- */
-proto.prototype.bp_voter_id.prototype.getBlockProducer = function() {
-  return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 2));
-};
-
-
-/** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.bp_voter_id.prototype.setBlockProducer = function(value) {
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.bp_vest_id.prototype.setVoteVest = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.prototype.bp_voter_id.prototype.clearBlockProducer = function() {
-  this.setBlockProducer(undefined);
+proto.prototype.bp_vest_id.prototype.clearVoteVest = function() {
+  this.setVoteVest(undefined);
 };
 
 
@@ -1497,7 +1482,7 @@ proto.prototype.bp_voter_id.prototype.clearBlockProducer = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.bp_voter_id.prototype.hasBlockProducer = function() {
+proto.prototype.bp_vest_id.prototype.hasVoteVest = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -1549,8 +1534,8 @@ proto.prototype.bp_block_producer_id.prototype.toObject = function(opt_includeIn
  */
 proto.prototype.bp_block_producer_id.toObject = function(includeInstance, msg) {
   var f, obj = {
-    voter: (f = msg.getVoter()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    blockProducer: (f = msg.getBlockProducer()) && prototype_type_pb.account_name.toObject(includeInstance, f)
+    blockProducer: (f = msg.getBlockProducer()) && prototype_type_pb.account_name.toObject(includeInstance, f),
+    voter: (f = msg.getVoter()) && prototype_type_pb.account_name.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1590,12 +1575,12 @@ proto.prototype.bp_block_producer_id.deserializeBinaryFromReader = function(msg,
     case 1:
       var value = new prototype_type_pb.account_name;
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setVoter(value);
+      msg.setBlockProducer(value);
       break;
     case 2:
       var value = new prototype_type_pb.account_name;
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setBlockProducer(value);
+      msg.setVoter(value);
       break;
     default:
       reader.skipField();
@@ -1626,7 +1611,7 @@ proto.prototype.bp_block_producer_id.prototype.serializeBinary = function() {
  */
 proto.prototype.bp_block_producer_id.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getVoter();
+  f = message.getBlockProducer();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -1634,7 +1619,7 @@ proto.prototype.bp_block_producer_id.serializeBinaryToWriter = function(message,
       prototype_type_pb.account_name.serializeBinaryToWriter
     );
   }
-  f = message.getBlockProducer();
+  f = message.getVoter();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -1646,48 +1631,18 @@ proto.prototype.bp_block_producer_id.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional account_name voter = 1;
+ * optional account_name block_producer = 1;
  * @return {?proto.prototype.account_name}
  */
-proto.prototype.bp_block_producer_id.prototype.getVoter = function() {
+proto.prototype.bp_block_producer_id.prototype.getBlockProducer = function() {
   return /** @type{?proto.prototype.account_name} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.bp_block_producer_id.prototype.setVoter = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.prototype.bp_block_producer_id.prototype.clearVoter = function() {
-  this.setVoter(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.bp_block_producer_id.prototype.hasVoter = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional account_name block_producer = 2;
- * @return {?proto.prototype.account_name}
- */
-proto.prototype.bp_block_producer_id.prototype.getBlockProducer = function() {
-  return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 2));
-};
-
-
-/** @param {?proto.prototype.account_name|undefined} value */
 proto.prototype.bp_block_producer_id.prototype.setBlockProducer = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -1701,6 +1656,36 @@ proto.prototype.bp_block_producer_id.prototype.clearBlockProducer = function() {
  * @return {!boolean}
  */
 proto.prototype.bp_block_producer_id.prototype.hasBlockProducer = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional account_name voter = 2;
+ * @return {?proto.prototype.account_name}
+ */
+proto.prototype.bp_block_producer_id.prototype.getVoter = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 2));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.prototype.bp_block_producer_id.prototype.setVoter = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.prototype.bp_block_producer_id.prototype.clearVoter = function() {
+  this.setVoter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.bp_block_producer_id.prototype.hasVoter = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

@@ -19,8 +19,6 @@ goog.exportSymbol('proto.prototype.bp_enable_operation', null, global);
 goog.exportSymbol('proto.prototype.bp_register_operation', null, global);
 goog.exportSymbol('proto.prototype.bp_update_operation', null, global);
 goog.exportSymbol('proto.prototype.bp_vote_operation', null, global);
-goog.exportSymbol('proto.prototype.claim_all_operation', null, global);
-goog.exportSymbol('proto.prototype.claim_operation', null, global);
 goog.exportSymbol('proto.prototype.contract_apply_operation', null, global);
 goog.exportSymbol('proto.prototype.contract_deploy_operation', null, global);
 goog.exportSymbol('proto.prototype.convert_vest_operation', null, global);
@@ -28,8 +26,6 @@ goog.exportSymbol('proto.prototype.follow_operation', null, global);
 goog.exportSymbol('proto.prototype.internal_contract_apply_operation', null, global);
 goog.exportSymbol('proto.prototype.post_operation', null, global);
 goog.exportSymbol('proto.prototype.reply_operation', null, global);
-goog.exportSymbol('proto.prototype.report_operation', null, global);
-goog.exportSymbol('proto.prototype.report_operation.tag', null, global);
 goog.exportSymbol('proto.prototype.stake_operation', null, global);
 goog.exportSymbol('proto.prototype.transfer_operation', null, global);
 goog.exportSymbol('proto.prototype.transfer_to_vest_operation', null, global);
@@ -87,7 +83,7 @@ proto.prototype.account_create_operation.toObject = function(includeInstance, ms
     creator: (f = msg.getCreator()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     newAccountName: (f = msg.getNewAccountName()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     pubKey: (f = msg.getPubKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
-    jsonMetadata: jspb.Message.getFieldWithDefault(msg, 8, "")
+    jsonMetadata: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -144,7 +140,7 @@ proto.prototype.account_create_operation.deserializeBinaryFromReader = function(
       reader.readMessage(value,prototype_type_pb.public_key_type.deserializeBinaryFromReader);
       msg.setPubKey(value);
       break;
-    case 8:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setJsonMetadata(value);
       break;
@@ -212,7 +208,7 @@ proto.prototype.account_create_operation.serializeBinaryToWriter = function(mess
   f = message.getJsonMetadata();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      5,
       f
     );
   }
@@ -340,17 +336,17 @@ proto.prototype.account_create_operation.prototype.hasPubKey = function() {
 
 
 /**
- * optional string json_metadata = 8;
+ * optional string json_metadata = 5;
  * @return {string}
  */
 proto.prototype.account_create_operation.prototype.getJsonMetadata = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /** @param {string} value */
 proto.prototype.account_create_operation.prototype.setJsonMetadata = function(value) {
-  jspb.Message.setProto3StringField(this, 8, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -880,7 +876,8 @@ proto.prototype.transfer_to_vest_operation.toObject = function(includeInstance, 
   var f, obj = {
     from: (f = msg.getFrom()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     to: (f = msg.getTo()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    amount: (f = msg.getAmount()) && prototype_type_pb.coin.toObject(includeInstance, f)
+    amount: (f = msg.getAmount()) && prototype_type_pb.coin.toObject(includeInstance, f),
+    memo: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -931,6 +928,10 @@ proto.prototype.transfer_to_vest_operation.deserializeBinaryFromReader = functio
       var value = new prototype_type_pb.coin;
       reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
       msg.setAmount(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMemo(value);
       break;
     default:
       reader.skipField();
@@ -983,6 +984,13 @@ proto.prototype.transfer_to_vest_operation.serializeBinaryToWriter = function(me
       3,
       f,
       prototype_type_pb.coin.serializeBinaryToWriter
+    );
+  }
+  f = message.getMemo();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -1078,6 +1086,21 @@ proto.prototype.transfer_to_vest_operation.prototype.hasAmount = function() {
 };
 
 
+/**
+ * optional string memo = 4;
+ * @return {string}
+ */
+proto.prototype.transfer_to_vest_operation.prototype.getMemo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.prototype.transfer_to_vest_operation.prototype.setMemo = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1126,7 +1149,7 @@ proto.prototype.vote_operation.prototype.toObject = function(opt_includeInstance
 proto.prototype.vote_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
     voter: (f = msg.getVoter()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    idx: jspb.Message.getFieldWithDefault(msg, 3, "0")
+    idx: jspb.Message.getFieldWithDefault(msg, 2, "0")
   };
 
   if (includeInstance) {
@@ -1168,7 +1191,7 @@ proto.prototype.vote_operation.deserializeBinaryFromReader = function(msg, reade
       reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
       msg.setVoter(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {string} */ (reader.readUint64String());
       msg.setIdx(value);
       break;
@@ -1212,7 +1235,7 @@ proto.prototype.vote_operation.serializeBinaryToWriter = function(message, write
   f = message.getIdx();
   if (parseInt(f, 10) !== 0) {
     writer.writeUint64String(
-      3,
+      2,
       f
     );
   }
@@ -1250,17 +1273,17 @@ proto.prototype.vote_operation.prototype.hasVoter = function() {
 
 
 /**
- * optional uint64 idx = 3;
+ * optional uint64 idx = 2;
  * @return {string}
  */
 proto.prototype.vote_operation.prototype.getIdx = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, "0"));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
 };
 
 
 /** @param {string} value */
 proto.prototype.vote_operation.prototype.setIdx = function(value) {
-  jspb.Message.setProto3StringIntField(this, 3, value);
+  jspb.Message.setProto3StringIntField(this, 2, value);
 };
 
 
@@ -1613,13 +1636,7 @@ proto.prototype.bp_update_operation.prototype.toObject = function(opt_includeIns
 proto.prototype.bp_update_operation.toObject = function(includeInstance, msg) {
   var f, obj = {
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    proposedStaminaFree: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    tpsExpected: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    accountCreationFee: (f = msg.getAccountCreationFee()) && prototype_type_pb.coin.toObject(includeInstance, f),
-    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    epochDuration: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    perTicketPrice: (f = msg.getPerTicketPrice()) && prototype_type_pb.coin.toObject(includeInstance, f),
-    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    props: (f = msg.getProps()) && prototype_type_pb.chain_properties.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1662,34 +1679,9 @@ proto.prototype.bp_update_operation.deserializeBinaryFromReader = function(msg, 
       msg.setOwner(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setProposedStaminaFree(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setTpsExpected(value);
-      break;
-    case 4:
-      var value = new prototype_type_pb.coin;
-      reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
-      msg.setAccountCreationFee(value);
-      break;
-    case 5:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setTopNAcquireFreeToken(value);
-      break;
-    case 6:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setEpochDuration(value);
-      break;
-    case 7:
-      var value = new prototype_type_pb.coin;
-      reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
-      msg.setPerTicketPrice(value);
-      break;
-    case 8:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setPerTicketWeight(value);
+      var value = new prototype_type_pb.chain_properties;
+      reader.readMessage(value,prototype_type_pb.chain_properties.deserializeBinaryFromReader);
+      msg.setProps(value);
       break;
     default:
       reader.skipField();
@@ -1728,55 +1720,12 @@ proto.prototype.bp_update_operation.serializeBinaryToWriter = function(message, 
       prototype_type_pb.account_name.serializeBinaryToWriter
     );
   }
-  f = message.getProposedStaminaFree();
-  if (f !== 0) {
-    writer.writeUint64(
+  f = message.getProps();
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
-    );
-  }
-  f = message.getTpsExpected();
-  if (f !== 0) {
-    writer.writeUint64(
-      3,
-      f
-    );
-  }
-  f = message.getAccountCreationFee();
-  if (f != null) {
-    writer.writeMessage(
-      4,
       f,
-      prototype_type_pb.coin.serializeBinaryToWriter
-    );
-  }
-  f = message.getTopNAcquireFreeToken();
-  if (f !== 0) {
-    writer.writeUint32(
-      5,
-      f
-    );
-  }
-  f = message.getEpochDuration();
-  if (f !== 0) {
-    writer.writeUint64(
-      6,
-      f
-    );
-  }
-  f = message.getPerTicketPrice();
-  if (f != null) {
-    writer.writeMessage(
-      7,
-      f,
-      prototype_type_pb.coin.serializeBinaryToWriter
-    );
-  }
-  f = message.getPerTicketWeight();
-  if (f !== 0) {
-    writer.writeUint64(
-      8,
-      f
+      prototype_type_pb.chain_properties.serializeBinaryToWriter
     );
   }
 };
@@ -1813,53 +1762,23 @@ proto.prototype.bp_update_operation.prototype.hasOwner = function() {
 
 
 /**
- * optional uint64 proposed_stamina_free = 2;
- * @return {number}
+ * optional chain_properties props = 2;
+ * @return {?proto.prototype.chain_properties}
  */
-proto.prototype.bp_update_operation.prototype.getProposedStaminaFree = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.prototype.bp_update_operation.prototype.getProps = function() {
+  return /** @type{?proto.prototype.chain_properties} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.chain_properties, 2));
 };
 
 
-/** @param {number} value */
-proto.prototype.bp_update_operation.prototype.setProposedStaminaFree = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+/** @param {?proto.prototype.chain_properties|undefined} value */
+proto.prototype.bp_update_operation.prototype.setProps = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-/**
- * optional uint64 tps_expected = 3;
- * @return {number}
- */
-proto.prototype.bp_update_operation.prototype.getTpsExpected = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.bp_update_operation.prototype.setTpsExpected = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-/**
- * optional coin account_creation_fee = 4;
- * @return {?proto.prototype.coin}
- */
-proto.prototype.bp_update_operation.prototype.getAccountCreationFee = function() {
-  return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 4));
-};
-
-
-/** @param {?proto.prototype.coin|undefined} value */
-proto.prototype.bp_update_operation.prototype.setAccountCreationFee = function(value) {
-  jspb.Message.setWrapperField(this, 4, value);
-};
-
-
-proto.prototype.bp_update_operation.prototype.clearAccountCreationFee = function() {
-  this.setAccountCreationFee(undefined);
+proto.prototype.bp_update_operation.prototype.clearProps = function() {
+  this.setProps(undefined);
 };
 
 
@@ -1867,83 +1786,8 @@ proto.prototype.bp_update_operation.prototype.clearAccountCreationFee = function
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.bp_update_operation.prototype.hasAccountCreationFee = function() {
-  return jspb.Message.getField(this, 4) != null;
-};
-
-
-/**
- * optional uint32 top_n_acquire_free_token = 5;
- * @return {number}
- */
-proto.prototype.bp_update_operation.prototype.getTopNAcquireFreeToken = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.bp_update_operation.prototype.setTopNAcquireFreeToken = function(value) {
-  jspb.Message.setProto3IntField(this, 5, value);
-};
-
-
-/**
- * optional uint64 epoch_duration = 6;
- * @return {number}
- */
-proto.prototype.bp_update_operation.prototype.getEpochDuration = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.bp_update_operation.prototype.setEpochDuration = function(value) {
-  jspb.Message.setProto3IntField(this, 6, value);
-};
-
-
-/**
- * optional coin per_ticket_price = 7;
- * @return {?proto.prototype.coin}
- */
-proto.prototype.bp_update_operation.prototype.getPerTicketPrice = function() {
-  return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 7));
-};
-
-
-/** @param {?proto.prototype.coin|undefined} value */
-proto.prototype.bp_update_operation.prototype.setPerTicketPrice = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
-};
-
-
-proto.prototype.bp_update_operation.prototype.clearPerTicketPrice = function() {
-  this.setPerTicketPrice(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.bp_update_operation.prototype.hasPerTicketPrice = function() {
-  return jspb.Message.getField(this, 7) != null;
-};
-
-
-/**
- * optional uint64 per_ticket_weight = 8;
- * @return {number}
- */
-proto.prototype.bp_update_operation.prototype.getPerTicketWeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.bp_update_operation.prototype.setPerTicketWeight = function(value) {
-  jspb.Message.setProto3IntField(this, 8, value);
+proto.prototype.bp_update_operation.prototype.hasProps = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -4372,656 +4216,6 @@ proto.prototype.reply_operation.prototype.addBeneficiaries = function(opt_value,
 
 proto.prototype.reply_operation.prototype.clearBeneficiariesList = function() {
   this.setBeneficiariesList([]);
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.prototype.claim_all_operation = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.prototype.claim_all_operation, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.prototype.claim_all_operation.displayName = 'proto.prototype.claim_all_operation';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.prototype.claim_all_operation.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.claim_all_operation.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.prototype.claim_all_operation} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.claim_all_operation.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    account: (f = msg.getAccount()) && prototype_type_pb.account_name.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.claim_all_operation}
- */
-proto.prototype.claim_all_operation.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.claim_all_operation;
-  return proto.prototype.claim_all_operation.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.prototype.claim_all_operation} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.claim_all_operation}
- */
-proto.prototype.claim_all_operation.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setAccount(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.prototype.claim_all_operation.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.prototype.claim_all_operation.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.claim_all_operation} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.claim_all_operation.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getAccount();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      prototype_type_pb.account_name.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional account_name account = 1;
- * @return {?proto.prototype.account_name}
- */
-proto.prototype.claim_all_operation.prototype.getAccount = function() {
-  return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
-};
-
-
-/** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.claim_all_operation.prototype.setAccount = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.prototype.claim_all_operation.prototype.clearAccount = function() {
-  this.setAccount(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.claim_all_operation.prototype.hasAccount = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.prototype.claim_operation = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.prototype.claim_operation, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.prototype.claim_operation.displayName = 'proto.prototype.claim_operation';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.prototype.claim_operation.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.claim_operation.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.prototype.claim_operation} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.claim_operation.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    account: (f = msg.getAccount()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    amount: jspb.Message.getFieldWithDefault(msg, 2, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.claim_operation}
- */
-proto.prototype.claim_operation.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.claim_operation;
-  return proto.prototype.claim_operation.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.prototype.claim_operation} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.claim_operation}
- */
-proto.prototype.claim_operation.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setAccount(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setAmount(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.prototype.claim_operation.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.prototype.claim_operation.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.claim_operation} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.claim_operation.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getAccount();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      prototype_type_pb.account_name.serializeBinaryToWriter
-    );
-  }
-  f = message.getAmount();
-  if (f !== 0) {
-    writer.writeUint64(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional account_name account = 1;
- * @return {?proto.prototype.account_name}
- */
-proto.prototype.claim_operation.prototype.getAccount = function() {
-  return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
-};
-
-
-/** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.claim_operation.prototype.setAccount = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.prototype.claim_operation.prototype.clearAccount = function() {
-  this.setAccount(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.claim_operation.prototype.hasAccount = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional uint64 amount = 2;
- * @return {number}
- */
-proto.prototype.claim_operation.prototype.getAmount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.claim_operation.prototype.setAmount = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.prototype.report_operation = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.prototype.report_operation.repeatedFields_, null);
-};
-goog.inherits(proto.prototype.report_operation, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.prototype.report_operation.displayName = 'proto.prototype.report_operation';
-}
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.prototype.report_operation.repeatedFields_ = [3];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.prototype.report_operation.prototype.toObject = function(opt_includeInstance) {
-  return proto.prototype.report_operation.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.prototype.report_operation} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.report_operation.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    reporter: (f = msg.getReporter()) && prototype_type_pb.account_name.toObject(includeInstance, f),
-    reported: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    reportTagList: jspb.Message.getRepeatedField(msg, 3),
-    isArbitration: jspb.Message.getFieldWithDefault(msg, 4, false),
-    isApproved: jspb.Message.getFieldWithDefault(msg, 5, false)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.prototype.report_operation}
- */
-proto.prototype.report_operation.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.prototype.report_operation;
-  return proto.prototype.report_operation.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.prototype.report_operation} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.prototype.report_operation}
- */
-proto.prototype.report_operation.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new prototype_type_pb.account_name;
-      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
-      msg.setReporter(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setReported(value);
-      break;
-    case 3:
-      var value = /** @type {!Array<!proto.prototype.report_operation.tag>} */ (reader.readPackedEnum());
-      msg.setReportTagList(value);
-      break;
-    case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsArbitration(value);
-      break;
-    case 5:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsApproved(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.prototype.report_operation.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.prototype.report_operation.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.prototype.report_operation} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.prototype.report_operation.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getReporter();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      prototype_type_pb.account_name.serializeBinaryToWriter
-    );
-  }
-  f = message.getReported();
-  if (f !== 0) {
-    writer.writeUint64(
-      2,
-      f
-    );
-  }
-  f = message.getReportTagList();
-  if (f.length > 0) {
-    writer.writePackedEnum(
-      3,
-      f
-    );
-  }
-  f = message.getIsArbitration();
-  if (f) {
-    writer.writeBool(
-      4,
-      f
-    );
-  }
-  f = message.getIsApproved();
-  if (f) {
-    writer.writeBool(
-      5,
-      f
-    );
-  }
-};
-
-
-/**
- * @enum {number}
- */
-proto.prototype.report_operation.tag = {
-  CHILD_PORNOGRAPHY: 0,
-  RACISM: 1,
-  REACTIONARY: 2,
-  PLAGIARISM: 3,
-  SLANDER: 4,
-  FALSE_PROPAGANDA: 5,
-  PORNOGRAPHY: 6
-};
-
-/**
- * optional account_name reporter = 1;
- * @return {?proto.prototype.account_name}
- */
-proto.prototype.report_operation.prototype.getReporter = function() {
-  return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
-};
-
-
-/** @param {?proto.prototype.account_name|undefined} value */
-proto.prototype.report_operation.prototype.setReporter = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.prototype.report_operation.prototype.clearReporter = function() {
-  this.setReporter(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.report_operation.prototype.hasReporter = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional uint64 reported = 2;
- * @return {number}
- */
-proto.prototype.report_operation.prototype.getReported = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.report_operation.prototype.setReported = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * repeated tag report_tag = 3;
- * @return {!Array<!proto.prototype.report_operation.tag>}
- */
-proto.prototype.report_operation.prototype.getReportTagList = function() {
-  return /** @type {!Array<!proto.prototype.report_operation.tag>} */ (jspb.Message.getRepeatedField(this, 3));
-};
-
-
-/** @param {!Array<!proto.prototype.report_operation.tag>} value */
-proto.prototype.report_operation.prototype.setReportTagList = function(value) {
-  jspb.Message.setField(this, 3, value || []);
-};
-
-
-/**
- * @param {!proto.prototype.report_operation.tag} value
- * @param {number=} opt_index
- */
-proto.prototype.report_operation.prototype.addReportTag = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
-};
-
-
-proto.prototype.report_operation.prototype.clearReportTagList = function() {
-  this.setReportTagList([]);
-};
-
-
-/**
- * optional bool is_arbitration = 4;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
- */
-proto.prototype.report_operation.prototype.getIsArbitration = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
-};
-
-
-/** @param {boolean} value */
-proto.prototype.report_operation.prototype.setIsArbitration = function(value) {
-  jspb.Message.setProto3BooleanField(this, 4, value);
-};
-
-
-/**
- * optional bool is_approved = 5;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
- */
-proto.prototype.report_operation.prototype.getIsApproved = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
-};
-
-
-/** @param {boolean} value */
-proto.prototype.report_operation.prototype.setIsApproved = function(value) {
-  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 

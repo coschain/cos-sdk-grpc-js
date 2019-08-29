@@ -130,6 +130,9 @@ export class transfer_to_vest_operation extends jspb.Message {
   getAmount(): prototype_type_pb.coin | undefined;
   setAmount(value?: prototype_type_pb.coin): void;
 
+  getMemo(): string;
+  setMemo(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): transfer_to_vest_operation.AsObject;
   static toObject(includeInstance: boolean, msg: transfer_to_vest_operation): transfer_to_vest_operation.AsObject;
@@ -145,6 +148,7 @@ export namespace transfer_to_vest_operation {
     from?: prototype_type_pb.account_name.AsObject,
     to?: prototype_type_pb.account_name.AsObject,
     amount?: prototype_type_pb.coin.AsObject,
+    memo: string,
   }
 }
 
@@ -222,30 +226,10 @@ export class bp_update_operation extends jspb.Message {
   getOwner(): prototype_type_pb.account_name | undefined;
   setOwner(value?: prototype_type_pb.account_name): void;
 
-  getProposedStaminaFree(): number;
-  setProposedStaminaFree(value: number): void;
-
-  getTpsExpected(): number;
-  setTpsExpected(value: number): void;
-
-  hasAccountCreationFee(): boolean;
-  clearAccountCreationFee(): void;
-  getAccountCreationFee(): prototype_type_pb.coin | undefined;
-  setAccountCreationFee(value?: prototype_type_pb.coin): void;
-
-  getTopNAcquireFreeToken(): number;
-  setTopNAcquireFreeToken(value: number): void;
-
-  getEpochDuration(): number;
-  setEpochDuration(value: number): void;
-
-  hasPerTicketPrice(): boolean;
-  clearPerTicketPrice(): void;
-  getPerTicketPrice(): prototype_type_pb.coin | undefined;
-  setPerTicketPrice(value?: prototype_type_pb.coin): void;
-
-  getPerTicketWeight(): number;
-  setPerTicketWeight(value: number): void;
+  hasProps(): boolean;
+  clearProps(): void;
+  getProps(): prototype_type_pb.chain_properties | undefined;
+  setProps(value?: prototype_type_pb.chain_properties): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): bp_update_operation.AsObject;
@@ -260,13 +244,7 @@ export class bp_update_operation extends jspb.Message {
 export namespace bp_update_operation {
   export type AsObject = {
     owner?: prototype_type_pb.account_name.AsObject,
-    proposedStaminaFree: number,
-    tpsExpected: number,
-    accountCreationFee?: prototype_type_pb.coin.AsObject,
-    topNAcquireFreeToken: number,
-    epochDuration: number,
-    perTicketPrice?: prototype_type_pb.coin.AsObject,
-    perTicketWeight: number,
+    props?: prototype_type_pb.chain_properties.AsObject,
   }
 }
 
@@ -601,104 +579,6 @@ export namespace reply_operation {
     content: string,
     parentUuid: string,
     beneficiariesList: Array<prototype_type_pb.beneficiary_route_type.AsObject>,
-  }
-}
-
-export class claim_all_operation extends jspb.Message {
-  hasAccount(): boolean;
-  clearAccount(): void;
-  getAccount(): prototype_type_pb.account_name | undefined;
-  setAccount(value?: prototype_type_pb.account_name): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): claim_all_operation.AsObject;
-  static toObject(includeInstance: boolean, msg: claim_all_operation): claim_all_operation.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: claim_all_operation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): claim_all_operation;
-  static deserializeBinaryFromReader(message: claim_all_operation, reader: jspb.BinaryReader): claim_all_operation;
-}
-
-export namespace claim_all_operation {
-  export type AsObject = {
-    account?: prototype_type_pb.account_name.AsObject,
-  }
-}
-
-export class claim_operation extends jspb.Message {
-  hasAccount(): boolean;
-  clearAccount(): void;
-  getAccount(): prototype_type_pb.account_name | undefined;
-  setAccount(value?: prototype_type_pb.account_name): void;
-
-  getAmount(): number;
-  setAmount(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): claim_operation.AsObject;
-  static toObject(includeInstance: boolean, msg: claim_operation): claim_operation.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: claim_operation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): claim_operation;
-  static deserializeBinaryFromReader(message: claim_operation, reader: jspb.BinaryReader): claim_operation;
-}
-
-export namespace claim_operation {
-  export type AsObject = {
-    account?: prototype_type_pb.account_name.AsObject,
-    amount: number,
-  }
-}
-
-export class report_operation extends jspb.Message {
-  hasReporter(): boolean;
-  clearReporter(): void;
-  getReporter(): prototype_type_pb.account_name | undefined;
-  setReporter(value?: prototype_type_pb.account_name): void;
-
-  getReported(): number;
-  setReported(value: number): void;
-
-  clearReportTagList(): void;
-  getReportTagList(): Array<report_operation.tag>;
-  setReportTagList(value: Array<report_operation.tag>): void;
-  addReportTag(value: report_operation.tag, index?: number): report_operation.tag;
-
-  getIsArbitration(): boolean;
-  setIsArbitration(value: boolean): void;
-
-  getIsApproved(): boolean;
-  setIsApproved(value: boolean): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): report_operation.AsObject;
-  static toObject(includeInstance: boolean, msg: report_operation): report_operation.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: report_operation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): report_operation;
-  static deserializeBinaryFromReader(message: report_operation, reader: jspb.BinaryReader): report_operation;
-}
-
-export namespace report_operation {
-  export type AsObject = {
-    reporter?: prototype_type_pb.account_name.AsObject,
-    reported: number,
-    reportTagList: Array<report_operation.tag>,
-    isArbitration: boolean,
-    isApproved: boolean,
-  }
-
-  export enum tag {
-    CHILD_PORNOGRAPHY = 0,
-    RACISM = 1,
-    REACTIONARY = 2,
-    PLAGIARISM = 3,
-    SLANDER = 4,
-    FALSE_PROPAGANDA = 5,
-    PORNOGRAPHY = 6,
   }
 }
 

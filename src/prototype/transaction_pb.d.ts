@@ -56,16 +56,6 @@ export class operation extends jspb.Message {
   getOp10(): prototype_operation_pb.transfer_to_vest_operation | undefined;
   setOp10(value?: prototype_operation_pb.transfer_to_vest_operation): void;
 
-  hasOp11(): boolean;
-  clearOp11(): void;
-  getOp11(): prototype_operation_pb.claim_operation | undefined;
-  setOp11(value?: prototype_operation_pb.claim_operation): void;
-
-  hasOp12(): boolean;
-  clearOp12(): void;
-  getOp12(): prototype_operation_pb.claim_all_operation | undefined;
-  setOp12(value?: prototype_operation_pb.claim_all_operation): void;
-
   hasOp13(): boolean;
   clearOp13(): void;
   getOp13(): prototype_operation_pb.contract_deploy_operation | undefined;
@@ -75,11 +65,6 @@ export class operation extends jspb.Message {
   clearOp14(): void;
   getOp14(): prototype_operation_pb.contract_apply_operation | undefined;
   setOp14(value?: prototype_operation_pb.contract_apply_operation): void;
-
-  hasOp15(): boolean;
-  clearOp15(): void;
-  getOp15(): prototype_operation_pb.report_operation | undefined;
-  setOp15(value?: prototype_operation_pb.report_operation): void;
 
   hasOp16(): boolean;
   clearOp16(): void;
@@ -139,11 +124,8 @@ export namespace operation {
     op8?: prototype_operation_pb.follow_operation.AsObject,
     op9?: prototype_operation_pb.vote_operation.AsObject,
     op10?: prototype_operation_pb.transfer_to_vest_operation.AsObject,
-    op11?: prototype_operation_pb.claim_operation.AsObject,
-    op12?: prototype_operation_pb.claim_all_operation.AsObject,
     op13?: prototype_operation_pb.contract_deploy_operation.AsObject,
     op14?: prototype_operation_pb.contract_apply_operation.AsObject,
-    op15?: prototype_operation_pb.report_operation.AsObject,
     op16?: prototype_operation_pb.convert_vest_operation.AsObject,
     op17?: prototype_operation_pb.stake_operation.AsObject,
     op18?: prototype_operation_pb.un_stake_operation.AsObject,
@@ -165,11 +147,8 @@ export namespace operation {
     OP8 = 8,
     OP9 = 9,
     OP10 = 10,
-    OP11 = 11,
-    OP12 = 12,
     OP13 = 13,
     OP14 = 14,
-    OP15 = 15,
     OP16 = 16,
     OP17 = 17,
     OP18 = 18,

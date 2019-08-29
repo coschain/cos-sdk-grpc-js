@@ -70,6 +70,26 @@ export namespace TableContentResponse {
   }
 }
 
+export class GetAccountByPubKeyRequest extends jspb.Message {
+  getPublicKey(): string;
+  setPublicKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAccountByPubKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAccountByPubKeyRequest): GetAccountByPubKeyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAccountByPubKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAccountByPubKeyRequest;
+  static deserializeBinaryFromReader(message: GetAccountByPubKeyRequest, reader: jspb.BinaryReader): GetAccountByPubKeyRequest;
+}
+
+export namespace GetAccountByPubKeyRequest {
+  export type AsObject = {
+    publicKey: string,
+  }
+}
+
 export class GetAccountByNameRequest extends jspb.Message {
   hasAccountName(): boolean;
   clearAccountName(): void;
@@ -89,6 +109,28 @@ export class GetAccountByNameRequest extends jspb.Message {
 export namespace GetAccountByNameRequest {
   export type AsObject = {
     accountName?: prototype_type_pb.account_name.AsObject,
+  }
+}
+
+export class GetBlockProducerByNameRequest extends jspb.Message {
+  hasBpName(): boolean;
+  clearBpName(): void;
+  getBpName(): prototype_type_pb.account_name | undefined;
+  setBpName(value?: prototype_type_pb.account_name): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlockProducerByNameRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockProducerByNameRequest): GetBlockProducerByNameRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlockProducerByNameRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockProducerByNameRequest;
+  static deserializeBinaryFromReader(message: GetBlockProducerByNameRequest, reader: jspb.BinaryReader): GetBlockProducerByNameRequest;
+}
+
+export namespace GetBlockProducerByNameRequest {
+  export type AsObject = {
+    bpName?: prototype_type_pb.account_name.AsObject,
   }
 }
 
@@ -293,10 +335,10 @@ export class AccountInfo extends jspb.Message {
   getStaminaMax(): number;
   setStaminaMax(value: number): void;
 
-  hasStakeVest(): boolean;
-  clearStakeVest(): void;
-  getStakeVest(): prototype_type_pb.vest | undefined;
-  setStakeVest(value?: prototype_type_pb.vest): void;
+  hasStakeVestForMe(): boolean;
+  clearStakeVestForMe(): void;
+  getStakeVestForMe(): prototype_type_pb.vest | undefined;
+  setStakeVestForMe(value?: prototype_type_pb.vest): void;
 
   hasWithdrawRemains(): boolean;
   clearWithdrawRemains(): void;
@@ -334,6 +376,11 @@ export class AccountInfo extends jspb.Message {
   getFreezeMemo(): string;
   setFreezeMemo(value: string): void;
 
+  hasStakeVestFromMe(): boolean;
+  clearStakeVestFromMe(): void;
+  getStakeVestFromMe(): prototype_type_pb.vest | undefined;
+  setStakeVestFromMe(value?: prototype_type_pb.vest): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -360,7 +407,7 @@ export namespace AccountInfo {
     staminaFreeRemain: number,
     staminaStakeRemain: number,
     staminaMax: number,
-    stakeVest?: prototype_type_pb.vest.AsObject,
+    stakeVestForMe?: prototype_type_pb.vest.AsObject,
     withdrawRemains?: prototype_type_pb.vest.AsObject,
     withdrawEachTime?: prototype_type_pb.vest.AsObject,
     nextWithdrawTime?: prototype_type_pb.time_point_sec.AsObject,
@@ -371,6 +418,7 @@ export namespace AccountInfo {
     freeTicket: number,
     freeze: number,
     freezeMemo: string,
+    stakeVestFromMe?: prototype_type_pb.vest.AsObject,
   }
 }
 
@@ -638,10 +686,10 @@ export class BlockProducerResponse extends jspb.Message {
   getUrl(): string;
   setUrl(value: string): void;
 
-  hasVoteVest(): boolean;
-  clearVoteVest(): void;
-  getVoteVest(): prototype_type_pb.vest | undefined;
-  setVoteVest(value?: prototype_type_pb.vest): void;
+  hasBpVest(): boolean;
+  clearBpVest(): void;
+  getBpVest(): prototype_multi_id_pb.bp_vest_id | undefined;
+  setBpVest(value?: prototype_multi_id_pb.bp_vest_id): void;
 
   hasSigningKey(): boolean;
   clearSigningKey(): void;
@@ -650,9 +698,6 @@ export class BlockProducerResponse extends jspb.Message {
 
   getProposedStaminaFree(): number;
   setProposedStaminaFree(value: number): void;
-
-  getActive(): boolean;
-  setActive(value: boolean): void;
 
   getTpsExpected(): number;
   setTpsExpected(value: number): void;
@@ -679,6 +724,9 @@ export class BlockProducerResponse extends jspb.Message {
   getVoterCount(): number;
   setVoterCount(value: number): void;
 
+  getGenBlockCount(): number;
+  setGenBlockCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BlockProducerResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BlockProducerResponse): BlockProducerResponse.AsObject;
@@ -694,10 +742,9 @@ export namespace BlockProducerResponse {
     owner?: prototype_type_pb.account_name.AsObject,
     createdTime?: prototype_type_pb.time_point_sec.AsObject,
     url: string,
-    voteVest?: prototype_type_pb.vest.AsObject,
+    bpVest?: prototype_multi_id_pb.bp_vest_id.AsObject,
     signingKey?: prototype_type_pb.public_key_type.AsObject,
     proposedStaminaFree: number,
-    active: boolean,
     tpsExpected: number,
     accountCreateFee?: prototype_type_pb.coin.AsObject,
     topNAcquireFreeToken: number,
@@ -705,6 +752,7 @@ export namespace BlockProducerResponse {
     perTicketPrice?: prototype_type_pb.coin.AsObject,
     perTicketWeight: number,
     voterCount: number,
+    genBlockCount: number,
   }
 }
 
@@ -1115,6 +1163,9 @@ export class BroadcastTrxRequest extends jspb.Message {
   getOnlyDeliver(): boolean;
   setOnlyDeliver(value: boolean): void;
 
+  getFinality(): boolean;
+  setFinality(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BroadcastTrxRequest.AsObject;
   static toObject(includeInstance: boolean, msg: BroadcastTrxRequest): BroadcastTrxRequest.AsObject;
@@ -1129,6 +1180,7 @@ export namespace BroadcastTrxRequest {
   export type AsObject = {
     transaction?: prototype_transaction_pb.signed_transaction.AsObject,
     onlyDeliver: boolean,
+    finality: boolean,
   }
 }
 
@@ -1143,6 +1195,9 @@ export class BroadcastTrxResponse extends jspb.Message {
 
   getMsg(): string;
   setMsg(value: string): void;
+
+  getFinality(): boolean;
+  setFinality(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BroadcastTrxResponse.AsObject;
@@ -1159,6 +1214,7 @@ export namespace BroadcastTrxResponse {
     invoice?: prototype_transaction_pb.transaction_receipt_with_info.AsObject,
     status: number,
     msg: string,
+    finality: boolean,
   }
 }
 

@@ -1669,13 +1669,12 @@ proto.prototype.chain_properties.prototype.toObject = function(opt_includeInstan
 proto.prototype.chain_properties.toObject = function(includeInstance, msg) {
   var f, obj = {
     accountCreationFee: (f = msg.getAccountCreationFee()) && proto.prototype.coin.toObject(includeInstance, f),
-    maximumBlockSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    staminaFree: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    tpsExpected: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    epochDuration: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    staminaFree: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    epochDuration: jspb.Message.getFieldWithDefault(msg, 5, 0),
     perTicketPrice: (f = msg.getPerTicketPrice()) && proto.prototype.coin.toObject(includeInstance, f),
-    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -1718,31 +1717,27 @@ proto.prototype.chain_properties.deserializeBinaryFromReader = function(msg, rea
       msg.setAccountCreationFee(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setMaximumBlockSize(value);
-      break;
-    case 3:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setStaminaFree(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTpsExpected(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setTopNAcquireFreeToken(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setEpochDuration(value);
       break;
-    case 7:
+    case 6:
       var value = new proto.prototype.coin;
       reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
       msg.setPerTicketPrice(value);
       break;
-    case 8:
+    case 7:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setPerTicketWeight(value);
       break;
@@ -1783,45 +1778,38 @@ proto.prototype.chain_properties.serializeBinaryToWriter = function(message, wri
       proto.prototype.coin.serializeBinaryToWriter
     );
   }
-  f = message.getMaximumBlockSize();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
   f = message.getStaminaFree();
   if (f !== 0) {
     writer.writeUint64(
-      3,
+      2,
       f
     );
   }
   f = message.getTpsExpected();
   if (f !== 0) {
     writer.writeUint64(
-      4,
+      3,
       f
     );
   }
   f = message.getTopNAcquireFreeToken();
   if (f !== 0) {
     writer.writeUint32(
-      5,
+      4,
       f
     );
   }
   f = message.getEpochDuration();
   if (f !== 0) {
     writer.writeUint64(
-      6,
+      5,
       f
     );
   }
   f = message.getPerTicketPrice();
   if (f != null) {
     writer.writeMessage(
-      7,
+      6,
       f,
       proto.prototype.coin.serializeBinaryToWriter
     );
@@ -1829,7 +1817,7 @@ proto.prototype.chain_properties.serializeBinaryToWriter = function(message, wri
   f = message.getPerTicketWeight();
   if (f !== 0) {
     writer.writeUint64(
-      8,
+      7,
       f
     );
   }
@@ -1867,93 +1855,78 @@ proto.prototype.chain_properties.prototype.hasAccountCreationFee = function() {
 
 
 /**
- * optional uint32 maximum_block_size = 2;
+ * optional uint64 stamina_free = 2;
  * @return {number}
  */
-proto.prototype.chain_properties.prototype.getMaximumBlockSize = function() {
+proto.prototype.chain_properties.prototype.getStaminaFree = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /** @param {number} value */
-proto.prototype.chain_properties.prototype.setMaximumBlockSize = function(value) {
+proto.prototype.chain_properties.prototype.setStaminaFree = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional uint64 stamina_free = 3;
+ * optional uint64 tps_expected = 3;
  * @return {number}
  */
-proto.prototype.chain_properties.prototype.getStaminaFree = function() {
+proto.prototype.chain_properties.prototype.getTpsExpected = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /** @param {number} value */
-proto.prototype.chain_properties.prototype.setStaminaFree = function(value) {
+proto.prototype.chain_properties.prototype.setTpsExpected = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional uint64 tps_expected = 4;
+ * optional uint32 top_n_acquire_free_token = 4;
  * @return {number}
  */
-proto.prototype.chain_properties.prototype.getTpsExpected = function() {
+proto.prototype.chain_properties.prototype.getTopNAcquireFreeToken = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /** @param {number} value */
-proto.prototype.chain_properties.prototype.setTpsExpected = function(value) {
+proto.prototype.chain_properties.prototype.setTopNAcquireFreeToken = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional uint32 top_n_acquire_free_token = 5;
+ * optional uint64 epoch_duration = 5;
  * @return {number}
  */
-proto.prototype.chain_properties.prototype.getTopNAcquireFreeToken = function() {
+proto.prototype.chain_properties.prototype.getEpochDuration = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /** @param {number} value */
-proto.prototype.chain_properties.prototype.setTopNAcquireFreeToken = function(value) {
+proto.prototype.chain_properties.prototype.setEpochDuration = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional uint64 epoch_duration = 6;
- * @return {number}
- */
-proto.prototype.chain_properties.prototype.getEpochDuration = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.chain_properties.prototype.setEpochDuration = function(value) {
-  jspb.Message.setProto3IntField(this, 6, value);
-};
-
-
-/**
- * optional coin per_ticket_price = 7;
+ * optional coin per_ticket_price = 6;
  * @return {?proto.prototype.coin}
  */
 proto.prototype.chain_properties.prototype.getPerTicketPrice = function() {
   return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.coin, 7));
+    jspb.Message.getWrapperField(this, proto.prototype.coin, 6));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
 proto.prototype.chain_properties.prototype.setPerTicketPrice = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -1967,22 +1940,22 @@ proto.prototype.chain_properties.prototype.clearPerTicketPrice = function() {
  * @return {!boolean}
  */
 proto.prototype.chain_properties.prototype.hasPerTicketPrice = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional uint64 per_ticket_weight = 8;
+ * optional uint64 per_ticket_weight = 7;
  * @return {number}
  */
 proto.prototype.chain_properties.prototype.getPerTicketWeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.chain_properties.prototype.setPerTicketWeight = function(value) {
-  jspb.Message.setProto3IntField(this, 8, value);
+  jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
@@ -2034,48 +2007,50 @@ proto.prototype.dynamic_properties.prototype.toObject = function(opt_includeInst
 proto.prototype.dynamic_properties.toObject = function(includeInstance, msg) {
   var f, obj = {
     headBlockId: (f = msg.getHeadBlockId()) && proto.prototype.sha256.toObject(includeInstance, f),
-    headBlockNumber: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    maximumBlockSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    headBlockNumber: jspb.Message.getFieldWithDefault(msg, 2, 0),
     totalCos: (f = msg.getTotalCos()) && proto.prototype.coin.toObject(includeInstance, f),
     time: (f = msg.getTime()) && proto.prototype.time_point_sec.toObject(includeInstance, f),
     currentBlockProducer: (f = msg.getCurrentBlockProducer()) && proto.prototype.account_name.toObject(includeInstance, f),
-    tps: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    tps: jspb.Message.getFieldWithDefault(msg, 6, 0),
     totalVest: (f = msg.getTotalVest()) && proto.prototype.vest.toObject(includeInstance, f),
-    currentSupply: (f = msg.getCurrentSupply()) && proto.prototype.coin.toObject(includeInstance, f),
-    postWeightedVps: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    postRewards: (f = msg.getPostRewards()) && proto.prototype.vest.toObject(includeInstance, f),
-    totalTrxCnt: jspb.Message.getFieldWithDefault(msg, 15, 0),
-    totalPostCnt: jspb.Message.getFieldWithDefault(msg, 16, 0),
-    totalUserCnt: jspb.Message.getFieldWithDefault(msg, 17, 0),
-    maxTps: jspb.Message.getFieldWithDefault(msg, 18, 0),
-    maxTpsBlockNum: jspb.Message.getFieldWithDefault(msg, 19, "0"),
-    headBlockPrefix: jspb.Message.getFieldWithDefault(msg, 20, 0),
-    reportRewards: (f = msg.getReportRewards()) && proto.prototype.vest.toObject(includeInstance, f),
-    ithYear: jspb.Message.getFieldWithDefault(msg, 22, 0),
+    totalTrxCnt: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    totalPostCnt: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    totalUserCnt: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    maxTps: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    maxTpsBlockNum: jspb.Message.getFieldWithDefault(msg, 12, "0"),
+    ithYear: jspb.Message.getFieldWithDefault(msg, 13, 0),
     annualBudget: (f = msg.getAnnualBudget()) && proto.prototype.vest.toObject(includeInstance, f),
     annualMinted: (f = msg.getAnnualMinted()) && proto.prototype.vest.toObject(includeInstance, f),
-    postDappRewards: (f = msg.getPostDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
-    voterRewards: (f = msg.getVoterRewards()) && proto.prototype.vest.toObject(includeInstance, f),
-    replyRewards: (f = msg.getReplyRewards()) && proto.prototype.vest.toObject(includeInstance, f),
-    replyWeightedVps: jspb.Message.getFieldWithDefault(msg, 28, ""),
-    replyDappRewards: (f = msg.getReplyDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    poolPostRewards: (f = msg.getPoolPostRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    poolReplyRewards: (f = msg.getPoolReplyRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    poolVoteRewards: (f = msg.getPoolVoteRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    poolDappRewards: (f = msg.getPoolDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    weightedVpsPost: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    weightedVpsReply: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    weightedVpsVote: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    weightedVpsDapp: jspb.Message.getFieldWithDefault(msg, 23, ""),
+    claimedPostRewards: (f = msg.getClaimedPostRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    claimedReplyRewards: (f = msg.getClaimedReplyRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    claimedVoteRewards: (f = msg.getClaimedVoteRewards()) && proto.prototype.vest.toObject(includeInstance, f),
+    claimedDappRewards: (f = msg.getClaimedDappRewards()) && proto.prototype.vest.toObject(includeInstance, f),
     stakeVest: (f = msg.getStakeVest()) && proto.prototype.vest.toObject(includeInstance, f),
-    blockProducerBootCompleted: jspb.Message.getFieldWithDefault(msg, 31, false),
-    staminaFree: jspb.Message.getFieldWithDefault(msg, 32, 0),
-    tpsExpected: jspb.Message.getFieldWithDefault(msg, 33, 0),
-    avgTpsUpdateBlock: jspb.Message.getFieldWithDefault(msg, 34, 0),
-    avgTpsInWindow: jspb.Message.getFieldWithDefault(msg, 35, 0),
-    oneDayStamina: jspb.Message.getFieldWithDefault(msg, 36, 0),
+    blockProducerBootCompleted: jspb.Message.getFieldWithDefault(msg, 29, false),
+    staminaFree: jspb.Message.getFieldWithDefault(msg, 30, 0),
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 31, 0),
+    avgTpsUpdateBlock: jspb.Message.getFieldWithDefault(msg, 32, 0),
+    avgTpsInWindow: jspb.Message.getFieldWithDefault(msg, 33, 0),
+    oneDayStamina: jspb.Message.getFieldWithDefault(msg, 34, 0),
     accountCreateFee: (f = msg.getAccountCreateFee()) && proto.prototype.coin.toObject(includeInstance, f),
     reputationAdmin: (f = msg.getReputationAdmin()) && proto.prototype.account_name.toObject(includeInstance, f),
-    currentEpochStartBlock: jspb.Message.getFieldWithDefault(msg, 39, 0),
-    epochDuration: jspb.Message.getFieldWithDefault(msg, 40, 0),
-    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 41, 0),
+    currentEpochStartBlock: jspb.Message.getFieldWithDefault(msg, 37, 0),
+    epochDuration: jspb.Message.getFieldWithDefault(msg, 38, 0),
+    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 39, 0),
     perTicketPrice: (f = msg.getPerTicketPrice()) && proto.prototype.coin.toObject(includeInstance, f),
-    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 43, 0),
+    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 41, 0),
     ticketsIncome: (f = msg.getTicketsIncome()) && proto.prototype.vest.toObject(includeInstance, f),
-    chargedTicketsNum: jspb.Message.getFieldWithDefault(msg, 45, 0),
-    copyrightAdmin: (f = msg.getCopyrightAdmin()) && proto.prototype.account_name.toObject(includeInstance, f)
+    chargedTicketsNum: jspb.Message.getFieldWithDefault(msg, 43, 0),
+    copyrightAdmin: (f = msg.getCopyrightAdmin()) && proto.prototype.account_name.toObject(includeInstance, f),
+    ticketsBpBonus: (f = msg.getTicketsBpBonus()) && proto.prototype.vest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2112,197 +2087,207 @@ proto.prototype.dynamic_properties.deserializeBinaryFromReader = function(msg, r
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = new proto.prototype.sha256;
       reader.readMessage(value,proto.prototype.sha256.deserializeBinaryFromReader);
       msg.setHeadBlockId(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setHeadBlockNumber(value);
       break;
-    case 4:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setMaximumBlockSize(value);
-      break;
-    case 5:
+    case 3:
       var value = new proto.prototype.coin;
       reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
       msg.setTotalCos(value);
       break;
-    case 6:
+    case 4:
       var value = new proto.prototype.time_point_sec;
       reader.readMessage(value,proto.prototype.time_point_sec.deserializeBinaryFromReader);
       msg.setTime(value);
       break;
-    case 7:
+    case 5:
       var value = new proto.prototype.account_name;
       reader.readMessage(value,proto.prototype.account_name.deserializeBinaryFromReader);
       msg.setCurrentBlockProducer(value);
       break;
-    case 9:
+    case 6:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setTps(value);
       break;
-    case 10:
+    case 7:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
       msg.setTotalVest(value);
       break;
+    case 8:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalTrxCnt(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalPostCnt(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalUserCnt(value);
+      break;
     case 11:
-      var value = new proto.prototype.coin;
-      reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
-      msg.setCurrentSupply(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setMaxTps(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readUint64String());
+      msg.setMaxTpsBlockNum(value);
       break;
     case 13:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPostWeightedVps(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setIthYear(value);
       break;
     case 14:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setPostRewards(value);
-      break;
-    case 15:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setTotalTrxCnt(value);
-      break;
-    case 16:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setTotalPostCnt(value);
-      break;
-    case 17:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setTotalUserCnt(value);
-      break;
-    case 18:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setMaxTps(value);
-      break;
-    case 19:
-      var value = /** @type {string} */ (reader.readUint64String());
-      msg.setMaxTpsBlockNum(value);
-      break;
-    case 20:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setHeadBlockPrefix(value);
-      break;
-    case 21:
-      var value = new proto.prototype.vest;
-      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setReportRewards(value);
-      break;
-    case 22:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setIthYear(value);
-      break;
-    case 23:
-      var value = new proto.prototype.vest;
-      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
       msg.setAnnualBudget(value);
       break;
-    case 24:
+    case 15:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
       msg.setAnnualMinted(value);
       break;
+    case 16:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setPoolPostRewards(value);
+      break;
+    case 17:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setPoolReplyRewards(value);
+      break;
+    case 18:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setPoolVoteRewards(value);
+      break;
+    case 19:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setPoolDappRewards(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWeightedVpsPost(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWeightedVpsReply(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWeightedVpsVote(value);
+      break;
+    case 23:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWeightedVpsDapp(value);
+      break;
+    case 24:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setClaimedPostRewards(value);
+      break;
     case 25:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setPostDappRewards(value);
+      msg.setClaimedReplyRewards(value);
       break;
     case 26:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setVoterRewards(value);
+      msg.setClaimedVoteRewards(value);
       break;
     case 27:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setReplyRewards(value);
+      msg.setClaimedDappRewards(value);
       break;
     case 28:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setReplyWeightedVps(value);
-      break;
-    case 29:
-      var value = new proto.prototype.vest;
-      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
-      msg.setReplyDappRewards(value);
-      break;
-    case 30:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
       msg.setStakeVest(value);
       break;
-    case 31:
+    case 29:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setBlockProducerBootCompleted(value);
       break;
-    case 32:
+    case 30:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setStaminaFree(value);
       break;
-    case 33:
+    case 31:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTpsExpected(value);
       break;
-    case 34:
+    case 32:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setAvgTpsUpdateBlock(value);
       break;
-    case 35:
+    case 33:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setAvgTpsInWindow(value);
       break;
-    case 36:
+    case 34:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setOneDayStamina(value);
       break;
-    case 37:
+    case 35:
       var value = new proto.prototype.coin;
       reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
       msg.setAccountCreateFee(value);
       break;
-    case 38:
+    case 36:
       var value = new proto.prototype.account_name;
       reader.readMessage(value,proto.prototype.account_name.deserializeBinaryFromReader);
       msg.setReputationAdmin(value);
       break;
-    case 39:
+    case 37:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setCurrentEpochStartBlock(value);
       break;
-    case 40:
+    case 38:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setEpochDuration(value);
       break;
-    case 41:
+    case 39:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setTopNAcquireFreeToken(value);
       break;
-    case 42:
+    case 40:
       var value = new proto.prototype.coin;
       reader.readMessage(value,proto.prototype.coin.deserializeBinaryFromReader);
       msg.setPerTicketPrice(value);
       break;
-    case 43:
+    case 41:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setPerTicketWeight(value);
       break;
-    case 44:
+    case 42:
       var value = new proto.prototype.vest;
       reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
       msg.setTicketsIncome(value);
       break;
-    case 45:
+    case 43:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setChargedTicketsNum(value);
       break;
-    case 46:
+    case 44:
       var value = new proto.prototype.account_name;
       reader.readMessage(value,proto.prototype.account_name.deserializeBinaryFromReader);
       msg.setCopyrightAdmin(value);
+      break;
+    case 45:
+      var value = new proto.prototype.vest;
+      reader.readMessage(value,proto.prototype.vest.deserializeBinaryFromReader);
+      msg.setTicketsBpBonus(value);
       break;
     default:
       reader.skipField();
@@ -2336,7 +2321,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getHeadBlockId();
   if (f != null) {
     writer.writeMessage(
-      2,
+      1,
       f,
       proto.prototype.sha256.serializeBinaryToWriter
     );
@@ -2344,21 +2329,14 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getHeadBlockNumber();
   if (f !== 0) {
     writer.writeUint64(
-      3,
-      f
-    );
-  }
-  f = message.getMaximumBlockSize();
-  if (f !== 0) {
-    writer.writeUint32(
-      4,
+      2,
       f
     );
   }
   f = message.getTotalCos();
   if (f != null) {
     writer.writeMessage(
-      5,
+      3,
       f,
       proto.prototype.coin.serializeBinaryToWriter
     );
@@ -2366,7 +2344,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getTime();
   if (f != null) {
     writer.writeMessage(
-      6,
+      4,
       f,
       proto.prototype.time_point_sec.serializeBinaryToWriter
     );
@@ -2374,7 +2352,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getCurrentBlockProducer();
   if (f != null) {
     writer.writeMessage(
-      7,
+      5,
       f,
       proto.prototype.account_name.serializeBinaryToWriter
     );
@@ -2382,37 +2360,14 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getTps();
   if (f !== 0) {
     writer.writeUint32(
-      9,
+      6,
       f
     );
   }
   f = message.getTotalVest();
   if (f != null) {
     writer.writeMessage(
-      10,
-      f,
-      proto.prototype.vest.serializeBinaryToWriter
-    );
-  }
-  f = message.getCurrentSupply();
-  if (f != null) {
-    writer.writeMessage(
-      11,
-      f,
-      proto.prototype.coin.serializeBinaryToWriter
-    );
-  }
-  f = message.getPostWeightedVps();
-  if (f.length > 0) {
-    writer.writeString(
-      13,
-      f
-    );
-  }
-  f = message.getPostRewards();
-  if (f != null) {
-    writer.writeMessage(
-      14,
+      7,
       f,
       proto.prototype.vest.serializeBinaryToWriter
     );
@@ -2420,64 +2375,49 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getTotalTrxCnt();
   if (f !== 0) {
     writer.writeUint64(
-      15,
+      8,
       f
     );
   }
   f = message.getTotalPostCnt();
   if (f !== 0) {
     writer.writeUint64(
-      16,
+      9,
       f
     );
   }
   f = message.getTotalUserCnt();
   if (f !== 0) {
     writer.writeUint64(
-      17,
+      10,
       f
     );
   }
   f = message.getMaxTps();
   if (f !== 0) {
     writer.writeUint32(
-      18,
+      11,
       f
     );
   }
   f = message.getMaxTpsBlockNum();
   if (parseInt(f, 10) !== 0) {
     writer.writeUint64String(
-      19,
+      12,
       f
-    );
-  }
-  f = message.getHeadBlockPrefix();
-  if (f !== 0) {
-    writer.writeUint32(
-      20,
-      f
-    );
-  }
-  f = message.getReportRewards();
-  if (f != null) {
-    writer.writeMessage(
-      21,
-      f,
-      proto.prototype.vest.serializeBinaryToWriter
     );
   }
   f = message.getIthYear();
   if (f !== 0) {
     writer.writeUint32(
-      22,
+      13,
       f
     );
   }
   f = message.getAnnualBudget();
   if (f != null) {
     writer.writeMessage(
-      23,
+      14,
       f,
       proto.prototype.vest.serializeBinaryToWriter
     );
@@ -2485,12 +2425,80 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getAnnualMinted();
   if (f != null) {
     writer.writeMessage(
+      15,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPoolPostRewards();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPoolReplyRewards();
+  if (f != null) {
+    writer.writeMessage(
+      17,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPoolVoteRewards();
+  if (f != null) {
+    writer.writeMessage(
+      18,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPoolDappRewards();
+  if (f != null) {
+    writer.writeMessage(
+      19,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getWeightedVpsPost();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
+      f
+    );
+  }
+  f = message.getWeightedVpsReply();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getWeightedVpsVote();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
+      f
+    );
+  }
+  f = message.getWeightedVpsDapp();
+  if (f.length > 0) {
+    writer.writeString(
+      23,
+      f
+    );
+  }
+  f = message.getClaimedPostRewards();
+  if (f != null) {
+    writer.writeMessage(
       24,
       f,
       proto.prototype.vest.serializeBinaryToWriter
     );
   }
-  f = message.getPostDappRewards();
+  f = message.getClaimedReplyRewards();
   if (f != null) {
     writer.writeMessage(
       25,
@@ -2498,7 +2506,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       proto.prototype.vest.serializeBinaryToWriter
     );
   }
-  f = message.getVoterRewards();
+  f = message.getClaimedVoteRewards();
   if (f != null) {
     writer.writeMessage(
       26,
@@ -2506,7 +2514,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       proto.prototype.vest.serializeBinaryToWriter
     );
   }
-  f = message.getReplyRewards();
+  f = message.getClaimedDappRewards();
   if (f != null) {
     writer.writeMessage(
       27,
@@ -2514,25 +2522,10 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
       proto.prototype.vest.serializeBinaryToWriter
     );
   }
-  f = message.getReplyWeightedVps();
-  if (f.length > 0) {
-    writer.writeString(
-      28,
-      f
-    );
-  }
-  f = message.getReplyDappRewards();
-  if (f != null) {
-    writer.writeMessage(
-      29,
-      f,
-      proto.prototype.vest.serializeBinaryToWriter
-    );
-  }
   f = message.getStakeVest();
   if (f != null) {
     writer.writeMessage(
-      30,
+      28,
       f,
       proto.prototype.vest.serializeBinaryToWriter
     );
@@ -2540,49 +2533,49 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getBlockProducerBootCompleted();
   if (f) {
     writer.writeBool(
-      31,
+      29,
       f
     );
   }
   f = message.getStaminaFree();
   if (f !== 0) {
     writer.writeUint64(
-      32,
+      30,
       f
     );
   }
   f = message.getTpsExpected();
   if (f !== 0) {
     writer.writeUint64(
-      33,
+      31,
       f
     );
   }
   f = message.getAvgTpsUpdateBlock();
   if (f !== 0) {
     writer.writeUint64(
-      34,
+      32,
       f
     );
   }
   f = message.getAvgTpsInWindow();
   if (f !== 0) {
     writer.writeUint64(
-      35,
+      33,
       f
     );
   }
   f = message.getOneDayStamina();
   if (f !== 0) {
     writer.writeUint64(
-      36,
+      34,
       f
     );
   }
   f = message.getAccountCreateFee();
   if (f != null) {
     writer.writeMessage(
-      37,
+      35,
       f,
       proto.prototype.coin.serializeBinaryToWriter
     );
@@ -2590,7 +2583,7 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getReputationAdmin();
   if (f != null) {
     writer.writeMessage(
-      38,
+      36,
       f,
       proto.prototype.account_name.serializeBinaryToWriter
     );
@@ -2598,28 +2591,28 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getCurrentEpochStartBlock();
   if (f !== 0) {
     writer.writeUint64(
-      39,
+      37,
       f
     );
   }
   f = message.getEpochDuration();
   if (f !== 0) {
     writer.writeUint64(
-      40,
+      38,
       f
     );
   }
   f = message.getTopNAcquireFreeToken();
   if (f !== 0) {
     writer.writeUint32(
-      41,
+      39,
       f
     );
   }
   f = message.getPerTicketPrice();
   if (f != null) {
     writer.writeMessage(
-      42,
+      40,
       f,
       proto.prototype.coin.serializeBinaryToWriter
     );
@@ -2627,14 +2620,14 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getPerTicketWeight();
   if (f !== 0) {
     writer.writeUint64(
-      43,
+      41,
       f
     );
   }
   f = message.getTicketsIncome();
   if (f != null) {
     writer.writeMessage(
-      44,
+      42,
       f,
       proto.prototype.vest.serializeBinaryToWriter
     );
@@ -2642,34 +2635,42 @@ proto.prototype.dynamic_properties.serializeBinaryToWriter = function(message, w
   f = message.getChargedTicketsNum();
   if (f !== 0) {
     writer.writeUint64(
-      45,
+      43,
       f
     );
   }
   f = message.getCopyrightAdmin();
   if (f != null) {
     writer.writeMessage(
-      46,
+      44,
       f,
       proto.prototype.account_name.serializeBinaryToWriter
+    );
+  }
+  f = message.getTicketsBpBonus();
+  if (f != null) {
+    writer.writeMessage(
+      45,
+      f,
+      proto.prototype.vest.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional sha256 head_block_id = 2;
+ * optional sha256 head_block_id = 1;
  * @return {?proto.prototype.sha256}
  */
 proto.prototype.dynamic_properties.prototype.getHeadBlockId = function() {
   return /** @type{?proto.prototype.sha256} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.sha256, 2));
+    jspb.Message.getWrapperField(this, proto.prototype.sha256, 1));
 };
 
 
 /** @param {?proto.prototype.sha256|undefined} value */
 proto.prototype.dynamic_properties.prototype.setHeadBlockId = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -2683,53 +2684,38 @@ proto.prototype.dynamic_properties.prototype.clearHeadBlockId = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasHeadBlockId = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional uint64 head_block_number = 3;
+ * optional uint64 head_block_number = 2;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getHeadBlockNumber = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setHeadBlockNumber = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional uint32 maximum_block_size = 4;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getMaximumBlockSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setMaximumBlockSize = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-/**
- * optional coin total_cos = 5;
+ * optional coin total_cos = 3;
  * @return {?proto.prototype.coin}
  */
 proto.prototype.dynamic_properties.prototype.getTotalCos = function() {
   return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.coin, 5));
+    jspb.Message.getWrapperField(this, proto.prototype.coin, 3));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
 proto.prototype.dynamic_properties.prototype.setTotalCos = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -2743,23 +2729,23 @@ proto.prototype.dynamic_properties.prototype.clearTotalCos = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasTotalCos = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional time_point_sec time = 6;
+ * optional time_point_sec time = 4;
  * @return {?proto.prototype.time_point_sec}
  */
 proto.prototype.dynamic_properties.prototype.getTime = function() {
   return /** @type{?proto.prototype.time_point_sec} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.time_point_sec, 6));
+    jspb.Message.getWrapperField(this, proto.prototype.time_point_sec, 4));
 };
 
 
 /** @param {?proto.prototype.time_point_sec|undefined} value */
 proto.prototype.dynamic_properties.prototype.setTime = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+  jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -2773,23 +2759,23 @@ proto.prototype.dynamic_properties.prototype.clearTime = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasTime = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional account_name current_block_producer = 7;
+ * optional account_name current_block_producer = 5;
  * @return {?proto.prototype.account_name}
  */
 proto.prototype.dynamic_properties.prototype.getCurrentBlockProducer = function() {
   return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.account_name, 7));
+    jspb.Message.getWrapperField(this, proto.prototype.account_name, 5));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
 proto.prototype.dynamic_properties.prototype.setCurrentBlockProducer = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -2803,38 +2789,38 @@ proto.prototype.dynamic_properties.prototype.clearCurrentBlockProducer = functio
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasCurrentBlockProducer = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional uint32 tps = 9;
+ * optional uint32 tps = 6;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getTps = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setTps = function(value) {
-  jspb.Message.setProto3IntField(this, 9, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional vest total_vest = 10;
+ * optional vest total_vest = 7;
  * @return {?proto.prototype.vest}
  */
 proto.prototype.dynamic_properties.prototype.getTotalVest = function() {
   return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 10));
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 7));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
 proto.prototype.dynamic_properties.prototype.setTotalVest = function(value) {
-  jspb.Message.setWrapperField(this, 10, value);
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -2848,233 +2834,113 @@ proto.prototype.dynamic_properties.prototype.clearTotalVest = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasTotalVest = function() {
-  return jspb.Message.getField(this, 10) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional coin current_supply = 11;
- * @return {?proto.prototype.coin}
+ * optional uint64 total_trx_cnt = 8;
+ * @return {number}
  */
-proto.prototype.dynamic_properties.prototype.getCurrentSupply = function() {
-  return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.coin, 11));
+proto.prototype.dynamic_properties.prototype.getTotalTrxCnt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
 
-/** @param {?proto.prototype.coin|undefined} value */
-proto.prototype.dynamic_properties.prototype.setCurrentSupply = function(value) {
-  jspb.Message.setWrapperField(this, 11, value);
-};
-
-
-proto.prototype.dynamic_properties.prototype.clearCurrentSupply = function() {
-  this.setCurrentSupply(undefined);
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setTotalTrxCnt = function(value) {
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * optional uint64 total_post_cnt = 9;
+ * @return {number}
  */
-proto.prototype.dynamic_properties.prototype.hasCurrentSupply = function() {
-  return jspb.Message.getField(this, 11) != null;
+proto.prototype.dynamic_properties.prototype.getTotalPostCnt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setTotalPostCnt = function(value) {
+  jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
 /**
- * optional string post_weighted_vps = 13;
+ * optional uint64 total_user_cnt = 10;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getTotalUserCnt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setTotalUserCnt = function(value) {
+  jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional uint32 max_tps = 11;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getMaxTps = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setMaxTps = function(value) {
+  jspb.Message.setProto3IntField(this, 11, value);
+};
+
+
+/**
+ * optional uint64 max_tps_block_num = 12;
  * @return {string}
  */
-proto.prototype.dynamic_properties.prototype.getPostWeightedVps = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+proto.prototype.dynamic_properties.prototype.getMaxTpsBlockNum = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, "0"));
 };
 
 
 /** @param {string} value */
-proto.prototype.dynamic_properties.prototype.setPostWeightedVps = function(value) {
-  jspb.Message.setProto3StringField(this, 13, value);
+proto.prototype.dynamic_properties.prototype.setMaxTpsBlockNum = function(value) {
+  jspb.Message.setProto3StringIntField(this, 12, value);
 };
 
 
 /**
- * optional vest post_rewards = 14;
+ * optional uint32 ith_year = 13;
+ * @return {number}
+ */
+proto.prototype.dynamic_properties.prototype.getIthYear = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/** @param {number} value */
+proto.prototype.dynamic_properties.prototype.setIthYear = function(value) {
+  jspb.Message.setProto3IntField(this, 13, value);
+};
+
+
+/**
+ * optional vest annual_budget = 14;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.dynamic_properties.prototype.getPostRewards = function() {
+proto.prototype.dynamic_properties.prototype.getAnnualBudget = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, proto.prototype.vest, 14));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setPostRewards = function(value) {
-  jspb.Message.setWrapperField(this, 14, value);
-};
-
-
-proto.prototype.dynamic_properties.prototype.clearPostRewards = function() {
-  this.setPostRewards(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.dynamic_properties.prototype.hasPostRewards = function() {
-  return jspb.Message.getField(this, 14) != null;
-};
-
-
-/**
- * optional uint64 total_trx_cnt = 15;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getTotalTrxCnt = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setTotalTrxCnt = function(value) {
-  jspb.Message.setProto3IntField(this, 15, value);
-};
-
-
-/**
- * optional uint64 total_post_cnt = 16;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getTotalPostCnt = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setTotalPostCnt = function(value) {
-  jspb.Message.setProto3IntField(this, 16, value);
-};
-
-
-/**
- * optional uint64 total_user_cnt = 17;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getTotalUserCnt = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setTotalUserCnt = function(value) {
-  jspb.Message.setProto3IntField(this, 17, value);
-};
-
-
-/**
- * optional uint32 max_tps = 18;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getMaxTps = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setMaxTps = function(value) {
-  jspb.Message.setProto3IntField(this, 18, value);
-};
-
-
-/**
- * optional uint64 max_tps_block_num = 19;
- * @return {string}
- */
-proto.prototype.dynamic_properties.prototype.getMaxTpsBlockNum = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, "0"));
-};
-
-
-/** @param {string} value */
-proto.prototype.dynamic_properties.prototype.setMaxTpsBlockNum = function(value) {
-  jspb.Message.setProto3StringIntField(this, 19, value);
-};
-
-
-/**
- * optional uint32 head_block_prefix = 20;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getHeadBlockPrefix = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 20, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setHeadBlockPrefix = function(value) {
-  jspb.Message.setProto3IntField(this, 20, value);
-};
-
-
-/**
- * optional vest report_rewards = 21;
- * @return {?proto.prototype.vest}
- */
-proto.prototype.dynamic_properties.prototype.getReportRewards = function() {
-  return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 21));
-};
-
-
-/** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setReportRewards = function(value) {
-  jspb.Message.setWrapperField(this, 21, value);
-};
-
-
-proto.prototype.dynamic_properties.prototype.clearReportRewards = function() {
-  this.setReportRewards(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.dynamic_properties.prototype.hasReportRewards = function() {
-  return jspb.Message.getField(this, 21) != null;
-};
-
-
-/**
- * optional uint32 ith_year = 22;
- * @return {number}
- */
-proto.prototype.dynamic_properties.prototype.getIthYear = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 22, 0));
-};
-
-
-/** @param {number} value */
-proto.prototype.dynamic_properties.prototype.setIthYear = function(value) {
-  jspb.Message.setProto3IntField(this, 22, value);
-};
-
-
-/**
- * optional vest annual_budget = 23;
- * @return {?proto.prototype.vest}
- */
-proto.prototype.dynamic_properties.prototype.getAnnualBudget = function() {
-  return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 23));
-};
-
-
-/** @param {?proto.prototype.vest|undefined} value */
 proto.prototype.dynamic_properties.prototype.setAnnualBudget = function(value) {
-  jspb.Message.setWrapperField(this, 23, value);
+  jspb.Message.setWrapperField(this, 14, value);
 };
 
 
@@ -3088,23 +2954,23 @@ proto.prototype.dynamic_properties.prototype.clearAnnualBudget = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasAnnualBudget = function() {
-  return jspb.Message.getField(this, 23) != null;
+  return jspb.Message.getField(this, 14) != null;
 };
 
 
 /**
- * optional vest annual_minted = 24;
+ * optional vest annual_minted = 15;
  * @return {?proto.prototype.vest}
  */
 proto.prototype.dynamic_properties.prototype.getAnnualMinted = function() {
   return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 24));
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 15));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
 proto.prototype.dynamic_properties.prototype.setAnnualMinted = function(value) {
-  jspb.Message.setWrapperField(this, 24, value);
+  jspb.Message.setWrapperField(this, 15, value);
 };
 
 
@@ -3118,28 +2984,238 @@ proto.prototype.dynamic_properties.prototype.clearAnnualMinted = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasAnnualMinted = function() {
+  return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional vest pool_post_rewards = 16;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getPoolPostRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 16));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setPoolPostRewards = function(value) {
+  jspb.Message.setWrapperField(this, 16, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearPoolPostRewards = function() {
+  this.setPoolPostRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasPoolPostRewards = function() {
+  return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional vest pool_reply_rewards = 17;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getPoolReplyRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 17));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setPoolReplyRewards = function(value) {
+  jspb.Message.setWrapperField(this, 17, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearPoolReplyRewards = function() {
+  this.setPoolReplyRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasPoolReplyRewards = function() {
+  return jspb.Message.getField(this, 17) != null;
+};
+
+
+/**
+ * optional vest pool_vote_rewards = 18;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getPoolVoteRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 18));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setPoolVoteRewards = function(value) {
+  jspb.Message.setWrapperField(this, 18, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearPoolVoteRewards = function() {
+  this.setPoolVoteRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasPoolVoteRewards = function() {
+  return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional vest pool_dapp_rewards = 19;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getPoolDappRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 19));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setPoolDappRewards = function(value) {
+  jspb.Message.setWrapperField(this, 19, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearPoolDappRewards = function() {
+  this.setPoolDappRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasPoolDappRewards = function() {
+  return jspb.Message.getField(this, 19) != null;
+};
+
+
+/**
+ * optional string weighted_vps_post = 20;
+ * @return {string}
+ */
+proto.prototype.dynamic_properties.prototype.getWeightedVpsPost = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/** @param {string} value */
+proto.prototype.dynamic_properties.prototype.setWeightedVpsPost = function(value) {
+  jspb.Message.setProto3StringField(this, 20, value);
+};
+
+
+/**
+ * optional string weighted_vps_reply = 21;
+ * @return {string}
+ */
+proto.prototype.dynamic_properties.prototype.getWeightedVpsReply = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/** @param {string} value */
+proto.prototype.dynamic_properties.prototype.setWeightedVpsReply = function(value) {
+  jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
+/**
+ * optional string weighted_vps_vote = 22;
+ * @return {string}
+ */
+proto.prototype.dynamic_properties.prototype.getWeightedVpsVote = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/** @param {string} value */
+proto.prototype.dynamic_properties.prototype.setWeightedVpsVote = function(value) {
+  jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
+/**
+ * optional string weighted_vps_dapp = 23;
+ * @return {string}
+ */
+proto.prototype.dynamic_properties.prototype.getWeightedVpsDapp = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
+};
+
+
+/** @param {string} value */
+proto.prototype.dynamic_properties.prototype.setWeightedVpsDapp = function(value) {
+  jspb.Message.setProto3StringField(this, 23, value);
+};
+
+
+/**
+ * optional vest claimed_post_rewards = 24;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getClaimedPostRewards = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 24));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setClaimedPostRewards = function(value) {
+  jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearClaimedPostRewards = function() {
+  this.setClaimedPostRewards(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasClaimedPostRewards = function() {
   return jspb.Message.getField(this, 24) != null;
 };
 
 
 /**
- * optional vest post_dapp_rewards = 25;
+ * optional vest claimed_reply_rewards = 25;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.dynamic_properties.prototype.getPostDappRewards = function() {
+proto.prototype.dynamic_properties.prototype.getClaimedReplyRewards = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, proto.prototype.vest, 25));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setPostDappRewards = function(value) {
+proto.prototype.dynamic_properties.prototype.setClaimedReplyRewards = function(value) {
   jspb.Message.setWrapperField(this, 25, value);
 };
 
 
-proto.prototype.dynamic_properties.prototype.clearPostDappRewards = function() {
-  this.setPostDappRewards(undefined);
+proto.prototype.dynamic_properties.prototype.clearClaimedReplyRewards = function() {
+  this.setClaimedReplyRewards(undefined);
 };
 
 
@@ -3147,29 +3223,29 @@ proto.prototype.dynamic_properties.prototype.clearPostDappRewards = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.dynamic_properties.prototype.hasPostDappRewards = function() {
+proto.prototype.dynamic_properties.prototype.hasClaimedReplyRewards = function() {
   return jspb.Message.getField(this, 25) != null;
 };
 
 
 /**
- * optional vest voter_rewards = 26;
+ * optional vest claimed_vote_rewards = 26;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.dynamic_properties.prototype.getVoterRewards = function() {
+proto.prototype.dynamic_properties.prototype.getClaimedVoteRewards = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, proto.prototype.vest, 26));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setVoterRewards = function(value) {
+proto.prototype.dynamic_properties.prototype.setClaimedVoteRewards = function(value) {
   jspb.Message.setWrapperField(this, 26, value);
 };
 
 
-proto.prototype.dynamic_properties.prototype.clearVoterRewards = function() {
-  this.setVoterRewards(undefined);
+proto.prototype.dynamic_properties.prototype.clearClaimedVoteRewards = function() {
+  this.setClaimedVoteRewards(undefined);
 };
 
 
@@ -3177,29 +3253,29 @@ proto.prototype.dynamic_properties.prototype.clearVoterRewards = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.dynamic_properties.prototype.hasVoterRewards = function() {
+proto.prototype.dynamic_properties.prototype.hasClaimedVoteRewards = function() {
   return jspb.Message.getField(this, 26) != null;
 };
 
 
 /**
- * optional vest reply_rewards = 27;
+ * optional vest claimed_dapp_rewards = 27;
  * @return {?proto.prototype.vest}
  */
-proto.prototype.dynamic_properties.prototype.getReplyRewards = function() {
+proto.prototype.dynamic_properties.prototype.getClaimedDappRewards = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, proto.prototype.vest, 27));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setReplyRewards = function(value) {
+proto.prototype.dynamic_properties.prototype.setClaimedDappRewards = function(value) {
   jspb.Message.setWrapperField(this, 27, value);
 };
 
 
-proto.prototype.dynamic_properties.prototype.clearReplyRewards = function() {
-  this.setReplyRewards(undefined);
+proto.prototype.dynamic_properties.prototype.clearClaimedDappRewards = function() {
+  this.setClaimedDappRewards(undefined);
 };
 
 
@@ -3207,69 +3283,24 @@ proto.prototype.dynamic_properties.prototype.clearReplyRewards = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.prototype.dynamic_properties.prototype.hasReplyRewards = function() {
+proto.prototype.dynamic_properties.prototype.hasClaimedDappRewards = function() {
   return jspb.Message.getField(this, 27) != null;
 };
 
 
 /**
- * optional string reply_weighted_vps = 28;
- * @return {string}
- */
-proto.prototype.dynamic_properties.prototype.getReplyWeightedVps = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 28, ""));
-};
-
-
-/** @param {string} value */
-proto.prototype.dynamic_properties.prototype.setReplyWeightedVps = function(value) {
-  jspb.Message.setProto3StringField(this, 28, value);
-};
-
-
-/**
- * optional vest reply_dapp_rewards = 29;
- * @return {?proto.prototype.vest}
- */
-proto.prototype.dynamic_properties.prototype.getReplyDappRewards = function() {
-  return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 29));
-};
-
-
-/** @param {?proto.prototype.vest|undefined} value */
-proto.prototype.dynamic_properties.prototype.setReplyDappRewards = function(value) {
-  jspb.Message.setWrapperField(this, 29, value);
-};
-
-
-proto.prototype.dynamic_properties.prototype.clearReplyDappRewards = function() {
-  this.setReplyDappRewards(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.dynamic_properties.prototype.hasReplyDappRewards = function() {
-  return jspb.Message.getField(this, 29) != null;
-};
-
-
-/**
- * optional vest stake_vest = 30;
+ * optional vest stake_vest = 28;
  * @return {?proto.prototype.vest}
  */
 proto.prototype.dynamic_properties.prototype.getStakeVest = function() {
   return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 30));
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 28));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
 proto.prototype.dynamic_properties.prototype.setStakeVest = function(value) {
-  jspb.Message.setWrapperField(this, 30, value);
+  jspb.Message.setWrapperField(this, 28, value);
 };
 
 
@@ -3283,115 +3314,115 @@ proto.prototype.dynamic_properties.prototype.clearStakeVest = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasStakeVest = function() {
-  return jspb.Message.getField(this, 30) != null;
+  return jspb.Message.getField(this, 28) != null;
 };
 
 
 /**
- * optional bool block_producer_boot_completed = 31;
+ * optional bool block_producer_boot_completed = 29;
  * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
  * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
 proto.prototype.dynamic_properties.prototype.getBlockProducerBootCompleted = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 31, false));
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 29, false));
 };
 
 
 /** @param {boolean} value */
 proto.prototype.dynamic_properties.prototype.setBlockProducerBootCompleted = function(value) {
-  jspb.Message.setProto3BooleanField(this, 31, value);
+  jspb.Message.setProto3BooleanField(this, 29, value);
 };
 
 
 /**
- * optional uint64 stamina_free = 32;
+ * optional uint64 stamina_free = 30;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getStaminaFree = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 32, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 30, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setStaminaFree = function(value) {
-  jspb.Message.setProto3IntField(this, 32, value);
+  jspb.Message.setProto3IntField(this, 30, value);
 };
 
 
 /**
- * optional uint64 tps_expected = 33;
+ * optional uint64 tps_expected = 31;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getTpsExpected = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 33, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 31, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setTpsExpected = function(value) {
-  jspb.Message.setProto3IntField(this, 33, value);
+  jspb.Message.setProto3IntField(this, 31, value);
 };
 
 
 /**
- * optional uint64 avg_tps_update_block = 34;
+ * optional uint64 avg_tps_update_block = 32;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getAvgTpsUpdateBlock = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 34, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 32, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setAvgTpsUpdateBlock = function(value) {
-  jspb.Message.setProto3IntField(this, 34, value);
+  jspb.Message.setProto3IntField(this, 32, value);
 };
 
 
 /**
- * optional uint64 avg_tps_in_window = 35;
+ * optional uint64 avg_tps_in_window = 33;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getAvgTpsInWindow = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 35, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 33, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setAvgTpsInWindow = function(value) {
-  jspb.Message.setProto3IntField(this, 35, value);
+  jspb.Message.setProto3IntField(this, 33, value);
 };
 
 
 /**
- * optional uint64 one_day_stamina = 36;
+ * optional uint64 one_day_stamina = 34;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getOneDayStamina = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 36, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 34, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setOneDayStamina = function(value) {
-  jspb.Message.setProto3IntField(this, 36, value);
+  jspb.Message.setProto3IntField(this, 34, value);
 };
 
 
 /**
- * optional coin account_create_fee = 37;
+ * optional coin account_create_fee = 35;
  * @return {?proto.prototype.coin}
  */
 proto.prototype.dynamic_properties.prototype.getAccountCreateFee = function() {
   return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.coin, 37));
+    jspb.Message.getWrapperField(this, proto.prototype.coin, 35));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
 proto.prototype.dynamic_properties.prototype.setAccountCreateFee = function(value) {
-  jspb.Message.setWrapperField(this, 37, value);
+  jspb.Message.setWrapperField(this, 35, value);
 };
 
 
@@ -3405,23 +3436,23 @@ proto.prototype.dynamic_properties.prototype.clearAccountCreateFee = function() 
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasAccountCreateFee = function() {
-  return jspb.Message.getField(this, 37) != null;
+  return jspb.Message.getField(this, 35) != null;
 };
 
 
 /**
- * optional account_name reputation_admin = 38;
+ * optional account_name reputation_admin = 36;
  * @return {?proto.prototype.account_name}
  */
 proto.prototype.dynamic_properties.prototype.getReputationAdmin = function() {
   return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.account_name, 38));
+    jspb.Message.getWrapperField(this, proto.prototype.account_name, 36));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
 proto.prototype.dynamic_properties.prototype.setReputationAdmin = function(value) {
-  jspb.Message.setWrapperField(this, 38, value);
+  jspb.Message.setWrapperField(this, 36, value);
 };
 
 
@@ -3435,68 +3466,68 @@ proto.prototype.dynamic_properties.prototype.clearReputationAdmin = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasReputationAdmin = function() {
-  return jspb.Message.getField(this, 38) != null;
+  return jspb.Message.getField(this, 36) != null;
 };
 
 
 /**
- * optional uint64 current_epoch_start_block = 39;
+ * optional uint64 current_epoch_start_block = 37;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getCurrentEpochStartBlock = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 39, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 37, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setCurrentEpochStartBlock = function(value) {
-  jspb.Message.setProto3IntField(this, 39, value);
+  jspb.Message.setProto3IntField(this, 37, value);
 };
 
 
 /**
- * optional uint64 epoch_duration = 40;
+ * optional uint64 epoch_duration = 38;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getEpochDuration = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 40, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 38, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setEpochDuration = function(value) {
-  jspb.Message.setProto3IntField(this, 40, value);
+  jspb.Message.setProto3IntField(this, 38, value);
 };
 
 
 /**
- * optional uint32 top_n_acquire_free_token = 41;
+ * optional uint32 top_n_acquire_free_token = 39;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getTopNAcquireFreeToken = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 41, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 39, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setTopNAcquireFreeToken = function(value) {
-  jspb.Message.setProto3IntField(this, 41, value);
+  jspb.Message.setProto3IntField(this, 39, value);
 };
 
 
 /**
- * optional coin per_ticket_price = 42;
+ * optional coin per_ticket_price = 40;
  * @return {?proto.prototype.coin}
  */
 proto.prototype.dynamic_properties.prototype.getPerTicketPrice = function() {
   return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.coin, 42));
+    jspb.Message.getWrapperField(this, proto.prototype.coin, 40));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
 proto.prototype.dynamic_properties.prototype.setPerTicketPrice = function(value) {
-  jspb.Message.setWrapperField(this, 42, value);
+  jspb.Message.setWrapperField(this, 40, value);
 };
 
 
@@ -3510,38 +3541,38 @@ proto.prototype.dynamic_properties.prototype.clearPerTicketPrice = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasPerTicketPrice = function() {
-  return jspb.Message.getField(this, 42) != null;
+  return jspb.Message.getField(this, 40) != null;
 };
 
 
 /**
- * optional uint64 per_ticket_weight = 43;
+ * optional uint64 per_ticket_weight = 41;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getPerTicketWeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 43, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 41, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setPerTicketWeight = function(value) {
-  jspb.Message.setProto3IntField(this, 43, value);
+  jspb.Message.setProto3IntField(this, 41, value);
 };
 
 
 /**
- * optional vest tickets_income = 44;
+ * optional vest tickets_income = 42;
  * @return {?proto.prototype.vest}
  */
 proto.prototype.dynamic_properties.prototype.getTicketsIncome = function() {
   return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.vest, 44));
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 42));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
 proto.prototype.dynamic_properties.prototype.setTicketsIncome = function(value) {
-  jspb.Message.setWrapperField(this, 44, value);
+  jspb.Message.setWrapperField(this, 42, value);
 };
 
 
@@ -3555,38 +3586,38 @@ proto.prototype.dynamic_properties.prototype.clearTicketsIncome = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasTicketsIncome = function() {
-  return jspb.Message.getField(this, 44) != null;
+  return jspb.Message.getField(this, 42) != null;
 };
 
 
 /**
- * optional uint64 charged_tickets_num = 45;
+ * optional uint64 charged_tickets_num = 43;
  * @return {number}
  */
 proto.prototype.dynamic_properties.prototype.getChargedTicketsNum = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 45, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 43, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.dynamic_properties.prototype.setChargedTicketsNum = function(value) {
-  jspb.Message.setProto3IntField(this, 45, value);
+  jspb.Message.setProto3IntField(this, 43, value);
 };
 
 
 /**
- * optional account_name copyright_admin = 46;
+ * optional account_name copyright_admin = 44;
  * @return {?proto.prototype.account_name}
  */
 proto.prototype.dynamic_properties.prototype.getCopyrightAdmin = function() {
   return /** @type{?proto.prototype.account_name} */ (
-    jspb.Message.getWrapperField(this, proto.prototype.account_name, 46));
+    jspb.Message.getWrapperField(this, proto.prototype.account_name, 44));
 };
 
 
 /** @param {?proto.prototype.account_name|undefined} value */
 proto.prototype.dynamic_properties.prototype.setCopyrightAdmin = function(value) {
-  jspb.Message.setWrapperField(this, 46, value);
+  jspb.Message.setWrapperField(this, 44, value);
 };
 
 
@@ -3600,7 +3631,37 @@ proto.prototype.dynamic_properties.prototype.clearCopyrightAdmin = function() {
  * @return {!boolean}
  */
 proto.prototype.dynamic_properties.prototype.hasCopyrightAdmin = function() {
-  return jspb.Message.getField(this, 46) != null;
+  return jspb.Message.getField(this, 44) != null;
+};
+
+
+/**
+ * optional vest tickets_bp_bonus = 45;
+ * @return {?proto.prototype.vest}
+ */
+proto.prototype.dynamic_properties.prototype.getTicketsBpBonus = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, proto.prototype.vest, 45));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.prototype.dynamic_properties.prototype.setTicketsBpBonus = function(value) {
+  jspb.Message.setWrapperField(this, 45, value);
+};
+
+
+proto.prototype.dynamic_properties.prototype.clearTicketsBpBonus = function() {
+  this.setTicketsBpBonus(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.prototype.dynamic_properties.prototype.hasTicketsBpBonus = function() {
+  return jspb.Message.getField(this, 45) != null;
 };
 
 

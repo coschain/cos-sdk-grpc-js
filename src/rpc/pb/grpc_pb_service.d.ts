@@ -337,6 +337,24 @@ type ApiServiceGetAccountListByVest = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetAccountListResponse;
 };
 
+type ApiServiceGetBlockProducerByName = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetBlockProducerByNameRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.BlockProducerResponse;
+};
+
+type ApiServiceGetAccountByPubKey = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetAccountByPubKeyRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.AccountResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -376,6 +394,8 @@ export class ApiService {
   static readonly GetMyStakes: ApiServiceGetMyStakes;
   static readonly GetNodeRunningVersion: ApiServiceGetNodeRunningVersion;
   static readonly GetAccountListByVest: ApiServiceGetAccountListByVest;
+  static readonly GetBlockProducerByName: ApiServiceGetBlockProducerByName;
+  static readonly GetAccountByPubKey: ApiServiceGetAccountByPubKey;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -742,6 +762,24 @@ export class ApiServiceClient {
   getAccountListByVest(
     requestMessage: rpc_pb_grpc_pb.GetAccountListByVestRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAccountListResponse|null) => void
+  ): UnaryResponse;
+  getBlockProducerByName(
+    requestMessage: rpc_pb_grpc_pb.GetBlockProducerByNameRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.BlockProducerResponse|null) => void
+  ): UnaryResponse;
+  getBlockProducerByName(
+    requestMessage: rpc_pb_grpc_pb.GetBlockProducerByNameRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.BlockProducerResponse|null) => void
+  ): UnaryResponse;
+  getAccountByPubKey(
+    requestMessage: rpc_pb_grpc_pb.GetAccountByPubKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountResponse|null) => void
+  ): UnaryResponse;
+  getAccountByPubKey(
+    requestMessage: rpc_pb_grpc_pb.GetAccountByPubKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountResponse|null) => void
   ): UnaryResponse;
 }
 

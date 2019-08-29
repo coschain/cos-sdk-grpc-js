@@ -33,6 +33,7 @@ goog.exportSymbol('proto.grpcpb.EsimateResponse', null, global);
 goog.exportSymbol('proto.grpcpb.FollowerListInfo', null, global);
 goog.exportSymbol('proto.grpcpb.FollowingListInfo', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountByNameRequest', null, global);
+goog.exportSymbol('proto.grpcpb.GetAccountByPubKeyRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountCashoutRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountListByBalanceRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountListByCreTimeRequest', null, global);
@@ -44,6 +45,7 @@ goog.exportSymbol('proto.grpcpb.GetBlkIsIrreversibleByTxIdResponse', null, globa
 goog.exportSymbol('proto.grpcpb.GetBlockCashoutRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetBlockListRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetBlockListResponse', null, global);
+goog.exportSymbol('proto.grpcpb.GetBlockProducerByNameRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetBlockProducerListByVoteCountRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetBlockProducerListRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetBlockProducerListResponse', null, global);
@@ -558,6 +560,148 @@ proto.grpcpb.TableContentResponse.prototype.setTableContent = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.grpcpb.GetAccountByPubKeyRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetAccountByPubKeyRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetAccountByPubKeyRequest.displayName = 'proto.grpcpb.GetAccountByPubKeyRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetAccountByPubKeyRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetAccountByPubKeyRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetAccountByPubKeyRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetAccountByPubKeyRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    publicKey: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetAccountByPubKeyRequest}
+ */
+proto.grpcpb.GetAccountByPubKeyRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetAccountByPubKeyRequest;
+  return proto.grpcpb.GetAccountByPubKeyRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetAccountByPubKeyRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetAccountByPubKeyRequest}
+ */
+proto.grpcpb.GetAccountByPubKeyRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPublicKey(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetAccountByPubKeyRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetAccountByPubKeyRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetAccountByPubKeyRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetAccountByPubKeyRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPublicKey();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string public_key = 1;
+ * @return {string}
+ */
+proto.grpcpb.GetAccountByPubKeyRequest.prototype.getPublicKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetAccountByPubKeyRequest.prototype.setPublicKey = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.grpcpb.GetAccountByNameRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -702,6 +846,165 @@ proto.grpcpb.GetAccountByNameRequest.prototype.clearAccountName = function() {
  * @return {!boolean}
  */
 proto.grpcpb.GetAccountByNameRequest.prototype.hasAccountName = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetBlockProducerByNameRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetBlockProducerByNameRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetBlockProducerByNameRequest.displayName = 'proto.grpcpb.GetBlockProducerByNameRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetBlockProducerByNameRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetBlockProducerByNameRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetBlockProducerByNameRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetBlockProducerByNameRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    bpName: (f = msg.getBpName()) && prototype_type_pb.account_name.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetBlockProducerByNameRequest}
+ */
+proto.grpcpb.GetBlockProducerByNameRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetBlockProducerByNameRequest;
+  return proto.grpcpb.GetBlockProducerByNameRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetBlockProducerByNameRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetBlockProducerByNameRequest}
+ */
+proto.grpcpb.GetBlockProducerByNameRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.setBpName(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetBlockProducerByNameRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetBlockProducerByNameRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetBlockProducerByNameRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetBlockProducerByNameRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getBpName();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      prototype_type_pb.account_name.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional prototype.account_name bp_name = 1;
+ * @return {?proto.prototype.account_name}
+ */
+proto.grpcpb.GetBlockProducerByNameRequest.prototype.getBpName = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 1));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.grpcpb.GetBlockProducerByNameRequest.prototype.setBpName = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.grpcpb.GetBlockProducerByNameRequest.prototype.clearBpName = function() {
+  this.setBpName(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.GetBlockProducerByNameRequest.prototype.hasBpName = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1828,7 +2131,7 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     staminaFreeRemain: jspb.Message.getFieldWithDefault(msg, 12, 0),
     staminaStakeRemain: jspb.Message.getFieldWithDefault(msg, 13, 0),
     staminaMax: jspb.Message.getFieldWithDefault(msg, 14, 0),
-    stakeVest: (f = msg.getStakeVest()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    stakeVestForMe: (f = msg.getStakeVestForMe()) && prototype_type_pb.vest.toObject(includeInstance, f),
     withdrawRemains: (f = msg.getWithdrawRemains()) && prototype_type_pb.vest.toObject(includeInstance, f),
     withdrawEachTime: (f = msg.getWithdrawEachTime()) && prototype_type_pb.vest.toObject(includeInstance, f),
     nextWithdrawTime: (f = msg.getNextWithdrawTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
@@ -1838,7 +2141,8 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     chargedTicket: jspb.Message.getFieldWithDefault(msg, 22, 0),
     freeTicket: jspb.Message.getFieldWithDefault(msg, 23, 0),
     freeze: jspb.Message.getFieldWithDefault(msg, 24, 0),
-    freezeMemo: jspb.Message.getFieldWithDefault(msg, 25, "")
+    freezeMemo: jspb.Message.getFieldWithDefault(msg, 25, ""),
+    stakeVestFromMe: (f = msg.getStakeVestFromMe()) && prototype_type_pb.vest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1940,7 +2244,7 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 15:
       var value = new prototype_type_pb.vest;
       reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
-      msg.setStakeVest(value);
+      msg.setStakeVestForMe(value);
       break;
     case 16:
       var value = new prototype_type_pb.vest;
@@ -1984,6 +2288,11 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 25:
       var value = /** @type {string} */ (reader.readString());
       msg.setFreezeMemo(value);
+      break;
+    case 26:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setStakeVestFromMe(value);
       break;
     default:
       reader.skipField();
@@ -2118,7 +2427,7 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getStakeVest();
+  f = message.getStakeVestForMe();
   if (f != null) {
     writer.writeMessage(
       15,
@@ -2197,6 +2506,14 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
     writer.writeString(
       25,
       f
+    );
+  }
+  f = message.getStakeVestFromMe();
+  if (f != null) {
+    writer.writeMessage(
+      26,
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
 };
@@ -2503,23 +2820,23 @@ proto.grpcpb.AccountInfo.prototype.setStaminaMax = function(value) {
 
 
 /**
- * optional prototype.vest stake_vest = 15;
+ * optional prototype.vest stake_vest_for_me = 15;
  * @return {?proto.prototype.vest}
  */
-proto.grpcpb.AccountInfo.prototype.getStakeVest = function() {
+proto.grpcpb.AccountInfo.prototype.getStakeVestForMe = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.vest, 15));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.grpcpb.AccountInfo.prototype.setStakeVest = function(value) {
+proto.grpcpb.AccountInfo.prototype.setStakeVestForMe = function(value) {
   jspb.Message.setWrapperField(this, 15, value);
 };
 
 
-proto.grpcpb.AccountInfo.prototype.clearStakeVest = function() {
-  this.setStakeVest(undefined);
+proto.grpcpb.AccountInfo.prototype.clearStakeVestForMe = function() {
+  this.setStakeVestForMe(undefined);
 };
 
 
@@ -2527,7 +2844,7 @@ proto.grpcpb.AccountInfo.prototype.clearStakeVest = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.AccountInfo.prototype.hasStakeVest = function() {
+proto.grpcpb.AccountInfo.prototype.hasStakeVestForMe = function() {
   return jspb.Message.getField(this, 15) != null;
 };
 
@@ -2724,6 +3041,36 @@ proto.grpcpb.AccountInfo.prototype.getFreezeMemo = function() {
 /** @param {string} value */
 proto.grpcpb.AccountInfo.prototype.setFreezeMemo = function(value) {
   jspb.Message.setProto3StringField(this, 25, value);
+};
+
+
+/**
+ * optional prototype.vest stake_vest_from_me = 26;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.AccountInfo.prototype.getStakeVestFromMe = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 26));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.AccountInfo.prototype.setStakeVestFromMe = function(value) {
+  jspb.Message.setWrapperField(this, 26, value);
+};
+
+
+proto.grpcpb.AccountInfo.prototype.clearStakeVestFromMe = function() {
+  this.setStakeVestFromMe(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountInfo.prototype.hasStakeVestFromMe = function() {
+  return jspb.Message.getField(this, 26) != null;
 };
 
 
@@ -4598,17 +4945,17 @@ proto.grpcpb.BlockProducerResponse.toObject = function(includeInstance, msg) {
     owner: (f = msg.getOwner()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     createdTime: (f = msg.getCreatedTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
     url: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    voteVest: (f = msg.getVoteVest()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    bpVest: (f = msg.getBpVest()) && prototype_multi_id_pb.bp_vest_id.toObject(includeInstance, f),
     signingKey: (f = msg.getSigningKey()) && prototype_type_pb.public_key_type.toObject(includeInstance, f),
     proposedStaminaFree: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    active: jspb.Message.getFieldWithDefault(msg, 7, false),
-    tpsExpected: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    tpsExpected: jspb.Message.getFieldWithDefault(msg, 7, 0),
     accountCreateFee: (f = msg.getAccountCreateFee()) && prototype_type_pb.coin.toObject(includeInstance, f),
-    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    ticketFlushInterval: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    topNAcquireFreeToken: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    ticketFlushInterval: jspb.Message.getFieldWithDefault(msg, 10, 0),
     perTicketPrice: (f = msg.getPerTicketPrice()) && prototype_type_pb.coin.toObject(includeInstance, f),
-    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    voterCount: jspb.Message.getFieldWithDefault(msg, 14, 0)
+    perTicketWeight: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    voterCount: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    genBlockCount: jspb.Message.getFieldWithDefault(msg, 14, 0)
   };
 
   if (includeInstance) {
@@ -4660,9 +5007,9 @@ proto.grpcpb.BlockProducerResponse.deserializeBinaryFromReader = function(msg, r
       msg.setUrl(value);
       break;
     case 4:
-      var value = new prototype_type_pb.vest;
-      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
-      msg.setVoteVest(value);
+      var value = new prototype_multi_id_pb.bp_vest_id;
+      reader.readMessage(value,prototype_multi_id_pb.bp_vest_id.deserializeBinaryFromReader);
+      msg.setBpVest(value);
       break;
     case 5:
       var value = new prototype_type_pb.public_key_type;
@@ -4674,38 +5021,38 @@ proto.grpcpb.BlockProducerResponse.deserializeBinaryFromReader = function(msg, r
       msg.setProposedStaminaFree(value);
       break;
     case 7:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setActive(value);
-      break;
-    case 8:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTpsExpected(value);
       break;
-    case 9:
+    case 8:
       var value = new prototype_type_pb.coin;
       reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
       msg.setAccountCreateFee(value);
       break;
-    case 10:
+    case 9:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setTopNAcquireFreeToken(value);
       break;
-    case 11:
+    case 10:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTicketFlushInterval(value);
       break;
-    case 12:
+    case 11:
       var value = new prototype_type_pb.coin;
       reader.readMessage(value,prototype_type_pb.coin.deserializeBinaryFromReader);
       msg.setPerTicketPrice(value);
       break;
-    case 13:
+    case 12:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setPerTicketWeight(value);
       break;
-    case 14:
+    case 13:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setVoterCount(value);
+      break;
+    case 14:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setGenBlockCount(value);
       break;
     default:
       reader.skipField();
@@ -4759,12 +5106,12 @@ proto.grpcpb.BlockProducerResponse.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getVoteVest();
+  f = message.getBpVest();
   if (f != null) {
     writer.writeMessage(
       4,
       f,
-      prototype_type_pb.vest.serializeBinaryToWriter
+      prototype_multi_id_pb.bp_vest_id.serializeBinaryToWriter
     );
   }
   f = message.getSigningKey();
@@ -4782,24 +5129,17 @@ proto.grpcpb.BlockProducerResponse.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getActive();
-  if (f) {
-    writer.writeBool(
-      7,
-      f
-    );
-  }
   f = message.getTpsExpected();
   if (f !== 0) {
     writer.writeUint64(
-      8,
+      7,
       f
     );
   }
   f = message.getAccountCreateFee();
   if (f != null) {
     writer.writeMessage(
-      9,
+      8,
       f,
       prototype_type_pb.coin.serializeBinaryToWriter
     );
@@ -4807,21 +5147,21 @@ proto.grpcpb.BlockProducerResponse.serializeBinaryToWriter = function(message, w
   f = message.getTopNAcquireFreeToken();
   if (f !== 0) {
     writer.writeUint32(
-      10,
+      9,
       f
     );
   }
   f = message.getTicketFlushInterval();
   if (f !== 0) {
     writer.writeUint64(
-      11,
+      10,
       f
     );
   }
   f = message.getPerTicketPrice();
   if (f != null) {
     writer.writeMessage(
-      12,
+      11,
       f,
       prototype_type_pb.coin.serializeBinaryToWriter
     );
@@ -4829,11 +5169,18 @@ proto.grpcpb.BlockProducerResponse.serializeBinaryToWriter = function(message, w
   f = message.getPerTicketWeight();
   if (f !== 0) {
     writer.writeUint64(
-      13,
+      12,
       f
     );
   }
   f = message.getVoterCount();
+  if (f !== 0) {
+    writer.writeUint64(
+      13,
+      f
+    );
+  }
+  f = message.getGenBlockCount();
   if (f !== 0) {
     writer.writeUint64(
       14,
@@ -4919,23 +5266,23 @@ proto.grpcpb.BlockProducerResponse.prototype.setUrl = function(value) {
 
 
 /**
- * optional prototype.vest vote_vest = 4;
- * @return {?proto.prototype.vest}
+ * optional prototype.bp_vest_id bp_vest = 4;
+ * @return {?proto.prototype.bp_vest_id}
  */
-proto.grpcpb.BlockProducerResponse.prototype.getVoteVest = function() {
-  return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 4));
+proto.grpcpb.BlockProducerResponse.prototype.getBpVest = function() {
+  return /** @type{?proto.prototype.bp_vest_id} */ (
+    jspb.Message.getWrapperField(this, prototype_multi_id_pb.bp_vest_id, 4));
 };
 
 
-/** @param {?proto.prototype.vest|undefined} value */
-proto.grpcpb.BlockProducerResponse.prototype.setVoteVest = function(value) {
+/** @param {?proto.prototype.bp_vest_id|undefined} value */
+proto.grpcpb.BlockProducerResponse.prototype.setBpVest = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
 
-proto.grpcpb.BlockProducerResponse.prototype.clearVoteVest = function() {
-  this.setVoteVest(undefined);
+proto.grpcpb.BlockProducerResponse.prototype.clearBpVest = function() {
+  this.setBpVest(undefined);
 };
 
 
@@ -4943,7 +5290,7 @@ proto.grpcpb.BlockProducerResponse.prototype.clearVoteVest = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.grpcpb.BlockProducerResponse.prototype.hasVoteVest = function() {
+proto.grpcpb.BlockProducerResponse.prototype.hasBpVest = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -4994,50 +5341,33 @@ proto.grpcpb.BlockProducerResponse.prototype.setProposedStaminaFree = function(v
 
 
 /**
- * optional bool active = 7;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
- */
-proto.grpcpb.BlockProducerResponse.prototype.getActive = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 7, false));
-};
-
-
-/** @param {boolean} value */
-proto.grpcpb.BlockProducerResponse.prototype.setActive = function(value) {
-  jspb.Message.setProto3BooleanField(this, 7, value);
-};
-
-
-/**
- * optional uint64 tps_expected = 8;
+ * optional uint64 tps_expected = 7;
  * @return {number}
  */
 proto.grpcpb.BlockProducerResponse.prototype.getTpsExpected = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.BlockProducerResponse.prototype.setTpsExpected = function(value) {
-  jspb.Message.setProto3IntField(this, 8, value);
+  jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
 /**
- * optional prototype.coin account_create_fee = 9;
+ * optional prototype.coin account_create_fee = 8;
  * @return {?proto.prototype.coin}
  */
 proto.grpcpb.BlockProducerResponse.prototype.getAccountCreateFee = function() {
   return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 9));
+    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 8));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
 proto.grpcpb.BlockProducerResponse.prototype.setAccountCreateFee = function(value) {
-  jspb.Message.setWrapperField(this, 9, value);
+  jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -5051,53 +5381,53 @@ proto.grpcpb.BlockProducerResponse.prototype.clearAccountCreateFee = function() 
  * @return {!boolean}
  */
 proto.grpcpb.BlockProducerResponse.prototype.hasAccountCreateFee = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional uint32 top_n_acquire_free_token = 10;
+ * optional uint32 top_n_acquire_free_token = 9;
  * @return {number}
  */
 proto.grpcpb.BlockProducerResponse.prototype.getTopNAcquireFreeToken = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.BlockProducerResponse.prototype.setTopNAcquireFreeToken = function(value) {
-  jspb.Message.setProto3IntField(this, 10, value);
+  jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
 /**
- * optional uint64 ticket_flush_interval = 11;
+ * optional uint64 ticket_flush_interval = 10;
  * @return {number}
  */
 proto.grpcpb.BlockProducerResponse.prototype.getTicketFlushInterval = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.BlockProducerResponse.prototype.setTicketFlushInterval = function(value) {
-  jspb.Message.setProto3IntField(this, 11, value);
+  jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
 /**
- * optional prototype.coin per_ticket_price = 12;
+ * optional prototype.coin per_ticket_price = 11;
  * @return {?proto.prototype.coin}
  */
 proto.grpcpb.BlockProducerResponse.prototype.getPerTicketPrice = function() {
   return /** @type{?proto.prototype.coin} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 12));
+    jspb.Message.getWrapperField(this, prototype_type_pb.coin, 11));
 };
 
 
 /** @param {?proto.prototype.coin|undefined} value */
 proto.grpcpb.BlockProducerResponse.prototype.setPerTicketPrice = function(value) {
-  jspb.Message.setWrapperField(this, 12, value);
+  jspb.Message.setWrapperField(this, 11, value);
 };
 
 
@@ -5111,36 +5441,51 @@ proto.grpcpb.BlockProducerResponse.prototype.clearPerTicketPrice = function() {
  * @return {!boolean}
  */
 proto.grpcpb.BlockProducerResponse.prototype.hasPerTicketPrice = function() {
-  return jspb.Message.getField(this, 12) != null;
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
 /**
- * optional uint64 per_ticket_weight = 13;
+ * optional uint64 per_ticket_weight = 12;
  * @return {number}
  */
 proto.grpcpb.BlockProducerResponse.prototype.getPerTicketWeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.BlockProducerResponse.prototype.setPerTicketWeight = function(value) {
-  jspb.Message.setProto3IntField(this, 13, value);
+  jspb.Message.setProto3IntField(this, 12, value);
 };
 
 
 /**
- * optional uint64 voter_count = 14;
+ * optional uint64 voter_count = 13;
  * @return {number}
  */
 proto.grpcpb.BlockProducerResponse.prototype.getVoterCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.BlockProducerResponse.prototype.setVoterCount = function(value) {
+  jspb.Message.setProto3IntField(this, 13, value);
+};
+
+
+/**
+ * optional uint64 gen_block_count = 14;
+ * @return {number}
+ */
+proto.grpcpb.BlockProducerResponse.prototype.getGenBlockCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.BlockProducerResponse.prototype.setGenBlockCount = function(value) {
   jspb.Message.setProto3IntField(this, 14, value);
 };
 
@@ -8072,7 +8417,8 @@ proto.grpcpb.BroadcastTrxRequest.prototype.toObject = function(opt_includeInstan
 proto.grpcpb.BroadcastTrxRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     transaction: (f = msg.getTransaction()) && prototype_transaction_pb.signed_transaction.toObject(includeInstance, f),
-    onlyDeliver: jspb.Message.getFieldWithDefault(msg, 2, false)
+    onlyDeliver: jspb.Message.getFieldWithDefault(msg, 2, false),
+    finality: jspb.Message.getFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -8118,6 +8464,10 @@ proto.grpcpb.BroadcastTrxRequest.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setOnlyDeliver(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setFinality(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8159,6 +8509,13 @@ proto.grpcpb.BroadcastTrxRequest.serializeBinaryToWriter = function(message, wri
   if (f) {
     writer.writeBool(
       2,
+      f
+    );
+  }
+  f = message.getFinality();
+  if (f) {
+    writer.writeBool(
+      3,
       f
     );
   }
@@ -8212,6 +8569,23 @@ proto.grpcpb.BroadcastTrxRequest.prototype.setOnlyDeliver = function(value) {
 };
 
 
+/**
+ * optional bool finality = 3;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.grpcpb.BroadcastTrxRequest.prototype.getFinality = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 3, false));
+};
+
+
+/** @param {boolean} value */
+proto.grpcpb.BroadcastTrxRequest.prototype.setFinality = function(value) {
+  jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -8261,7 +8635,8 @@ proto.grpcpb.BroadcastTrxResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     invoice: (f = msg.getInvoice()) && prototype_transaction_pb.transaction_receipt_with_info.toObject(includeInstance, f),
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    msg: jspb.Message.getFieldWithDefault(msg, 3, "")
+    msg: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    finality: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -8311,6 +8686,10 @@ proto.grpcpb.BroadcastTrxResponse.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setMsg(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setFinality(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8359,6 +8738,13 @@ proto.grpcpb.BroadcastTrxResponse.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getFinality();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -8422,6 +8808,23 @@ proto.grpcpb.BroadcastTrxResponse.prototype.getMsg = function() {
 /** @param {string} value */
 proto.grpcpb.BroadcastTrxResponse.prototype.setMsg = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional bool finality = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.grpcpb.BroadcastTrxResponse.prototype.getFinality = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.grpcpb.BroadcastTrxResponse.prototype.setFinality = function(value) {
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 

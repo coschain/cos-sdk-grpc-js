@@ -10,8 +10,7 @@ import {
     follow_operation,
     vote_operation,
     transfer_to_vest_operation,
-    claim_operation,
-    claim_all_operation, contract_deploy_operation, contract_apply_operation,
+     contract_deploy_operation, contract_apply_operation,
     convert_vest_operation,
     stake_operation, un_stake_operation,
     bp_update_operation,
@@ -43,10 +42,6 @@ transaction.prototype.addOperation = function(op: any){
         operation.setOp9(op);
     } else if (op instanceof transfer_to_vest_operation) {
         operation.setOp10(op);
-    } else if (op instanceof claim_operation) {
-        operation.setOp11(op);
-    } else if (op instanceof claim_all_operation) {
-        operation.setOp12(op);
     } else if (op instanceof contract_deploy_operation) {
         operation.setOp13(op);
     } else if (op instanceof contract_apply_operation) {
@@ -96,10 +91,6 @@ const sender = function (op) {
     // @ts-ignore
     if (op.hasOp10()) return op.getOp10().getFrom().getValue();
     // @ts-ignore
-    if (op.hasOp11()) return op.getOp11().getAccount().getValue();
-    // @ts-ignore
-    if (op.hasOp12()) return op.getOp12().getAccount().getValue();
-    // @ts-ignore
     if (op.hasOp13()) return op.getOp13().getOwner().getValue();
     // @ts-ignore
     if (op.hasOp14()) return op.getOp14().getCaller().getValue();
@@ -147,10 +138,6 @@ const getActionName = function (op) {
     // @ts-ignore
     if (op.hasOp10()) return "Transfer To Vesting";
     // @ts-ignore
-    if (op.hasOp11()) return "Claim";
-    // @ts-ignore
-    if (op.hasOp12()) return "ClaimAll";
-    // @ts-ignore
     if (op.hasOp13()) return "Contract Deploy";
     // @ts-ignore
     if (op.hasOp14()) return "Contract Apply";
@@ -186,10 +173,6 @@ const getActionObject = function (op) {
     if (op.hasOp9()) return op.getOp9().toObject();
     // @ts-ignore
     if (op.hasOp10()) return op.getOp10().toObject();
-    // @ts-ignore
-    if (op.hasOp11()) return op.getOp11().toObject();
-    // @ts-ignore
-    if (op.hasOp12()) return op.getOp12().toObject();
     // @ts-ignore
     if (op.hasOp13()) return op.getOp13().toObject();
     // @ts-ignore

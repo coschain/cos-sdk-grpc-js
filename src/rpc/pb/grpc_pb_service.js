@@ -343,6 +343,24 @@ ApiService.GetAccountListByVest = {
   responseType: rpc_pb_grpc_pb.GetAccountListResponse
 };
 
+ApiService.GetBlockProducerByName = {
+  methodName: "GetBlockProducerByName",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetBlockProducerByNameRequest,
+  responseType: rpc_pb_grpc_pb.BlockProducerResponse
+};
+
+ApiService.GetAccountByPubKey = {
+  methodName: "GetAccountByPubKey",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetAccountByPubKeyRequest,
+  responseType: rpc_pb_grpc_pb.AccountResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -1471,6 +1489,68 @@ ApiServiceClient.prototype.getAccountListByVest = function getAccountListByVest(
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetAccountListByVest, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getBlockProducerByName = function getBlockProducerByName(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetBlockProducerByName, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getAccountByPubKey = function getAccountByPubKey(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetAccountByPubKey, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

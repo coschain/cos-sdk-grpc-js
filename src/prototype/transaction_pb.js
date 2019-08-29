@@ -51,7 +51,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.prototype.operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]];
+proto.prototype.operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,13,14,16,17,18,19,20,21,22]];
 
 /**
  * @enum {number}
@@ -68,11 +68,8 @@ proto.prototype.operation.OpCase = {
   OP8: 8,
   OP9: 9,
   OP10: 10,
-  OP11: 11,
-  OP12: 12,
   OP13: 13,
   OP14: 14,
-  OP15: 15,
   OP16: 16,
   OP17: 17,
   OP18: 18,
@@ -128,11 +125,8 @@ proto.prototype.operation.toObject = function(includeInstance, msg) {
     op8: (f = msg.getOp8()) && prototype_operation_pb.follow_operation.toObject(includeInstance, f),
     op9: (f = msg.getOp9()) && prototype_operation_pb.vote_operation.toObject(includeInstance, f),
     op10: (f = msg.getOp10()) && prototype_operation_pb.transfer_to_vest_operation.toObject(includeInstance, f),
-    op11: (f = msg.getOp11()) && prototype_operation_pb.claim_operation.toObject(includeInstance, f),
-    op12: (f = msg.getOp12()) && prototype_operation_pb.claim_all_operation.toObject(includeInstance, f),
     op13: (f = msg.getOp13()) && prototype_operation_pb.contract_deploy_operation.toObject(includeInstance, f),
     op14: (f = msg.getOp14()) && prototype_operation_pb.contract_apply_operation.toObject(includeInstance, f),
-    op15: (f = msg.getOp15()) && prototype_operation_pb.report_operation.toObject(includeInstance, f),
     op16: (f = msg.getOp16()) && prototype_operation_pb.convert_vest_operation.toObject(includeInstance, f),
     op17: (f = msg.getOp17()) && prototype_operation_pb.stake_operation.toObject(includeInstance, f),
     op18: (f = msg.getOp18()) && prototype_operation_pb.un_stake_operation.toObject(includeInstance, f),
@@ -226,16 +220,6 @@ proto.prototype.operation.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,prototype_operation_pb.transfer_to_vest_operation.deserializeBinaryFromReader);
       msg.setOp10(value);
       break;
-    case 11:
-      var value = new prototype_operation_pb.claim_operation;
-      reader.readMessage(value,prototype_operation_pb.claim_operation.deserializeBinaryFromReader);
-      msg.setOp11(value);
-      break;
-    case 12:
-      var value = new prototype_operation_pb.claim_all_operation;
-      reader.readMessage(value,prototype_operation_pb.claim_all_operation.deserializeBinaryFromReader);
-      msg.setOp12(value);
-      break;
     case 13:
       var value = new prototype_operation_pb.contract_deploy_operation;
       reader.readMessage(value,prototype_operation_pb.contract_deploy_operation.deserializeBinaryFromReader);
@@ -245,11 +229,6 @@ proto.prototype.operation.deserializeBinaryFromReader = function(msg, reader) {
       var value = new prototype_operation_pb.contract_apply_operation;
       reader.readMessage(value,prototype_operation_pb.contract_apply_operation.deserializeBinaryFromReader);
       msg.setOp14(value);
-      break;
-    case 15:
-      var value = new prototype_operation_pb.report_operation;
-      reader.readMessage(value,prototype_operation_pb.report_operation.deserializeBinaryFromReader);
-      msg.setOp15(value);
       break;
     case 16:
       var value = new prototype_operation_pb.convert_vest_operation;
@@ -395,22 +374,6 @@ proto.prototype.operation.serializeBinaryToWriter = function(message, writer) {
       prototype_operation_pb.transfer_to_vest_operation.serializeBinaryToWriter
     );
   }
-  f = message.getOp11();
-  if (f != null) {
-    writer.writeMessage(
-      11,
-      f,
-      prototype_operation_pb.claim_operation.serializeBinaryToWriter
-    );
-  }
-  f = message.getOp12();
-  if (f != null) {
-    writer.writeMessage(
-      12,
-      f,
-      prototype_operation_pb.claim_all_operation.serializeBinaryToWriter
-    );
-  }
   f = message.getOp13();
   if (f != null) {
     writer.writeMessage(
@@ -425,14 +388,6 @@ proto.prototype.operation.serializeBinaryToWriter = function(message, writer) {
       14,
       f,
       prototype_operation_pb.contract_apply_operation.serializeBinaryToWriter
-    );
-  }
-  f = message.getOp15();
-  if (f != null) {
-    writer.writeMessage(
-      15,
-      f,
-      prototype_operation_pb.report_operation.serializeBinaryToWriter
     );
   }
   f = message.getOp16();
@@ -795,66 +750,6 @@ proto.prototype.operation.prototype.hasOp10 = function() {
 
 
 /**
- * optional claim_operation op11 = 11;
- * @return {?proto.prototype.claim_operation}
- */
-proto.prototype.operation.prototype.getOp11 = function() {
-  return /** @type{?proto.prototype.claim_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.claim_operation, 11));
-};
-
-
-/** @param {?proto.prototype.claim_operation|undefined} value */
-proto.prototype.operation.prototype.setOp11 = function(value) {
-  jspb.Message.setOneofWrapperField(this, 11, proto.prototype.operation.oneofGroups_[0], value);
-};
-
-
-proto.prototype.operation.prototype.clearOp11 = function() {
-  this.setOp11(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.operation.prototype.hasOp11 = function() {
-  return jspb.Message.getField(this, 11) != null;
-};
-
-
-/**
- * optional claim_all_operation op12 = 12;
- * @return {?proto.prototype.claim_all_operation}
- */
-proto.prototype.operation.prototype.getOp12 = function() {
-  return /** @type{?proto.prototype.claim_all_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.claim_all_operation, 12));
-};
-
-
-/** @param {?proto.prototype.claim_all_operation|undefined} value */
-proto.prototype.operation.prototype.setOp12 = function(value) {
-  jspb.Message.setOneofWrapperField(this, 12, proto.prototype.operation.oneofGroups_[0], value);
-};
-
-
-proto.prototype.operation.prototype.clearOp12 = function() {
-  this.setOp12(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.operation.prototype.hasOp12 = function() {
-  return jspb.Message.getField(this, 12) != null;
-};
-
-
-/**
  * optional contract_deploy_operation op13 = 13;
  * @return {?proto.prototype.contract_deploy_operation}
  */
@@ -911,36 +806,6 @@ proto.prototype.operation.prototype.clearOp14 = function() {
  */
 proto.prototype.operation.prototype.hasOp14 = function() {
   return jspb.Message.getField(this, 14) != null;
-};
-
-
-/**
- * optional report_operation op15 = 15;
- * @return {?proto.prototype.report_operation}
- */
-proto.prototype.operation.prototype.getOp15 = function() {
-  return /** @type{?proto.prototype.report_operation} */ (
-    jspb.Message.getWrapperField(this, prototype_operation_pb.report_operation, 15));
-};
-
-
-/** @param {?proto.prototype.report_operation|undefined} value */
-proto.prototype.operation.prototype.setOp15 = function(value) {
-  jspb.Message.setOneofWrapperField(this, 15, proto.prototype.operation.oneofGroups_[0], value);
-};
-
-
-proto.prototype.operation.prototype.clearOp15 = function() {
-  this.setOp15(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.prototype.operation.prototype.hasOp15 = function() {
-  return jspb.Message.getField(this, 15) != null;
 };
 
 
@@ -1671,8 +1536,8 @@ proto.prototype.operation_receipt_with_info.prototype.toObject = function(opt_in
 proto.prototype.operation_receipt_with_info.toObject = function(includeInstance, msg) {
   var f, obj = {
     status: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    gasUsage: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    vmConsole: jspb.Message.getFieldWithDefault(msg, 6, "")
+    gasUsage: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    vmConsole: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1713,11 +1578,11 @@ proto.prototype.operation_receipt_with_info.deserializeBinaryFromReader = functi
       var value = /** @type {number} */ (reader.readUint32());
       msg.setStatus(value);
       break;
-    case 5:
+    case 2:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setGasUsage(value);
       break;
-    case 6:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setVmConsole(value);
       break;
@@ -1760,14 +1625,14 @@ proto.prototype.operation_receipt_with_info.serializeBinaryToWriter = function(m
   f = message.getGasUsage();
   if (f !== 0) {
     writer.writeUint64(
-      5,
+      2,
       f
     );
   }
   f = message.getVmConsole();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      3,
       f
     );
   }
@@ -1790,32 +1655,32 @@ proto.prototype.operation_receipt_with_info.prototype.setStatus = function(value
 
 
 /**
- * optional uint64 gas_usage = 5;
+ * optional uint64 gas_usage = 2;
  * @return {number}
  */
 proto.prototype.operation_receipt_with_info.prototype.getGasUsage = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /** @param {number} value */
 proto.prototype.operation_receipt_with_info.prototype.setGasUsage = function(value) {
-  jspb.Message.setProto3IntField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string vm_console = 6;
+ * optional string vm_console = 3;
  * @return {string}
  */
 proto.prototype.operation_receipt_with_info.prototype.getVmConsole = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
 proto.prototype.operation_receipt_with_info.prototype.setVmConsole = function(value) {
-  jspb.Message.setProto3StringField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
