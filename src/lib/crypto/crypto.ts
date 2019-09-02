@@ -2,8 +2,8 @@ import bs58 = require('bs58');
 import { randomBytes, createHash, createCipheriv, createHmac, createDecipheriv } from 'crypto';
 import { Buffer } from 'buffer'
 import secp256k1 = require('secp256k1');
-// import * as bip39 from 'bip39';
-// import * as bip32 from 'bip32';
+import * as bip39 from 'bip39';
+import * as bip32 from 'bip32';
 
 const PasswordLength = 32;
 const COS_PATH = "m/44'/3077'/0'/0/0";
@@ -193,33 +193,33 @@ export function decryptPrivKey(cipher:string, passphrase:string, iv:string, mac:
 }
 
 export function generateMnemonic() {
-    // return bip39.generateMnemonic(256);
+    return bip39.generateMnemonic(256);
 }
 
 export function generateKeyPairsFromMnemonic(words: string) {
-    // const valid : boolean = bip39.validateMnemonic(words);
-    //
-    // if (!valid) {
-    //     return null;
-    // }
-    //
-    // const seed : Buffer = bip39.mnemonicToSeedSync(words);
-    // const masterKey = bip32.fromSeed(seed);
-    // const derivedPath = masterKey.derivePath(COS_PATH);
-    //
-    // if (derivedPath.privateKey === undefined || derivedPath.privateKey === null) {
-    //     return null;
-    // }
-    //
-    // const newPri = new PrivKey(derivedPath.privateKey);
-    // const newPub = newPri.pubKey();
-    //
-    // if (newPri && newPub) {
-    //     return {
-    //         privateKey: newPri.toWIF(),
-    //         publicKey: newPub.toWIF(),
-    //     };
-    // }
+    const valid : boolean = bip39.validateMnemonic(words);
+
+    if (!valid) {
+        return null;
+    }
+
+    const seed : Buffer = bip39.mnemonicToSeedSync(words);
+    const masterKey = bip32.fromSeed(seed);
+    const derivedPath = masterKey.derivePath(COS_PATH);
+
+    if (derivedPath.privateKey === undefined || derivedPath.privateKey === null) {
+        return null;
+    }
+
+    const newPri = new PrivKey(derivedPath.privateKey);
+    const newPub = newPri.pubKey();
+
+    if (newPri && newPub) {
+        return {
+            privateKey: newPri.toWIF(),
+            publicKey: newPub.toWIF(),
+        };
+    }
 
     return null;
 }
