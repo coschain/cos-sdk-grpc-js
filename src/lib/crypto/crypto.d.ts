@@ -30,3 +30,5 @@ export declare function generateEncryptedJson(name: string, passphrase: string, 
     "Version": number;
 };
 export declare function decryptPrivKey(cipher: string, passphrase: string, iv: string, mac: string): string;
+export declare function generateMnemonic(): void;
+export declare function generateKeyPairsFromMnemonic(words: string): null;
