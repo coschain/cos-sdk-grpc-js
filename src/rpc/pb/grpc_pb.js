@@ -2133,16 +2133,19 @@ proto.grpcpb.AccountInfo.toObject = function(includeInstance, msg) {
     staminaMax: jspb.Message.getFieldWithDefault(msg, 14, 0),
     stakeVestForMe: (f = msg.getStakeVestForMe()) && prototype_type_pb.vest.toObject(includeInstance, f),
     withdrawRemains: (f = msg.getWithdrawRemains()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    hasWithdrawn: (f = msg.getHasWithdrawn()) && prototype_type_pb.vest.toObject(includeInstance, f),
     withdrawEachTime: (f = msg.getWithdrawEachTime()) && prototype_type_pb.vest.toObject(includeInstance, f),
     nextWithdrawTime: (f = msg.getNextWithdrawTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
-    bpVoteCount: jspb.Message.getFieldWithDefault(msg, 19, 0),
-    reputation: jspb.Message.getFieldWithDefault(msg, 20, 0),
-    reputationMemo: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    chargedTicket: jspb.Message.getFieldWithDefault(msg, 22, 0),
-    freeTicket: jspb.Message.getFieldWithDefault(msg, 23, 0),
-    freeze: jspb.Message.getFieldWithDefault(msg, 24, 0),
-    freezeMemo: jspb.Message.getFieldWithDefault(msg, 25, ""),
-    stakeVestFromMe: (f = msg.getStakeVestFromMe()) && prototype_type_pb.vest.toObject(includeInstance, f)
+    startWithdrawTime: (f = msg.getStartWithdrawTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f),
+    bpVoteCount: jspb.Message.getFieldWithDefault(msg, 21, 0),
+    reputation: jspb.Message.getFieldWithDefault(msg, 22, 0),
+    reputationMemo: jspb.Message.getFieldWithDefault(msg, 23, ""),
+    chargedTicket: jspb.Message.getFieldWithDefault(msg, 24, 0),
+    freeTicket: jspb.Message.getFieldWithDefault(msg, 25, 0),
+    freeze: jspb.Message.getFieldWithDefault(msg, 26, 0),
+    freezeMemo: jspb.Message.getFieldWithDefault(msg, 27, ""),
+    stakeVestFromMe: (f = msg.getStakeVestFromMe()) && prototype_type_pb.vest.toObject(includeInstance, f),
+    votedBlockProducer: (f = msg.getVotedBlockProducer()) && prototype_type_pb.account_name.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2254,45 +2257,60 @@ proto.grpcpb.AccountInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 17:
       var value = new prototype_type_pb.vest;
       reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
-      msg.setWithdrawEachTime(value);
+      msg.setHasWithdrawn(value);
       break;
     case 18:
+      var value = new prototype_type_pb.vest;
+      reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
+      msg.setWithdrawEachTime(value);
+      break;
+    case 19:
       var value = new prototype_type_pb.time_point_sec;
       reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
       msg.setNextWithdrawTime(value);
       break;
-    case 19:
+    case 20:
+      var value = new prototype_type_pb.time_point_sec;
+      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
+      msg.setStartWithdrawTime(value);
+      break;
+    case 21:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setBpVoteCount(value);
       break;
-    case 20:
+    case 22:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setReputation(value);
       break;
-    case 21:
+    case 23:
       var value = /** @type {string} */ (reader.readString());
       msg.setReputationMemo(value);
       break;
-    case 22:
+    case 24:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setChargedTicket(value);
       break;
-    case 23:
+    case 25:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setFreeTicket(value);
       break;
-    case 24:
+    case 26:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setFreeze(value);
       break;
-    case 25:
+    case 27:
       var value = /** @type {string} */ (reader.readString());
       msg.setFreezeMemo(value);
       break;
-    case 26:
+    case 28:
       var value = new prototype_type_pb.vest;
       reader.readMessage(value,prototype_type_pb.vest.deserializeBinaryFromReader);
       msg.setStakeVestFromMe(value);
+      break;
+    case 29:
+      var value = new prototype_type_pb.account_name;
+      reader.readMessage(value,prototype_type_pb.account_name.deserializeBinaryFromReader);
+      msg.setVotedBlockProducer(value);
       break;
     default:
       reader.skipField();
@@ -2443,7 +2461,7 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
       prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
-  f = message.getWithdrawEachTime();
+  f = message.getHasWithdrawn();
   if (f != null) {
     writer.writeMessage(
       17,
@@ -2451,10 +2469,26 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
       prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
-  f = message.getNextWithdrawTime();
+  f = message.getWithdrawEachTime();
   if (f != null) {
     writer.writeMessage(
       18,
+      f,
+      prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextWithdrawTime();
+  if (f != null) {
+    writer.writeMessage(
+      19,
+      f,
+      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+    );
+  }
+  f = message.getStartWithdrawTime();
+  if (f != null) {
+    writer.writeMessage(
+      20,
       f,
       prototype_type_pb.time_point_sec.serializeBinaryToWriter
     );
@@ -2462,58 +2496,66 @@ proto.grpcpb.AccountInfo.serializeBinaryToWriter = function(message, writer) {
   f = message.getBpVoteCount();
   if (f !== 0) {
     writer.writeUint32(
-      19,
+      21,
       f
     );
   }
   f = message.getReputation();
   if (f !== 0) {
     writer.writeUint32(
-      20,
+      22,
       f
     );
   }
   f = message.getReputationMemo();
   if (f.length > 0) {
     writer.writeString(
-      21,
+      23,
       f
     );
   }
   f = message.getChargedTicket();
   if (f !== 0) {
     writer.writeUint32(
-      22,
+      24,
       f
     );
   }
   f = message.getFreeTicket();
   if (f !== 0) {
     writer.writeUint32(
-      23,
+      25,
       f
     );
   }
   f = message.getFreeze();
   if (f !== 0) {
     writer.writeUint32(
-      24,
+      26,
       f
     );
   }
   f = message.getFreezeMemo();
   if (f.length > 0) {
     writer.writeString(
-      25,
+      27,
       f
     );
   }
   f = message.getStakeVestFromMe();
   if (f != null) {
     writer.writeMessage(
-      26,
+      28,
       f,
       prototype_type_pb.vest.serializeBinaryToWriter
+    );
+  }
+  f = message.getVotedBlockProducer();
+  if (f != null) {
+    writer.writeMessage(
+      29,
+      f,
+      prototype_type_pb.account_name.serializeBinaryToWriter
     );
   }
 };
@@ -2880,18 +2922,48 @@ proto.grpcpb.AccountInfo.prototype.hasWithdrawRemains = function() {
 
 
 /**
- * optional prototype.vest withdraw_each_time = 17;
+ * optional prototype.vest has_withdrawn = 17;
  * @return {?proto.prototype.vest}
  */
-proto.grpcpb.AccountInfo.prototype.getWithdrawEachTime = function() {
+proto.grpcpb.AccountInfo.prototype.getHasWithdrawn = function() {
   return /** @type{?proto.prototype.vest} */ (
     jspb.Message.getWrapperField(this, prototype_type_pb.vest, 17));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
-proto.grpcpb.AccountInfo.prototype.setWithdrawEachTime = function(value) {
+proto.grpcpb.AccountInfo.prototype.setHasWithdrawn = function(value) {
   jspb.Message.setWrapperField(this, 17, value);
+};
+
+
+proto.grpcpb.AccountInfo.prototype.clearHasWithdrawn = function() {
+  this.setHasWithdrawn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountInfo.prototype.hasHasWithdrawn = function() {
+  return jspb.Message.getField(this, 17) != null;
+};
+
+
+/**
+ * optional prototype.vest withdraw_each_time = 18;
+ * @return {?proto.prototype.vest}
+ */
+proto.grpcpb.AccountInfo.prototype.getWithdrawEachTime = function() {
+  return /** @type{?proto.prototype.vest} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 18));
+};
+
+
+/** @param {?proto.prototype.vest|undefined} value */
+proto.grpcpb.AccountInfo.prototype.setWithdrawEachTime = function(value) {
+  jspb.Message.setWrapperField(this, 18, value);
 };
 
 
@@ -2905,23 +2977,23 @@ proto.grpcpb.AccountInfo.prototype.clearWithdrawEachTime = function() {
  * @return {!boolean}
  */
 proto.grpcpb.AccountInfo.prototype.hasWithdrawEachTime = function() {
-  return jspb.Message.getField(this, 17) != null;
+  return jspb.Message.getField(this, 18) != null;
 };
 
 
 /**
- * optional prototype.time_point_sec next_withdraw_time = 18;
+ * optional prototype.time_point_sec next_withdraw_time = 19;
  * @return {?proto.prototype.time_point_sec}
  */
 proto.grpcpb.AccountInfo.prototype.getNextWithdrawTime = function() {
   return /** @type{?proto.prototype.time_point_sec} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 18));
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 19));
 };
 
 
 /** @param {?proto.prototype.time_point_sec|undefined} value */
 proto.grpcpb.AccountInfo.prototype.setNextWithdrawTime = function(value) {
-  jspb.Message.setWrapperField(this, 18, value);
+  jspb.Message.setWrapperField(this, 19, value);
 };
 
 
@@ -2935,128 +3007,158 @@ proto.grpcpb.AccountInfo.prototype.clearNextWithdrawTime = function() {
  * @return {!boolean}
  */
 proto.grpcpb.AccountInfo.prototype.hasNextWithdrawTime = function() {
-  return jspb.Message.getField(this, 18) != null;
+  return jspb.Message.getField(this, 19) != null;
 };
 
 
 /**
- * optional uint32 bp_vote_count = 19;
+ * optional prototype.time_point_sec start_withdraw_time = 20;
+ * @return {?proto.prototype.time_point_sec}
+ */
+proto.grpcpb.AccountInfo.prototype.getStartWithdrawTime = function() {
+  return /** @type{?proto.prototype.time_point_sec} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 20));
+};
+
+
+/** @param {?proto.prototype.time_point_sec|undefined} value */
+proto.grpcpb.AccountInfo.prototype.setStartWithdrawTime = function(value) {
+  jspb.Message.setWrapperField(this, 20, value);
+};
+
+
+proto.grpcpb.AccountInfo.prototype.clearStartWithdrawTime = function() {
+  this.setStartWithdrawTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountInfo.prototype.hasStartWithdrawTime = function() {
+  return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional uint32 bp_vote_count = 21;
  * @return {number}
  */
 proto.grpcpb.AccountInfo.prototype.getBpVoteCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 21, 0));
 };
 
 
 /** @param {number} value */
 proto.grpcpb.AccountInfo.prototype.setBpVoteCount = function(value) {
-  jspb.Message.setProto3IntField(this, 19, value);
+  jspb.Message.setProto3IntField(this, 21, value);
 };
 
 
 /**
- * optional uint32 reputation = 20;
+ * optional uint32 reputation = 22;
  * @return {number}
  */
 proto.grpcpb.AccountInfo.prototype.getReputation = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 20, 0));
-};
-
-
-/** @param {number} value */
-proto.grpcpb.AccountInfo.prototype.setReputation = function(value) {
-  jspb.Message.setProto3IntField(this, 20, value);
-};
-
-
-/**
- * optional string reputation_memo = 21;
- * @return {string}
- */
-proto.grpcpb.AccountInfo.prototype.getReputationMemo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
-};
-
-
-/** @param {string} value */
-proto.grpcpb.AccountInfo.prototype.setReputationMemo = function(value) {
-  jspb.Message.setProto3StringField(this, 21, value);
-};
-
-
-/**
- * optional uint32 charged_ticket = 22;
- * @return {number}
- */
-proto.grpcpb.AccountInfo.prototype.getChargedTicket = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 22, 0));
 };
 
 
 /** @param {number} value */
-proto.grpcpb.AccountInfo.prototype.setChargedTicket = function(value) {
+proto.grpcpb.AccountInfo.prototype.setReputation = function(value) {
   jspb.Message.setProto3IntField(this, 22, value);
 };
 
 
 /**
- * optional uint32 free_ticket = 23;
- * @return {number}
+ * optional string reputation_memo = 23;
+ * @return {string}
  */
-proto.grpcpb.AccountInfo.prototype.getFreeTicket = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 23, 0));
+proto.grpcpb.AccountInfo.prototype.getReputationMemo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
 };
 
 
-/** @param {number} value */
-proto.grpcpb.AccountInfo.prototype.setFreeTicket = function(value) {
-  jspb.Message.setProto3IntField(this, 23, value);
+/** @param {string} value */
+proto.grpcpb.AccountInfo.prototype.setReputationMemo = function(value) {
+  jspb.Message.setProto3StringField(this, 23, value);
 };
 
 
 /**
- * optional uint32 freeze = 24;
+ * optional uint32 charged_ticket = 24;
  * @return {number}
  */
-proto.grpcpb.AccountInfo.prototype.getFreeze = function() {
+proto.grpcpb.AccountInfo.prototype.getChargedTicket = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 24, 0));
 };
 
 
 /** @param {number} value */
-proto.grpcpb.AccountInfo.prototype.setFreeze = function(value) {
+proto.grpcpb.AccountInfo.prototype.setChargedTicket = function(value) {
   jspb.Message.setProto3IntField(this, 24, value);
 };
 
 
 /**
- * optional string freeze_memo = 25;
+ * optional uint32 free_ticket = 25;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getFreeTicket = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 25, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setFreeTicket = function(value) {
+  jspb.Message.setProto3IntField(this, 25, value);
+};
+
+
+/**
+ * optional uint32 freeze = 26;
+ * @return {number}
+ */
+proto.grpcpb.AccountInfo.prototype.getFreeze = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 26, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.AccountInfo.prototype.setFreeze = function(value) {
+  jspb.Message.setProto3IntField(this, 26, value);
+};
+
+
+/**
+ * optional string freeze_memo = 27;
  * @return {string}
  */
 proto.grpcpb.AccountInfo.prototype.getFreezeMemo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 25, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 27, ""));
 };
 
 
 /** @param {string} value */
 proto.grpcpb.AccountInfo.prototype.setFreezeMemo = function(value) {
-  jspb.Message.setProto3StringField(this, 25, value);
+  jspb.Message.setProto3StringField(this, 27, value);
 };
 
 
 /**
- * optional prototype.vest stake_vest_from_me = 26;
+ * optional prototype.vest stake_vest_from_me = 28;
  * @return {?proto.prototype.vest}
  */
 proto.grpcpb.AccountInfo.prototype.getStakeVestFromMe = function() {
   return /** @type{?proto.prototype.vest} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 26));
+    jspb.Message.getWrapperField(this, prototype_type_pb.vest, 28));
 };
 
 
 /** @param {?proto.prototype.vest|undefined} value */
 proto.grpcpb.AccountInfo.prototype.setStakeVestFromMe = function(value) {
-  jspb.Message.setWrapperField(this, 26, value);
+  jspb.Message.setWrapperField(this, 28, value);
 };
 
 
@@ -3070,7 +3172,37 @@ proto.grpcpb.AccountInfo.prototype.clearStakeVestFromMe = function() {
  * @return {!boolean}
  */
 proto.grpcpb.AccountInfo.prototype.hasStakeVestFromMe = function() {
-  return jspb.Message.getField(this, 26) != null;
+  return jspb.Message.getField(this, 28) != null;
+};
+
+
+/**
+ * optional prototype.account_name voted_block_producer = 29;
+ * @return {?proto.prototype.account_name}
+ */
+proto.grpcpb.AccountInfo.prototype.getVotedBlockProducer = function() {
+  return /** @type{?proto.prototype.account_name} */ (
+    jspb.Message.getWrapperField(this, prototype_type_pb.account_name, 29));
+};
+
+
+/** @param {?proto.prototype.account_name|undefined} value */
+proto.grpcpb.AccountInfo.prototype.setVotedBlockProducer = function(value) {
+  jspb.Message.setWrapperField(this, 29, value);
+};
+
+
+proto.grpcpb.AccountInfo.prototype.clearVotedBlockProducer = function() {
+  this.setVotedBlockProducer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.grpcpb.AccountInfo.prototype.hasVotedBlockProducer = function() {
+  return jspb.Message.getField(this, 29) != null;
 };
 
 

@@ -345,6 +345,11 @@ export class AccountInfo extends jspb.Message {
   getWithdrawRemains(): prototype_type_pb.vest | undefined;
   setWithdrawRemains(value?: prototype_type_pb.vest): void;
 
+  hasHasWithdrawn(): boolean;
+  clearHasWithdrawn(): void;
+  getHasWithdrawn(): prototype_type_pb.vest | undefined;
+  setHasWithdrawn(value?: prototype_type_pb.vest): void;
+
   hasWithdrawEachTime(): boolean;
   clearWithdrawEachTime(): void;
   getWithdrawEachTime(): prototype_type_pb.vest | undefined;
@@ -354,6 +359,11 @@ export class AccountInfo extends jspb.Message {
   clearNextWithdrawTime(): void;
   getNextWithdrawTime(): prototype_type_pb.time_point_sec | undefined;
   setNextWithdrawTime(value?: prototype_type_pb.time_point_sec): void;
+
+  hasStartWithdrawTime(): boolean;
+  clearStartWithdrawTime(): void;
+  getStartWithdrawTime(): prototype_type_pb.time_point_sec | undefined;
+  setStartWithdrawTime(value?: prototype_type_pb.time_point_sec): void;
 
   getBpVoteCount(): number;
   setBpVoteCount(value: number): void;
@@ -380,6 +390,11 @@ export class AccountInfo extends jspb.Message {
   clearStakeVestFromMe(): void;
   getStakeVestFromMe(): prototype_type_pb.vest | undefined;
   setStakeVestFromMe(value?: prototype_type_pb.vest): void;
+
+  hasVotedBlockProducer(): boolean;
+  clearVotedBlockProducer(): void;
+  getVotedBlockProducer(): prototype_type_pb.account_name | undefined;
+  setVotedBlockProducer(value?: prototype_type_pb.account_name): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
@@ -409,8 +424,10 @@ export namespace AccountInfo {
     staminaMax: number,
     stakeVestForMe?: prototype_type_pb.vest.AsObject,
     withdrawRemains?: prototype_type_pb.vest.AsObject,
+    hasWithdrawn?: prototype_type_pb.vest.AsObject,
     withdrawEachTime?: prototype_type_pb.vest.AsObject,
     nextWithdrawTime?: prototype_type_pb.time_point_sec.AsObject,
+    startWithdrawTime?: prototype_type_pb.time_point_sec.AsObject,
     bpVoteCount: number,
     reputation: number,
     reputationMemo: string,
@@ -419,6 +436,7 @@ export namespace AccountInfo {
     freeze: number,
     freezeMemo: string,
     stakeVestFromMe?: prototype_type_pb.vest.AsObject,
+    votedBlockProducer?: prototype_type_pb.account_name.AsObject,
   }
 }
 
