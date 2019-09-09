@@ -2742,3 +2742,81 @@ export namespace GetAccountListByVestRequest {
   }
 }
 
+export class GetBlockBFTInfoByNumRequest extends jspb.Message {
+  getBlockNum(): string;
+  setBlockNum(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlockBFTInfoByNumRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockBFTInfoByNumRequest): GetBlockBFTInfoByNumRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlockBFTInfoByNumRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockBFTInfoByNumRequest;
+  static deserializeBinaryFromReader(message: GetBlockBFTInfoByNumRequest, reader: jspb.BinaryReader): GetBlockBFTInfoByNumRequest;
+}
+
+export namespace GetBlockBFTInfoByNumRequest {
+  export type AsObject = {
+    blockNum: string,
+  }
+}
+
+export class BFTVoteInfo extends jspb.Message {
+  getPubKey(): string;
+  setPubKey(value: string): void;
+
+  getSignature(): Uint8Array | string;
+  getSignature_asU8(): Uint8Array;
+  getSignature_asB64(): string;
+  setSignature(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BFTVoteInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: BFTVoteInfo): BFTVoteInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BFTVoteInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BFTVoteInfo;
+  static deserializeBinaryFromReader(message: BFTVoteInfo, reader: jspb.BinaryReader): BFTVoteInfo;
+}
+
+export namespace BFTVoteInfo {
+  export type AsObject = {
+    pubKey: string,
+    signature: Uint8Array | string,
+  }
+}
+
+export class GetBlockBFTInfoByNumResponse extends jspb.Message {
+  getCommitterPubKey(): string;
+  setCommitterPubKey(value: string): void;
+
+  getSignature(): Uint8Array | string;
+  getSignature_asU8(): Uint8Array;
+  getSignature_asB64(): string;
+  setSignature(value: Uint8Array | string): void;
+
+  clearVoteList(): void;
+  getVoteList(): Array<BFTVoteInfo>;
+  setVoteList(value: Array<BFTVoteInfo>): void;
+  addVote(value?: BFTVoteInfo, index?: number): BFTVoteInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlockBFTInfoByNumResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockBFTInfoByNumResponse): GetBlockBFTInfoByNumResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlockBFTInfoByNumResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockBFTInfoByNumResponse;
+  static deserializeBinaryFromReader(message: GetBlockBFTInfoByNumResponse, reader: jspb.BinaryReader): GetBlockBFTInfoByNumResponse;
+}
+
+export namespace GetBlockBFTInfoByNumResponse {
+  export type AsObject = {
+    committerPubKey: string,
+    signature: Uint8Array | string,
+    voteList: Array<BFTVoteInfo.AsObject>,
+  }
+}
+

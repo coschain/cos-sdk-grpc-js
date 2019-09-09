@@ -355,6 +355,15 @@ type ApiServiceGetAccountByPubKey = {
   readonly responseType: typeof rpc_pb_grpc_pb.AccountResponse;
 };
 
+type ApiServiceGetBlockBFTInfoByNum = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetBlockBFTInfoByNumRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetBlockBFTInfoByNumResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -396,6 +405,7 @@ export class ApiService {
   static readonly GetAccountListByVest: ApiServiceGetAccountListByVest;
   static readonly GetBlockProducerByName: ApiServiceGetBlockProducerByName;
   static readonly GetAccountByPubKey: ApiServiceGetAccountByPubKey;
+  static readonly GetBlockBFTInfoByNum: ApiServiceGetBlockBFTInfoByNum;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -780,6 +790,15 @@ export class ApiServiceClient {
   getAccountByPubKey(
     requestMessage: rpc_pb_grpc_pb.GetAccountByPubKeyRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountResponse|null) => void
+  ): UnaryResponse;
+  getBlockBFTInfoByNum(
+    requestMessage: rpc_pb_grpc_pb.GetBlockBFTInfoByNumRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockBFTInfoByNumResponse|null) => void
+  ): UnaryResponse;
+  getBlockBFTInfoByNum(
+    requestMessage: rpc_pb_grpc_pb.GetBlockBFTInfoByNumRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockBFTInfoByNumResponse|null) => void
   ): UnaryResponse;
 }
 

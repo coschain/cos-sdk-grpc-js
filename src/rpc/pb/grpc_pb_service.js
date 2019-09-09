@@ -361,6 +361,15 @@ ApiService.GetAccountByPubKey = {
   responseType: rpc_pb_grpc_pb.AccountResponse
 };
 
+ApiService.GetBlockBFTInfoByNum = {
+  methodName: "GetBlockBFTInfoByNum",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetBlockBFTInfoByNumRequest,
+  responseType: rpc_pb_grpc_pb.GetBlockBFTInfoByNumResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -1551,6 +1560,37 @@ ApiServiceClient.prototype.getAccountByPubKey = function getAccountByPubKey(requ
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetAccountByPubKey, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getBlockBFTInfoByNum = function getBlockBFTInfoByNum(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetBlockBFTInfoByNum, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
