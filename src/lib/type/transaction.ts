@@ -98,7 +98,7 @@ const sender = function (op) {
     if (op.hasOp17()) return op.getOp17().getFrom().getValue();
     if (op.hasOp18()) return op.getOp18().getCreditor().getValue();
     if (op.hasOp19()) return op.getOp19().getOwner().getValue();
-    if (op.hasOp20()) return op.getOp20().getFrom().getValue();
+    if (op.hasOp20()) return op.getOp20().getOwner().getValue();
     if (op.hasOp21()) return op.getOp21().getAccount().getValue();
     if (op.hasOp22()) return op.getOp22().getAccount().getValue();
     return ''
