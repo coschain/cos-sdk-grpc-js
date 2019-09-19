@@ -145,7 +145,7 @@ const getActionName = function (op) {
     if (op.hasOp17()) return "Stake";
     if (op.hasOp18()) return "Unstake";
     if (op.hasOp19()) return "Bp Update";
-    if (op.hasOp20()) return "Transfer To Stake Vesting";
+    if (op.hasOp20()) return "Account Update";
     if (op.hasOp21()) return "Acquire Ticket";
     if (op.hasOp22()) return "Vote by Ticket";
     return '';
