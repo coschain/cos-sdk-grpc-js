@@ -22,24 +22,6 @@ type ApiServiceGetAccountByName = {
   readonly responseType: typeof rpc_pb_grpc_pb.AccountResponse;
 };
 
-type ApiServiceGetAccountCashout = {
-  readonly methodName: string;
-  readonly service: typeof ApiService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof rpc_pb_grpc_pb.GetAccountCashoutRequest;
-  readonly responseType: typeof rpc_pb_grpc_pb.AccountCashoutResponse;
-};
-
-type ApiServiceGetBlockCashout = {
-  readonly methodName: string;
-  readonly service: typeof ApiService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof rpc_pb_grpc_pb.GetBlockCashoutRequest;
-  readonly responseType: typeof rpc_pb_grpc_pb.BlockCashoutResponse;
-};
-
 type ApiServiceGetFollowerListByName = {
   readonly methodName: string;
   readonly service: typeof ApiService;
@@ -364,12 +346,19 @@ type ApiServiceGetBlockBFTInfoByNum = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetBlockBFTInfoByNumResponse;
 };
 
+type ApiServiceGetAppTableRecord = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetAppTableRecordRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetAppTableRecordResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
   static readonly GetAccountByName: ApiServiceGetAccountByName;
-  static readonly GetAccountCashout: ApiServiceGetAccountCashout;
-  static readonly GetBlockCashout: ApiServiceGetBlockCashout;
   static readonly GetFollowerListByName: ApiServiceGetFollowerListByName;
   static readonly GetFollowingListByName: ApiServiceGetFollowingListByName;
   static readonly GetFollowCountByName: ApiServiceGetFollowCountByName;
@@ -406,6 +395,7 @@ export class ApiService {
   static readonly GetBlockProducerByName: ApiServiceGetBlockProducerByName;
   static readonly GetAccountByPubKey: ApiServiceGetAccountByPubKey;
   static readonly GetBlockBFTInfoByNum: ApiServiceGetBlockBFTInfoByNum;
+  static readonly GetAppTableRecord: ApiServiceGetAppTableRecord;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -458,24 +448,6 @@ export class ApiServiceClient {
     requestMessage: rpc_pb_grpc_pb.GetAccountByNameRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountResponse|null) => void
   ): UnaryResponse;
-  getAccountCashout(
-    requestMessage: rpc_pb_grpc_pb.GetAccountCashoutRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountCashoutResponse|null) => void
-  ): UnaryResponse;
-  getAccountCashout(
-    requestMessage: rpc_pb_grpc_pb.GetAccountCashoutRequest,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.AccountCashoutResponse|null) => void
-  ): UnaryResponse;
-  getBlockCashout(
-    requestMessage: rpc_pb_grpc_pb.GetBlockCashoutRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.BlockCashoutResponse|null) => void
-  ): UnaryResponse;
-  getBlockCashout(
-    requestMessage: rpc_pb_grpc_pb.GetBlockCashoutRequest,
-    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.BlockCashoutResponse|null) => void
-  ): UnaryResponse;
   getFollowerListByName(
     requestMessage: rpc_pb_grpc_pb.GetFollowerListByNameRequest,
     metadata: grpc.Metadata,
@@ -799,6 +771,15 @@ export class ApiServiceClient {
   getBlockBFTInfoByNum(
     requestMessage: rpc_pb_grpc_pb.GetBlockBFTInfoByNumRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockBFTInfoByNumResponse|null) => void
+  ): UnaryResponse;
+  getAppTableRecord(
+    requestMessage: rpc_pb_grpc_pb.GetAppTableRecordRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAppTableRecordResponse|null) => void
+  ): UnaryResponse;
+  getAppTableRecord(
+    requestMessage: rpc_pb_grpc_pb.GetAppTableRecordRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAppTableRecordResponse|null) => void
   ): UnaryResponse;
 }
 

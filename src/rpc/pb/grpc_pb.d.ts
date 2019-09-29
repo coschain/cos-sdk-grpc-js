@@ -913,6 +913,9 @@ export class PostResponse extends jspb.Message {
   getCopyrightMemo(): string;
   setCopyrightMemo(value: string): void;
 
+  getCashoutBlockNum(): number;
+  setCashoutBlockNum(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
   static toObject(includeInstance: boolean, msg: PostResponse): PostResponse.AsObject;
@@ -949,6 +952,7 @@ export namespace PostResponse {
     ticket: number,
     copyright: number,
     copyrightMemo: string,
+    cashoutBlockNum: number,
   }
 }
 
@@ -2573,10 +2577,8 @@ export class StakeInfo extends jspb.Message {
   getStakeAmount(): prototype_type_pb.vest | undefined;
   setStakeAmount(value?: prototype_type_pb.vest): void;
 
-  hasStakeTime(): boolean;
-  clearStakeTime(): void;
-  getStakeTime(): prototype_type_pb.time_point_sec | undefined;
-  setStakeTime(value?: prototype_type_pb.time_point_sec): void;
+  getStakeBlockNum(): number;
+  setStakeBlockNum(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StakeInfo.AsObject;
@@ -2592,7 +2594,7 @@ export namespace StakeInfo {
   export type AsObject = {
     account?: prototype_type_pb.account_name.AsObject,
     stakeAmount?: prototype_type_pb.vest.AsObject,
-    stakeTime?: prototype_type_pb.time_point_sec.AsObject,
+    stakeBlockNum: number,
   }
 }
 
@@ -2817,6 +2819,58 @@ export namespace GetBlockBFTInfoByNumResponse {
     committerPubKey: string,
     signature: Uint8Array | string,
     voteList: Array<BFTVoteInfo.AsObject>,
+  }
+}
+
+export class GetAppTableRecordRequest extends jspb.Message {
+  getTableName(): string;
+  setTableName(value: string): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAppTableRecordRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAppTableRecordRequest): GetAppTableRecordRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAppTableRecordRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAppTableRecordRequest;
+  static deserializeBinaryFromReader(message: GetAppTableRecordRequest, reader: jspb.BinaryReader): GetAppTableRecordRequest;
+}
+
+export namespace GetAppTableRecordRequest {
+  export type AsObject = {
+    tableName: string,
+    key: string,
+  }
+}
+
+export class GetAppTableRecordResponse extends jspb.Message {
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  getErrorMsg(): string;
+  setErrorMsg(value: string): void;
+
+  getRecord(): string;
+  setRecord(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAppTableRecordResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAppTableRecordResponse): GetAppTableRecordResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAppTableRecordResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAppTableRecordResponse;
+  static deserializeBinaryFromReader(message: GetAppTableRecordResponse, reader: jspb.BinaryReader): GetAppTableRecordResponse;
+}
+
+export namespace GetAppTableRecordResponse {
+  export type AsObject = {
+    success: boolean,
+    errorMsg: string,
+    record: string,
   }
 }
 

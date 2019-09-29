@@ -41,6 +41,8 @@ goog.exportSymbol('proto.grpcpb.GetAccountListByCreTimeRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountListByVestRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountListResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetAccountRewardByNameRequest', null, global);
+goog.exportSymbol('proto.grpcpb.GetAppTableRecordRequest', null, global);
+goog.exportSymbol('proto.grpcpb.GetAppTableRecordResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetBlkIsIrreversibleByTxIdRequest', null, global);
 goog.exportSymbol('proto.grpcpb.GetBlkIsIrreversibleByTxIdResponse', null, global);
 goog.exportSymbol('proto.grpcpb.GetBlockBFTInfoByNumRequest', null, global);
@@ -6057,7 +6059,8 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     globalWeightedVp: jspb.Message.getFieldWithDefault(msg, 26, ""),
     ticket: jspb.Message.getFieldWithDefault(msg, 27, 0),
     copyright: jspb.Message.getFieldWithDefault(msg, 28, 0),
-    copyrightMemo: jspb.Message.getFieldWithDefault(msg, 29, "")
+    copyrightMemo: jspb.Message.getFieldWithDefault(msg, 29, ""),
+    cashoutBlockNum: jspb.Message.getFieldWithDefault(msg, 30, 0)
   };
 
   if (includeInstance) {
@@ -6197,6 +6200,10 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 29:
       var value = /** @type {string} */ (reader.readString());
       msg.setCopyrightMemo(value);
+      break;
+    case 30:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCashoutBlockNum(value);
       break;
     default:
       reader.skipField();
@@ -6400,6 +6407,13 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       29,
+      f
+    );
+  }
+  f = message.getCashoutBlockNum();
+  if (f !== 0) {
+    writer.writeUint64(
+      30,
       f
     );
   }
@@ -6898,6 +6912,21 @@ proto.grpcpb.PostResponse.prototype.getCopyrightMemo = function() {
 /** @param {string} value */
 proto.grpcpb.PostResponse.prototype.setCopyrightMemo = function(value) {
   jspb.Message.setProto3StringField(this, 29, value);
+};
+
+
+/**
+ * optional uint64 cashout_block_num = 30;
+ * @return {number}
+ */
+proto.grpcpb.PostResponse.prototype.getCashoutBlockNum = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 30, 0));
+};
+
+
+/** @param {number} value */
+proto.grpcpb.PostResponse.prototype.setCashoutBlockNum = function(value) {
+  jspb.Message.setProto3IntField(this, 30, value);
 };
 
 
@@ -18633,7 +18662,7 @@ proto.grpcpb.StakeInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     account: (f = msg.getAccount()) && prototype_type_pb.account_name.toObject(includeInstance, f),
     stakeAmount: (f = msg.getStakeAmount()) && prototype_type_pb.vest.toObject(includeInstance, f),
-    stakeTime: (f = msg.getStakeTime()) && prototype_type_pb.time_point_sec.toObject(includeInstance, f)
+    stakeBlockNum: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -18681,9 +18710,8 @@ proto.grpcpb.StakeInfo.deserializeBinaryFromReader = function(msg, reader) {
       msg.setStakeAmount(value);
       break;
     case 3:
-      var value = new prototype_type_pb.time_point_sec;
-      reader.readMessage(value,prototype_type_pb.time_point_sec.deserializeBinaryFromReader);
-      msg.setStakeTime(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setStakeBlockNum(value);
       break;
     default:
       reader.skipField();
@@ -18730,12 +18758,11 @@ proto.grpcpb.StakeInfo.serializeBinaryToWriter = function(message, writer) {
       prototype_type_pb.vest.serializeBinaryToWriter
     );
   }
-  f = message.getStakeTime();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getStakeBlockNum();
+  if (f !== 0) {
+    writer.writeUint64(
       3,
-      f,
-      prototype_type_pb.time_point_sec.serializeBinaryToWriter
+      f
     );
   }
 };
@@ -18802,32 +18829,17 @@ proto.grpcpb.StakeInfo.prototype.hasStakeAmount = function() {
 
 
 /**
- * optional prototype.time_point_sec stake_time = 3;
- * @return {?proto.prototype.time_point_sec}
+ * optional uint64 stake_block_num = 3;
+ * @return {number}
  */
-proto.grpcpb.StakeInfo.prototype.getStakeTime = function() {
-  return /** @type{?proto.prototype.time_point_sec} */ (
-    jspb.Message.getWrapperField(this, prototype_type_pb.time_point_sec, 3));
+proto.grpcpb.StakeInfo.prototype.getStakeBlockNum = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
-/** @param {?proto.prototype.time_point_sec|undefined} value */
-proto.grpcpb.StakeInfo.prototype.setStakeTime = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-proto.grpcpb.StakeInfo.prototype.clearStakeTime = function() {
-  this.setStakeTime(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.grpcpb.StakeInfo.prototype.hasStakeTime = function() {
-  return jspb.Message.getField(this, 3) != null;
+/** @param {number} value */
+proto.grpcpb.StakeInfo.prototype.setStakeBlockNum = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -20479,6 +20491,373 @@ proto.grpcpb.GetBlockBFTInfoByNumResponse.prototype.addVote = function(opt_value
 
 proto.grpcpb.GetBlockBFTInfoByNumResponse.prototype.clearVoteList = function() {
   this.setVoteList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetAppTableRecordRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetAppTableRecordRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetAppTableRecordRequest.displayName = 'proto.grpcpb.GetAppTableRecordRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetAppTableRecordRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetAppTableRecordRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetAppTableRecordRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetAppTableRecordRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    tableName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    key: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetAppTableRecordRequest}
+ */
+proto.grpcpb.GetAppTableRecordRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetAppTableRecordRequest;
+  return proto.grpcpb.GetAppTableRecordRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetAppTableRecordRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetAppTableRecordRequest}
+ */
+proto.grpcpb.GetAppTableRecordRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTableName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setKey(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetAppTableRecordRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetAppTableRecordRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetAppTableRecordRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetAppTableRecordRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTableName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getKey();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string table_name = 1;
+ * @return {string}
+ */
+proto.grpcpb.GetAppTableRecordRequest.prototype.getTableName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetAppTableRecordRequest.prototype.setTableName = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string key = 2;
+ * @return {string}
+ */
+proto.grpcpb.GetAppTableRecordRequest.prototype.getKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetAppTableRecordRequest.prototype.setKey = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.grpcpb.GetAppTableRecordResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.grpcpb.GetAppTableRecordResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.grpcpb.GetAppTableRecordResponse.displayName = 'proto.grpcpb.GetAppTableRecordResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.grpcpb.GetAppTableRecordResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.grpcpb.GetAppTableRecordResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.grpcpb.GetAppTableRecordResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetAppTableRecordResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    success: jspb.Message.getFieldWithDefault(msg, 1, false),
+    errorMsg: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    record: jspb.Message.getFieldWithDefault(msg, 3, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.grpcpb.GetAppTableRecordResponse}
+ */
+proto.grpcpb.GetAppTableRecordResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.grpcpb.GetAppTableRecordResponse;
+  return proto.grpcpb.GetAppTableRecordResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.grpcpb.GetAppTableRecordResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.grpcpb.GetAppTableRecordResponse}
+ */
+proto.grpcpb.GetAppTableRecordResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSuccess(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMsg(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRecord(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.grpcpb.GetAppTableRecordResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.grpcpb.GetAppTableRecordResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.grpcpb.GetAppTableRecordResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.grpcpb.GetAppTableRecordResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSuccess();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = message.getErrorMsg();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getRecord();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bool success = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.grpcpb.GetAppTableRecordResponse.prototype.getSuccess = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+
+/** @param {boolean} value */
+proto.grpcpb.GetAppTableRecordResponse.prototype.setSuccess = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional string error_msg = 2;
+ * @return {string}
+ */
+proto.grpcpb.GetAppTableRecordResponse.prototype.getErrorMsg = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetAppTableRecordResponse.prototype.setErrorMsg = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string record = 3;
+ * @return {string}
+ */
+proto.grpcpb.GetAppTableRecordResponse.prototype.getRecord = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.grpcpb.GetAppTableRecordResponse.prototype.setRecord = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
