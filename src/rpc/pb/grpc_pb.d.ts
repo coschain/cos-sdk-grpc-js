@@ -913,8 +913,8 @@ export class PostResponse extends jspb.Message {
   getCopyrightMemo(): string;
   setCopyrightMemo(value: string): void;
 
-  getCashoutBlockNum(): number;
-  setCashoutBlockNum(value: number): void;
+  getCashoutBlockNum(): string;
+  setCashoutBlockNum(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PostResponse.AsObject;
@@ -952,7 +952,7 @@ export namespace PostResponse {
     ticket: number,
     copyright: number,
     copyrightMemo: string,
-    cashoutBlockNum: number,
+    cashoutBlockNum: string,
   }
 }
 

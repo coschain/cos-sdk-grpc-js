@@ -6060,7 +6060,7 @@ proto.grpcpb.PostResponse.toObject = function(includeInstance, msg) {
     ticket: jspb.Message.getFieldWithDefault(msg, 27, 0),
     copyright: jspb.Message.getFieldWithDefault(msg, 28, 0),
     copyrightMemo: jspb.Message.getFieldWithDefault(msg, 29, ""),
-    cashoutBlockNum: jspb.Message.getFieldWithDefault(msg, 30, 0)
+    cashoutBlockNum: jspb.Message.getFieldWithDefault(msg, 30, "0")
   };
 
   if (includeInstance) {
@@ -6202,7 +6202,7 @@ proto.grpcpb.PostResponse.deserializeBinaryFromReader = function(msg, reader) {
       msg.setCopyrightMemo(value);
       break;
     case 30:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setCashoutBlockNum(value);
       break;
     default:
@@ -6411,8 +6411,8 @@ proto.grpcpb.PostResponse.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getCashoutBlockNum();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       30,
       f
     );
@@ -6917,16 +6917,16 @@ proto.grpcpb.PostResponse.prototype.setCopyrightMemo = function(value) {
 
 /**
  * optional uint64 cashout_block_num = 30;
- * @return {number}
+ * @return {string}
  */
 proto.grpcpb.PostResponse.prototype.getCashoutBlockNum = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 30, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 30, "0"));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.grpcpb.PostResponse.prototype.setCashoutBlockNum = function(value) {
-  jspb.Message.setProto3IntField(this, 30, value);
+  jspb.Message.setProto3StringIntField(this, 30, value);
 };
 
 
