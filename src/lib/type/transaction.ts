@@ -136,7 +136,7 @@ const getActionName = function (op) {
     // @ts-ignore
     if (op.hasOp9()) return "Vote";
     // @ts-ignore
-    if (op.hasOp10()) return "Transfer To Vesting";
+    if (op.hasOp10()) return "Transfer To Vest";
     // @ts-ignore
     if (op.hasOp13()) return "Contract Deploy";
     // @ts-ignore
