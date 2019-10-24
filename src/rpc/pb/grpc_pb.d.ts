@@ -2874,3 +2874,85 @@ export namespace GetAppTableRecordResponse {
   }
 }
 
+export class GetBlockProducerVoterListRequest extends jspb.Message {
+  hasBlockProducer(): boolean;
+  clearBlockProducer(): void;
+  getBlockProducer(): prototype_type_pb.account_name | undefined;
+  setBlockProducer(value?: prototype_type_pb.account_name): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  hasLastVoter(): boolean;
+  clearLastVoter(): void;
+  getLastVoter(): prototype_type_pb.account_name | undefined;
+  setLastVoter(value?: prototype_type_pb.account_name): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlockProducerVoterListRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockProducerVoterListRequest): GetBlockProducerVoterListRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlockProducerVoterListRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockProducerVoterListRequest;
+  static deserializeBinaryFromReader(message: GetBlockProducerVoterListRequest, reader: jspb.BinaryReader): GetBlockProducerVoterListRequest;
+}
+
+export namespace GetBlockProducerVoterListRequest {
+  export type AsObject = {
+    blockProducer?: prototype_type_pb.account_name.AsObject,
+    limit: number,
+    lastVoter?: prototype_type_pb.account_name.AsObject,
+  }
+}
+
+export class BlockProducerVoterResponse extends jspb.Message {
+  hasAccountName(): boolean;
+  clearAccountName(): void;
+  getAccountName(): prototype_type_pb.account_name | undefined;
+  setAccountName(value?: prototype_type_pb.account_name): void;
+
+  hasVest(): boolean;
+  clearVest(): void;
+  getVest(): prototype_type_pb.vest | undefined;
+  setVest(value?: prototype_type_pb.vest): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BlockProducerVoterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: BlockProducerVoterResponse): BlockProducerVoterResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BlockProducerVoterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BlockProducerVoterResponse;
+  static deserializeBinaryFromReader(message: BlockProducerVoterResponse, reader: jspb.BinaryReader): BlockProducerVoterResponse;
+}
+
+export namespace BlockProducerVoterResponse {
+  export type AsObject = {
+    accountName?: prototype_type_pb.account_name.AsObject,
+    vest?: prototype_type_pb.vest.AsObject,
+  }
+}
+
+export class GetBlockProducerVoterListResponse extends jspb.Message {
+  clearVoterList(): void;
+  getVoterList(): Array<BlockProducerVoterResponse>;
+  setVoterList(value: Array<BlockProducerVoterResponse>): void;
+  addVoter(value?: BlockProducerVoterResponse, index?: number): BlockProducerVoterResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlockProducerVoterListResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlockProducerVoterListResponse): GetBlockProducerVoterListResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBlockProducerVoterListResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlockProducerVoterListResponse;
+  static deserializeBinaryFromReader(message: GetBlockProducerVoterListResponse, reader: jspb.BinaryReader): GetBlockProducerVoterListResponse;
+}
+
+export namespace GetBlockProducerVoterListResponse {
+  export type AsObject = {
+    voterList: Array<BlockProducerVoterResponse.AsObject>,
+  }
+}
+

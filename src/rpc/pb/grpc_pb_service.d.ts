@@ -355,6 +355,15 @@ type ApiServiceGetAppTableRecord = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetAppTableRecordResponse;
 };
 
+type ApiServiceGetBlockProducerVoterList = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetBlockProducerVoterListRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetBlockProducerVoterListResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -396,6 +405,7 @@ export class ApiService {
   static readonly GetAccountByPubKey: ApiServiceGetAccountByPubKey;
   static readonly GetBlockBFTInfoByNum: ApiServiceGetBlockBFTInfoByNum;
   static readonly GetAppTableRecord: ApiServiceGetAppTableRecord;
+  static readonly GetBlockProducerVoterList: ApiServiceGetBlockProducerVoterList;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -780,6 +790,15 @@ export class ApiServiceClient {
   getAppTableRecord(
     requestMessage: rpc_pb_grpc_pb.GetAppTableRecordRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetAppTableRecordResponse|null) => void
+  ): UnaryResponse;
+  getBlockProducerVoterList(
+    requestMessage: rpc_pb_grpc_pb.GetBlockProducerVoterListRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockProducerVoterListResponse|null) => void
+  ): UnaryResponse;
+  getBlockProducerVoterList(
+    requestMessage: rpc_pb_grpc_pb.GetBlockProducerVoterListRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockProducerVoterListResponse|null) => void
   ): UnaryResponse;
 }
 
