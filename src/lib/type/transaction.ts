@@ -141,7 +141,7 @@ const getActionName = function (op) {
     if (op.hasOp13()) return "Contract Deploy";
     // @ts-ignore
     if (op.hasOp14()) return "Contract Apply";
-    if (op.hasOp16()) return "Convert Vesting To Cos";
+    if (op.hasOp16()) return "Convert Vest To Cos";
     if (op.hasOp17()) return "Stake";
     if (op.hasOp18()) return "Unstake";
     if (op.hasOp19()) return "Bp Update";
