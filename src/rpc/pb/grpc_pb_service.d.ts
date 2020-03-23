@@ -364,6 +364,15 @@ type ApiServiceGetBlockProducerVoterList = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetBlockProducerVoterListResponse;
 };
 
+type ApiServiceGetVestDelegationOrderList = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetVestDelegationOrderListRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetVestDelegationOrderListResponse;
+};
+
 export class ApiService {
   static readonly serviceName: string;
   static readonly QueryTableContent: ApiServiceQueryTableContent;
@@ -406,6 +415,7 @@ export class ApiService {
   static readonly GetBlockBFTInfoByNum: ApiServiceGetBlockBFTInfoByNum;
   static readonly GetAppTableRecord: ApiServiceGetAppTableRecord;
   static readonly GetBlockProducerVoterList: ApiServiceGetBlockProducerVoterList;
+  static readonly GetVestDelegationOrderList: ApiServiceGetVestDelegationOrderList;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -417,14 +427,14 @@ interface UnaryResponse {
 interface ResponseStream<T> {
   cancel(): void;
   on(type: 'data', handler: (message: T) => void): ResponseStream<T>;
-  on(type: 'end', handler: () => void): ResponseStream<T>;
+  on(type: 'end', handler: (status?: Status) => void): ResponseStream<T>;
   on(type: 'status', handler: (status: Status) => void): ResponseStream<T>;
 }
 interface RequestStream<T> {
   write(message: T): RequestStream<T>;
   end(): void;
   cancel(): void;
-  on(type: 'end', handler: () => void): RequestStream<T>;
+  on(type: 'end', handler: (status?: Status) => void): RequestStream<T>;
   on(type: 'status', handler: (status: Status) => void): RequestStream<T>;
 }
 interface BidirectionalStream<ReqT, ResT> {
@@ -432,7 +442,7 @@ interface BidirectionalStream<ReqT, ResT> {
   end(): void;
   cancel(): void;
   on(type: 'data', handler: (message: ResT) => void): BidirectionalStream<ReqT, ResT>;
-  on(type: 'end', handler: () => void): BidirectionalStream<ReqT, ResT>;
+  on(type: 'end', handler: (status?: Status) => void): BidirectionalStream<ReqT, ResT>;
   on(type: 'status', handler: (status: Status) => void): BidirectionalStream<ReqT, ResT>;
 }
 
@@ -799,6 +809,15 @@ export class ApiServiceClient {
   getBlockProducerVoterList(
     requestMessage: rpc_pb_grpc_pb.GetBlockProducerVoterListRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetBlockProducerVoterListResponse|null) => void
+  ): UnaryResponse;
+  getVestDelegationOrderList(
+    requestMessage: rpc_pb_grpc_pb.GetVestDelegationOrderListRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetVestDelegationOrderListResponse|null) => void
+  ): UnaryResponse;
+  getVestDelegationOrderList(
+    requestMessage: rpc_pb_grpc_pb.GetVestDelegationOrderListRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetVestDelegationOrderListResponse|null) => void
   ): UnaryResponse;
 }
 

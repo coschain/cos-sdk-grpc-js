@@ -101,6 +101,16 @@ export class operation extends jspb.Message {
   getOp22(): prototype_operation_pb.vote_by_ticket_operation | undefined;
   setOp22(value?: prototype_operation_pb.vote_by_ticket_operation): void;
 
+  hasOp23(): boolean;
+  clearOp23(): void;
+  getOp23(): prototype_operation_pb.delegate_vest_operation | undefined;
+  setOp23(value?: prototype_operation_pb.delegate_vest_operation): void;
+
+  hasOp24(): boolean;
+  clearOp24(): void;
+  getOp24(): prototype_operation_pb.un_delegate_vest_operation | undefined;
+  setOp24(value?: prototype_operation_pb.un_delegate_vest_operation): void;
+
   getOpCase(): operation.OpCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): operation.AsObject;
@@ -133,6 +143,8 @@ export namespace operation {
     op20?: prototype_operation_pb.account_update_operation.AsObject,
     op21?: prototype_operation_pb.acquire_ticket_operation.AsObject,
     op22?: prototype_operation_pb.vote_by_ticket_operation.AsObject,
+    op23?: prototype_operation_pb.delegate_vest_operation.AsObject,
+    op24?: prototype_operation_pb.un_delegate_vest_operation.AsObject,
   }
 
   export enum OpCase {
@@ -156,6 +168,8 @@ export namespace operation {
     OP20 = 20,
     OP21 = 21,
     OP22 = 22,
+    OP23 = 23,
+    OP24 = 24,
   }
 }
 

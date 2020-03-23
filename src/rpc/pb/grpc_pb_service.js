@@ -370,6 +370,15 @@ ApiService.GetBlockProducerVoterList = {
   responseType: rpc_pb_grpc_pb.GetBlockProducerVoterListResponse
 };
 
+ApiService.GetVestDelegationOrderList = {
+  methodName: "GetVestDelegationOrderList",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetVestDelegationOrderListRequest,
+  responseType: rpc_pb_grpc_pb.GetVestDelegationOrderListResponse
+};
+
 exports.ApiService = ApiService;
 
 function ApiServiceClient(serviceHost, options) {
@@ -1591,6 +1600,37 @@ ApiServiceClient.prototype.getBlockProducerVoterList = function getBlockProducer
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetBlockProducerVoterList, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getVestDelegationOrderList = function getVestDelegationOrderList(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetVestDelegationOrderList, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

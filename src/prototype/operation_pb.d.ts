@@ -734,3 +734,67 @@ export namespace vote_by_ticket_operation {
   }
 }
 
+export class delegate_vest_operation extends jspb.Message {
+  hasFrom(): boolean;
+  clearFrom(): void;
+  getFrom(): prototype_type_pb.account_name | undefined;
+  setFrom(value?: prototype_type_pb.account_name): void;
+
+  hasTo(): boolean;
+  clearTo(): void;
+  getTo(): prototype_type_pb.account_name | undefined;
+  setTo(value?: prototype_type_pb.account_name): void;
+
+  hasAmount(): boolean;
+  clearAmount(): void;
+  getAmount(): prototype_type_pb.vest | undefined;
+  setAmount(value?: prototype_type_pb.vest): void;
+
+  getExpiration(): number;
+  setExpiration(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): delegate_vest_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: delegate_vest_operation): delegate_vest_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: delegate_vest_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): delegate_vest_operation;
+  static deserializeBinaryFromReader(message: delegate_vest_operation, reader: jspb.BinaryReader): delegate_vest_operation;
+}
+
+export namespace delegate_vest_operation {
+  export type AsObject = {
+    from?: prototype_type_pb.account_name.AsObject,
+    to?: prototype_type_pb.account_name.AsObject,
+    amount?: prototype_type_pb.vest.AsObject,
+    expiration: number,
+  }
+}
+
+export class un_delegate_vest_operation extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): prototype_type_pb.account_name | undefined;
+  setAccount(value?: prototype_type_pb.account_name): void;
+
+  getOrderId(): number;
+  setOrderId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): un_delegate_vest_operation.AsObject;
+  static toObject(includeInstance: boolean, msg: un_delegate_vest_operation): un_delegate_vest_operation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: un_delegate_vest_operation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): un_delegate_vest_operation;
+  static deserializeBinaryFromReader(message: un_delegate_vest_operation, reader: jspb.BinaryReader): un_delegate_vest_operation;
+}
+
+export namespace un_delegate_vest_operation {
+  export type AsObject = {
+    account?: prototype_type_pb.account_name.AsObject,
+    orderId: number,
+  }
+}
+

@@ -396,6 +396,31 @@ export class AccountInfo extends jspb.Message {
   getVotedBlockProducer(): prototype_type_pb.account_name | undefined;
   setVotedBlockProducer(value?: prototype_type_pb.account_name): void;
 
+  hasVestBorrowed(): boolean;
+  clearVestBorrowed(): void;
+  getVestBorrowed(): prototype_type_pb.vest | undefined;
+  setVestBorrowed(value?: prototype_type_pb.vest): void;
+
+  hasVestLent(): boolean;
+  clearVestLent(): void;
+  getVestLent(): prototype_type_pb.vest | undefined;
+  setVestLent(value?: prototype_type_pb.vest): void;
+
+  hasVestDelivering(): boolean;
+  clearVestDelivering(): void;
+  getVestDelivering(): prototype_type_pb.vest | undefined;
+  setVestDelivering(value?: prototype_type_pb.vest): void;
+
+  hasVestOwned(): boolean;
+  clearVestOwned(): void;
+  getVestOwned(): prototype_type_pb.vest | undefined;
+  setVestOwned(value?: prototype_type_pb.vest): void;
+
+  hasVestSelf(): boolean;
+  clearVestSelf(): void;
+  getVestSelf(): prototype_type_pb.vest | undefined;
+  setVestSelf(value?: prototype_type_pb.vest): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccountInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AccountInfo): AccountInfo.AsObject;
@@ -437,6 +462,11 @@ export namespace AccountInfo {
     freezeMemo: string,
     stakeVestFromMe?: prototype_type_pb.vest.AsObject,
     votedBlockProducer?: prototype_type_pb.account_name.AsObject,
+    vestBorrowed?: prototype_type_pb.vest.AsObject,
+    vestLent?: prototype_type_pb.vest.AsObject,
+    vestDelivering?: prototype_type_pb.vest.AsObject,
+    vestOwned?: prototype_type_pb.vest.AsObject,
+    vestSelf?: prototype_type_pb.vest.AsObject,
   }
 }
 
@@ -2953,6 +2983,116 @@ export class GetBlockProducerVoterListResponse extends jspb.Message {
 export namespace GetBlockProducerVoterListResponse {
   export type AsObject = {
     voterList: Array<BlockProducerVoterResponse.AsObject>,
+  }
+}
+
+export class VestDelegationOrder extends jspb.Message {
+  getId(): number;
+  setId(value: number): void;
+
+  hasFromAccount(): boolean;
+  clearFromAccount(): void;
+  getFromAccount(): prototype_type_pb.account_name | undefined;
+  setFromAccount(value?: prototype_type_pb.account_name): void;
+
+  hasToAccount(): boolean;
+  clearToAccount(): void;
+  getToAccount(): prototype_type_pb.account_name | undefined;
+  setToAccount(value?: prototype_type_pb.account_name): void;
+
+  hasAmount(): boolean;
+  clearAmount(): void;
+  getAmount(): prototype_type_pb.vest | undefined;
+  setAmount(value?: prototype_type_pb.vest): void;
+
+  getCreatedBlock(): number;
+  setCreatedBlock(value: number): void;
+
+  getMaturityBlock(): number;
+  setMaturityBlock(value: number): void;
+
+  getDeliveryBlock(): number;
+  setDeliveryBlock(value: number): void;
+
+  getDelivering(): boolean;
+  setDelivering(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): VestDelegationOrder.AsObject;
+  static toObject(includeInstance: boolean, msg: VestDelegationOrder): VestDelegationOrder.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: VestDelegationOrder, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): VestDelegationOrder;
+  static deserializeBinaryFromReader(message: VestDelegationOrder, reader: jspb.BinaryReader): VestDelegationOrder;
+}
+
+export namespace VestDelegationOrder {
+  export type AsObject = {
+    id: number,
+    fromAccount?: prototype_type_pb.account_name.AsObject,
+    toAccount?: prototype_type_pb.account_name.AsObject,
+    amount?: prototype_type_pb.vest.AsObject,
+    createdBlock: number,
+    maturityBlock: number,
+    deliveryBlock: number,
+    delivering: boolean,
+  }
+}
+
+export class GetVestDelegationOrderListRequest extends jspb.Message {
+  hasAccount(): boolean;
+  clearAccount(): void;
+  getAccount(): prototype_type_pb.account_name | undefined;
+  setAccount(value?: prototype_type_pb.account_name): void;
+
+  getIsFrom(): boolean;
+  setIsFrom(value: boolean): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  getLastOrderId(): number;
+  setLastOrderId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetVestDelegationOrderListRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetVestDelegationOrderListRequest): GetVestDelegationOrderListRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetVestDelegationOrderListRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetVestDelegationOrderListRequest;
+  static deserializeBinaryFromReader(message: GetVestDelegationOrderListRequest, reader: jspb.BinaryReader): GetVestDelegationOrderListRequest;
+}
+
+export namespace GetVestDelegationOrderListRequest {
+  export type AsObject = {
+    account?: prototype_type_pb.account_name.AsObject,
+    isFrom: boolean,
+    limit: number,
+    lastOrderId: number,
+  }
+}
+
+export class GetVestDelegationOrderListResponse extends jspb.Message {
+  clearOrdersList(): void;
+  getOrdersList(): Array<VestDelegationOrder>;
+  setOrdersList(value: Array<VestDelegationOrder>): void;
+  addOrders(value?: VestDelegationOrder, index?: number): VestDelegationOrder;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetVestDelegationOrderListResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetVestDelegationOrderListResponse): GetVestDelegationOrderListResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetVestDelegationOrderListResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetVestDelegationOrderListResponse;
+  static deserializeBinaryFromReader(message: GetVestDelegationOrderListResponse, reader: jspb.BinaryReader): GetVestDelegationOrderListResponse;
+}
+
+export namespace GetVestDelegationOrderListResponse {
+  export type AsObject = {
+    ordersList: Array<VestDelegationOrder.AsObject>,
   }
 }
 
