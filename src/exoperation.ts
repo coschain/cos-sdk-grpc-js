@@ -26,3 +26,6 @@ export {transfer_to_vest_operation} from './lib/type/transfer_to_vest_operation'
 
 export {vote_operation} from './lib/type/vote_operation'
 
+export {delegate_vest_operation} from './lib/type/delegate_vest_operation'
+
+export {un_delegate_vest_operation} from './lib/type/un_delegate_vest_operation'
