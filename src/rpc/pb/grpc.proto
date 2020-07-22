@@ -89,6 +89,9 @@ service ApiService {
 
     }
 
+    rpc GetMonthlyStats (GetMonthlyStatsRequest) returns (GetMonthlyStatsResponse) {
+    }
+
     rpc GetContractListByTime(GetContractListByTimeRequest) returns (GetContractListResponse) {
     }
 
@@ -595,6 +598,21 @@ message GetDailyStatsRequest {
 
 message GetDailyStatsResponse {
     repeated DailyStat stat = 1;
+}
+
+message MonthlyStat {
+    uint64 date = 1;
+    string dapp = 2;
+    uint32 mau = 3;
+}
+
+message GetMonthlyStatsRequest {
+    uint32 months = 1;
+    string dapp = 2;
+}
+
+message GetMonthlyStatsResponse {
+    repeated MonthlyStat stat = 1;
 }
 
 message ContractInfo {

@@ -238,6 +238,15 @@ type ApiServiceGetDailyStats = {
   readonly responseType: typeof rpc_pb_grpc_pb.GetDailyStatsResponse;
 };
 
+type ApiServiceGetMonthlyStats = {
+  readonly methodName: string;
+  readonly service: typeof ApiService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof rpc_pb_grpc_pb.GetMonthlyStatsRequest;
+  readonly responseType: typeof rpc_pb_grpc_pb.GetMonthlyStatsResponse;
+};
+
 type ApiServiceGetContractListByTime = {
   readonly methodName: string;
   readonly service: typeof ApiService;
@@ -401,6 +410,7 @@ export class ApiService {
   static readonly GetBlkIsIrreversibleByTxId: ApiServiceGetBlkIsIrreversibleByTxId;
   static readonly GetAccountListByCreTime: ApiServiceGetAccountListByCreTime;
   static readonly GetDailyStats: ApiServiceGetDailyStats;
+  static readonly GetMonthlyStats: ApiServiceGetMonthlyStats;
   static readonly GetContractListByTime: ApiServiceGetContractListByTime;
   static readonly GetBlockProducerListByVoteCount: ApiServiceGetBlockProducerListByVoteCount;
   static readonly GetPostListByVest: ApiServiceGetPostListByVest;
@@ -683,6 +693,15 @@ export class ApiServiceClient {
   getDailyStats(
     requestMessage: rpc_pb_grpc_pb.GetDailyStatsRequest,
     callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetDailyStatsResponse|null) => void
+  ): UnaryResponse;
+  getMonthlyStats(
+    requestMessage: rpc_pb_grpc_pb.GetMonthlyStatsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetMonthlyStatsResponse|null) => void
+  ): UnaryResponse;
+  getMonthlyStats(
+    requestMessage: rpc_pb_grpc_pb.GetMonthlyStatsRequest,
+    callback: (error: ServiceError|null, responseMessage: rpc_pb_grpc_pb.GetMonthlyStatsResponse|null) => void
   ): UnaryResponse;
   getContractListByTime(
     requestMessage: rpc_pb_grpc_pb.GetContractListByTimeRequest,

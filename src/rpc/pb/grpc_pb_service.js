@@ -244,6 +244,15 @@ ApiService.GetDailyStats = {
   responseType: rpc_pb_grpc_pb.GetDailyStatsResponse
 };
 
+ApiService.GetMonthlyStats = {
+  methodName: "GetMonthlyStats",
+  service: ApiService,
+  requestStream: false,
+  responseStream: false,
+  requestType: rpc_pb_grpc_pb.GetMonthlyStatsRequest,
+  responseType: rpc_pb_grpc_pb.GetMonthlyStatsResponse
+};
+
 ApiService.GetContractListByTime = {
   methodName: "GetContractListByTime",
   service: ApiService,
@@ -1166,6 +1175,37 @@ ApiServiceClient.prototype.getDailyStats = function getDailyStats(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(ApiService.GetDailyStats, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ApiServiceClient.prototype.getMonthlyStats = function getMonthlyStats(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ApiService.GetMonthlyStats, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -2346,6 +2346,80 @@ export namespace GetDailyStatsResponse {
   }
 }
 
+export class MonthlyStat extends jspb.Message {
+  getDate(): number;
+  setDate(value: number): void;
+
+  getDapp(): string;
+  setDapp(value: string): void;
+
+  getMau(): number;
+  setMau(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MonthlyStat.AsObject;
+  static toObject(includeInstance: boolean, msg: MonthlyStat): MonthlyStat.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MonthlyStat, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MonthlyStat;
+  static deserializeBinaryFromReader(message: MonthlyStat, reader: jspb.BinaryReader): MonthlyStat;
+}
+
+export namespace MonthlyStat {
+  export type AsObject = {
+    date: number,
+    dapp: string,
+    mau: number,
+  }
+}
+
+export class GetMonthlyStatsRequest extends jspb.Message {
+  getMonths(): number;
+  setMonths(value: number): void;
+
+  getDapp(): string;
+  setDapp(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMonthlyStatsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMonthlyStatsRequest): GetMonthlyStatsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMonthlyStatsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMonthlyStatsRequest;
+  static deserializeBinaryFromReader(message: GetMonthlyStatsRequest, reader: jspb.BinaryReader): GetMonthlyStatsRequest;
+}
+
+export namespace GetMonthlyStatsRequest {
+  export type AsObject = {
+    months: number,
+    dapp: string,
+  }
+}
+
+export class GetMonthlyStatsResponse extends jspb.Message {
+  clearStatList(): void;
+  getStatList(): Array<MonthlyStat>;
+  setStatList(value: Array<MonthlyStat>): void;
+  addStat(value?: MonthlyStat, index?: number): MonthlyStat;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMonthlyStatsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMonthlyStatsResponse): GetMonthlyStatsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMonthlyStatsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMonthlyStatsResponse;
+  static deserializeBinaryFromReader(message: GetMonthlyStatsResponse, reader: jspb.BinaryReader): GetMonthlyStatsResponse;
+}
+
+export namespace GetMonthlyStatsResponse {
+  export type AsObject = {
+    statList: Array<MonthlyStat.AsObject>,
+  }
+}
+
 export class ContractInfo extends jspb.Message {
   hasOwner(): boolean;
   clearOwner(): void;
