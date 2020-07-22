@@ -1,6 +1,6 @@
 {
   "name": "cos-grpc-js",
-  "version": "1.5.17",
+  "version": "1.5.18-beta.1",
   "dependencies": {
     "@improbable-eng/grpc-web": "^0.8.0",
     "@types/bs58": "^4.0.0",
